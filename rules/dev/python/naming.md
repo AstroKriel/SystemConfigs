@@ -91,8 +91,8 @@ Use underscores to separate all components of a physics symbol name, mirroring L
 
 | Rule | |
 |---|---|
-| Prefer | `<sym>_<label>`, `<op>_<qty>`, `<sym>_<label>_<qualifier>` |
-| Avoid | `<sym><label>`, `<op><qty>`, `<sym><label><qualifier>` |
+| Prefer | `<symbol>_<label>`, `<operation>_<quantity>`, `<symbol>_<label>_<qualifier>` |
+| Avoid | `<symbol><label>`, `<operation><quantity>`, `<symbol><label><qualifier>` |
 
 Apply consistently to variable names, comments, docstrings, and user-facing labels; preserve established public labels when they exist.
 
