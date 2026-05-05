@@ -1,19 +1,49 @@
 ##
-## === PROJECT DIRECTORIES
+## === FREQUENTLY VISITED DIRECTORIES
 ##
 
-export DNOTES="$HOME/Projects/ProjectNotes"
-alias dnotes='cd "$DNOTES"'
+create_alias_if_present() {
+    local var_name=""
+    local alias_name=""
+    local dir_path=""
 
-export DASGARD="$HOME/Projects/Asgard"
-alias dasgard='cd "$DASGARD"'
+    while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+            --var)
+                var_name="$2"
+                shift 2
+                ;;
+            --alias)
+                alias_name="$2"
+                shift 2
+                ;;
+            --dir)
+                dir_path="$2"
+                shift 2
+                ;;
+            *)
+                echo "create_alias_if_present: unknown argument: $1" >&2
+                return 2
+                ;;
+        esac
+    done
 
-export DQUOKKA="$HOME/Projects/quokka"
-alias dquokka='cd "$DQUOKKA"'
+    if [[ -z "$var_name" || -z "$alias_name" || -z "$dir_path" ]]; then
+        echo "create_alias_if_present: requires --var <name> --alias <name> --dir <path>" >&2
+        return 2
+    fi
 
-if [[ "$OSTYPE" == "linux"* ]]; then
-    export DSYS="$HOME/Documents/SetupFramework"
-    alias dsys='cd "$DSYS"'
-fi
+    [[ -d "$dir_path" ]] || return 0
+
+    export "$var_name=$dir_path"
+    alias "$alias_name=cd \"\$$var_name\""
+}
+
+create_alias_if_present --var DASGARD --alias dasgard --dir "$HOME/Projects/Asgard"
+create_alias_if_present --var DQUOKKA --alias dquokka --dir "$HOME/Projects/quokka"
+create_alias_if_present --var DNOTES --alias dnotes --dir "$HOME/Documents/ProjectNotes"
+create_alias_if_present --var DBLOGS --alias dblogs --dir "$HOME/Documents/MyBlogs"
+
+create_alias_if_present --var DSYS --alias dsys --dir "$HOME/Documents/SetupFramework"
 
 ## .
