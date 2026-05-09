@@ -19,6 +19,7 @@
   "buffer_font_features": {
     "calt": false
   },
+  "show_whitespaces": "all",
   "languages": {
     "Python": {
       "format_on_save": "off"
