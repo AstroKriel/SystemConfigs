@@ -43,7 +43,7 @@ class <EnumName>(Enum):
 |---|---|
 | Containers | prefer `@dataclass(frozen=True)`, immutability by default |
 | Derived attributes | use `@cached_property` |
-| Alternative constructors | `@classmethod` methods named `from_*` |
+| Alternative constructors | `@classmethod` methods named for the operation and source: `from_<type>` for pure type conversion, `load_from_<source>` for I/O reads |
 | Resource lifecycle | use context managers (`__enter__` / `__exit__`) |
 | `@property` vs `get_*` | use `@property` for attributes derived from existing state: no parameters, no side effects, cheap to compute; use `get_*` for operations that take parameters, involve I/O, or significant cost |
 
