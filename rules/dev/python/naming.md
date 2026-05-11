@@ -42,6 +42,7 @@ Always use strong, specific verb prefixes. Avoid weak or generic leading words t
 | `ensure_*` | raises on failure, no return value; covers both atomic single-constraint checks and compound multi-condition validation; name must reflect both the subject and the criteria being ensured: `ensure_<criteria>_<subject>` or `ensure_<subject>_<criteria>` |
 | `as_*` | validates an input and returns it resolved to a canonical type; raises on failure |
 | `load_*` | I/O that returns data |
+| `save_*` | I/O that writes data |
 | `create_*` / `make_*` | object construction |
 | `get_*` | query or lookup |
 | `resolve_*` | disambiguation between options |
