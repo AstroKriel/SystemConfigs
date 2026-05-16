@@ -1,58 +1,56 @@
-# Scientific Writing Style
+# Scientific Writing
 
-How scientific prose is structured and argued.
+These rules apply when writing scientific prose: manuscripts, papers, theses, and technical reports intended for publication.
 
 ---
 
-## Core Style
+## Argument Structure
 
 | Rule | |
 |---|---|
-| Motivation before machinery | explain why something matters before introducing equations, methods, or numerics |
+| Begin from tension, not machinery | introduce what is unresolved before equations, methods, or numerics |
 | Build arguments causally | each paragraph should explain why the next idea follows |
-| Physical interpretation first | formalism supports the physics, not vice versa |
-| Mechanisms over labels | explain what physically changes and why |
 | Separate mechanism from implication | first explain what happens, then why it matters |
 | Bound conclusions carefully | explicitly distinguish what is and is not explained |
+
+---
+
+## Physical Interpretation
+
+| Rule | |
+|---|---|
+| Physical interpretation first | formalism supports the physics, not vice versa |
+| Mechanisms over labels | explain what physically changes and why |
 | Preserve scale awareness | distinguish local effects from system-scale implications |
-| Significance emerges naturally | avoid announcing importance rhetorically |
-
----
-
-## Paragraph Structure
-
-| Rule | |
-|---|---|
-| One conceptual progression per paragraph | avoid mixing unrelated ideas |
-| Opening sentence establishes focus | define the physical problem or limitation immediately |
-| Middle sentences develop mechanism | elaborate consequences, limitations, or interpretation |
-| Final sentence broadens scope | reconnect to observations, implications, or unresolved problems |
-| Transitions should be causal | the next paragraph should emerge from unresolved consequences |
-
----
-
-## Interpretation
-
-| Rule | |
-|---|---|
 | Explain why limitations matter | do not merely state caveats or assumptions |
 | Distinguish evidence from interpretation | simulations, measurements, and physical claims should remain separable |
-| Preserve uncertainty structure | identify unresolved components explicitly |
-| Avoid overstating causality | distinguish correlation, mechanism, and implication |
-| Connect local physics to global behaviour | bridge simulation-scale results to astrophysical implications |
-| Track scale transitions explicitly | clarify which conclusions survive coarse-graining or scale changes |
 
 ---
 
-## Mathematical Exposition
+## Mathematical Writing
 
 | Rule | |
 |---|---|
-| Introduce intuition before notation | explain the process before the symbols |
-| Equations should advance the argument | avoid decorative or isolated mathematics |
-| Decompose equations physically | explain what terms represent dynamically |
-| Avoid equation dumping | each equation should have narrative purpose |
-| Derivations should preserve interpretation | mathematics should remain connected to the physics |
+| Inline math | use `$ ... $` |
+| Display derivations | use `align` environments |
+| Use mathematics to expose structure | equations should clarify competing processes, scales, or constraints; avoid disconnected formalism |
+| Prefer decompositions that expose dynamics | separate competing terms, scales, or symmetries explicitly |
+| Introduce variables completely | state symbol, physical meaning, and typical value or range in order |
+| Annotate equation terms | label physical contributions in equations so structure is readable without parsing notation |
+
+---
+
+## Grammar
+
+| Rule | |
+|---|---|
+| No contractions | write "do not", "it is", "we have" |
+| No sentence-initial conjunctions | replace "And," "But," with "Moreover,", "However,", "In contrast," |
+| Semicolons join coordinate clauses | colons introduce explanations, lists, and equations |
+| Embed definitions in running text | use "where", "here", or "(i.e., ...)" rather than standalone definitional sentences |
+| Passive only for definitions and constraints | "is defined as", "is given by", "are expected to"; active elsewhere |
+| No em dashes | use commas, semicolons, or parentheses for secondary clauses |
+| Numbers | spell out below ten; numerals above |
 
 ---
 
@@ -60,13 +58,13 @@ How scientific prose is structured and argued.
 
 | Rule | |
 |---|---|
-| Declarative sentences | avoid rhetorical questions |
-| Dense but controlled | each sentence should contribute new information |
-| Minimal hedging | qualify uncertainty precisely rather than generically |
-| Avoid filler transitions | cut "interestingly", "notably", "it is important to note" |
-| Avoid hype language | avoid "remarkable", "groundbreaking", "extremely important" |
-| Avoid performative novelty claims | novelty should emerge from comparison and reasoning |
-| Avoid dramatic framing | maintain restrained exposition |
+| Match epistemic markers to confidence | use "consistent with", "suggest", "expect" for uncertain claims; use direct language for established results; avoid intensifiers like "very" and "really" |
+| Specificity over vagueness | provide numbers, units, and scales rather than vague qualifications |
+| Integrate citations syntactically | weave citations into prose structure; avoid parenthetical citation dumps |
+| Signal surprise through structure | frame anomalies as clear problem statements, not through "surprisingly" or "remarkably" |
+| Treat limitations analytically | reframe them immediately as motivation for the next move ("To overcome this..."), not as weaknesses to acknowledge and move past |
+| Unexpected results are refinements | frame them as clarifying or extending existing understanding, not as contradictions |
+| First person is strategic | use "I" for explicit intellectual ownership of key moves; "we" for methods and results |
 
 ---
 
@@ -86,14 +84,18 @@ Use consequence-driven transitions:
 This matters because...
 An immediate consequence of this is...
 To overcome this...
-This introduces...
+As a consequence, ...
+In turn, ...
+With this, we now have...
+This motivates...
 ```
 
-Use scale-aware framing:
+Use leading-order and contrast transitions:
 
 ```text
-At local scales...
-At system scales...
-This modifies the characteristic scale...
-This remains insufficient to explain...
+To leading order, ...
+By contrast, ...
+In contrast, ...
 ```
+
+Place minor qualifications in parentheticals; move extended caveats to footnotes. Keep the main narrative unbroken.
