@@ -9,8 +9,8 @@ import argparse
 from pathlib import Path
 from typing import cast
 ## local
-from setup.extras_data.extra_config import ExtraConfig
-from setup.extras_data import arch_x11, hpc, macos, personal
+from setup._extras.config import ExtraConfig
+from setup._extras import arch_x11, hpc, macos, personal
 from utils import load_profiles
 from utils import log_messages, apply_shell_actions
 

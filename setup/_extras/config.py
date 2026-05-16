@@ -1,4 +1,4 @@
-## { SCRIPT
+## { MODULE
 
 from dataclasses import dataclass
 from pathlib import Path
@@ -14,4 +14,4 @@ class ExtraConfig:
     target_path: Path
     requires: tuple[str, ...] = ()
 
-## } SCRIPT
+## } MODULE
