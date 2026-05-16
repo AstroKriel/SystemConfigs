@@ -175,8 +175,14 @@ def shallow_clone_repo(
         )
         return
     apply_shell_actions.run_command(
-        args=["git", "clone", "--depth", "1", repo.url,
-              str(repo.output)],
+        args=[
+            "git",
+            "clone",
+            "--depth",
+            "1",
+            repo.url,
+            str(repo.output),
+        ],
         script_name=SCRIPT_NAME,
         description=f"clone {repo.name} (shallow) under {repo.output}",
         dry_run=dry_run,
@@ -298,7 +304,12 @@ def main():
     )
     args = parser.parse_args()
     include_all = cast(bool, args.all)
-    requested_tool_keys = tuple(cast(list[str], args.which))
+    requested_tool_keys = tuple(
+        cast(
+            list[str],
+            args.which,
+        ),
+    )
     dry_run = cast(bool, args.dry_run)
     check_only = cast(bool, args.check_only)
     if include_all and requested_tool_keys:

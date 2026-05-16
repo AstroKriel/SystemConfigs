@@ -29,9 +29,15 @@ def run_command(
   Run a shell command with log_messages. Return True on success, False on failure.
   """
     if dry_run:
-        log_messages.log_message(script_name=script_name, message=f"[dry-run] Would run: {description}")
+        log_messages.log_message(
+            script_name=script_name,
+            message=f"[dry-run] Would run: {description}",
+        )
         return True
-    log_messages.log_message(script_name=script_name, message=f"Running: {description}")
+    log_messages.log_message(
+        script_name=script_name,
+        message=f"Running: {description}",
+    )
     try:
         subprocess.run(
             args=args,
@@ -39,13 +45,19 @@ def run_command(
             capture_output=capture_output,
             text=capture_output,
         )
-        log_messages.log_message(script_name=script_name, message=f"Done: {description}")
+        log_messages.log_message(
+            script_name=script_name,
+            message=f"Done: {description}",
+        )
         return True
     except subprocess.CalledProcessError as e:
         stderr_value = cast(object, e.stderr)
         stderr = stderr_value if isinstance(stderr_value, str) else ""
         error_output = stderr.strip() if (capture_output and stderr) else "(no output captured)"
-        log_messages.log_message(script_name=script_name, message=f"Failed: {description}\n{error_output}")
+        log_messages.log_message(
+            script_name=script_name,
+            message=f"Failed: {description}\n{error_output}",
+        )
         return False
 
 
@@ -67,7 +79,10 @@ def ensure_dir_exists(
             message=f"[dry-run] Would create directory: {directory}",
         )
     else:
-        directory.mkdir(parents=True, exist_ok=True)
+        directory.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
         log_messages.log_message(
             script_name=script_name,
             message=f"Created directory: {directory}",
@@ -165,7 +180,10 @@ def create_symlink(
         )
         return
     ## target is already correctly linked to source
-    if _already_linked_correctly(target_path=target_path, source_path=source_path):
+    if _already_linked_correctly(
+            target_path=target_path,
+            source_path=source_path,
+    ):
         log_messages.log_message(
             script_name=script_name,
             message=log_messages.format_dry_run(
@@ -182,7 +200,10 @@ def create_symlink(
         )
         return
     ## check types match before replacing
-    if not _types_match(source_path=source_path, target_path=target_path):
+    if not _types_match(
+            source_path=source_path,
+            target_path=target_path,
+    ):
         log_messages.log_message(
             script_name=script_name,
             message=f"Skipping due to a type mismatch. {target_path} is {_get_path_type(target_path)}, "
@@ -225,6 +246,7 @@ def remove_symlink(
             script_name=script_name,
             message=f"Removed symlink: {target_path}",
         )
+
 
 ##
 ## === INTERNAL HELPERS
@@ -345,5 +367,6 @@ def _types_match(
     if source_path.is_dir() and target_path.is_dir():
         return True
     return False
+
 
 ## } MODULE

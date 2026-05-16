@@ -145,7 +145,12 @@ def merge_config_modules(
                 if not isinstance(dict_content, dict):
                     _log_message(f"Skipping. Expected object config in: {module}")
                     return None
-                merged_dict.update(cast(dict[str, object], dict_content))
+                merged_dict.update(
+                    cast(
+                        dict[str, object],
+                        dict_content,
+                    ),
+                )
         return merged_dict
     elif mode == "list":
         merged_list: list[object] = []
@@ -157,7 +162,12 @@ def merge_config_modules(
                 if not isinstance(list_content, list):
                     _log_message(f"Skipping. Expected list config in: {module}")
                     return None
-                merged_list.extend(cast(list[object], list_content))
+                merged_list.extend(
+                    cast(
+                        list[object],
+                        list_content,
+                    ),
+                )
         return merged_list
     else:
         _log_message(f"Error: Unsupported mode `{mode}`")
@@ -192,8 +202,14 @@ def shallow_clone_repo(
         _log_message(f"{repo.name} already exists under: {repo.output}")
         return
     apply_shell_actions.run_command(
-        args=["git", "clone", "--depth", "1", repo.url,
-              str(repo.output)],
+        args=[
+            "git",
+            "clone",
+            "--depth",
+            "1",
+            repo.url,
+            str(repo.output),
+        ],
         script_name=SCRIPT_NAME,
         description=f"clone {repo.name} (shallow) under {repo.output}",
         dry_run=dry_run,
@@ -437,7 +453,12 @@ def main():
     )
     args = parser.parse_args()
     include_all = cast(bool, args.all)
-    requested_editor_keys = tuple(cast(list[str], args.which))
+    requested_editor_keys = tuple(
+        cast(
+            list[str],
+            args.which,
+        ),
+    )
     dry_run = cast(bool, args.dry_run)
     if include_all and requested_editor_keys:
         parser.error("`--all` cannot be combined with `--which`")

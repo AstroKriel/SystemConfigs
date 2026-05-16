@@ -14,4 +14,5 @@ class ExtraConfig:
     target_path: Path
     requires: tuple[str, ...] = ()
 
+
 ## } MODULE

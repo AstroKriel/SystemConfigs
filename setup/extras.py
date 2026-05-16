@@ -187,7 +187,12 @@ def main() -> None:
     )
     args = parser.parse_args()
     include_all = cast(bool, args.all)
-    requested_extra_keys = tuple(cast(list[str], args.which))
+    requested_extra_keys = tuple(
+        cast(
+            list[str],
+            args.which,
+        ),
+    )
     dry_run = cast(bool, args.dry_run)
     if include_all and requested_extra_keys:
         parser.error("`--all` cannot be combined with `--which`")

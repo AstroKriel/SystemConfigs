@@ -34,6 +34,7 @@ class SystemProfile:
     link_rules: bool
     set_login_shell: bool
 
+
 ##
 ## === PROFILE HELPERS
 ##
@@ -137,6 +138,12 @@ def _get_string_tuple(
     value_items = cast(list[object], value)
     if not all(isinstance(item, str) for item in value_items):
         raise TypeError(f"`{key}` must contain only strings.")
-    return tuple(cast(list[str], value_items))
+    return tuple(
+        cast(
+            list[str],
+            value_items,
+        ),
+    )
+
 
 ## } MODULE

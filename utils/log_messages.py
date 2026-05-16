@@ -37,7 +37,10 @@ def log_message(
     print(log_entry)
     if not _should_write_to_file:
         return
-    log_file.parent.mkdir(parents=True, exist_ok=True)
+    log_file.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
     with open(log_file, "a") as f:
         f.write(log_entry)
 
@@ -63,6 +66,7 @@ def format_dry_run(
 def make_logger(
     script_name: str,
 ) -> Callable[[str], None]:
+
     def _log(
         message: str,
     ) -> None:
@@ -70,6 +74,8 @@ def make_logger(
             script_name=script_name,
             message=message,
         )
+
     return _log
+
 
 ## } MODULE
