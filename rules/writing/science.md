@@ -9,9 +9,9 @@ These rules apply when writing scientific prose: manuscripts, papers, theses, an
 | Rule | |
 |---|---|
 | Begin from tension, not machinery | introduce what is unresolved before equations, methods, or numerics |
-| Build arguments causally | each paragraph should explain why the next idea follows |
+| Build arguments causally | end each paragraph by surfacing the consequence or gap that the next paragraph must resolve |
 | Separate mechanism from implication | first explain what happens, then why it matters |
-| Bound conclusions carefully | explicitly distinguish what is and is not explained |
+| Bound conclusions carefully | after stating a result, say in one sentence what it leaves open |
 
 ---
 
@@ -19,10 +19,10 @@ These rules apply when writing scientific prose: manuscripts, papers, theses, an
 
 | Rule | |
 |---|---|
-| Physical interpretation first | formalism supports the physics, not vice versa |
-| Mechanisms over labels | explain what physically changes and why |
-| Preserve scale awareness | distinguish local effects from system-scale implications |
-| Explain why limitations matter | do not merely state caveats or assumptions |
+| Physical interpretation first | state the physical picture in words before introducing the equation that encodes it |
+| Mechanisms over labels | name what moves, transfers, or converts, under what conditions, and why the direction is what it is |
+| Preserve scale awareness | state the scale a result holds on and say explicitly whether it survives to larger scales |
+| Explain why limitations matter | for each limitation, say what it prevents you from concluding |
 | Distinguish evidence from interpretation | simulations, measurements, and physical claims should remain separable |
 
 ---
@@ -32,11 +32,11 @@ These rules apply when writing scientific prose: manuscripts, papers, theses, an
 | Rule | |
 |---|---|
 | Inline math | use `$ ... $` |
-| Display derivations | use `align` environments |
-| Use mathematics to expose structure | equations should clarify competing processes, scales, or constraints; avoid disconnected formalism |
-| Prefer decompositions that expose dynamics | separate competing terms, scales, or symmetries explicitly |
-| Introduce variables completely | state symbol, physical meaning, and typical value or range in order |
-| Annotate equation terms | label physical contributions in equations so structure is readable without parsing notation |
+| All display math | use `align` environments; never use `$$` |
+| Use mathematics to expose structure | group and label equation terms by the physical process they represent, not by algebraic convenience |
+| Prefer decompositions that expose dynamics | decompose along physically meaningful axes: amplifying vs. diffusing, large-scale vs. small-scale, mean vs. fluctuating |
+| Introduce variables completely | when a symbol appears for the first time, give its name, physical meaning, and a characteristic value or scale in the same sentence or the one immediately following |
+| Symbol case is systematic | lower-case for scalars and vectors; upper-case for rank-2 tensors and collections |
 
 ---
 
@@ -60,7 +60,7 @@ These rules apply when writing scientific prose: manuscripts, papers, theses, an
 |---|---|
 | Match epistemic markers to confidence | use "consistent with", "suggest", "expect" for uncertain claims; use direct language for established results; avoid intensifiers like "very" and "really" |
 | Specificity over vagueness | provide numbers, units, and scales rather than vague qualifications |
-| Integrate citations syntactically | weave citations into prose structure; avoid parenthetical citation dumps |
+| Integrate citations syntactically | make the cited author or work the grammatical subject or object; reserve parenthetical citations for supplementary references |
 | Signal surprise through structure | frame anomalies as clear problem statements, not through "surprisingly" or "remarkably" |
 | Treat limitations analytically | reframe them immediately as motivation for the next move ("To overcome this..."), not as weaknesses to acknowledge and move past |
 | Unexpected results are refinements | frame them as clarifying or extending existing understanding, not as contradictions |
