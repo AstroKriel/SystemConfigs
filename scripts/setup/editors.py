@@ -7,7 +7,6 @@
 ## stdlib
 import argparse
 from dataclasses import dataclass
-from enum import Enum, auto
 import json
 from pathlib import Path
 import re
@@ -25,7 +24,6 @@ from local_helpers import project_dirs
 ##
 
 SCRIPT_NAME = Path(__file__).name
-HOME_DIR = project_dirs.TARGETS.home
 EDITORS_DIR = project_dirs.DIRS.editors
 CONFIG_DIR = project_dirs.TARGETS.config
 
@@ -40,29 +38,14 @@ else:
 _VSCODE_TARGET_DIR = _vscode_target_dir
 
 
-class PostSetup(Enum):
-    DOOM_SYNC = auto()
-
-
-@dataclass
-class RepoConfig:
-    name: str
-    url: str
-    output: Path
-
-
 @dataclass
 class EditorConfig:
     name: str
     command: str
-    brew: str
     dotfiles_dir: Path
     target_dir: Path
     files: dict[str, str] | None = None
     extensions: Path | None = None
-    mac_app: str | None = None
-    clone_repo: RepoConfig | None = None
-    post_setup: PostSetup | None = None
 
 
 EDITORS: dict[str, EditorConfig] = {
@@ -70,7 +53,6 @@ EDITORS: dict[str, EditorConfig] = {
     EditorConfig(
         name="Visual Studio Code",
         command="code",
-        brew="visual-studio-code --cask",
         dotfiles_dir=EDITORS_DIR / "vscode",
         target_dir=_VSCODE_TARGET_DIR,
         files={
@@ -83,30 +65,13 @@ EDITORS: dict[str, EditorConfig] = {
     EditorConfig(
         name="Neovim",
         command="nvim",
-        brew="neovim",
         dotfiles_dir=EDITORS_DIR / "nvim",
         target_dir=CONFIG_DIR / "nvim",
-    ),
-    "emacs":
-    EditorConfig(
-        name="Emacs (GUI)",
-        command="emacs",
-        brew="emacs --cask",
-        mac_app="Emacs.app",
-        dotfiles_dir=EDITORS_DIR / "emacs",
-        target_dir=HOME_DIR / ".doom.d",
-        clone_repo=RepoConfig(
-            name="Doom-Emacs",
-            url="https://github.com/doomemacs/doomemacs",
-            output=CONFIG_DIR / "emacs",
-        ),
-        post_setup=PostSetup.DOOM_SYNC,
     ),
     "zed":
     EditorConfig(
         name="Zed",
         command="zed" if sys.platform == "darwin" else "zeditor",
-        brew="zed --cask",
         dotfiles_dir=EDITORS_DIR / "zed",
         target_dir=Path.home() / ".config/zed/",
         files={
@@ -133,12 +98,14 @@ def filter_jsonc_comments(
 def merge_config_modules(
     *,
     modules_dir: Path,
-    mode: str,
+    output_mode: str,
 ) -> dict[str, object] | list[object] | None:
+    """Merge all `*.jsonc` files under `modules_dir` into one dict or list."""
     if not modules_dir.exists():
         LOG_MESSAGE(f"Skipping. No module directory found: {modules_dir}")
         return None
-    if mode == "dict":
+    ## `dict` mode: each module is a JSON object; later keys overwrite earlier ones in sort order
+    if output_mode == "dict":
         merged_dict: dict[str, object] = {}
         for module in sorted(modules_dir.glob("*.jsonc")):
             with module.open("r", encoding="utf-8") as module_file:
@@ -155,7 +122,8 @@ def merge_config_modules(
                     ),
                 )
         return merged_dict
-    elif mode == "list":
+    ## `list` mode: each module is a JSON array; entries are concatenated in sort order
+    elif output_mode == "list":
         merged_list: list[object] = []
         for module in sorted(modules_dir.glob("*.jsonc")):
             with module.open("r", encoding="utf-8") as module_file:
@@ -173,7 +141,7 @@ def merge_config_modules(
                 )
         return merged_list
     else:
-        LOG_MESSAGE(f"Error: Unsupported mode `{mode}`")
+        LOG_MESSAGE(f"Error: Unsupported output mode `{output_mode}`")
         return None
 
 
@@ -196,46 +164,6 @@ def install_extensions(
         )
 
 
-def shallow_clone_repo(
-    *,
-    repo: RepoConfig,
-    dry_run: bool,
-) -> None:
-    if repo.output.exists():
-        LOG_MESSAGE(f"{repo.name} already exists under: {repo.output}")
-        return
-    apply_shell_actions.run_command(
-        args=[
-            "git",
-            "clone",
-            "--depth",
-            "1",
-            repo.url,
-            str(repo.output),
-        ],
-        logger_fn=LOG_MESSAGE,
-        description=f"clone {repo.name} (shallow) under {repo.output}",
-        dry_run=dry_run,
-    )
-
-
-def run_doom_sync(
-    *,
-    dry_run: bool,
-) -> None:
-    doom_bin = CONFIG_DIR / "emacs" / "bin" / "doom"
-    if not doom_bin.exists():
-        LOG_MESSAGE(f"Doom binary not found at: {doom_bin}")
-        return
-    apply_shell_actions.run_command(
-        args=[str(doom_bin), "sync"],
-        logger_fn=LOG_MESSAGE,
-        description="doom sync",
-        dry_run=dry_run,
-        capture_output=False,
-    )
-
-
 def setup_editor(
     *,
     editor: EditorConfig,
@@ -247,11 +175,7 @@ def setup_editor(
             dry_run=dry_run,
         ),
     )
-    found_via_app = (
-        sys.platform == "darwin" and editor.mac_app is not None
-        and (Path("/Applications") / editor.mac_app).exists()
-    )
-    if shutil.which(editor.command) or found_via_app:
+    if shutil.which(editor.command):
         LOG_MESSAGE(
             log_messages.format_dry_run(
                 message=f"Found {editor.name} ({editor.command}) in your `$PATH`.",
@@ -259,13 +183,9 @@ def setup_editor(
             ),
         )
     else:
-        message = (
-            f"{editor.command} was not found in your `$PATH`.\n"
-            f"Install it via: `brew install {editor.brew}`"
-        )
         LOG_MESSAGE(
             log_messages.format_dry_run(
-                message=message,
+                message=f"{editor.command} was not found in your `$PATH`.",
                 dry_run=dry_run,
             ),
         )
@@ -287,13 +207,6 @@ def setup_editor(
             editor=editor,
             dry_run=dry_run,
         )
-    if editor.clone_repo is not None:
-        shallow_clone_repo(
-            repo=editor.clone_repo,
-            dry_run=dry_run,
-        )
-    if editor.post_setup == PostSetup.DOOM_SYNC:
-        run_doom_sync(dry_run=dry_run)
     ## install extensions if defined
     if editor.extensions is not None:
         install_extensions(
@@ -310,11 +223,11 @@ def setup_editor_files(
 ) -> None:
     if editor.files is None:
         return
-    for file_name, mode in editor.files.items():
+    for file_name, output_mode in editor.files.items():
         modules_dir = editor.dotfiles_dir / file_name
         merged_config = merge_config_modules(
             modules_dir=modules_dir,
-            mode=mode,
+            output_mode=output_mode,
         )
         if merged_config is None:
             return
