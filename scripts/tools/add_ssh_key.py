@@ -130,7 +130,7 @@ def write_key_record(
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     public_key = ssh_key_config.public_file.read_text().rstrip("\n")
     ssh_key_config.record_file.write_text(
-        f"# SSH Key Notes: {ssh_key_config.name}\n"
+        f"# {ssh_key_config.name}\n"
         f"# Created: {timestamp}\n"
         f"\n"
         f"## Key files\n"
@@ -140,19 +140,19 @@ def write_key_record(
         f"## Public key\n"
         f"{public_key}\n"
         f"\n"
-        f"## Keygen command\n"
+        f"## Reproduce\n"
         f'ssh-keygen -t ed25519 -a 100 -f "{ssh_key_config.private_file}" -C "{ssh_key_config.comment}"\n'
         f"\n"
-        f"## Suggested ~/.ssh/config block (fill in placeholders)\n"
+        f"## Config block\n"
         f"Host <ALIAS>\n"
         f"  HostName <REMOTE_HOST>\n"
         f"  User <REMOTE_USER>\n"
         f"  IdentityFile {ssh_key_config.private_file}\n"
         f"  IdentitiesOnly yes\n"
         f"\n"
-        f"## Suggested upload command (fill in placeholders)\n"
+        f"## Upload\n"
         f"ssh-copy-id -i {ssh_key_config.public_file} <REMOTE_USER>@<REMOTE_HOST>\n"
-        f"## Or upload the public key manually (e.g. via FreeIPA or GitHub web UI).\n"
+        f"# or upload manually via FreeIPA, GitHub, etc.\n"
         f"\n"
         f"## Verify\n"
         f"ssh <ALIAS>\n",
