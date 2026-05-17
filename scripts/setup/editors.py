@@ -155,11 +155,11 @@ def install_extensions(
         LOG_MESSAGE(f"No extensions file found at: {extensions_file}")
         return
     extensions = [extension for extension in extensions_file.read_text().splitlines() if extension.strip()]
-    for ext in extensions:
+    for extension in extensions:
         apply_shell_actions.run_command(
-            args=[command, "--install-extension", ext],
+            args=[command, "--install-extension", extension],
             logger_fn=LOG_MESSAGE,
-            description=f"install extension: {ext}",
+            description=f"install extension: {extension}",
             dry_run=dry_run,
         )
 
