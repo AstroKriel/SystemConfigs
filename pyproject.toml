@@ -21,6 +21,7 @@ dev = [
 
 [tool.pyright]
 include = ["setup_routine.py", "scripts", "src/local_helpers"]
+extraPaths = ["src"]
 
 ## --- rules to enforce
 reportMissingImports = true
