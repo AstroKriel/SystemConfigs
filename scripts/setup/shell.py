@@ -34,7 +34,7 @@ class ShellConfig:
     files: list[str]
 
 
-UTILS_FILES = ["shell_aliases", "shell_functions", "shell_options", "shell_paths"]
+COMMON_FILES = ["shell_aliases", "shell_functions", "shell_options", "shell_paths"]
 
 SHELLS = [
     ShellConfig(
@@ -104,7 +104,7 @@ def remove_symlinks(
             dry_run=dry_run,
         ),
     )
-    all_files = UTILS_FILES + [file_name for shell_config in SHELLS for file_name in shell_config.files]
+    all_files = COMMON_FILES + [file_name for shell_config in SHELLS for file_name in shell_config.files]
     for file_name in all_files:
         apply_shell_actions.remove_symlink(
             target_path=HOME_DIR / f".{file_name}",
@@ -135,8 +135,8 @@ def run(
         ),
     )
     ## link shared config files
-    for file_name in UTILS_FILES:
-        source_path = SHELL_DIR / "utils" / file_name
+    for file_name in COMMON_FILES:
+        source_path = SHELL_DIR / "common" / file_name
         target_path = HOME_DIR / f".{file_name}"
         apply_shell_actions.create_symlink(
             source_path=source_path,
