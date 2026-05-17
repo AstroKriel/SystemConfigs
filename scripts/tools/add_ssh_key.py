@@ -85,9 +85,9 @@ def print_summary(
     LOG_MESSAGE(f"Purpose: {ssh_key_config.purpose}")
     LOG_MESSAGE(f"Device: {ssh_key_config.device}")
     LOG_MESSAGE(f"Date: {ssh_key_config.today}")
-    LOG_MESSAGE(f"Key file: {ssh_key_config.private_file}")
+    LOG_MESSAGE(f"Private key: {ssh_key_config.private_file}")
     LOG_MESSAGE(f"Comment: {ssh_key_config.comment}")
-    LOG_MESSAGE(f"Notes: {ssh_key_config.record_file}")
+    LOG_MESSAGE(f"Record: {ssh_key_config.record_file}")
 
 
 def generate_key(
@@ -133,32 +133,25 @@ def write_key_record(
         f"# {ssh_key_config.name}\n"
         f"# Created: {timestamp}\n"
         f"\n"
-        f"## Key files\n"
-        f"{ssh_key_config.private_file}   (private; never share)\n"
-        f"{ssh_key_config.public_file}   (public)\n"
+        f"## Command ran\n"
+        f'ssh-keygen -t ed25519 -a 100 -f "{ssh_key_config.private_file}" -C "{ssh_key_config.comment}"\n'
+        f"\n"
+        f"## Files produced\n"
+        f"{ssh_key_config.private_file}  (private; never share its contents)\n"
+        f"{ssh_key_config.public_file}  (public; share with the host granting access)\n"
         f"\n"
         f"## Public key\n"
         f"{public_key}\n"
         f"\n"
-        f"## Reproduce\n"
-        f'ssh-keygen -t ed25519 -a 100 -f "{ssh_key_config.private_file}" -C "{ssh_key_config.comment}"\n'
-        f"\n"
-        f"## Config block\n"
+        f"## SSH config block\n"
         f"Host <ALIAS>\n"
-        f"  HostName <REMOTE_HOST>\n"
-        f"  User <REMOTE_USER>\n"
-        f"  IdentityFile {ssh_key_config.private_file}\n"
-        f"  IdentitiesOnly yes\n"
-        f"\n"
-        f"## Upload\n"
-        f"ssh-copy-id -i {ssh_key_config.public_file} <REMOTE_USER>@<REMOTE_HOST>\n"
-        f"# or upload manually via FreeIPA, GitHub, etc.\n"
-        f"\n"
-        f"## Verify\n"
-        f"ssh <ALIAS>\n",
+        f"\tHostName <REMOTE_HOST>\n"
+        f"\tUser <REMOTE_USER>\n"
+        f"\tIdentityFile {ssh_key_config.private_file}\n"
+        f"\tIdentitiesOnly yes\n"
     )
     ssh_key_config.record_file.chmod(0o600)
-    LOG_MESSAGE(f"Notes saved to {ssh_key_config.record_file}")
+    LOG_MESSAGE(f"Record saved to {ssh_key_config.record_file}")
 
 
 ##
@@ -172,7 +165,7 @@ def main() -> None:
         prog=SCRIPT_NAME,
         description=(
             "Generate a new ed25519 SSH key with a standardised comment, and "
-            "write a notes file under ~/.ssh/notes/ containing the public key "
+            "write a key record under ssh_keys/ containing the public key "
             "and a placeholder ~/.ssh/config block you can copy. Never modifies "
             "~/.ssh/config or pushes the key to any remote."
         ),
@@ -212,7 +205,7 @@ def main() -> None:
         comment=ssh_key_config.comment,
     )
     write_key_record(ssh_key_config=ssh_key_config)
-    LOG_MESSAGE(f"Finished creating {private_file}")
+    LOG_MESSAGE(f"Finished creating {ssh_key_config.private_file}")
 
 
 ##
