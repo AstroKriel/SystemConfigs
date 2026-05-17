@@ -6,7 +6,6 @@
 
 ## stdlib
 from dataclasses import dataclass
-from pathlib import Path
 import tomllib
 from typing import cast
 
@@ -47,22 +46,14 @@ def load_profile(
     required: bool = False,
 ) -> SystemProfile | None:
     """Load the local `this-system.toml` profile."""
-    profile_path = resolve_profile_path()
-    if profile_path is None:
+    if not THIS_SYSTEM_PROFILE_PATH.exists():
         if required:
             raise FileNotFoundError(
                 "No system profile found. Create `this-system.toml` from a tracked profile.",
             )
         return None
-    raw_profile = cast(dict[str, object], tomllib.loads(profile_path.read_text()))
+    raw_profile = cast(dict[str, object], tomllib.loads(THIS_SYSTEM_PROFILE_PATH.read_text()))
     return create_profile(raw_profile=raw_profile)
-
-
-def resolve_profile_path() -> Path | None:
-    """Resolve the local `this-system.toml` profile path."""
-    if THIS_SYSTEM_PROFILE_PATH.exists() or THIS_SYSTEM_PROFILE_PATH.is_symlink():
-        return THIS_SYSTEM_PROFILE_PATH
-    return None
 
 
 def create_profile(
