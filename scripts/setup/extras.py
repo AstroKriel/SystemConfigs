@@ -34,17 +34,6 @@ EXTRAS: dict[str, ExtraConfig] = {
 ##
 
 
-def extra_requirements_are_met(
-    *,
-    extra: ExtraConfig,
-    platform_tags: tuple[str, ...] | None,
-) -> bool:
-    """Return whether the active system profile satisfies the extra requirements."""
-    if platform_tags is None:
-        return True
-    return set(extra.requires).issubset(platform_tags)
-
-
 def setup_extra(
     *,
     extra: ExtraConfig,
@@ -52,13 +41,11 @@ def setup_extra(
     platform_tags: tuple[str, ...] | None = None,
 ) -> None:
     """Symlink one extra config file if the active profile satisfies its requirements."""
-    if not extra_requirements_are_met(
-            extra=extra,
-            platform_tags=platform_tags,
-    ):
-        missing = sorted(set(extra.requires) - set(platform_tags or ()))
-        LOG_MESSAGE(f"Skipping {extra.name}; missing profile platform tag(s): {', '.join(missing)}")
-        return
+    if platform_tags is not None:
+        missing = sorted(set(extra.requires) - set(platform_tags))
+        if missing:
+            LOG_MESSAGE(f"Skipping {extra.name}; missing profile platform tag(s): {', '.join(missing)}")
+            return
     apply_shell_actions.ensure_dir_exists(
         directory=extra.target_path.parent,
         logger_fn=LOG_MESSAGE,
