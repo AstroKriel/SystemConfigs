@@ -28,7 +28,7 @@ SCRIPT_NAME = Path(__file__).name
 SSH_DIR = project_dirs.TARGETS.ssh
 NOTES_DIR = project_dirs.TARGETS.ssh_notes
 
-_log_message = log_messages.make_logger(SCRIPT_NAME)
+LOG_MESSAGE = log_messages.make_logger(SCRIPT_NAME)
 
 ##
 ## === HELPERS
@@ -112,7 +112,7 @@ def collect_inputs(
     purpose: str,
     device: str,
 ) -> Inputs:
-    _log_message("Resolving inputs")
+    LOG_MESSAGE("Resolving inputs")
     today = datetime.date.today().strftime("%Y-%m-%d")
     key_file = SSH_DIR / f"id_ed25519_{name}"
     pub_file = key_file.with_suffix(".pub")
@@ -136,14 +136,14 @@ def ensure_ssh_dir() -> None:
         exist_ok=True,
     )
     SSH_DIR.chmod(0o700)
-    _log_message(f"{SSH_DIR} ok")
+    LOG_MESSAGE(f"{SSH_DIR} ok")
 
 
 def print_summary(
     *,
     inputs: Inputs,
 ) -> None:
-    _log_message("Summary:")
+    LOG_MESSAGE("Summary:")
     print(f"  Name:     {inputs.name}")
     print(f"  Purpose:  {inputs.purpose}")
     print(f"  Device:   {inputs.device}")
@@ -178,7 +178,7 @@ def generate_key(
     if not succeeded:
         fail("ssh-keygen failed")
     key_file.chmod(0o600)
-    _log_message(f"Key created at {key_file}")
+    LOG_MESSAGE(f"Key created at {key_file}")
 
 
 def write_notes(
@@ -221,7 +221,7 @@ def write_notes(
         f"ssh <ALIAS>\n",
     )
     inputs.notes_file.chmod(0o600)
-    _log_message(f"Notes saved to {inputs.notes_file}")
+    LOG_MESSAGE(f"Notes saved to {inputs.notes_file}")
 
 
 ##
@@ -239,7 +239,7 @@ def main() -> int:
 
     key_file = SSH_DIR / f"id_ed25519_{arg_name}"
     if key_file.exists():
-        _log_message(f"Key already exists at {key_file}. Nothing to do.")
+        LOG_MESSAGE(f"Key already exists at {key_file}. Nothing to do.")
         return 0
 
     inputs = collect_inputs(
@@ -254,7 +254,7 @@ def main() -> int:
         comment=inputs.comment,
     )
     write_notes(inputs=inputs)
-    _log_message("Done")
+    LOG_MESSAGE("Done")
     return 0
 
 

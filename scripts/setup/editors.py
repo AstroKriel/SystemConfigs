@@ -29,7 +29,7 @@ HOME_DIR = project_dirs.TARGETS.home
 EDITORS_DIR = project_dirs.DIRS.editors
 CONFIG_DIR = project_dirs.TARGETS.config
 
-_log_message = log_messages.make_logger(SCRIPT_NAME)
+LOG_MESSAGE = log_messages.make_logger(SCRIPT_NAME)
 
 if sys.platform == "darwin":
     ## macOS
@@ -135,7 +135,7 @@ def merge_config_modules(
     mode: str,
 ) -> dict[str, object] | list[object] | None:
     if not modules_dir.exists():
-        _log_message(f"Skipping. No module directory found: {modules_dir}")
+        LOG_MESSAGE(f"Skipping. No module directory found: {modules_dir}")
         return None
     if mode == "dict":
         merged_dict: dict[str, object] = {}
@@ -145,7 +145,7 @@ def merge_config_modules(
                 filtered_content = filter_jsonc_comments(raw_content)
                 dict_content = cast(object, json.loads(filtered_content))
                 if not isinstance(dict_content, dict):
-                    _log_message(f"Skipping. Expected object config in: {module}")
+                    LOG_MESSAGE(f"Skipping. Expected object config in: {module}")
                     return None
                 merged_dict.update(
                     cast(
@@ -162,7 +162,7 @@ def merge_config_modules(
                 filtered_content = filter_jsonc_comments(raw_content)
                 list_content = cast(object, json.loads(filtered_content))
                 if not isinstance(list_content, list):
-                    _log_message(f"Skipping. Expected list config in: {module}")
+                    LOG_MESSAGE(f"Skipping. Expected list config in: {module}")
                     return None
                 merged_list.extend(
                     cast(
@@ -172,7 +172,7 @@ def merge_config_modules(
                 )
         return merged_list
     else:
-        _log_message(f"Error: Unsupported mode `{mode}`")
+        LOG_MESSAGE(f"Error: Unsupported mode `{mode}`")
         return None
 
 
@@ -183,7 +183,7 @@ def install_extensions(
     dry_run: bool,
 ):
     if not extensions_file.exists():
-        _log_message(f"No extensions file found at: {extensions_file}")
+        LOG_MESSAGE(f"No extensions file found at: {extensions_file}")
         return
     extensions = [extension for extension in extensions_file.read_text().splitlines() if extension.strip()]
     for ext in extensions:
@@ -201,7 +201,7 @@ def shallow_clone_repo(
     dry_run: bool,
 ) -> None:
     if repo.output.exists():
-        _log_message(f"{repo.name} already exists under: {repo.output}")
+        LOG_MESSAGE(f"{repo.name} already exists under: {repo.output}")
         return
     apply_shell_actions.run_command(
         args=[
@@ -224,7 +224,7 @@ def run_doom_sync(
 ) -> None:
     doom_bin = CONFIG_DIR / "emacs" / "bin" / "doom"
     if not doom_bin.exists():
-        _log_message(f"Doom binary not found at: {doom_bin}")
+        LOG_MESSAGE(f"Doom binary not found at: {doom_bin}")
         return
     apply_shell_actions.run_command(
         args=[str(doom_bin), "sync"],
@@ -240,7 +240,7 @@ def setup_editor(
     editor: EditorConfig,
     dry_run: bool,
 ):
-    _log_message(
+    LOG_MESSAGE(
         log_messages.format_dry_run(
             message=f"Started setting up {editor.name}",
             dry_run=dry_run,
@@ -251,7 +251,7 @@ def setup_editor(
         and (Path("/Applications") / editor.mac_app).exists()
     )
     if shutil.which(editor.command) or found_via_app:
-        _log_message(
+        LOG_MESSAGE(
             log_messages.format_dry_run(
                 message=f"Found {editor.name} ({editor.command}) in your `$PATH`.",
                 dry_run=dry_run,
@@ -262,7 +262,7 @@ def setup_editor(
             f"{editor.command} was not found in your `$PATH`.\n"
             f"Install it via: `brew install {editor.brew}`"
         )
-        _log_message(
+        LOG_MESSAGE(
             log_messages.format_dry_run(
                 message=message,
                 dry_run=dry_run,
@@ -320,11 +320,11 @@ def setup_editor_files(
         output_path = editor.dotfiles_dir / f"{file_name}.json"
         target_path = editor.target_dir / f"{file_name}.json"
         if dry_run:
-            _log_message(f"[dry-run] Would write merged settings to: {output_path}")
+            LOG_MESSAGE(f"[dry-run] Would write merged settings to: {output_path}")
         else:
             with output_path.open("w", encoding="utf-8") as output_file:
                 json.dump(merged_config, output_file, indent=2)
-            _log_message(f"Wrote merged config to: {output_path}")
+            LOG_MESSAGE(f"Wrote merged config to: {output_path}")
         ## ensure target directory exists
         apply_shell_actions.ensure_dir_exists(
             directory=editor.target_dir,
@@ -382,7 +382,7 @@ def remove_symlinks(
     editor_keys: tuple[str, ...] | None = None,
 ):
     log_messages.configure(write_to_file=not dry_run)
-    _log_message(
+    LOG_MESSAGE(
         log_messages.format_dry_run(
             message="Started removing editor config symlinks",
             dry_run=dry_run,
@@ -403,7 +403,7 @@ def remove_symlinks(
                     script_name=SCRIPT_NAME,
                     dry_run=dry_run,
                 )
-    _log_message(
+    LOG_MESSAGE(
         log_messages.format_dry_run(
             message="Finished removing editor config symlinks",
             dry_run=dry_run,
@@ -423,7 +423,7 @@ def run(
             editor=editor,
             dry_run=dry_run,
         )
-    _log_message(
+    LOG_MESSAGE(
         log_messages.format_dry_run(
             message="Finished setting up editors.",
             dry_run=dry_run,

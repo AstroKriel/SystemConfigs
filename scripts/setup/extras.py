@@ -20,7 +20,7 @@ from local_helpers import log_messages, apply_shell_actions
 
 SCRIPT_NAME = Path(__file__).name
 
-_log_message = log_messages.make_logger(SCRIPT_NAME)
+LOG_MESSAGE = log_messages.make_logger(SCRIPT_NAME)
 
 EXTRAS: dict[str, ExtraConfig] = {
     **macos.EXTRAS,
@@ -57,7 +57,7 @@ def setup_extra(
             platform_tags=platform_tags,
     ):
         missing = sorted(set(extra.requires) - set(platform_tags or ()))
-        _log_message(f"Skipping {extra.name}; missing profile platform tag(s): {', '.join(missing)}")
+        LOG_MESSAGE(f"Skipping {extra.name}; missing profile platform tag(s): {', '.join(missing)}")
         return
     apply_shell_actions.ensure_dir_exists(
         directory=extra.target_path.parent,
@@ -114,7 +114,7 @@ def remove_symlinks(
     extra_keys: tuple[str, ...] | None = None,
 ) -> None:
     log_messages.configure(write_to_file=not dry_run)
-    _log_message(
+    LOG_MESSAGE(
         log_messages.format_dry_run(
             message="Started removing extra config symlinks",
             dry_run=dry_run,
@@ -127,7 +127,7 @@ def remove_symlinks(
             script_name=SCRIPT_NAME,
             dry_run=dry_run,
         )
-    _log_message(
+    LOG_MESSAGE(
         log_messages.format_dry_run(
             message="Finished removing extra config symlinks",
             dry_run=dry_run,
@@ -142,7 +142,7 @@ def run(
     platform_tags: tuple[str, ...] | None = None,
 ) -> None:
     log_messages.configure(write_to_file=not dry_run)
-    _log_message(
+    LOG_MESSAGE(
         log_messages.format_dry_run(
             message="Started setting up extra configs",
             dry_run=dry_run,
@@ -155,7 +155,7 @@ def run(
             dry_run=dry_run,
             platform_tags=platform_tags,
         )
-    _log_message(
+    LOG_MESSAGE(
         log_messages.format_dry_run(
             message="Finished setting up extra configs",
             dry_run=dry_run,

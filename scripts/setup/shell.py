@@ -25,7 +25,7 @@ SCRIPT_NAME = Path(__file__).name
 SHELL_DIR = project_dirs.DIRS.shell
 HOME_DIR = project_dirs.TARGETS.home
 
-_log_message = log_messages.make_logger(SCRIPT_NAME)
+LOG_MESSAGE = log_messages.make_logger(SCRIPT_NAME)
 
 
 @dataclass
@@ -74,7 +74,7 @@ def change_login_shell(
     shell_path = shutil.which(shell)
     if not shell_path:
         ## `shell` not found
-        _log_message(
+        LOG_MESSAGE(
             log_messages.format_dry_run(
                 message=f"`shell` value `{shell}` was not found in `$PATH`.",
                 dry_run=dry_run,
@@ -93,7 +93,7 @@ def change_login_shell(
         )
     else:
         ## `shell` is already correctly set
-        _log_message(
+        LOG_MESSAGE(
             log_messages.format_dry_run(
                 message=f"Login shell is already set to: {shell_path}",
                 dry_run=dry_run,
@@ -111,7 +111,7 @@ def remove_symlinks(
     dry_run: bool,
 ):
     log_messages.configure(write_to_file=not dry_run)
-    _log_message(
+    LOG_MESSAGE(
         log_messages.format_dry_run(
             message="Started removing shell config symlinks",
             dry_run=dry_run,
@@ -124,7 +124,7 @@ def remove_symlinks(
             script_name=SCRIPT_NAME,
             dry_run=dry_run,
         )
-    _log_message(
+    LOG_MESSAGE(
         log_messages.format_dry_run(
             message="Finished removing shell config symlinks",
             dry_run=dry_run,
@@ -141,7 +141,7 @@ def run(
     log_messages.configure(write_to_file=not dry_run)
     chosen = next(s for s in SHELLS if s.name == shell)
     others = [s for s in SHELLS if s.name != shell]
-    _log_message(
+    LOG_MESSAGE(
         log_messages.format_dry_run(
             message="Started running!",
             dry_run=dry_run,
@@ -180,7 +180,7 @@ def run(
             shell=chosen.name,
             dry_run=dry_run,
         )
-    _log_message(
+    LOG_MESSAGE(
         log_messages.format_dry_run(
             message="Finished!",
             dry_run=dry_run,

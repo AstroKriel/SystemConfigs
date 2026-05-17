@@ -26,7 +26,7 @@ SCRIPT_NAME = Path(__file__).name
 TOOLS_DIR = project_dirs.DIRS.tools
 CONFIG_DIR = project_dirs.TARGETS.config
 
-_log_message = log_messages.make_logger(SCRIPT_NAME)
+LOG_MESSAGE = log_messages.make_logger(SCRIPT_NAME)
 
 
 @dataclass
@@ -126,7 +126,7 @@ def check_installed_tools(
     dry_run: bool,
 ) -> set[str]:
     """Return subscribed tools that are installed on this system."""
-    _log_message(
+    LOG_MESSAGE(
         log_messages.format_dry_run(
             message="Checking installed tools...",
             dry_run=dry_run,
@@ -140,7 +140,7 @@ def check_installed_tools(
             and (Path("/Applications") / tool.mac_app).exists()
         )
         if shutil.which(command) or found_via_app:
-            _log_message(
+            LOG_MESSAGE(
                 log_messages.format_dry_run(
                     message=f"Found {tool.name} ({command}) in your `$PATH`.",
                     dry_run=dry_run,
@@ -152,7 +152,7 @@ def check_installed_tools(
                 f"{tool.name} was not found in your `$PATH`.\n"
                 f"Install it via: `brew install {tool.brew}`"
             )
-            _log_message(
+            LOG_MESSAGE(
                 log_messages.format_dry_run(
                     message=message,
                     dry_run=dry_run,
@@ -167,7 +167,7 @@ def shallow_clone_repo(
     dry_run: bool,
 ):
     if repo.output.exists():
-        _log_message(
+        LOG_MESSAGE(
             log_messages.format_dry_run(
                 message=f"{repo.name} already exists under: {repo.output}",
                 dry_run=dry_run,
@@ -200,7 +200,7 @@ def remove_symlinks(
     tool_keys: tuple[str, ...] | None = None,
 ):
     log_messages.configure(write_to_file=not dry_run)
-    _log_message(
+    LOG_MESSAGE(
         log_messages.format_dry_run(
             message="Started removing tool config symlinks",
             dry_run=dry_run,
@@ -213,7 +213,7 @@ def remove_symlinks(
             script_name=SCRIPT_NAME,
             dry_run=dry_run,
         )
-    _log_message(
+    LOG_MESSAGE(
         log_messages.format_dry_run(
             message="Finished removing tool config symlinks",
             dry_run=dry_run,
@@ -228,7 +228,7 @@ def run(
     tool_keys: tuple[str, ...] | None = None,
 ):
     log_messages.configure(write_to_file=not dry_run)
-    _log_message(
+    LOG_MESSAGE(
         log_messages.format_dry_run(
             message="Started setting up tool configs",
             dry_run=dry_run,
@@ -239,7 +239,7 @@ def run(
         dry_run=dry_run,
     )
     if check_only:
-        _log_message(
+        LOG_MESSAGE(
             log_messages.format_dry_run(
                 message="Check complete. Exiting due to `--check-only`",
                 dry_run=dry_run,
@@ -266,7 +266,7 @@ def run(
                 repo=tool.clone_repo,
                 dry_run=dry_run,
             )
-    _log_message(
+    LOG_MESSAGE(
         log_messages.format_dry_run(
             message="Finished setting up tool configs",
             dry_run=dry_run,

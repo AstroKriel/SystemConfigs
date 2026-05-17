@@ -24,7 +24,7 @@ from local_helpers import log_messages
 
 SCRIPT_NAME = Path(__file__).name
 
-_log_message = log_messages.make_logger(SCRIPT_NAME)
+LOG_MESSAGE = log_messages.make_logger(SCRIPT_NAME)
 
 ##
 ## === PROFILE VALIDATION
@@ -39,7 +39,7 @@ def validate_profile(
     is_valid = True
     known_shells = {shell_config.name for shell_config in setup_shell.SHELLS}
     if profile.shell is not None and profile.shell not in known_shells:
-        _log_message(f"Unknown `shell` in `this-system.toml`: `{profile.shell}`")
+        LOG_MESSAGE(f"Unknown `shell` in `this-system.toml`: `{profile.shell}`")
         is_valid = False
     subscription_groups = [
         ("editor", profile.editors, setup_editors.EDITORS),
@@ -49,7 +49,7 @@ def validate_profile(
     for subscription_kind, subscribed_keys, available_configs in subscription_groups:
         unknown_subscription_keys = sorted(set(subscribed_keys) - set(available_configs))
         if unknown_subscription_keys:
-            _log_message(
+            LOG_MESSAGE(
                 f"Unknown `{subscription_kind}` subscription(s): "
                 f"{', '.join(unknown_subscription_keys)}",
             )
@@ -59,38 +59,38 @@ def validate_profile(
         if editor is None:
             continue
         if not editor.dotfiles_dir.exists():
-            _log_message(f"Missing editor source directory: {editor.dotfiles_dir}")
+            LOG_MESSAGE(f"Missing editor source directory: {editor.dotfiles_dir}")
             is_valid = False
         if editor.files is None:
             continue
         for file_name in editor.files:
             modules_dir = editor.dotfiles_dir / file_name
             if not modules_dir.exists():
-                _log_message(f"Missing editor module directory: {modules_dir}")
+                LOG_MESSAGE(f"Missing editor module directory: {modules_dir}")
                 is_valid = False
     for tool_key in profile.tools:
         tool = setup_tools.TOOLS.get(tool_key)
         if tool is None:
             continue
         if not tool.dotfiles_dir.exists():
-            _log_message(f"Missing tool source directory: {tool.dotfiles_dir}")
+            LOG_MESSAGE(f"Missing tool source directory: {tool.dotfiles_dir}")
             is_valid = False
     for extra_key in profile.extras:
         extra = setup_extras.EXTRAS.get(extra_key)
         if extra is None:
             continue
         if not extra.source_path.exists():
-            _log_message(f"Missing extra source file: {extra.source_path}")
+            LOG_MESSAGE(f"Missing extra source file: {extra.source_path}")
             is_valid = False
         missing_platform_tags = sorted(set(extra.requires) - set(profile.platforms))
         if missing_platform_tags:
-            _log_message(
+            LOG_MESSAGE(
                 f"`extras` subscription `{extra_key}` is missing platform tag(s): "
                 f"{', '.join(missing_platform_tags)}",
             )
             is_valid = False
     if is_valid:
-        _log_message("Profile validation passed.")
+        LOG_MESSAGE("Profile validation passed.")
     return is_valid
 
 
