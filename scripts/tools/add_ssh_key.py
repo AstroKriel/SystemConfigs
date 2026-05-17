@@ -8,7 +8,6 @@
 import argparse
 import datetime
 import re
-import socket
 
 from dataclasses import dataclass
 from pathlib import Path
@@ -76,7 +75,8 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--device",
-        help="device the key is from (default: hostname)",
+        required=True,
+        help="device the key is from",
     )
     return parser.parse_args()
 
@@ -223,7 +223,7 @@ def main() -> int:
     args = parse_args()
     arg_name = cast(str, args.name)
     arg_purpose = cast(str, args.purpose)
-    arg_device = cast(str | None, args.device)
+    arg_device = cast(str, args.device)
 
     ensure_name_is_valid(name=arg_name)
 
@@ -235,7 +235,7 @@ def main() -> int:
     inputs = collect_inputs(
         name=arg_name,
         purpose=arg_purpose,
-        device=arg_device or socket.gethostname(),
+        device=arg_device,
     )
     ensure_ssh_dir()
     print_summary(inputs=inputs)
