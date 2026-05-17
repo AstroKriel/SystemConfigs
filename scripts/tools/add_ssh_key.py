@@ -101,7 +101,8 @@ def parse_args() -> argparse.Namespace:
 def ensure_name_is_valid(
     name: str,
 ) -> None:
-    if not re.fullmatch(r"^[A-Za-z0-9_-]+$", name):
+    name_pattern = re.compile(r"^[A-Za-z0-9_-]+$")
+    if not name_pattern.fullmatch(name):
         fail(f"`--name` must be alphanumeric, dash, or underscore; got `{name}`.")
 
 
