@@ -6,8 +6,10 @@
 
 ## stdlib
 import datetime
+import sys
+
 from pathlib import Path
-from typing import Callable
+from typing import Callable, NoReturn
 
 ##
 ## === MODULE CONFIG
@@ -76,6 +78,22 @@ def make_logger(
         )
 
     return _log
+
+
+def make_fail(
+    script_name: str,
+) -> Callable[[str], NoReturn]:
+
+    def _fail(
+        message: str,
+    ) -> NoReturn:
+        log_message(
+            script_name=script_name,
+            message=f"ERROR: {message}",
+        )
+        sys.exit(1)
+
+    return _fail
 
 
 ## } MODULE

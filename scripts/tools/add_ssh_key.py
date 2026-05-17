@@ -9,11 +9,10 @@ import argparse
 import datetime
 import re
 import socket
-import sys
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import NoReturn, cast
+from typing import cast
 
 ## local
 from local_helpers import apply_shell_actions
@@ -29,18 +28,7 @@ SSH_DIR = project_dirs.TARGETS.ssh
 NOTES_DIR = project_dirs.TARGETS.ssh_notes
 
 LOG_MESSAGE = log_messages.make_logger(SCRIPT_NAME)
-
-##
-## === HELPERS
-##
-
-
-def fail(
-    message: str,
-) -> NoReturn:
-    print(f"ERROR: {message}", file=sys.stderr)
-    sys.exit(1)
-
+FAIL = log_messages.make_fail(SCRIPT_NAME)
 
 ##
 ## === DATA MODELS
@@ -103,7 +91,7 @@ def ensure_name_is_valid(
 ) -> None:
     name_pattern = re.compile(r"^[A-Za-z0-9_-]+$")
     if not name_pattern.fullmatch(name):
-        fail(f"`--name` must be alphanumeric, dash, or underscore; got `{name}`.")
+        FAIL(f"`--name` must be alphanumeric, dash, or underscore; got `{name}`.")
 
 
 def collect_inputs(
@@ -176,7 +164,7 @@ def generate_key(
         capture_output=False,
     )
     if not succeeded:
-        fail("ssh-keygen failed")
+        FAIL("ssh-keygen failed")
     key_file.chmod(0o600)
     LOG_MESSAGE(f"Key created at {key_file}")
 
