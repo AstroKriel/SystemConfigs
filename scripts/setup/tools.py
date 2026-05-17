@@ -31,7 +31,7 @@ LOG_MESSAGE = log_messages.make_logger_fn(SCRIPT_NAME)
 @dataclass
 class ToolConfig:
     name: str
-    dotfiles_dir: Path
+    source_dir: Path
     target_dir: Path
     mac_app: str | None = None
 
@@ -40,27 +40,27 @@ TOOLS: dict[str, ToolConfig] = {
     "tmux":
     ToolConfig(
         name="Tmux",
-        dotfiles_dir=TOOLS_DIR / "tmux",
+        source_dir=TOOLS_DIR / "tmux",
         target_dir=CONFIG_DIR / "tmux",
     ),
     "kitty":
     ToolConfig(
         name="Kitty terminal",
         mac_app="kitty.app",
-        dotfiles_dir=TOOLS_DIR / "kitty",
+        source_dir=TOOLS_DIR / "kitty",
         target_dir=CONFIG_DIR / "kitty",
     ),
     "ghostty":
     ToolConfig(
         name="Ghostty terminal",
         mac_app="Ghostty.app",
-        dotfiles_dir=TOOLS_DIR / "ghostty",
+        source_dir=TOOLS_DIR / "ghostty",
         target_dir=CONFIG_DIR / "ghostty",
     ),
     "yazi":
     ToolConfig(
         name="Yazi",
-        dotfiles_dir=TOOLS_DIR / "yazi",
+        source_dir=TOOLS_DIR / "yazi",
         target_dir=CONFIG_DIR / "yazi",
     ),
 }
@@ -203,7 +203,7 @@ def run(
             dry_run=dry_run,
         )
         apply_shell_actions.create_symlink(
-            source_path=tool.dotfiles_dir,
+            source_path=tool.source_dir,
             target_path=tool.target_dir,
             logger_fn=LOG_MESSAGE,
             dry_run=dry_run,

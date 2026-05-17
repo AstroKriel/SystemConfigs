@@ -42,7 +42,7 @@ _VSCODE_TARGET_DIR = _vscode_target_dir
 class EditorConfig:
     name: str
     command: str
-    dotfiles_dir: Path
+    source_dir: Path
     target_dir: Path
     files: dict[str, str] | None = None
     extensions: Path | None = None
@@ -53,7 +53,7 @@ EDITORS: dict[str, EditorConfig] = {
     EditorConfig(
         name="Visual Studio Code",
         command="code",
-        dotfiles_dir=EDITORS_DIR / "vscode",
+        source_dir=EDITORS_DIR / "vscode",
         target_dir=_VSCODE_TARGET_DIR,
         files={
             "settings": "dict",
@@ -65,14 +65,14 @@ EDITORS: dict[str, EditorConfig] = {
     EditorConfig(
         name="Neovim",
         command="nvim",
-        dotfiles_dir=EDITORS_DIR / "nvim",
+        source_dir=EDITORS_DIR / "nvim",
         target_dir=CONFIG_DIR / "nvim",
     ),
     "zed":
     EditorConfig(
         name="Zed",
         command="zed" if sys.platform == "darwin" else "zeditor",
-        dotfiles_dir=EDITORS_DIR / "zed",
+        source_dir=EDITORS_DIR / "zed",
         target_dir=Path.home() / ".config/zed/",
         files={
             "settings": "dict",
@@ -197,7 +197,7 @@ def setup_editor(
             dry_run=dry_run,
         )
         apply_shell_actions.create_symlink(
-            source_path=editor.dotfiles_dir,
+            source_path=editor.source_dir,
             target_path=editor.target_dir,
             logger_fn=LOG_MESSAGE,
             dry_run=dry_run,
@@ -223,16 +223,16 @@ def setup_editor_files(
 ) -> None:
     if editor.files is None:
         return
-    for file_name, output_mode in editor.files.items():
-        modules_dir = editor.dotfiles_dir / file_name
+    for config_name, output_mode in editor.files.items():
+        modules_dir = editor.source_dir / config_name
         merged_config = merge_config_modules(
             modules_dir=modules_dir,
             output_mode=output_mode,
         )
         if merged_config is None:
             return
-        output_path = editor.dotfiles_dir / f"{file_name}.json"
-        target_path = editor.target_dir / f"{file_name}.json"
+        output_path = editor.source_dir / f"{config_name}.json"
+        target_path = editor.target_dir / f"{config_name}.json"
         if dry_run:
             LOG_MESSAGE(f"[dry-run] Would write merged settings to: {output_path}")
         else:
@@ -311,9 +311,9 @@ def remove_symlinks(
                 dry_run=dry_run,
             )
         else:
-            for file_name in editor.files:
+            for config_name in editor.files:
                 apply_shell_actions.remove_symlink(
-                    target_path=editor.target_dir / f"{file_name}.json",
+                    target_path=editor.target_dir / f"{config_name}.json",
                     logger_fn=LOG_MESSAGE,
                     dry_run=dry_run,
                 )

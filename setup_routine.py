@@ -58,13 +58,13 @@ def validate_profile(
         editor = setup_editors.EDITORS.get(editor_key)
         if editor is None:
             continue
-        if not editor.dotfiles_dir.exists():
-            LOG_MESSAGE(f"Missing editor source directory: {editor.dotfiles_dir}")
+        if not editor.source_dir.exists():
+            LOG_MESSAGE(f"Missing editor source directory: {editor.source_dir}")
             is_valid = False
         if editor.files is None:
             continue
-        for file_name in editor.files:
-            modules_dir = editor.dotfiles_dir / file_name
+        for config_name in editor.files:
+            modules_dir = editor.source_dir / config_name
             if not modules_dir.exists():
                 LOG_MESSAGE(f"Missing editor module directory: {modules_dir}")
                 is_valid = False
@@ -72,8 +72,8 @@ def validate_profile(
         tool = setup_tools.TOOLS.get(tool_key)
         if tool is None:
             continue
-        if not tool.dotfiles_dir.exists():
-            LOG_MESSAGE(f"Missing tool source directory: {tool.dotfiles_dir}")
+        if not tool.source_dir.exists():
+            LOG_MESSAGE(f"Missing tool source directory: {tool.source_dir}")
             is_valid = False
     for extra_key in profile.extras:
         extra = setup_extras.EXTRAS.get(extra_key)
