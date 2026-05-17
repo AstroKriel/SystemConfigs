@@ -20,6 +20,7 @@ _HOME = Path.home()
 ##
 
 LOG_FILE = _PROJECT_ROOT / "history.log"
+SSH_RECORDS = _PROJECT_ROOT / "ssh_keys"
 
 ##
 ## === DIRECTORIES
@@ -36,7 +37,6 @@ class SourceDirs:
     editors: Path
     tools: Path
     rules: Path
-    ssh: Path
 
 
 SOURCES = SourceDirs(
@@ -46,12 +46,7 @@ SOURCES = SourceDirs(
     editors=_PROJECT_ROOT / "configs" / "editors",
     tools=_PROJECT_ROOT / "configs" / "tools",
     rules=_PROJECT_ROOT / "configs" / "rules",
-    ssh=_PROJECT_ROOT / "ssh_keys",
 )
-
-##
-## === TARGETS
-##
 
 
 @dataclass(frozen=True)

@@ -24,7 +24,7 @@ from local_helpers import project_dirs
 
 SCRIPT_NAME = Path(__file__).name
 SSH_CONFIG_DIR = project_dirs.TARGETS.ssh
-SSH_RECORDS_DIR = project_dirs.SOURCES.ssh
+SSH_RECORDS_DIR = project_dirs.SSH_RECORDS
 
 LOG_MESSAGE = log_messages.make_logger_fn(SCRIPT_NAME)
 FAIL_WITH_MESSAGE = log_messages.make_fail_fn(SCRIPT_NAME)
