@@ -78,23 +78,12 @@ def fail(
 
 def prompt_required(
     label: str,
-    *,
-    default: str | None = None,
 ) -> str:
-    suffix = f" [{default}]" if default else ""
     while True:
-        response = input(f"{label}{suffix}: ").strip()
+        response = input(f"{label}: ").strip()
         if response:
             return response
-        if default is not None:
-            return default
         warn("value required")
-
-
-def prompt_optional(
-    label: str,
-) -> str:
-    return input(f"{label} (press Enter to skip): ").strip()
 
 
 def prompt_yes_no(
@@ -118,29 +107,15 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog=SCRIPT_NAME,
         description=(
-            "Generate a new ed25519 SSH key with a standardised comment. "
-            "Optionally write a notes file under ~/.ssh/notes/ containing the "
-            "public key, suggested ~/.ssh/config block, and upload commands "
-            "for later reference. Never modifies ~/.ssh/config or pushes the "
-            "key to any remote."
+            "Generate a new ed25519 SSH key with a standardised comment, and "
+            "write a notes file under ~/.ssh/notes/ containing the public key "
+            "and a placeholder ~/.ssh/config block you can copy. Never modifies "
+            "~/.ssh/config or pushes the key to any remote."
         ),
     )
     parser.add_argument("--name", help="suffix for ~/.ssh/id_ed25519_NAME")
     parser.add_argument("--purpose", help="short description of what the key is for")
     parser.add_argument("--device", help="device the key is from (default: hostname)")
-    parser.add_argument("--host", help="remote hostname (used in notes file only)")
-    parser.add_argument("--user", help="remote username (used in notes file only)")
-    parser.add_argument("--alias", help="ssh config Host alias (default: --name)")
-    parser.add_argument(
-        "--notes",
-        action="store_true",
-        help="write a notes file without prompting",
-    )
-    parser.add_argument(
-        "--no-notes",
-        action="store_true",
-        help="skip notes file without prompting",
-    )
     return parser
 
 
@@ -192,22 +167,6 @@ def generate_key(
 ##
 
 
-def build_config_block(
-    *,
-    alias: str,
-    host: str,
-    user: str,
-    key_file: Path,
-) -> str:
-    return (
-        f"Host {alias}\n"
-        f"  HostName {host or '<REMOTE_HOST>'}\n"
-        f"  User {user or '<REMOTE_USER>'}\n"
-        f"  IdentityFile {key_file}\n"
-        f"  IdentitiesOnly yes"
-    )
-
-
 def write_notes(
     *,
     notes_file: Path,
@@ -215,9 +174,6 @@ def write_notes(
     key_file: Path,
     pub_file: Path,
     comment: str,
-    host: str,
-    user: str,
-    alias: str,
 ) -> None:
     NOTES_DIR.mkdir(
         mode=0o700,
@@ -226,13 +182,6 @@ def write_notes(
     NOTES_DIR.chmod(0o700)
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     public_key = pub_file.read_text().rstrip("\n")
-    config_block = build_config_block(
-        alias=alias,
-        host=host,
-        user=user,
-        key_file=key_file,
-    )
-    upload_target = f"{user or '<REMOTE_USER>'}@{host or '<REMOTE_HOST>'}"
     notes_file.write_text(
         f"# SSH Key Notes: {name}\n"
         f"# Created: {timestamp}\n"
@@ -247,15 +196,19 @@ def write_notes(
         f"## Keygen command\n"
         f'ssh-keygen -t ed25519 -a 100 -f "{key_file}" -C "{comment}"\n'
         f"\n"
-        f"## Suggested ~/.ssh/config block\n"
-        f"{config_block}\n"
+        f"## Suggested ~/.ssh/config block (fill in placeholders)\n"
+        f"Host <ALIAS>\n"
+        f"  HostName <REMOTE_HOST>\n"
+        f"  User <REMOTE_USER>\n"
+        f"  IdentityFile {key_file}\n"
+        f"  IdentitiesOnly yes\n"
         f"\n"
-        f"## Suggested upload command\n"
-        f"ssh-copy-id -i {pub_file} {upload_target}\n"
+        f"## Suggested upload command (fill in placeholders)\n"
+        f"ssh-copy-id -i {pub_file} <REMOTE_USER>@<REMOTE_HOST>\n"
         f"## Or upload the public key manually (e.g. via FreeIPA or GitHub web UI).\n"
         f"\n"
         f"## Verify\n"
-        f"ssh {alias}\n",
+        f"ssh <ALIAS>\n",
     )
     notes_file.chmod(0o600)
     success(f"notes saved to {notes_file}")
@@ -271,14 +224,6 @@ def main() -> None:
     arg_name = cast(str | None, args.name)
     arg_purpose = cast(str | None, args.purpose)
     arg_device = cast(str | None, args.device)
-    arg_host = cast(str | None, args.host)
-    arg_user = cast(str | None, args.user)
-    arg_alias = cast(str | None, args.alias)
-    arg_notes = cast(bool, args.notes)
-    arg_no_notes = cast(bool, args.no_notes)
-
-    if arg_notes and arg_no_notes:
-        fail("--notes and --no-notes are mutually exclusive")
 
     heading("Gather inputs")
     name = arg_name or prompt_required("Unique name (suffix for id_ed25519_<name>)")
@@ -291,26 +236,7 @@ def main() -> None:
         return
 
     purpose = arg_purpose or prompt_required("Purpose")
-    device = arg_device or prompt_required("Device", default=socket.gethostname())
-
-    if arg_notes:
-        will_write_notes = True
-    elif arg_no_notes:
-        will_write_notes = False
-    else:
-        will_write_notes = prompt_yes_no(
-            "Write a notes file with the public key and config snippet?",
-            default_yes=True,
-        )
-
-    host = arg_host or ""
-    user = arg_user or ""
-    alias = arg_alias or name
-    if will_write_notes:
-        if not host:
-            host = prompt_optional("Remote host")
-        if not user:
-            user = prompt_optional("Remote user")
+    device = arg_device or socket.gethostname()
 
     today = datetime.date.today().strftime("%Y-%m-%d")
     pub_file = key_file.with_suffix(".pub")
@@ -328,11 +254,7 @@ def main() -> None:
     print(f"  Date:     {today}")
     print(f"  Key file: {key_file}")
     print(f"  Comment:  {comment}")
-    if will_write_notes:
-        print(f"  Notes:    {notes_file}")
-        print(f"  Alias:    {alias}")
-        print(f"  Host:     {host or '(not set; placeholder used in notes)'}")
-        print(f"  User:     {user or '(not set; placeholder used in notes)'}")
+    print(f"  Notes:    {notes_file}")
     if not prompt_yes_no("Proceed?"):
         fail("aborted")
 
@@ -342,18 +264,14 @@ def main() -> None:
         comment=comment,
     )
 
-    if will_write_notes:
-        heading("Write notes")
-        write_notes(
-            notes_file=notes_file,
-            name=name,
-            key_file=key_file,
-            pub_file=pub_file,
-            comment=comment,
-            host=host,
-            user=user,
-            alias=alias,
-        )
+    heading("Write notes")
+    write_notes(
+        notes_file=notes_file,
+        name=name,
+        key_file=key_file,
+        pub_file=pub_file,
+        comment=comment,
+    )
 
     heading("Done")
 
