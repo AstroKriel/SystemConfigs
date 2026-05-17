@@ -5,7 +5,7 @@ DotFiles configures a development environment from a local system profile. The r
 Main entry points:
 
 ```bash
-uv run setup_configs.py
+uv run setup_routine.py
 uv run -m setup_scripts.<layer> <args>
 ```
 
@@ -90,7 +90,7 @@ cp config-profiles/<profile-name>.toml this-system.toml
 Validate the selected profile before applying changes:
 
 ```bash
-uv run setup_configs.py --check-profile
+uv run setup_routine.py --check-profile
 ```
 
 Profiles subscribe to config groups:
@@ -139,7 +139,7 @@ sudo pacman -S tmux yazi ffmpeg zed
 Apply the full selected profile:
 
 ```bash
-uv run setup_configs.py
+uv run setup_routine.py
 ```
 
 Open a new terminal after shell changes are applied.
@@ -147,7 +147,7 @@ Open a new terminal after shell changes are applied.
 Remove managed symlinks for the selected profile:
 
 ```bash
-uv run setup_configs.py --remove-symlinks
+uv run setup_routine.py --remove-symlinks
 ```
 
 ---
@@ -157,7 +157,7 @@ uv run setup_configs.py --remove-symlinks
 Use the main script to apply every subscribed layer in the active profile:
 
 ```bash
-uv run setup_configs.py
+uv run setup_routine.py
 ```
 
 Use layer modules directly when changing only one part of the setup_scripts. Direct layer runs use Python module execution, so include `-m`.
