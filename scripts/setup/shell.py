@@ -15,14 +15,14 @@ from typing import cast
 ## local
 from local_helpers import load_profiles
 from local_helpers import log_messages, apply_shell_actions
+from local_helpers import project_dirs
 
 ##
 ## === SHELL CONFIG
 ##
 
 SCRIPT_NAME = Path(__file__).name
-ROOT_DIR = Path(__file__).resolve().parent.parent.parent
-SHELL_DIR = ROOT_DIR / "configs" / "shell"
+SHELL_DIR = project_dirs.DIRS.shell
 HOME_DIR = Path.home()
 
 _log_message = log_messages.make_logger(SCRIPT_NAME)

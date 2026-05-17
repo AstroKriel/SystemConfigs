@@ -11,14 +11,14 @@ from typing import cast
 
 ## local
 from local_helpers import apply_shell_actions, log_messages
+from local_helpers import project_dirs
 
 ##
 ## === CONFIG
 ##
 
 SCRIPT_NAME = Path(__file__).name
-ROOT_DIR = Path(__file__).resolve().parent.parent.parent
-RULES_DIR = ROOT_DIR / "configs" / "rules"
+RULES_DIR = project_dirs.DIRS.rules
 TARGET_DIR = Path.home() / ".rules"
 
 _log_message = log_messages.make_logger(SCRIPT_NAME)

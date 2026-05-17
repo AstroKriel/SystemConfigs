@@ -18,6 +18,7 @@ from typing import cast
 ## local
 from local_helpers import load_profiles
 from local_helpers import log_messages, apply_shell_actions
+from local_helpers import project_dirs
 
 ##
 ## === EDITOR CONFIG
@@ -25,8 +26,7 @@ from local_helpers import log_messages, apply_shell_actions
 
 SCRIPT_NAME = Path(__file__).name
 HOME_DIR = Path.home()
-ROOT_DIR = Path(__file__).resolve().parent.parent.parent
-DOTFILES_DIR = ROOT_DIR / "configs" / "editors"
+EDITORS_DIR = project_dirs.DIRS.editors
 CONFIG_DIR = HOME_DIR / ".config"
 
 _log_message = log_messages.make_logger(SCRIPT_NAME)
@@ -68,20 +68,20 @@ EDITORS: dict[str, EditorConfig] = {
         name="Visual Studio Code",
         command="code",
         brew="visual-studio-code --cask",
-        dotfiles_dir=DOTFILES_DIR / "vscode",
+        dotfiles_dir=EDITORS_DIR / "vscode",
         target_dir=_VSCODE_TARGET_DIR,
         files={
             "settings": "dict",
             "keybindings": "list",
         },
-        extensions=DOTFILES_DIR / "vscode" / "extensions.txt",
+        extensions=EDITORS_DIR / "vscode" / "extensions.txt",
     ),
     "nvim":
     EditorConfig(
         name="Neovim",
         command="nvim",
         brew="neovim",
-        dotfiles_dir=DOTFILES_DIR / "nvim",
+        dotfiles_dir=EDITORS_DIR / "nvim",
         target_dir=CONFIG_DIR / "nvim",
     ),
     "emacs":
@@ -90,7 +90,7 @@ EDITORS: dict[str, EditorConfig] = {
         command="emacs",
         brew="emacs --cask",
         mac_app="Emacs.app",
-        dotfiles_dir=DOTFILES_DIR / "emacs",
+        dotfiles_dir=EDITORS_DIR / "emacs",
         target_dir=HOME_DIR / ".doom.d",
         clone_repo=RepoConfig(
             name="Doom-Emacs",
@@ -104,7 +104,7 @@ EDITORS: dict[str, EditorConfig] = {
         name="Zed",
         command="zed" if sys.platform == "darwin" else "zeditor",
         brew="zed --cask",
-        dotfiles_dir=DOTFILES_DIR / "zed",
+        dotfiles_dir=EDITORS_DIR / "zed",
         target_dir=Path.home() / ".config/zed/",
         files={
             "settings": "dict",

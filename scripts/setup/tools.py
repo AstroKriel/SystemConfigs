@@ -15,6 +15,7 @@ from typing import cast
 ## local
 from local_helpers import load_profiles
 from local_helpers import log_messages, apply_shell_actions
+from local_helpers import project_dirs
 
 ##
 ## === TOOL CONFIG
@@ -22,8 +23,7 @@ from local_helpers import log_messages, apply_shell_actions
 
 HOME_DIR = Path.home()
 SCRIPT_NAME = Path(__file__).name
-ROOT_DIR = Path(__file__).resolve().parent.parent.parent
-DOTFILES_DIR = ROOT_DIR / "configs" / "tools"
+TOOLS_DIR = project_dirs.DIRS.tools
 CONFIG_DIR = HOME_DIR / ".config"
 
 _log_message = log_messages.make_logger(SCRIPT_NAME)
@@ -51,7 +51,7 @@ TOOLS: dict[str, ToolConfig] = {
     ToolConfig(
         name="Tmux",
         brew="tmux",
-        dotfiles_dir=DOTFILES_DIR / "tmux",
+        dotfiles_dir=TOOLS_DIR / "tmux",
         target_dir=CONFIG_DIR / "tmux",
         clone_repo=RepoConfig(
             name="TPM",
@@ -64,7 +64,7 @@ TOOLS: dict[str, ToolConfig] = {
         name="Kitty terminal",
         brew="kitty --cask",
         mac_app="kitty.app",
-        dotfiles_dir=DOTFILES_DIR / "kitty",
+        dotfiles_dir=TOOLS_DIR / "kitty",
         target_dir=CONFIG_DIR / "kitty",
     ),
     "ghostty":
@@ -72,14 +72,14 @@ TOOLS: dict[str, ToolConfig] = {
         name="Ghostty terminal",
         brew="ghostty --cask",
         mac_app="Ghostty.app",
-        dotfiles_dir=DOTFILES_DIR / "ghostty",
+        dotfiles_dir=TOOLS_DIR / "ghostty",
         target_dir=CONFIG_DIR / "ghostty",
     ),
     "yazi":
     ToolConfig(
         name="Yazi",
         brew="yazi ffmpeg",
-        dotfiles_dir=DOTFILES_DIR / "yazi",
+        dotfiles_dir=TOOLS_DIR / "yazi",
         target_dir=CONFIG_DIR / "yazi",
     ),
 }

@@ -10,12 +10,14 @@ from pathlib import Path
 import tomllib
 from typing import cast
 
+## local
+from local_helpers import project_dirs
+
 ##
 ## === PROFILE CONFIG
 ##
 
-DOTFILES_DIR = Path(__file__).resolve().parent.parent.parent
-THIS_SYSTEM_PROFILE_PATH = DOTFILES_DIR / "this-system.toml"
+THIS_SYSTEM_PROFILE_PATH = project_dirs.DIRS.root / "this-system.toml"
 
 ##
 ## === PROFILE TYPES
