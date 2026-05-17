@@ -16,7 +16,7 @@ _PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 _HOME = Path.home()
 
 ##
-## === FILES
+## === RECORD KEEPING
 ##
 
 LOG_FILE = _PROJECT_ROOT / "history.log"
