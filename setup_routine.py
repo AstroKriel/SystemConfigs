@@ -10,13 +10,13 @@ from pathlib import Path
 from typing import cast
 
 ## local
-from setup_scripts import editors as setup_editors
-from setup_scripts import extras as setup_extras
-from setup_scripts import rules as setup_rules
-from setup_scripts import shell as setup_shell
-from setup_scripts import tools as setup_tools
-from setup_helpers import load_profiles
-from setup_helpers import log_messages
+from scripts.setup import editors as setup_editors
+from scripts.setup import extras as setup_extras
+from scripts.setup import rules as setup_rules
+from scripts.setup import shell as setup_shell
+from scripts.setup import tools as setup_tools
+from local_helpers import load_profiles
+from local_helpers import log_messages
 
 ##
 ## === SCRIPT CONFIG

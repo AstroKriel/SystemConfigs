@@ -1,7 +1,7 @@
 ## { MODULE
 
 from pathlib import Path
-from setup_scripts._extras.config import ExtraConfig, EXTRAS_DIR
+from scripts.setup._extras.config import ExtraConfig, EXTRAS_DIR
 
 EXTRAS: dict[str, ExtraConfig] = {
     "macos/disable-navigation-keys.dict":

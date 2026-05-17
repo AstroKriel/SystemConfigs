@@ -10,14 +10,14 @@ from pathlib import Path
 from typing import cast
 
 ## local
-from setup_helpers import apply_shell_actions, log_messages
+from local_helpers import apply_shell_actions, log_messages
 
 ##
 ## === CONFIG
 ##
 
 SCRIPT_NAME = Path(__file__).name
-ROOT_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 RULES_DIR = ROOT_DIR / "configs" / "rules"
 TARGET_DIR = Path.home() / ".rules"
 

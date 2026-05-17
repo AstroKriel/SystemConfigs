@@ -14,7 +14,7 @@ from typing import cast
 ## === PROFILE CONFIG
 ##
 
-DOTFILES_DIR = Path(__file__).resolve().parent.parent
+DOTFILES_DIR = Path(__file__).resolve().parent.parent.parent
 THIS_SYSTEM_PROFILE_PATH = DOTFILES_DIR / "this-system.toml"
 
 ##

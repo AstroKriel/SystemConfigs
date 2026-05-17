@@ -13,8 +13,8 @@ import sys
 from typing import cast
 
 ## local
-from setup_helpers import load_profiles
-from setup_helpers import log_messages, apply_shell_actions
+from local_helpers import load_profiles
+from local_helpers import log_messages, apply_shell_actions
 
 ##
 ## === TOOL CONFIG
@@ -22,7 +22,7 @@ from setup_helpers import log_messages, apply_shell_actions
 
 HOME_DIR = Path.home()
 SCRIPT_NAME = Path(__file__).name
-ROOT_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 DOTFILES_DIR = ROOT_DIR / "configs" / "tools"
 CONFIG_DIR = HOME_DIR / ".config"
 

@@ -13,15 +13,15 @@ import shutil
 from typing import cast
 
 ## local
-from setup_helpers import load_profiles
-from setup_helpers import log_messages, apply_shell_actions
+from local_helpers import load_profiles
+from local_helpers import log_messages, apply_shell_actions
 
 ##
 ## === SHELL CONFIG
 ##
 
 SCRIPT_NAME = Path(__file__).name
-ROOT_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 SHELL_DIR = ROOT_DIR / "configs" / "shell"
 HOME_DIR = Path.home()
 

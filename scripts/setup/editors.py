@@ -16,8 +16,8 @@ import sys
 from typing import cast
 
 ## local
-from setup_helpers import load_profiles
-from setup_helpers import log_messages, apply_shell_actions
+from local_helpers import load_profiles
+from local_helpers import log_messages, apply_shell_actions
 
 ##
 ## === EDITOR CONFIG
@@ -25,7 +25,7 @@ from setup_helpers import log_messages, apply_shell_actions
 
 SCRIPT_NAME = Path(__file__).name
 HOME_DIR = Path.home()
-ROOT_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 DOTFILES_DIR = ROOT_DIR / "configs" / "editors"
 CONFIG_DIR = HOME_DIR / ".config"
 
