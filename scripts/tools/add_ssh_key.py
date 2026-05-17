@@ -12,11 +12,12 @@ import socket
 import subprocess
 import sys
 
+from dataclasses import dataclass
 from pathlib import Path
 from typing import NoReturn, cast
 
 ##
-## === SCRIPT CONFIG
+## === GLOBAL PARAMS
 ##
 
 SCRIPT_NAME = Path(__file__).name
@@ -99,11 +100,30 @@ def prompt_yes_no(
 
 
 ##
-## === ARG PARSER
+## === DATA MODELS
 ##
 
 
-def build_arg_parser() -> argparse.ArgumentParser:
+@dataclass(frozen=True)
+class Inputs:
+    """Resolved inputs needed to generate a key and write its notes file."""
+
+    name: str
+    purpose: str
+    device: str
+    today: str
+    comment: str
+    key_file: Path
+    pub_file: Path
+    notes_file: Path
+
+
+##
+## === CLI
+##
+
+
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog=SCRIPT_NAME,
         description=(
@@ -116,32 +136,85 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--name", help="suffix for ~/.ssh/id_ed25519_NAME")
     parser.add_argument("--purpose", help="short description of what the key is for")
     parser.add_argument("--device", help="device the key is from (default: hostname)")
-    return parser
+    return parser.parse_args()
 
 
 ##
-## === PRE-FLIGHT
+## === PIPELINE STEPS
 ##
+
+
+def resolve_name(
+    *,
+    arg_name: str | None,
+) -> str:
+    name = arg_name or prompt_required("Unique name (suffix for id_ed25519_<name>)")
+    if not NAME_PATTERN.fullmatch(name):
+        fail(f"name must be alphanumeric, dash, or underscore (got: {name})")
+    return name
+
+
+def collect_inputs(
+    *,
+    name: str,
+    arg_purpose: str | None,
+    arg_device: str | None,
+) -> Inputs:
+    heading("Gather inputs")
+    purpose = arg_purpose or prompt_required("Purpose")
+    device = arg_device or socket.gethostname()
+    today = datetime.date.today().strftime("%Y-%m-%d")
+    key_file = SSH_DIR / f"id_ed25519_{name}"
+    pub_file = key_file.with_suffix(".pub")
+    notes_file = NOTES_DIR / f"{name}-{today}.txt"
+    comment = f"for {purpose} from {device} created on {today}"
+    return Inputs(
+        name=name,
+        purpose=purpose,
+        device=device,
+        today=today,
+        comment=comment,
+        key_file=key_file,
+        pub_file=pub_file,
+        notes_file=notes_file,
+    )
 
 
 def ensure_ssh_dir() -> None:
+    heading("Pre-flight")
     SSH_DIR.mkdir(
         mode=0o700,
         exist_ok=True,
     )
     SSH_DIR.chmod(0o700)
+    info(f"{SSH_DIR} ok")
 
 
-##
-## === GENERATE KEY
-##
+def print_summary(
+    *,
+    inputs: Inputs,
+) -> None:
+    heading("Summary")
+    print(f"  Name:     {inputs.name}")
+    print(f"  Purpose:  {inputs.purpose}")
+    print(f"  Device:   {inputs.device}")
+    print(f"  Date:     {inputs.today}")
+    print(f"  Key file: {inputs.key_file}")
+    print(f"  Comment:  {inputs.comment}")
+    print(f"  Notes:    {inputs.notes_file}")
+
+
+def confirm_or_exit() -> None:
+    if not prompt_yes_no("Proceed?"):
+        fail("aborted")
 
 
 def generate_key(
-    key_file: Path,
     *,
+    key_file: Path,
     comment: str,
 ) -> None:
+    heading("Generate key")
     command = [
         "ssh-keygen",
         "-t",
@@ -162,118 +235,82 @@ def generate_key(
     success(f"key created at {key_file}")
 
 
-##
-## === WRITE NOTES
-##
-
-
 def write_notes(
     *,
-    notes_file: Path,
-    name: str,
-    key_file: Path,
-    pub_file: Path,
-    comment: str,
+    inputs: Inputs,
 ) -> None:
+    heading("Write notes")
     NOTES_DIR.mkdir(
         mode=0o700,
         exist_ok=True,
     )
     NOTES_DIR.chmod(0o700)
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    public_key = pub_file.read_text().rstrip("\n")
-    notes_file.write_text(
-        f"# SSH Key Notes: {name}\n"
+    public_key = inputs.pub_file.read_text().rstrip("\n")
+    inputs.notes_file.write_text(
+        f"# SSH Key Notes: {inputs.name}\n"
         f"# Created: {timestamp}\n"
         f"\n"
         f"## Key files\n"
-        f"{key_file}   (private; never share)\n"
-        f"{pub_file}   (public)\n"
+        f"{inputs.key_file}   (private; never share)\n"
+        f"{inputs.pub_file}   (public)\n"
         f"\n"
         f"## Public key\n"
         f"{public_key}\n"
         f"\n"
         f"## Keygen command\n"
-        f'ssh-keygen -t ed25519 -a 100 -f "{key_file}" -C "{comment}"\n'
+        f'ssh-keygen -t ed25519 -a 100 -f "{inputs.key_file}" -C "{inputs.comment}"\n'
         f"\n"
         f"## Suggested ~/.ssh/config block (fill in placeholders)\n"
         f"Host <ALIAS>\n"
         f"  HostName <REMOTE_HOST>\n"
         f"  User <REMOTE_USER>\n"
-        f"  IdentityFile {key_file}\n"
+        f"  IdentityFile {inputs.key_file}\n"
         f"  IdentitiesOnly yes\n"
         f"\n"
         f"## Suggested upload command (fill in placeholders)\n"
-        f"ssh-copy-id -i {pub_file} <REMOTE_USER>@<REMOTE_HOST>\n"
+        f"ssh-copy-id -i {inputs.pub_file} <REMOTE_USER>@<REMOTE_HOST>\n"
         f"## Or upload the public key manually (e.g. via FreeIPA or GitHub web UI).\n"
         f"\n"
         f"## Verify\n"
         f"ssh <ALIAS>\n",
     )
-    notes_file.chmod(0o600)
-    success(f"notes saved to {notes_file}")
+    inputs.notes_file.chmod(0o600)
+    success(f"notes saved to {inputs.notes_file}")
 
 
 ##
-## === PROGRAM MAIN
+## === MAIN ROUTINE
 ##
 
 
-def main() -> None:
-    args = build_arg_parser().parse_args()
+def main() -> int:
+    args = parse_args()
     arg_name = cast(str | None, args.name)
     arg_purpose = cast(str | None, args.purpose)
     arg_device = cast(str | None, args.device)
 
-    heading("Gather inputs")
-    name = arg_name or prompt_required("Unique name (suffix for id_ed25519_<name>)")
-    if not NAME_PATTERN.fullmatch(name):
-        fail(f"name must be alphanumeric, dash, or underscore (got: {name})")
-
+    name = resolve_name(arg_name=arg_name)
     key_file = SSH_DIR / f"id_ed25519_{name}"
     if key_file.exists():
         info(f"Key already exists at {key_file}. Nothing to do.")
-        return
+        return 0
 
-    purpose = arg_purpose or prompt_required("Purpose")
-    device = arg_device or socket.gethostname()
-
-    today = datetime.date.today().strftime("%Y-%m-%d")
-    pub_file = key_file.with_suffix(".pub")
-    notes_file = NOTES_DIR / f"{name}-{today}.txt"
-    comment = f"for {purpose} from {device} created on {today}"
-
-    heading("Pre-flight")
-    ensure_ssh_dir()
-    info(f"{SSH_DIR} ok")
-
-    heading("Summary")
-    print(f"  Name:     {name}")
-    print(f"  Purpose:  {purpose}")
-    print(f"  Device:   {device}")
-    print(f"  Date:     {today}")
-    print(f"  Key file: {key_file}")
-    print(f"  Comment:  {comment}")
-    print(f"  Notes:    {notes_file}")
-    if not prompt_yes_no("Proceed?"):
-        fail("aborted")
-
-    heading("Generate key")
-    generate_key(
-        key_file,
-        comment=comment,
-    )
-
-    heading("Write notes")
-    write_notes(
-        notes_file=notes_file,
+    inputs = collect_inputs(
         name=name,
-        key_file=key_file,
-        pub_file=pub_file,
-        comment=comment,
+        arg_purpose=arg_purpose,
+        arg_device=arg_device,
     )
-
+    ensure_ssh_dir()
+    print_summary(inputs=inputs)
+    confirm_or_exit()
+    generate_key(
+        key_file=inputs.key_file,
+        comment=inputs.comment,
+    )
+    write_notes(inputs=inputs)
     heading("Done")
+    return 0
 
 
 ##
@@ -281,6 +318,6 @@ def main() -> None:
 ##
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
 
 ## } SCRIPT
