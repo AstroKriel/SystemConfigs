@@ -10,6 +10,7 @@ These rules apply when writing or editing any markdown documentation: setup guid
 |---|---|
 | ASCII only | no Unicode punctuation: no em dashes, no curly quotes, no ellipsis characters |
 | No em dashes as punctuation | use a comma, semicolon, or full stop instead; never use `—` to set off a clause |
+| File-organisation trees | inside fenced ```text blocks only, box-drawing characters (`├──`, `└──`, `│`, `─`) are permitted; ASCII everywhere else |
 | Placeholders | use `<angle-brackets>`: `<package-name>`, `<username>`, `<commit-hash>` |
 
 ---
