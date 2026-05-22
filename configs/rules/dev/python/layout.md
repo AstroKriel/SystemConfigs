@@ -17,7 +17,7 @@ The `## { ... }` wrappers delimit file content. Empty files (e.g. `__init__.py` 
 | Within groups | plain `import ...` lines first, then `from ... import ...` lines |
 | Sort order | alphabetise imports within each `import ...` and `from ... import ...` block |
 | Spacing | separate `import ...` and `from ... import ...` blocks with one blank line when both appear in the same group |
-| Aliases | never `import numpy as np` or `import matplotlib.pyplot as plt`; use full names or descriptive aliases: `import numpy`, `import matplotlib.pyplot as mpl_plot`, `from matplotlib.axes import Axes as mpl_Axes` |
+| Aliases | never `import <module> as <abbrev>`; use the full name or a descriptive alias: `import <module>`, `from <package>.<module> import <Class> as <package>_<Class>` |
 | Module imports | import the module, not individual functions: `from <package>.<module> import <module>` then `<module>.<function>(...)` |
 | Long imports | use parentheses with trailing commas when there are three or more names being imported |
 | Re-exports | use `from <module> import <name> as <name>` (self-alias) when a module re-exports a symbol for callers; `from <module> import <name>` alone is not considered a re-export by pyright and will produce an error at the call site |

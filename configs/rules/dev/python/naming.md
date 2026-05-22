@@ -97,6 +97,29 @@ Use underscores to separate all components of a physics symbol name, mirroring L
 
 Apply consistently to variable names, comments, docstrings, and user-facing labels; preserve established public labels when they exist.
 
+### Field Identifiers (`field_name`)
+
+The `field_name` string on `Field` objects is a plain-text snake_case identifier, not a LaTeX expression. Three rules cover most cases:
+
+| Kind | Pattern |
+|---|---|
+| Primitive physical quantity | `<quantity>` |
+| Scalar magnitude of a field | `<field>_magnitude` |
+| Differential operator applied to a field | `<operation>_<field>` |
+
+For synthetic or intermediate fields without a fixed physical identity, use a qualifier that names what the field *is*, not how it was computed. Prefer a word that describes mathematical content over an abbreviation of a process.
+
+### Field Labels (`latex_label`)
+
+The `latex_label` string follows two rules based on field type:
+
+| Field type | Notation |
+|---|---|
+| Vector field | `\vec{<field>}` notation: `\vec{q}`, `(\nabla\times\vec{q})\times\vec{q}` |
+| Scalar from index contraction | index notation: `q_i p_j \partial_i u_j`, `\partial_i q_i` |
+
+---
+
 ### Constants
 
 `UPPER_CASE` at module level:
