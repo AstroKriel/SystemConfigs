@@ -36,6 +36,7 @@ These rules apply when writing scientific prose: manuscripts, papers, theses, an
 | Use mathematics to expose structure | group and label equation terms by the physical process they represent, not by algebraic convenience |
 | Prefer decompositions that expose dynamics | decompose along physically meaningful axes: amplifying vs. diffusing, large-scale vs. small-scale, mean vs. fluctuating |
 | Introduce variables completely | when a symbol appears for the first time, give its name, physical meaning, and a characteristic value or scale in the same sentence or the one immediately following |
+| No unexplained jargon | do not use domain-specific terms (numerical schemes, mesh types, software names, etc.) unless they are defined in the same sentence or immediately after; if a term cannot be explained in context, use a simpler alternative |
 | Lead into equations explicitly | state what the equation shows or what operation it performs; prefer "Using X allows us to Y" or "X shows that" over bare connectors like "gives" |
 | Symbol case is systematic | lower-case for scalars and vectors; upper-case for rank-2 tensors and collections |
 
@@ -60,6 +61,7 @@ These rules apply when writing scientific prose: manuscripts, papers, theses, an
 | Rule | |
 |---|---|
 | Match epistemic markers to confidence | use "consistent with", "suggest", "expect" for uncertain claims; use direct language for established results; avoid intensifiers like "very" and "really" |
+| Connect logically dependent sentences | when two adjacent sentences share a causal or conditional link, join them with "since", "when", "in which case", or a semicolon rather than a period; a period between dependent thoughts interrupts the argument's momentum |
 | Specificity over vagueness | provide numbers, units, and scales rather than vague qualifications |
 | Integrate citations syntactically | make the cited author or work the grammatical subject or object; reserve parenthetical citations for supplementary references |
 | Signal surprise through structure | frame anomalies as clear problem statements, not through "surprisingly" or "remarkably" |
