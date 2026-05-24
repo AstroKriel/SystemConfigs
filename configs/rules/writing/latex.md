@@ -47,10 +47,13 @@ Examples: `eqn:mhd:continuity`, `eqn:mhd-linear:momentum`, `sec:mhd-waves:linear
 | All display math | use `align` or `align*`; never `$$` or `equation` |
 | Unnumbered blocks | if no line in the block needs a label, use `align*` rather than `align` with `\nonumber` on every line |
 | Roman (upright) text in math | use `\mathrm{}`, never `{\rm ...}` -- `{\rm ...}` is a deprecated plain TeX mode switch |
+| Exponentials | use `\exp(...)` rather than `e^{...}` |
+| Coordinate planes | write planes as `(x,y)` or `$(\mVectorUnit{e}_1,\mVectorUnit{e}_2)$`, not `x--y` or `x\text{-}y` |
 | Symbol case | lower-case for scalars and vectors (including placeholder/dummy variables); upper-case for rank-2 tensors and collections |
-| Equation layout | LHS on its own line; `&= RHS` indented below; long RHS terms broken across lines, indented to show structure; `, \label{}` on its own final line |
+| Equation layout (single equation) | LHS on its own line; `&= RHS` indented below; long RHS terms broken across lines, indented to show structure; `, \label{}` on its own final line |
+| Equation layout (multi-equation, with `\\`) | `, \label{}` must appear on the same source line as `\\`, not on a separate line; for short RHS append inline (`&= 0 , \label{...} \\`); for long RHS put on the last continuation line before `\\` |
 
-Example:
+Single-equation example:
 ```latex
 \begin{align}
     \text{LHS term one}
@@ -58,6 +61,18 @@ Example:
         &= \text{RHS term one}
             + \text{RHS term two}
     , \label{eqn:group:name}
+\end{align}
+```
+
+Multi-equation example:
+```latex
+\begin{align}
+    \text{short LHS}
+        &= \text{short RHS} , \label{eqn:group:name-a} \\
+    \text{short LHS}
+        &= \text{long RHS term one}
+            + \text{long RHS term two}
+        , \label{eqn:group:name-b}
 \end{align}
 ```
 
