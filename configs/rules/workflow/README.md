@@ -9,6 +9,7 @@ Conventions for how to work, regardless of what is being produced. Files in this
 | File | Covers |
 |---|---|
 | `agent.md` | Agent operating modes: steered, autonomous, read-only |
+| `git.md` | Commit format, scope, branches, PR titles |
 
 ---
 

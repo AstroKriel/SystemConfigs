@@ -1,6 +1,6 @@
-# Dev Rules
+# Code Rules
 
-Conventions for producing code, scripts, and project-specific development work. General rules sit at this level; language and project bundles sit in subdirectories with their own indices.
+Conventions for producing code and scripts. General rules sit at this level; language and project bundles sit in subdirectories with their own indices.
 
 ---
 
@@ -10,7 +10,6 @@ Conventions for producing code, scripts, and project-specific development work. 
 |---|---|
 | `asgard.md` | Asgard project conventions: repository structure, data representation, imports, terminal feedback |
 | `bash.md` | Bash script style: preamble, variables, sections, terminal output |
-| `git.md` | Commit format, scope, branches, PR titles |
 | `naming.md` | File and folder naming |
 
 ---
@@ -20,4 +19,4 @@ Conventions for producing code, scripts, and project-specific development work. 
 | Directory | Covers |
 |---|---|
 | `python/` | Python bundle: layout, naming, classes, functions, docs, errors, testing, setup, maintenance |
-| `quokka/` | Quokka bundle: build and run workflow, MHD setup, testing, diagnostics |
+| `quokka/` | Quokka bundle: MHD setup, testing, diagnostics |
