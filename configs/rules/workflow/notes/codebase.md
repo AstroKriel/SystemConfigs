@@ -1,6 +1,6 @@
-# Code Notes
+# Codebase Notes
 
-Notes for tools and codebases in active use. Each code has its own directory under `~/Documents/ProjectNotes/codes/`.
+Notes for tools and codebases in active use. Each code has its own directory under `~/Documents/ProjectNotes/codebases/`.
 
 ---
 
@@ -10,14 +10,14 @@ A code note covers a tool, library, or codebase that is used regularly but not o
 
 This is distinct from project notes: a code note is about the tool itself, not about a project that happens to use it.
 
-Location: `ProjectNotes/codes/<code>/`
+Location: `ProjectNotes/codebases/<code>/`
 
 ---
 
 ## Structure
 
 ```text
-codes/<code>/
+codebases/<code>/
 ├── README.md       what the code is, version in use, how to install and invoke
 ├── log.md          dated entries: discovered behaviours, workarounds, version changes
 └── recipes/        reusable invocation patterns and configuration snippets

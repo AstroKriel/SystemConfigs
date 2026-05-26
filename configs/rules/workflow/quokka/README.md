@@ -10,5 +10,5 @@ Process conventions for working with the Quokka codebase: build, run, MHD setup,
 |---|---|
 | `~/Projects/quokka/CLAUDE.md` | Architecture, build commands, code style, GPU safety. Maintained by the repo. |
 | `~/Projects/quokka/AGENTS.md` | LLM agent guidance for the Quokka codebase. Maintained by the repo. |
-| `~/Documents/ProjectNotes/codes/quokka/` | Orientation: what Quokka is, file locations on this machine. |
+| `~/Documents/ProjectNotes/codebases/quokka/` | Orientation: what Quokka is, file locations on this machine. |
 | `~/Documents/ProjectNotes/kriel-quokka-mhd/` | MHD paper project context and diary. |
