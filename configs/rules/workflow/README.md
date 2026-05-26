@@ -1,0 +1,19 @@
+# Workflow Rules
+
+Conventions for how to work, regardless of what is being produced. Files in this directory describe collaboration, process, and discipline, distinct from artefact-side rules (`dev/` for code, `writing/` for text).
+
+---
+
+## Files
+
+| File | Covers |
+|---|---|
+| `agent.md` | Agent operating modes: steered, autonomous, read-only |
+
+---
+
+## Subdirectories
+
+| Directory | Covers |
+|---|---|
+| `notes/` | Rules for personal note-taking systems: project context and per-machine setup manuals |
