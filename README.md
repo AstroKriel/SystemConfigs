@@ -168,7 +168,7 @@ Use layer modules directly when changing only one part of the setup. Direct laye
 | Tools | `uv run -m scripts.setup.tools --which <tool>` | Applies one subscribed `<tool>` |
 | Editors | `uv run -m scripts.setup.editors --which <editor>` | Applies one subscribed `<editor>` |
 | Extras | `uv run -m scripts.setup.extras --which <extras-relative-path>` | Applies one subscribed extra |
-| Rules | `uv run -m scripts.setup.rules` | Links rules into `~/.rules/` |
+| Rules | `uv run -m scripts.setup.rules_files` | Links rules into `~/.rules/` |
 
 Run all subscribed entries for a single layer:
 

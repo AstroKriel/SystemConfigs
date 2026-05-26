@@ -8,7 +8,7 @@ The `~/.rules/` system: what it is, what belongs in it, and how to add, extend, 
 
 `~/.rules/` holds personal conventions for code, writing, and workflow. Rules are prescriptive and stable: they define the working convention, not what is underway or what has been discovered.
 
-The canonical source is `~/Projects/DotFiles/configs/rules/`. All `.md` files there are symlinked into `~/.rules/` by `uv run -m scripts.setup.rules` run from the DotFiles repo. Edit the source; never edit through a symlink.
+The canonical source is `~/Projects/DotFiles/configs/rules/`. All `.md` files there are symlinked into `~/.rules/` by `uv run -m scripts.setup.rules_files` run from the DotFiles repo. Edit the source; never edit through a symlink.
 
 ---
 
@@ -47,7 +47,7 @@ When in doubt: a rule answers "what is the convention?" A note answers "what is 
 
 1. Find the right file. Read `~/.rules/map.md` for the full index. Use an existing file if the topic fits; create a new one if nothing covers it.
 2. Edit the source under `~/Projects/DotFiles/configs/rules/`.
-3. From `~/Projects/DotFiles/`, run `uv run -m scripts.setup.rules` to relink and `uv run -m scripts.setup.generate_rules_map` to regenerate the map.
+3. From `~/Projects/DotFiles/`, run `uv run -m scripts.setup.rules_files` to relink and `uv run -m scripts.setup.rules_map` to regenerate the map.
 4. Commit following `workflow/git.md`.
 
 **New file:** name it `<concept>.md`; one word or a short phrase naming the subject. Open with a title and a one-line description so the map entry is meaningful.

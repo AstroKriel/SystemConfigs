@@ -12,7 +12,7 @@ from typing import cast
 ## local
 from scripts.setup import editors as setup_editors
 from scripts.setup import extras as setup_extras
-from scripts.setup import rules as setup_rules
+from scripts.setup import rules_files as setup_rules
 from scripts.setup import shell as setup_shell
 from scripts.setup import tools as setup_tools
 from local_helpers import load_profiles
