@@ -1,5 +1,7 @@
 # Git Rules
 
+Commit format, scope, branch naming, and PR title conventions.
+
 ## Format
 
 ```
