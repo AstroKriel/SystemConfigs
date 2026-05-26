@@ -49,11 +49,13 @@ When in doubt: a rule answers "what is the convention?" A note answers "what is 
 2. Edit the source under `~/Projects/DotFiles/configs/rules/`.
 3. Update the parent `README.md`: add a row to `## Files` or `## Subdirectories`.
 4. Re-run `uv run -m scripts.setup.rules` from `~/Projects/DotFiles/` to relink.
-5. Commit following `dev/git.md`.
+5. Commit following `workflow/git.md`.
 
 **New file:** name it `<concept>.md` — one word or a short phrase naming the subject.
 
-**New bundle:** create a subdirectory, add `README.md` inside it, and add a row to the parent `README.md`. Follow the existing bundle pattern in `dev/python/` or `dev/quokka/`.
+**Promoting a file to a bundle:** when a single file grows to cover sub-topics that each warrant their own section, convert it to a subdirectory. Create a `README.md` inside it as the new index, split the content into per-topic files, and update the parent `README.md` to point to the directory instead of the file.
+
+**New bundle:** when the concept is large from the start, create the subdirectory directly. Add `README.md` inside it, and add a row to the parent `README.md`. Follow the existing bundle pattern in `code/python/` or `code/quokka/`.
 
 ---
 
@@ -66,4 +68,4 @@ To promote:
 1. Identify which `~/.rules/` file the convention belongs in.
 2. Phrase it as a rule: prescriptive, not descriptive. The rule stands alone without reference to the investigation that produced it.
 3. In the notes source, note the promotion if the investigation entry is still live. The rule itself carries no back-reference.
-4. Commit following `dev/git.md`.
+4. Commit following `workflow/git.md`.
