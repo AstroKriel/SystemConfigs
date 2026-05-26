@@ -6,6 +6,8 @@ How to name things: files, modules, functions, classes, variables, mathematical 
 
 ## Files and Modules
 
+Filename conventions follow `~/.rules/dev/naming.md`, applied with `_` as the word delimiter.
+
 | Rule | |
 |---|---|
 | Casing | `snake_case` for all filenames |
