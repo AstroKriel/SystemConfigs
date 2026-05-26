@@ -10,10 +10,8 @@ Rules for personal note-taking systems. Each file defines one system: its scope,
 |---|---|---|
 | Rules | `~/.rules/` | What is the convention for this? |
 | Notes | `~/Documents/ProjectNotes/`, per-machine repos | What is going on? What is known? |
-| Configs | `~/Projects/DotFiles/` | What settings does this machine use? |
-| Auto-memory | `~/.claude/projects/*/memory/` | Claude collaboration preferences |
 
-A fact (something learned about the world) goes in a note. A decision (the working convention going forward) goes in `~/.rules/`. A config (a setting applied on machine install) goes in DotFiles.
+A fact (something learned about the world) goes in a note. A decision (the working convention going forward) goes in `~/.rules/`.
 
 When an investigation resolves and leaves a binding convention, it promotes from a note to a rule.
 
