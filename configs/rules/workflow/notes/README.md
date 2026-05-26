@@ -22,7 +22,7 @@ When an investigation resolves and leaves a binding convention, it promotes from
 | File | Covers |
 |---|---|
 | `rules.md` | The `~/.rules/` system: structure, scope, how to add and promote rules |
-| `project.md` | Papers, teaching projects, student supervision (`ProjectNotes/<paper>/`, `student-projects/`, `bitesize-python/`) |
+| `project-overview.md` | Papers, teaching projects, student supervision (`ProjectNotes/<paper>/`, `student-projects/`, `bitesize-python/`) |
 | `code.md` | Tools and codebases in active use (`ProjectNotes/codes/<code>/`) |
 | `hpc.md` | HPC machines in use, not owned or maintained (`ProjectNotes/hpcs/<cluster>/`) |
 | `meetings.md` | Meeting notes: recurring groups and ad-hoc (`ProjectNotes/meetings/`) |
