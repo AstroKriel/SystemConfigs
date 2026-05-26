@@ -36,7 +36,7 @@ The `README.md` covers the essential facts: what the code does, which version is
 | Invocation patterns and flags | Project-specific analysis using the tool |
 | Version-specific behaviour | Binding conventions (promote to `~/.rules/`) |
 
-When a workaround solidifies into "always do X when using this tool", promote it to the appropriate file in `~/.rules/dev/`.
+When a workaround solidifies into a binding convention, promote it to the appropriate file in `~/.rules/code/`.
 
 ---
 

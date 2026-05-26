@@ -33,4 +33,4 @@ The two delimiters carry different weight: `_` groups words into one concept, `-
 
 ## In Python Packages
 
-Python modules and packages must be valid identifiers, so `-` is not allowed; only `_` may separate words. See `~/.rules/dev/python/naming.md` for the full convention.
+Python modules and packages must be valid identifiers, so `-` is not allowed; only `_` may separate words. See `~/.rules/code/python/naming.md` for the full convention.

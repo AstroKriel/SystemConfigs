@@ -51,7 +51,7 @@ When in doubt: a rule answers "what is the convention?" A note answers "what is 
 4. Re-run `uv run -m scripts.setup.rules` from `~/Projects/DotFiles/` to relink.
 5. Commit following `workflow/git.md`.
 
-**New file:** name it `<concept>.md` — one word or a short phrase naming the subject.
+**New file:** name it `<concept>.md`; one word or a short phrase naming the subject.
 
 **Promoting a file to a bundle:** when a single file grows to cover sub-topics that each warrant their own section, convert it to a subdirectory. Create a `README.md` inside it as the new index, split the content into per-topic files, and update the parent `README.md` to point to the directory instead of the file.
 
