@@ -36,7 +36,7 @@ Filename conventions follow `~/.rules/code/naming.md`, applied with `_` as the w
 
 ## Functions
 
-Always use strong, specific verb prefixes. Avoid weak or generic leading words that do not communicate what the function does or returns:
+Always use strong, specific verb prefixes. Avoid weak or generic leading words that do not communicate what the function does or returns. The table below covers the most common cases; apply the same discipline to any prefix not listed:
 
 | Prefix | Purpose |
 |---|---|
