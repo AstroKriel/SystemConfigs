@@ -2,6 +2,15 @@
 
 Build, configure, and run Quokka.
 
+## Related
+
+| Location | What |
+|---|---|
+| `<quokka-checkout>/CLAUDE.md` | Architecture, build commands, code style, GPU safety. Maintained by the repo. |
+| `<quokka-checkout>/AGENTS.md` | LLM agent guidance for the Quokka codebase. Maintained by the repo. |
+| `ProjectNotes/codebases/quokka/` | Orientation: what Quokka is, file locations on this machine. |
+| `ProjectNotes/<paper>/` | Paper project context and notes. |
+
 ---
 
 ## Build Directories
