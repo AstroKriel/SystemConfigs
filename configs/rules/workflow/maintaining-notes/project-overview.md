@@ -28,7 +28,7 @@ Start with just `README.md`. Add files only as the project grows. Two guiding pr
 ```text
 <paper>/
 ├── README.md           overview; becomes index as project grows
-├── log.md              session trail
+├── log/                session trail; one file per session named YYYY-MM-DD.md
 ├── tasks.md            task list; splits into tasks/ when tasks span multiple domains
 ├── threads/            active explorations and open questions
 └── notes/              refs, background material, stable context
@@ -40,12 +40,12 @@ Answers: who is involved, where the project stands, what the immediate open ques
 
 When the project grows beyond a single file, `README.md` becomes an index listing every file it points to, including files in `notes/`.
 
-### log.md
+### log/
 
-A session trail. Append-only; never edit past entries. One date block per session, one to three bullet points summarising what was done and the key outcome.
+A session trail. One file per session, named `YYYY-MM-DD.md`. One to three bullet points summarising what was done and the key outcome. Never edit past entries.
 
 ```
-2026-05-31
+log/2026-05-31.md
 - AlfvenWave convergence at 512: FS17 stable, Quokka2026 blows up above 256 with PPM-EP.
 - Started resistivity sweep; first run segfaulted on missing ghost cell init.
 ```
