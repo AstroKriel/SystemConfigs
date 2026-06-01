@@ -16,12 +16,15 @@ Location: `ProjectNotes/hpcs/<cluster>/`
 
 ```text
 hpcs/<cluster>/
-├── README.md  # cluster name, institution, login hostname, scheduler, storage tier paths, module stack
+├── README.md  # cluster reference sheet; includes codebase-specific build sections where needed
 ├── log.md     # dated entries: outages, queue changes, module updates, workarounds
+├── tasks.md   # open setup and documentation tasks
 └── jobs/      # example job scripts and submission patterns
 ```
 
 The `README.md` is the reference sheet: everything needed to start a session from scratch. It should include the login hostname, available partitions, and the storage tier paths mapped to the concepts defined in `workflow/remote-work/hpc.md` (`home`, `fast-storage`, `project` where available). Also record any non-standard module load sequences.
+
+When a codebase requires host-specific build steps (toolchain sourcing, GPU backend flags, module stack), add a `## <codebase>` section to `README.md`.
 
 ---
 
@@ -39,6 +42,6 @@ The `README.md` is the reference sheet: everything needed to start a session fro
 
 ## Keeping notes current
 
-Update `README.md` when login details, storage paths, or scheduler configuration change. Add a log entry for outages, unexpected queue behaviour, or environment changes that affected a run. These entries are retrospective: they record what happened and what was done, not what to do next.
+Update `README.md` when login details, storage paths, or scheduler configuration change. Add a log entry for outages, unexpected queue behaviour, or environment changes that affected a run. Use `tasks.md` for open setup and documentation items.
 
 When the cluster is no longer in active use, add a final log entry and archive the directory.
