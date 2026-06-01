@@ -28,6 +28,20 @@ LOG_MESSAGE = log_messages.make_logger_fn(SCRIPT_NAME)
 ##
 
 
+def prune_dangling_symlinks(
+    *,
+    dry_run: bool,
+) -> None:
+    """Remove symlinks in TARGET_DIR that point to files no longer in RULES_DIR."""
+    for target_path in sorted(TARGET_DIR.rglob("*.md")):
+        if target_path.is_symlink() and not target_path.exists():
+            apply_shell_actions.remove_symlink(
+                target_path=target_path,
+                logger_fn=LOG_MESSAGE,
+                dry_run=dry_run,
+            )
+
+
 def link_all_rules(
     *,
     dry_run: bool,
@@ -90,6 +104,7 @@ def run(
             dry_run=dry_run,
         ),
     )
+    prune_dangling_symlinks(dry_run=dry_run)
     link_all_rules(dry_run=dry_run)
     LOG_MESSAGE(
         log_messages.format_dry_run(
