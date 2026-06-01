@@ -6,7 +6,7 @@ Notes for active research and teaching projects. Each project has its own direct
 
 ## Scope
 
-A project note covers the context, status, and accumulated knowledge for a single research paper, teaching project, or supervision case. It records what is going on and what is known, not what to do next (that belongs in a task tracker or issue list).
+A project note covers the context, status, tasks, and accumulated knowledge for a single research paper, teaching project, or supervision case.
 
 Covered by this file:
 
@@ -20,25 +20,26 @@ Covered by this file:
 
 ## Structure: Research Papers
 
-Every project starts with just `README.md`. Add files only when the content outgrows a single file. When `README.md` becomes an index, it lists every file it points to.
+Start with just `README.md`. Add files only as the project grows. The guiding principle: a file splits into a folder of the same name when its content spans multiple domains.
 
 ```text
 <paper>/
-├── README.md         who is involved, current status, open questions
-├── log.md            session trail (add when history starts to accumulate)
-├── threads/          idea explorations (add when ideas need sustained space)
-└── refs/             reference notes (add when reference material builds up)
+├── README.md           overview; becomes index as project grows
+├── log.md              session trail
+├── tasks.md            task list; splits into tasks/ when tasks span multiple domains
+├── threads/            active explorations and open questions
+└── notes/              refs, background material, stable context
 ```
 
 ### README.md
 
-The entry point. Answers: who is involved, where the project stands, what the immediate open questions are. Updated when the project status changes: new results, a direction change, a submission.
+Answers: who is involved, where the project stands, what the immediate open questions are. Updated when the project status changes.
 
-When the project grows beyond a single file, `README.md` becomes an index. Each section becomes a link to its own file.
+When the project grows beyond a single file, `README.md` becomes an index listing every file it points to, including files in `notes/`.
 
 ### log.md
 
-A session trail. Append-only; never edit past entries. One date block per session worked, with one to three bullet points summarising what was done and the key outcome.
+A session trail. Append-only; never edit past entries. One date block per session, one to three bullet points summarising what was done and the key outcome.
 
 ```
 2026-05-31
@@ -46,9 +47,19 @@ A session trail. Append-only; never edit past entries. One date block per sessio
 - Started resistivity sweep; first run segfaulted on missing ghost cell init.
 ```
 
+### tasks.md / tasks/
+
+Active task lists. A single `tasks.md` at the root when tasks are unified; splits into `tasks/` with one file per domain when the project spans multiple workstreams.
+
 ### threads/
 
-One file per question or idea being actively explored. A thread accumulates context, hypotheses, and findings around a single open question. When a question is settled, add a `**Resolved:**` line at the top with the conclusion in one sentence. The conclusion then lands in `README.md` or `log.md`; the thread stays as a record of the reasoning.
+One file per open question or idea being actively explored. When a question is settled, add a `**Resolved:**` line at the top with the conclusion in one sentence. The conclusion lands in `README.md` or `log.md`; the thread stays as a record of the reasoning.
+
+Figures tied to a thread live inside `threads/` alongside that thread file. Figures not tied to a thread belong in the project repo, not ProjectNotes.
+
+### notes/
+
+Reference material, background context, and stable expanded content that overflowed from `README.md`. When `README.md` becomes an index, it links to files here.
 
 ---
 
@@ -56,10 +67,11 @@ One file per question or idea being actively explored. A thread accumulates cont
 
 | Belongs | Does not belong |
 |---|---|
-| Current status and blockers | Line-by-line code documentation |
+| Current status and open questions | Line-by-line code documentation |
 | Key findings and decisions | Raw simulation output |
-| Notes on sources and references | Task lists and to-dos |
-| Reproduction steps for a result | Configuration files (those go in the project repo) |
+| Task lists | Configuration files (those go in the project repo) |
+| Notes on sources and references | Working conventions (promote to `~/.rules/`) |
+| Reproduction steps for a result | |
 
 A fact or finding goes in the log. Once it becomes a binding convention that applies beyond this project, promote it to `~/.rules/`.
 
