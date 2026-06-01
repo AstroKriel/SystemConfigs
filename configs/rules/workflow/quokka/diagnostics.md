@@ -6,7 +6,7 @@ Rules for extracting and working with Quokka simulation output, and for diagnosi
 
 ## Tool
 
-**Package:** `~/Projects/Asgard/sindri/submodules/ww-quokka-sims/`
+**Package:** `ww-quokka-sims`
 
 Activate the virtual environment for `ww-quokka-sims` before running any command. The environment path is machine-specific; check ProjectNotes for the current host.
 
