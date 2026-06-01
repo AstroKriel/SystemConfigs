@@ -1,6 +1,6 @@
 # Codebase Notes
 
-Notes for tools and codebases in active use. Each code has its own directory under `~/Documents/ProjectNotes/codebases/`.
+Notes for tools and codebases in active use. Each code has its own directory under `<project-notes>/codebases/`.
 
 ---
 

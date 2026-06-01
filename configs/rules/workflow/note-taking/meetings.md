@@ -1,6 +1,6 @@
 # Meeting Notes
 
-Notes for recurring group meetings and ad-hoc discussions. Stored under `~/Documents/ProjectNotes/meetings/`.
+Notes for recurring group meetings and ad-hoc discussions. Stored under `<project-notes>/meetings/`.
 
 ---
 

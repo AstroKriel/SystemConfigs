@@ -1,6 +1,6 @@
 # HPC Notes
 
-Notes for HPC clusters that are used but not owned or administered. Each cluster has its own directory under `~/Documents/ProjectNotes/hpcs/`.
+Notes for HPC clusters that are used but not owned or administered. Each cluster has its own directory under `<project-notes>/hpcs/`.
 
 ---
 

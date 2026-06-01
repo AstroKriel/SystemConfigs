@@ -6,7 +6,7 @@ The `~/.rules/` system: what it is, what belongs in it, and how to add, extend, 
 
 ## What it is
 
-The canonical source is `~/Projects/DotFiles/configs/rules/`. All `.md` files there are symlinked into `~/.rules/` by `uv run -m scripts.setup.rules_files` run from the DotFiles repo. Edit the source; never edit through a symlink.
+The canonical source is `<dotfiles>/configs/rules/`. All `.md` files there are symlinked into `~/.rules/` by `uv run -m scripts.setup.rules_files` run from the dotfiles repo. Edit the source; never edit through a symlink.
 
 ---
 
@@ -42,8 +42,8 @@ When in doubt: a rule answers "what is the convention?" A note answers "what is 
 ## Adding a rule
 
 1. Find the right file. Read `~/.rules/README.md` for the full index. Use an existing file if the topic fits; create a new one if nothing covers it.
-2. Edit the source under `~/Projects/DotFiles/configs/rules/`.
-3. From `~/Projects/DotFiles/`, run `uv run -m scripts.setup.rules_files` to relink and `uv run -m scripts.setup.rules_index` to regenerate the index.
+2. Edit the source under `<dotfiles>/configs/rules/`.
+3. From `<dotfiles>/`, run `uv run -m scripts.setup.rules_files` to relink and `uv run -m scripts.setup.rules_index` to regenerate the index.
 4. Commit following `workflow/git.md`.
 
 **New file:** name it `<concept>.md`; one word or a short phrase naming the subject. Open with a title and a one-line description so the map entry is meaningful.

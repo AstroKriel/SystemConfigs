@@ -16,7 +16,7 @@ Sequence:
 2. Register it as a git submodule under `Asgard/mimir/`
 3. Initialise a uv project and configure `pyproject.toml` per `../code/python/setup-project.md`
 4. Add `jormi` and any relevant `ww-*-sims` packages as editable dependencies
-5. Open a ProjectNotes directory: `~/Documents/ProjectNotes/<project>/` with `README.md`
+5. Open a ProjectNotes directory: `<project-notes>/<project>/` with `README.md`
 6. Push to GitHub
 
 ### Initial structure

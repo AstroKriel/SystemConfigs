@@ -25,7 +25,7 @@ cmake -S . -B build/3d-debug   -G Ninja -DCMAKE_BUILD_TYPE=Debug   -DAMReX_SPACE
 cmake -S . -B build/3d-asan    -G Ninja -DCMAKE_BUILD_TYPE=Debug   -DAMReX_SPACEDIM=3 -DQUOKKA_PYTHON=OFF -DENABLE_ASAN=ON
 ```
 
-When a host needs a non-default toolchain, source `~/.config/quokka/profile.sh` before running CMake or Ninja. Per-host specifics live in `~/Documents/ProjectNotes/hpcs/<host>/`.
+When a host needs a non-default toolchain, source `~/.config/quokka/profile.sh` before running CMake or Ninja. Per-host specifics live in `<project-notes>/hpcs/<host>/`.
 
 ---
 

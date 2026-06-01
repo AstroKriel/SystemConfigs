@@ -87,7 +87,7 @@ When suggesting commits, always present each one as a copy-pasteable shell block
 Single repository:
 
 ```bash
-cd ~/Projects/<repo>
+cd <repo>
 git add <path/to/file.py>
 git commit -m "<type>(<file.py>): <description>."
 ```
@@ -95,13 +95,13 @@ git commit -m "<type>(<file.py>): <description>."
 Multiple repositories:
 
 ```bash
-cd ~/Projects/<repo-a>
+cd <repo-a>
 git add <path/to/file.py>
 git commit -m "<type>(<file.py>): <description>."
 ```
 
 ```bash
-cd ~/Projects/<repo-b>
+cd <repo-b>
 git add <path/to/other_file.py>
 git commit -m "<type>(<other_file.py>): <description>."
 ```
@@ -110,7 +110,7 @@ git commit -m "<type>(<other_file.py>): <description>."
 
 ## Git Helpers
 
-Use the `git_helpers` CLI (`~/Projects/GitHelpers`) for git operations where a command exists. Fall back to raw `git` only when no equivalent command exists. Full reference: `~/Projects/GitHelpers/README.md`.
+Use the `git_helpers` CLI (`<git-helpers>`) for git operations where a command exists. Fall back to raw `git` only when no equivalent command exists. Full reference: `<git-helpers>/README.md`.
 
 ---
 

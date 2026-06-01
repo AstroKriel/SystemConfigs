@@ -1,6 +1,6 @@
 # Project Notes
 
-Notes for active research and teaching projects. Each project has its own directory under `~/Documents/ProjectNotes/`.
+Notes for active research and teaching projects. Each project has its own directory under `<project-notes>/`.
 
 ---
 

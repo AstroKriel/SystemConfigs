@@ -33,7 +33,7 @@ The `README.md` is the orientation document: what the machine is and what it is 
 
 | Belongs | Does not belong |
 |---|---|
-| Hardware specs and OS version | Dotfiles themselves (those go in `~/Projects/DotFiles/`) |
+| Hardware specs and OS version | Dotfiles themselves (those go in `<dotfiles>/`) |
 | Package and service installation steps | Project data or results |
 | Non-obvious configuration decisions | HPC cluster details (see `hpc.md`) |
 | Open and resolved configuration issues | Binding conventions (promote to `~/.rules/`) |
