@@ -4,6 +4,23 @@ How to configure a Python project: package manager, `pyproject.toml`, type check
 
 ---
 
+## Structure
+
+```text
+<project>/
+├── pyproject.toml
+├── README.md
+├── src/
+│   └── <package>/  # reusable library logic; installable as a package
+│       └── __init__.py
+├── scripts/        # entry-point scripts
+└── utests/         # unit tests
+```
+
+Keep `scripts/` and `src/<package>/` separate from the start. Scripts are entry points; `src/<package>/` is reusable logic.
+
+---
+
 ## Package Manager
 
 uv is used for all Python package and project management.
