@@ -4,66 +4,13 @@ These rules apply when working within the `Asgard/` project. They complement the
 
 ---
 
-## Repository Structure
+## README Files
 
-### README files
-
-README files in `Asgard/` default to project-local workflow notes and lightweight reference material, not polished general-audience documentation, unless the file clearly serves as an external-facing guide.
-
-`~/.rules/writing/docs.md` is the baseline for README files, but README files remain lightweight workflow notes unless they clearly serve as external-facing guides. In particular:
+README files in `Asgard/` default to project-local workflow notes; `~/.rules/writing/docs.md` is the baseline, with these exceptions:
 
 - a mildly personal tone is acceptable when the README documents the author's workflow or repo conventions
 - Unicode tree diagrams are acceptable when they are the clearest way to show repository layout
 - concise prose is preferred over rigid formal structure when the file is mainly for day-to-day use
-
-The core discipline from the writing rules still applies: runnable commands and copy-paste instructions are written in code blocks, not inline prose. Inline code remains appropriate for naming a command, script, path, module, or flag when the reader is not being asked to run it. Notes and caveats use blockquotes where helpful. The reason behind non-obvious setup or layout choices is documented
-
-### sindri
-
-Python libraries live under `Asgard/sindri/submodules/`. Projects that are part of the `Asgard/` ecosystem are placed within this tree.
-
-| Package | Purpose |
-|---|---|
-| `jormi/` | shared utility library for computing MHD turbulence statistics: vector field decompositions, power spectra, PDFs |
-| `bifrost/` | stores scientific data efficiently and provides an interface for accessing it |
-| `vegtamr/` | line integral convolution library for vector field visualisation |
-| `ww-arepo-sims/` | interface between AREPO simulation data and `jormi/` |
-| `ww-flash-sims/` | interface between FLASH simulation data and `jormi/` |
-| `ww-quokka-sims/` | interface between Quokka simulation data and `jormi/` |
-
-`jormi/` is the primary shared utility library. It covers the full workflow of scientific computing in the `Asgard/` ecosystem: MHD turbulence statistics, field operations and decompositions, array utilities, plotting, I/O, logging, and HPC job scheduling. It is the first point of reference for any new utility logic; new projects depend on it rather than reimplementing what it covers.
-
-#### Internal layering
-
-`jormi/` enforces a strict two-layer separation between array math and field objects:
-
-- `ww_arrays/` owns all array-level mathematics. Functions here operate purely on `NDArray` inputs and return `NDArray` outputs. No field objects, no field metadata.
-- `ww_fields/` is a thin wrapper layer. It extracts arrays from field objects, delegates to `ww_arrays/`, and rewraps the result. It contains no array math of its own.
-
-New computations are implemented in `ww_arrays/`. The `ww_fields/` wrapper calls them. A computation belongs in `ww_arrays/` even when only used inside `ww_fields/`, unless it is trivially one line.
-
-Beyond `jormi/`, the other submodules are used where relevant. Simulation data loading and processing uses the appropriate `ww-*-sims/` package. Vector field visualisation uses `vegtamr/`.
-
-> **Note:** `bifrost/` is still under active development and not yet functional.
-
-### freyja
-
-`freyja/` is the development sandbox. It brings together many packages in one place, used for prototyping and testing ideas before they are ready to be formalised. Code here is exploratory and not expected to be production-quality.
-
-### mimir
-
-Once a science idea is solid, it graduates to a dedicated science project repo under `mimir/`. Each `mimir` repo is tied to a specific paper and contains the complete workflow for that paper: data processing, analysis, and figures. These repos are self-contained and reproducible.
-
-When a project is published, rename the repo to include the publication year. Update the repository name on GitHub and any local refs pointing to it. Once renamed, make no further changes to it.
-
-The local folder name and the GitHub repository name follow different conventions:
-
-| | Format | Example |
-|---|---|---|
-| Local folder | `<author1>[-<author2>]-<year>-<title-identifiers>` | `kriel-beattie-2025-curvature` |
-| GitHub | `<Author1>[<Author2>]<year>_<title-identifiers>` | `KrielBeattie2025_curvature` |
-
-Author inclusion follows the same rule for both: for two or three authors, include all names; for more, use only the first author's name.
 
 ---
 
@@ -71,7 +18,7 @@ Author inclusion follows the same rule for both: for two or three authors, inclu
 
 Simulation interface layers preserve the representation of the data as read from disk. If the source data are `float32`, loaders return `float32` fields by default rather than silently casting/promoting to `float64`.
 
-Numerical promotion belongs in the computation layer (`jormi/`). When an operation requires higher precision for correctness or stability, the compute-side implementation converts or promotes the relevant arrays there. Precision promotion is not the responsibility of project code in `mimir/`.
+Numerical promotion belongs in the computation layer (`jormi/`). When an operation requires higher precision for correctness or stability, the compute-side implementation converts or promotes the relevant arrays there.
 
 ---
 
@@ -91,12 +38,7 @@ Asgard projects extend the standard import order with two additional library gro
 
 ### Referencing Personal Libraries
 
-During active development, personal libraries are referenced as editable installs in `pyproject.toml`:
-
-```toml
-[tool.uv.sources]
-<package-name> = { path = "../submodules/<package-name>", editable = true }
-```
+During active development, personal libraries are referenced as editable installs. The path for sindri packages is `../submodules/<package-name>`; see `code/python/setup-module.md` for the full pattern.
 
 Once a project has matured and the dependency has stabilised, personal libraries are referenced as a pinned git commit:
 
@@ -104,8 +46,6 @@ Once a project has matured and the dependency has stabilised, personal libraries
 [tool.uv.sources]
 <package-name> = { git = "https://github.com/<username>/<package-name>", rev = "<commit-hash>" }
 ```
-
-`[tool.hatch.metadata] allow-direct-references = true` is not needed when using `[tool.uv.sources]`. That flag is only needed when a direct URL reference is written inline in the `dependencies` list (e.g. `"jormi @ file://..."`). With `[tool.uv.sources]`, the `dependencies` list contains only a plain package name and hatchling never sees the path.
 
 ---
 
