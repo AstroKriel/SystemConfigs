@@ -7,7 +7,7 @@ Optional user-level X11/XFCE configs for the Arch Framework 13 setup.
 | Extra | Target | Purpose | Dependencies |
 |---|---|---|---|
 | `arch-x11/lightdm-locale.xprofile` | `~/.xprofile` | Sets `LC_TIME=en_GB.UTF-8` for XFCE/LightDM | generated `en_GB.UTF-8` locale |
-| `arch-x11/mouse-workspace-buttons.xbindkeysrc` | `~/.xbindkeysrc` | Maps Logitech side buttons to previous/next workspace | `xbindkeys`, `xdotool` |
+| `arch-x11/mouse-workspace-buttons.xbindkeysrc` | `~/.xbindkeysrc` | Maps Logitech side buttons to previous/next workspace and `Super+left click` to right click | `xbindkeys`, `xdotool` |
 | `arch-x11/touchpad-workspace-gestures.conf` | `~/.config/libinput-gestures.conf` | Maps three-finger swipes to previous/next workspace | `libinput-gestures`, `xdotool` |
 | `arch-x11/xfce-theme-toggle` | `~/.local/bin/xfce-theme-toggle` | Toggles XFCE/GTK between light and dark mode | `xfconf-query`, `gsettings` |
 | `arch-x11/xfce-window-behavior.sh` | manual one-time run | Makes activated apps switch to their existing workspace instead of moving to the current one | `xfconf-query`, `xfwm4` |

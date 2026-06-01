@@ -3,3 +3,6 @@
 
 "xdotool set_desktop --relative -- +1"
   b:9
+
+"xdotool click --clearmodifiers 3"
+  Mod4 + b:1 + Release
