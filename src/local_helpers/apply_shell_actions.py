@@ -143,7 +143,23 @@ def create_symlink(
         )
         return
     if _symlink_is_broken(target_path):
-        logger_fn(f"Skipping. {target_path} is a broken symlink.")
+        logger_fn(
+            log_messages.format_dry_run(
+                message=f"Replacing broken symlink: {target_path}",
+                dry_run=dry_run,
+            ),
+        )
+        backup_file(
+            target_path=target_path,
+            logger_fn=logger_fn,
+            dry_run=dry_run,
+        )
+        _make_symlink(
+            source_path=source_path,
+            target_path=target_path,
+            logger_fn=logger_fn,
+            dry_run=dry_run,
+        )
         return
     if not _types_match(
             source_path=source_path,
