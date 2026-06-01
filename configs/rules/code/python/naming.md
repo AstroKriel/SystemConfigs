@@ -11,7 +11,8 @@ Filename conventions follow `~/.rules/code/naming.md`, applied with `_` as the w
 | Rule | |
 |---|---|
 | Casing | `snake_case` for all filenames |
-| Pattern | verb-noun: `<verb>_<noun>.py` |
+| Scripts | verb-noun: `<verb>_<noun>.py` |
+| Modules | verb-noun for action modules; noun-noun for type, model, or data structure modules |
 | Private modules | leading underscore: `_<verb>_<noun>.py` |
 | Packages | named for the concept they expose: `arrays`, `fields`, `plots` |
 
