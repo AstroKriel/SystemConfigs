@@ -34,7 +34,8 @@ These rules apply when writing or editing any markdown documentation: setup guid
 | Section separators | `---` between top-level sections |
 | Headings | `##` for top-level sections, `###` for subsections |
 | No trailing period on headings | |
-| Numbered lists | for sequential steps where order matters |
+| Bold sub-labels | `**Label:**` to group related tables within a section when a `###` heading is too heavy |
+| Numbered lists | for sequential steps or ordered rules where position carries meaning |
 | Bullet lists | for unordered items |
 
 ---
