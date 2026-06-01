@@ -2,30 +2,20 @@
 
 How a file is structured internally: wrappers, section markers, imports, and type aliases.
 
-The `## { ... }` wrappers delimit file content. Empty files (e.g. `__init__.py` files that only serve as package markers) need no wrapper.
-
 ---
 
-## Imports
+## Wrappers
 
-| Rule | |
+Every file begins and ends with a wrapper that identifies its type:
+
+| File type | Wrapper |
 |---|---|
-| Order | `## stdlib` -> `## third-party` -> `## personal` -> `## local` |
-| `## personal` | separately-packaged libraries installed as dependencies |
-| `## local` | imports from within the current project |
-| Per line | one import per line |
-| Within groups | plain `import ...` lines first, then `from ... import ...` lines |
-| Sort order | alphabetise imports within each `import ...` and `from ... import ...` block |
-| Spacing | separate `import ...` and `from ... import ...` blocks with one blank line when both appear in the same group |
-| Aliases | never `import <module> as <abbrev>`; use the full name or a descriptive alias: `import <module>`, `from <package>.<module> import <Class> as <package>_<Class>` |
-| Module imports | import the module, not individual functions: `from <package>.<module> import <module>` then `<module>.<function>(...)` |
-| Long imports | use parentheses with trailing commas when there are three or more names being imported |
-| Re-exports | use `from <module> import <name> as <name>` (self-alias) when a module re-exports a symbol for callers; `from <module> import <name>` alone is not considered a re-export by pyright and will produce an error at the call site |
+| Module | `## { MODULE` / `## } MODULE` |
+| Script | `## { SCRIPT` / `## } SCRIPT` |
+| Unit test | `## { U-TEST` / `## } U-TEST` |
+| Validation test | `## { V-TEST` / `## } V-TEST` |
 
-Two exceptions to the module imports rule:
-
-- **Third-party libraries** where a descriptive prefix alias preserves the namespace at the call site. Use `mpl_` for matplotlib, `scipy_` for scipy, `rich_` for rich: `from matplotlib.axes import Axes as mpl_Axes`, `from rich.console import Console as rich_Console`.
-- **Universally idiomatic stdlib imports** that are always imported by name: `from pathlib import Path`, `from typing import Any`, `from dataclasses import dataclass`, `from enum import Enum`.
+Empty files (e.g. `__init__.py` package markers) need no wrapper.
 
 ---
 
@@ -38,6 +28,8 @@ Section markers always open and close with an empty `##`. Additional detail line
 ## === SECTION NAME
 ##
 
+...
+
 ##
 ## === SECTION NAME
 ## optional detail line.
@@ -48,55 +40,39 @@ Section markers always open and close with an empty `##`. Additional detail line
 Subsection markers use a single line:
 
 ```python
-## --- subsection name
+## --- SUBSECTION NAME
 ```
 
 ---
 
-## Modules
+## Imports
 
-```python
-## { MODULE
+**Order:**
 
-##
-## === DEPENDENCIES
-##
+1. `## stdlib`: standard library
+2. `## third-party`: external packages
+3. `## personal`: separately-packaged libraries installed as dependencies
+4. `## local`: imports from within the current project
 
-## stdlib
-...
+**Style:**
 
-## third-party
-...
+| Rule | |
+|---|---|
+| Per line | one import per line |
+| Within groups | `import ...` lines first, then `from ... import ...` lines |
+| Sort order | alphabetise within each block |
+| Spacing | one blank line between the two blocks when both appear in the same group |
+| Aliases | never `import <module> as <abbrev>`; use the full name or a descriptive alias |
+| Module imports | import the module, not individual functions: `from <package>.<module> import <module>` then `<module>.<function>(...)` |
+| Long imports | use parentheses with trailing commas when there are three or more names |
+| Re-exports | use `from <module> import <name> as <name>` (self-alias) so pyright recognises the re-export |
 
-## local
-...
+Exceptions to the module imports rule:
 
-##
-## === TYPE ALIASES
-##
-
-...
-
-##
-## === SECTION NAME
-##
-
-...
-
-## } MODULE
-```
-
----
-
-## Package Init Files
-
-`__init__.py` files that re-export symbols from sub-modules use no wrapper. Use the self-alias pattern so pyright and ruff recognise the imports as explicit re-exports:
-
-```python
-from .<module_a> import <name_a> as <name_a>
-from .<module_a> import <name_b> as <name_b>
-from .<module_b> import <name_c> as <name_c>
-```
+| Exception | |
+|---|---|
+| Third-party with namespace prefix | `from <package>.<module> import <Class> as <prefix>_<Class>`; use `mpl_` for matplotlib, `scipy_` for scipy, `rich_` for rich |
+| Universally idiomatic stdlib | `from pathlib import Path`, `from typing import Any`, `from dataclasses import dataclass`, `from enum import Enum` |
 
 ---
 
@@ -114,7 +90,35 @@ Defined in a dedicated `## === TYPE ALIASES` section, before any functions:
 
 ---
 
-## Scripts
+## File Patterns
+
+### Module
+
+```python
+## { MODULE
+
+##
+## === DEPENDENCIES
+##
+
+...
+
+##
+## === TYPE ALIASES
+##
+
+...
+
+##
+## === SECTION NAME
+##
+
+...
+
+## } MODULE
+```
+
+### Script
 
 ```python
 ## { SCRIPT
@@ -123,13 +127,6 @@ Defined in a dedicated `## === TYPE ALIASES` section, before any functions:
 ## === DEPENDENCIES
 ##
 
-## stdlib
-...
-
-## third-party
-...
-
-## local
 ...
 
 ##
@@ -155,11 +152,17 @@ if __name__ == "__main__":
 ## } SCRIPT
 ```
 
----
+### Package Init
 
-## Unit Test Files
+`__init__.py` files that re-export symbols use no wrapper. Use the self-alias pattern so pyright and ruff recognise the imports as explicit re-exports:
 
-Use `## { U-TEST` / `## } U-TEST` wrappers with a `## === TEST SUITE` section and `unittest.main()` as the entry point:
+```python
+from .<module_a> import <name_a> as <name_a>
+from .<module_a> import <name_b> as <name_b>
+from .<module_b> import <name_c> as <name_c>
+```
+
+### Unit Test
 
 ```python
 ## { U-TEST
@@ -191,11 +194,7 @@ if __name__ == "__main__":
 ## } U-TEST
 ```
 
----
-
-## Validation Test Files
-
-Follow the script structure exactly, using `## { V-TEST` / `## } V-TEST` wrappers and a descriptive section header in place of `## === PROGRAM MAIN`:
+### Validation Test
 
 ```python
 ## { V-TEST

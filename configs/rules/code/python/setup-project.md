@@ -114,3 +114,17 @@ Configure pytest with the src layout in mind:
 pythonpath = ["src"]
 testpaths = ["utests"]
 ```
+
+---
+
+## Maintenance
+
+Run after any Python or metadata change:
+
+```bash
+uv run basedpyright
+```
+
+```bash
+uv run python -m py_compile <python-file> <package-dir>/*.py
+```
