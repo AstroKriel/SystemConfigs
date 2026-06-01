@@ -13,8 +13,8 @@ How to configure a Python project: package manager, `pyproject.toml`, type check
 ├── src/
 │   └── <package>/  # reusable library logic; installable as a package
 │       └── __init__.py
-├── scripts/        # entry-point scripts
-└── utests/         # unit tests
+├── scripts/  # entry-point scripts
+└── utests/  # unit tests
 ```
 
 Keep `scripts/` and `src/<package>/` separate from the start. Scripts are entry points; `src/<package>/` is reusable logic.
@@ -47,14 +47,6 @@ Always use `uv run` rather than activating the virtual environment manually.
 
 ## pyproject.toml
 
-Use hatchling as the build backend:
-
-```toml
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-```
-
 Metadata fields follow this order:
 
 ```toml
@@ -77,14 +69,7 @@ dev = [
 ]
 ```
 
-For personal libraries installed as editable local dependencies, declare them in `[tool.uv.sources]`. Do **not** add `[tool.hatch.metadata] allow-direct-references = true`; that is only needed for direct URL references written inline in the `dependencies` list. `[tool.uv.sources]` is resolved by uv and hatchling never sees the path:
-
-```toml
-dependencies = ["<package-name>"]
-
-[tool.uv.sources]
-<package-name> = { path = "<relative-path>", editable = true }
-```
+For editable local library dependencies, see `setup-module.md`.
 
 ---
 
