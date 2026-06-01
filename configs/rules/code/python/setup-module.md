@@ -27,6 +27,9 @@ Use hatchling:
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.hatch.build]
+sources = ["src"]
 ```
 
 ---
