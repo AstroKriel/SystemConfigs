@@ -16,6 +16,6 @@ Conventions for how to work, regardless of what is being produced. Files in this
 
 | Directory | Covers |
 |---|---|
-| `maintaining-notes/` | Note-taking systems: rules, projects, codebases, HPC, meetings, machines |
+| `notes/` | Note-taking systems: rules, projects, codebases, HPC, meetings, machines |
 | `quokka/` | Quokka-specific workflow: build, run, MHD, testing, diagnostics |
 | `remote-work/` | Working on remote machines: SSH, HPC job workflow, data transfer |

@@ -21,7 +21,7 @@ The canonical source is `~/Projects/DotFiles/configs/rules/`. All `.md` files th
 │   └── quokka/             # Quokka project bundle
 ├── writing/                # conventions for producing text
 └── workflow/               # conventions for how to work
-    └── maintaining-notes/  # this bundle
+    └── notes/              # this bundle
 ```
 
 Each directory has a `README.md` that indexes its contents. The READMEs are the up-to-date map; the tree above shows the current top-level shape.

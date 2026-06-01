@@ -22,7 +22,7 @@ When working on a specific cluster, resolve these concepts from the cluster note
 
 When access to a new cluster is gained:
 
-1. Create the cluster notes at `~/Documents/ProjectNotes/hpcs/<cluster>/` following `../maintaining-notes/hpc.md`
+1. Create the cluster notes at `~/Documents/ProjectNotes/hpcs/<cluster>/` following `../notes/hpc.md`
 2. Add a host entry to `~/.ssh/config` per `./ssh.md`
 3. Log in and identify the available storage tiers; map each to its actual path
 4. Survey the module environment: compiler toolchain, MPI, HDF5/parallel I/O stack
