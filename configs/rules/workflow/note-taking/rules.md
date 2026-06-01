@@ -19,7 +19,7 @@ The canonical source is `~/Projects/DotFiles/configs/rules/`. All `.md` files th
 │   └── quokka/  # Quokka project bundle
 ├── writing/  # conventions for producing text
 └── workflow/  # conventions for how to work
-    └── notes/  # this bundle
+    └── note-taking/  # this bundle
 ```
 
 ---
