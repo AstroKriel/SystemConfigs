@@ -18,11 +18,11 @@ Each machine has its own repository, stored wherever is convenient on that machi
 
 ```text
 <MachineName>/
-├── README.md           machine name, OS, hardware summary, purpose
-├── setup.md            installation steps: OS, packages, dotfiles, services
-├── pending-issues.md   open issues and unresolved configuration problems
-└── debug-diary/        retrospective entries for resolved issues
-    └── YYYY-MM-DD.md
+├── README.md          # machine name, OS, hardware summary, purpose
+├── setup.md           # installation steps: OS, packages, dotfiles, services
+├── pending-issues.md  # open issues and unresolved configuration problems
+└── debug-diary/       # retrospective entries for resolved issues
+    └── YYYY-MM-DD.md  # one file per resolved issue
 ```
 
 The `README.md` is the orientation document: what the machine is and what it is used for. `setup.md` is the reproduction guide: following it from a clean OS install should reproduce the working configuration.

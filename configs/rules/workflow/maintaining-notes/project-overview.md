@@ -27,11 +27,11 @@ Start with just `README.md`. Add files only as the project grows. Two guiding pr
 
 ```text
 <paper>/
-├── README.md           overview; becomes index as project grows
-├── log/                session trail; one file per session named YYYY-MM-DD.md
-├── tasks.md            task list; splits into tasks/ when tasks span multiple domains
-├── threads/            active explorations and open questions
-└── notes/              refs, background material, stable context
+├── README.md  # overview; becomes index as project grows
+├── log/       # session trail; one file per session named YYYY-MM-DD.md
+├── tasks.md   # task list; splits into tasks/ when tasks span multiple domains
+├── threads/   # active explorations and open questions
+└── notes/     # refs, background material, stable context
 ```
 
 ### README.md
@@ -79,10 +79,10 @@ Reference material, background context, and stable expanded content that overflo
 
 ```text
 <student>/
-├── README.md           who, project summary, degree milestones, current status
-├── tasks.md            current tasks for student and supervisor
-├── log/                dated meeting notes; one file per meeting named YYYY-MM-DD.md
-└── notes/              reference material (project description, setup details, etc.)
+├── README.md  # who, project summary, degree milestones, current status
+├── tasks.md   # current tasks for student and supervisor
+├── log/       # dated meeting notes; one file per meeting named YYYY-MM-DD.md
+└── notes/     # reference material (project description, setup details, etc.)
 ```
 
 ### README.md

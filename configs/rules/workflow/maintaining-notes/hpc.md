@@ -16,9 +16,9 @@ Location: `ProjectNotes/hpcs/<cluster>/`
 
 ```text
 hpcs/<cluster>/
-├── README.md       cluster name, institution, login hostname, scheduler, storage tier paths, module stack
-├── log.md          dated entries: outages, queue changes, module updates, workarounds
-└── jobs/           example job scripts and submission patterns
+├── README.md  # cluster name, institution, login hostname, scheduler, storage tier paths, module stack
+├── log.md     # dated entries: outages, queue changes, module updates, workarounds
+└── jobs/      # example job scripts and submission patterns
 ```
 
 The `README.md` is the reference sheet: everything needed to start a session from scratch. It should include the login hostname, available partitions, and the storage tier paths mapped to the concepts defined in `workflow/remote-work/hpc.md` (`home`, `fast-storage`, `project` where available). Also record any non-standard module load sequences.
