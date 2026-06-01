@@ -18,10 +18,10 @@ Each machine has its own repository, stored wherever is convenient on that machi
 
 ```text
 <MachineName>/
-├── README.md          # machine name, OS, hardware summary, purpose
-├── setup.md           # installation steps: OS, packages, dotfiles, services
+├── README.md  # machine name, OS, hardware summary, purpose
+├── setup.md  # installation steps: OS, packages, dotfiles, services
 ├── pending-issues.md  # open issues and unresolved configuration problems
-└── debug-diary/       # retrospective entries for resolved issues
+└── debug-diary/  # retrospective entries for resolved issues
     └── YYYY-MM-DD.md  # one file per resolved issue
 ```
 

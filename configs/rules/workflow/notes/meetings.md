@@ -16,10 +16,10 @@ Location: `ProjectNotes/meetings/`
 
 ```text
 meetings/
-├── <group>/                   # one directory per recurring series
-│   ├── README.md              # group name, cadence, participants, purpose
-│   └── YYYY-MM-DD.md          # one file per session
-└── ad-hoc/                    # one-off meetings that do not belong to a series
+├── <group>/  # one directory per recurring series
+│   ├── README.md  # group name, cadence, participants, purpose
+│   └── YYYY-MM-DD.md  # one file per session
+└── ad-hoc/  # one-off meetings that do not belong to a series
     └── YYYY-MM-DD-<topic>.md  # one file per meeting
 ```
 
