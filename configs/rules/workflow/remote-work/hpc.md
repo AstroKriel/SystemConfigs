@@ -33,7 +33,7 @@ When access to a new cluster is gained:
 
 Directives are scheduler-specific (SLURM uses `#SBATCH`, PBS uses `#PBS`); check the cluster `README.md` for the scheduler type.
 
-**Naming:** `<project>-<descriptor>`, short enough to read in the queue. Examples: `kriel-mhd-512`, `kriel-cs-test`.
+**Naming:** `<project>-<descriptor>`, short enough to read in the queue. Examples: `<project>-mhd-512`, `<project>-cs-test`.
 
 **Working directory:** set explicitly to the run directory using `--chdir` (SLURM) or `-d` (PBS). Do not rely on submission directory or home directory defaults.
 

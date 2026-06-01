@@ -72,8 +72,8 @@ The local folder name and the GitHub repository name follow different convention
 
 | | Format | Example |
 |---|---|---|
-| Local folder | `<author1>[-<author2>]-<year>-<title-identifiers>` | `kriel-beattie-2025-curvature` |
-| GitHub | `<Author1>[<Author2>]<year>_<title-identifiers>` | `KrielBeattie2025_curvature` |
+| Local folder | `<author1>[-<author2>]-<year>-<title-identifiers>` | `<author1>-<author2>-2025-<title>` |
+| GitHub | `<Author1>[<Author2>]<year>_<title-identifiers>` | `<Author1><Author2>2025_<title>` |
 
 For two or three authors, include all names; for more, use only the first author's name.
 
