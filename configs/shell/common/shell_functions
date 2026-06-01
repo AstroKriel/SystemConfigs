@@ -28,12 +28,12 @@ fi
 ## launch a live latex compile + pdf preview session, anchored to the project
 ## dir (where the tex file lives) regardless of where invoked.
 if command -v tmux >/dev/null 2>&1; then
-    tmux-cv-latex() {
+    tmux-session-latex() {
         for cmd in latexmk zathura realpath; do
             command -v "$cmd" >/dev/null 2>&1 \
-                || { echo "tmux-cv-latex: $cmd not found" >&2; return 1; }
+                || { echo "tmux-session-latex: $cmd not found" >&2; return 1; }
         done
-        local tex_path="${1:?usage: tmux-cv-latex <file.tex>}"
+        local tex_path="${1:?usage: tmux-session-latex <file.tex>}"
         local tex_abs tex_dir tex_file pdf_file session
         tex_abs="$(realpath "$tex_path")"  ## requires the dir to exist; catches bad paths early
         tex_dir="$(dirname "$tex_abs")"
@@ -48,7 +48,7 @@ if command -v tmux >/dev/null 2>&1; then
         ## anchor both panes in `tex_dir` so build outputs land next to the source
         tmux new-session -d -s "$session" -c "$tex_dir"
         ## `-g` forces an initial recompile to produce `.synctex.gz`
-        tmux send-keys -t "$session" "latexmk -pdf -pvc -synctex=1 -g $tex_file" C-m
+        tmux send-keys -t "$session" "latexmk -pdf -pvc -synctex=1 -interaction=nonstopmode -g $tex_file" C-m
         tmux split-window -v -t "$session" -c "$tex_dir"
         ## poll for the pdf to avoid racing latexmk's first compile
         tmux send-keys -t "$session" \
