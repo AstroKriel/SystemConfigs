@@ -12,9 +12,9 @@ Start a new mimir project once the core idea is solid and prototyping in `freyja
 
 Sequence:
 
-1. Create the repo following the naming conventions in `../code/asgard.md`
+1. Create the repo following the naming conventions in the Publication and Archival section below
 2. Register it as a git submodule under `Asgard/mimir/`
-3. Initialise a uv project and configure `pyproject.toml` per `../code/python/setup.md`
+3. Initialise a uv project and configure `pyproject.toml` per `../code/python/setup-project.md`
 4. Add `jormi` and any relevant `ww-*-sims` packages as editable dependencies
 5. Open a ProjectNotes directory: `~/Documents/ProjectNotes/<project>/` with `README.md`
 6. Push to GitHub
@@ -62,8 +62,19 @@ Reference the new package as an editable install during development. See `../cod
 
 When a paper is accepted:
 
-1. Rename the repo to include the publication year per `../code/asgard.md`
+1. Rename the repo following the naming conventions below
 2. Update the GitHub repository name and any local refs pointing to it
 3. Tag the accepted-version commit: `git tag accepted`
 4. Make no further changes after renaming
 5. Add a final log entry to `ProjectNotes/<project>/log/` with the journal and acceptance date
+
+The local folder name and the GitHub repository name follow different conventions:
+
+| | Format | Example |
+|---|---|---|
+| Local folder | `<author1>[-<author2>]-<year>-<title-identifiers>` | `kriel-beattie-2025-curvature` |
+| GitHub | `<Author1>[<Author2>]<year>_<title-identifiers>` | `KrielBeattie2025_curvature` |
+
+For two or three authors, include all names; for more, use only the first author's name.
+
+Precision promotion is not the responsibility of project code in `mimir/`; it belongs in `jormi/`. See `../code/asgard.md` for the data representation rule.
