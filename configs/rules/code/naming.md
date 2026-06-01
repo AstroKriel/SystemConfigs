@@ -13,8 +13,6 @@ How to name files and folders on disk.
 | Concept separator | `-` between distinct concepts: `<concept>-<concept>` |
 | Parameter in name | `<name>-<param>=<value>-<param>=<value>` |
 
-The two delimiters carry different weight: `_` groups words into one concept, `-` separates one concept from the next.
-
 ```text
 <concept>_<qualifier>-<param>=<value>
 ```

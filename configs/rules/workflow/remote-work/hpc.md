@@ -6,8 +6,6 @@ Conventions for working on HPC clusters: onboarding, module loading, job submiss
 
 ## Storage Tiers
 
-Clusters vary in what storage tiers they provide and what they are called. The concepts below are used throughout this file; the actual paths for a specific cluster are recorded in its `README.md` under `ProjectNotes/hpcs/<cluster>/`.
-
 | Concept | Role | Typical names |
 |---|---|---|
 | `home` | Persistent, backed up, small quota; for configs and code checkouts | `/home/<user>` |
@@ -65,13 +63,7 @@ Simulations go under `<fast-storage>/<project>/`. Sim directories are grouped by
 └── tmp/
 ```
 
-`jobs/` holds one submission script per workflow step (running the simulation, extracting datasets, post-processing, etc).
-
-`logs/` is the unified place to check on a run: job stdout/stderr (scheduler output and error directives point here) and any sim-level diagnostic output. Code rules document what lands here vs. inside `<sim-outputs>/`.
-
 `tmp/` is for short-lived diagnostic work: quick test runs, exploratory plots. Organise by concept and date: `tmp/<concept>/<YYYYMMDD>-<sub-topic>/`.
-
-Each simulation code's rules define the actual directory names for `<sim-inputs>`, `<sim-outputs>`, and `<derived>`, and how its output maps to these concepts.
 
 ---
 

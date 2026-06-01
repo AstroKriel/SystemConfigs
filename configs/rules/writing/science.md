@@ -32,7 +32,6 @@ These rules apply when writing scientific prose: manuscripts, papers, theses, an
 | Rule | |
 |---|---|
 | Inline math | use `$ ... $` |
-| All display math | use `align` environments; never use `$$` |
 | Use mathematics to expose structure | group and label equation terms by the physical process they represent, not by algebraic convenience |
 | Prefer decompositions that expose dynamics | decompose along physically meaningful axes: amplifying vs. diffusing, large-scale vs. small-scale, mean vs. fluctuating |
 | Introduce variables completely | when a symbol appears for the first time, give its name, physical meaning, and a characteristic value or scale in the same sentence or the one immediately following |
@@ -51,7 +50,6 @@ These rules apply when writing scientific prose: manuscripts, papers, theses, an
 | Semicolons join coordinate clauses | colons introduce explanations, lists, and equations |
 | Embed definitions in running text | use "where", "here", or "(i.e., ...)" rather than standalone definitional sentences |
 | Passive only for definitions and constraints | "is defined as", "is given by", "are expected to"; active elsewhere |
-| No em dashes | use commas, semicolons, or parentheses for secondary clauses |
 | Numbers | spell out below ten; numerals above |
 
 ---

@@ -2,8 +2,6 @@
 
 How a LaTeX project is laid out: file structure, figure organisation, tables, bibliography management, and submission versioning.
 
-The project is hosted on Overleaf and synced to GitHub.
-
 ---
 
 ## File Structure
@@ -37,8 +35,6 @@ The project is hosted on Overleaf and synced to GitHub.
 
 ## Header Directory
 
-`header/` groups all preamble material and bibliography into one place:
-
 | File | Purpose |
 |---|---|
 | `imports.tex` | package imports |
@@ -51,8 +47,6 @@ Define macros in `aliases.tex`, grouped by purpose with a comment line. Do not d
 ---
 
 ## Figures
-
-`figures/` is split by how the figure was produced:
 
 | Directory | Contents |
 |---|---|
@@ -80,8 +74,6 @@ Long or generated tables go in `tables/` as separate `.tex` files and are pulled
 ## Submission and Versioning
 
 On submission, copy the current state of `main.tex` (and `response.tex` from version 2 onwards) into `version-<N>/`. The root `main.tex` continues to be the working file.
-
-`response.tex` is the referee response document. It appears in the root from version 2 onwards and is versioned alongside `main.tex`.
 
 ---
 

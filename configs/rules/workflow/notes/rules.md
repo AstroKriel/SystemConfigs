@@ -6,8 +6,6 @@ The `~/.rules/` system: what it is, what belongs in it, and how to add, extend, 
 
 ## What it is
 
-`~/.rules/` holds personal conventions for code, writing, and workflow. Rules are prescriptive and stable: they define the working convention, not what is underway or what has been discovered.
-
 The canonical source is `~/Projects/DotFiles/configs/rules/`. All `.md` files there are symlinked into `~/.rules/` by `uv run -m scripts.setup.rules_files` run from the DotFiles repo. Edit the source; never edit through a symlink.
 
 ---
@@ -23,8 +21,6 @@ The canonical source is `~/Projects/DotFiles/configs/rules/`. All `.md` files th
 └── workflow/  # conventions for how to work
     └── notes/  # this bundle
 ```
-
-Each directory has a `README.md` that indexes its contents. The READMEs are the up-to-date map; the tree above shows the current top-level shape.
 
 ---
 
@@ -65,6 +61,6 @@ A finding in the notes system becomes a rule when it can be stated as "always X"
 To promote:
 
 1. Identify which `~/.rules/` file the convention belongs in.
-2. Phrase it as a rule: prescriptive, not descriptive. The rule stands alone without reference to the investigation that produced it.
+2. Phrase it as a rule: prescriptive, not descriptive.
 3. In the notes source, note the promotion if the investigation entry is still live. The rule itself carries no back-reference.
 4. Commit following `workflow/git.md`.

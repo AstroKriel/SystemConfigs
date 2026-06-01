@@ -51,12 +51,4 @@ class <EnumName>(Enum):
 | Alternative constructors | `@classmethod` methods named for the operation and source: `from_<type>` for pure type conversion, `load_from_<source>` for I/O reads |
 | Resource lifecycle | use context managers (`__enter__` / `__exit__`) |
 | `@property` vs `get_*` | use `@property` for attributes derived from existing state: no parameters, no side effects, cheap to compute; use `get_*` for operations that take parameters, involve I/O, or significant cost |
-
-Method ordering within dataclasses:
-
-1. `__post_init__` (validation on construction)
-2. Private helper methods (`_` prefix)
-3. `@property` methods
-4. `@cached_property` methods
-5. Regular instance methods
-6. `@classmethod` methods
+| Method ordering | `__post_init__`, private helpers (`_`), `@property`, `@cached_property`, instance methods, `@classmethod` |

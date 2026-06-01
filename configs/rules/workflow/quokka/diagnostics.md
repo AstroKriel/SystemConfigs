@@ -26,11 +26,6 @@ Activate the virtual environment for `ww-quokka-sims` before running any command
 2. **Extract.** Run the appropriate plot command with `--save-data`. This writes the figure and data to the sim's `derived/` subdirectory. Raw plotfiles stay on the cluster or in `/tmp/`; only derived products are committed.
 3. **Sanity-check.** Run `quokka-plot-vi-evolution` to check volume-integrated energy and momentum before extracting detailed field data.
 
-**Post-analysis:**
-
-4. **Load the data.** Write a problem-specific script that loads the extracted file from `derived/`; do not re-read the plotfile.
-5. **Compare runs.** Use `quokka-compare-snapshots` for field-level regression checks between two snapshot directories.
-
 ---
 
 ## Commands
@@ -68,7 +63,6 @@ Activate the virtual environment for `ww-quokka-sims` before running any command
 | `density` | Gas density |
 | `total_energy` | Total energy (internal + kinetic + magnetic) |
 
-Run `quokka-inspect-snapshot` to see the full list for a given run.
 
 ---
 

@@ -40,8 +40,6 @@ numpy.testing.assert_array_almost_equal(
 )
 ```
 
-Use `assertAlmostEqual()` for floating-point comparisons and `assertRaises()` for error cases:
-
 ```python
 def test_<behaviour>_raises(
     self,
@@ -62,7 +60,7 @@ Validation tests live under `vtests/`, mirroring the source structure. Use them 
 
 Vtests are not pytest-based. Run them via `uv run vtests/run_all.py`. Do not use pytest to run vtests; pytest cannot collect them because vtest classes take `__init__` arguments.
 
-Each vtest is a standalone script with a `main()` function, discovered and run via `vtests/run_all.py`. Where possible, save visual output (plots, diagrams) alongside the test to allow human inspection of results:
+Each vtest is a standalone script with a `main()` function, discovered and run via `vtests/run_all.py`. Where possible, save visual output (plots, diagrams) alongside the test:
 
 ```python
 def main() -> None:

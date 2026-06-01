@@ -24,7 +24,7 @@ Rules for formatting LaTeX documents, particularly scientific notes and papers.
 
 ## Labels
 
-Labels follow a three-part hierarchy: `type:group:name`.
+Three-part hierarchy: `type:group:name`. The group is the context; the name is the specific item. Sub-groups use `-` within the group field.
 
 | Type prefix | Use |
 |---|---|
@@ -32,10 +32,7 @@ Labels follow a three-part hierarchy: `type:group:name`.
 | `sec:` | sections, subsections, subsubsections |
 | `fig:` | figures |
 | `tab:` | tables |
-
-The group identifies the context (e.g. `mhd`, `mhd-linear`, `mhd-planewave`). The name identifies the specific item (e.g. `continuity`, `momentum`). Sub-groups are separated by `-` within the group field, not by additional colons.
-
-Examples: `eqn:mhd:continuity`, `eqn:mhd-linear:momentum`, `sec:mhd-waves:linearise`.
+| Sub-groups | `-` within the group field: `eqn:mhd-linear:momentum`, `sec:mhd-waves:linearise` |
 
 ---
 

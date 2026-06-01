@@ -2,8 +2,6 @@
 
 How to write docstrings and comments.
 
-Code should be self-documenting. A comment is an admission that the code alone is not clear enough. Comments exist to capture the why: to recall why a decision was made, not to describe what the code does.
-
 ---
 
 ## Docstrings
