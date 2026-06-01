@@ -24,14 +24,26 @@ INDEX_FILE = TARGET_DIR / "README.md"
 
 LOG_MESSAGE = log_messages.make_logger_fn(SCRIPT_NAME)
 
-_HEADER = """\
+
+def _home_relative(path: Path) -> str:
+    """Render a path as `~/...` when it lives under home, else absolute."""
+    try:
+        return f"~/{path.relative_to(Path.home())}"
+    except ValueError:
+        return str(path)
+
+
+_ROOT_DISPLAY = _home_relative(project_dirs.SOURCES.root)
+_RULES_SOURCE_DISPLAY = _home_relative(RULES_DIR)
+
+_HEADER = f"""\
 # Rules
 
 Generated index of all rule files in `~/.rules/`. Read this to find relevant
 conventions without traversing the directory tree. When applying a rule, state
 which file it came from.
 
-Files in `~/.rules/` are symlinks; the canonical source is `~/Projects/DotFiles/configs/rules/`. To add or modify a rule, edit the source and re-run the following from `~/Projects/DotFiles/`:
+Files in `~/.rules/` are symlinks; the canonical source is `{_RULES_SOURCE_DISPLAY}/`. To add or modify a rule, edit the source and re-run the following from `{_ROOT_DISPLAY}/`:
 
 ```bash
 uv run -m scripts.setup.rules_files
