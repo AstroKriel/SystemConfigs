@@ -12,7 +12,7 @@ Create one key per connection from each owned device. Do not reuse keys across c
 ssh-keygen -t ed25519 -a 100 -f ~/.ssh/id_ed25519_<name> -C "for <purpose> from <device> created on <YYYY-MM-DD>"
 ```
 
-`<name>` identifies the connection (e.g. `github`, `roundtable`). The comment captures what the key is for, which device it came from, and when; this makes `authorized_keys` entries self-describing and revocation surgical: removing access to one service leaves all others intact.
+`<name>` identifies the connection (e.g. `github`, `<cluster-name>`). The comment captures what the key is for, which device it came from, and when; this makes `authorized_keys` entries self-describing and revocation surgical: removing access to one service leaves all others intact.
 
 ---
 

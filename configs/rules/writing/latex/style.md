@@ -46,7 +46,7 @@ Examples: `eqn:mhd:continuity`, `eqn:mhd-linear:momentum`, `sec:mhd-waves:linear
 | Inline math | use `$ ... $` |
 | All display math | use `align` or `align*`; never `$$` or `equation` |
 | Unnumbered blocks | if no line in the block needs a label, use `align*` rather than `align` with `\nonumber` on every line |
-| Roman (upright) text in math | use `\mathrm{}`, never `{\rm ...}` -- `{\rm ...}` is a deprecated plain TeX mode switch |
+| Roman (upright) text in math | use `\mathrm{}`; `{\rm ...}` is a deprecated plain TeX mode switch |
 | Exponentials | use `\exp(...)` rather than `e^{...}` |
 | Coordinate planes | write planes as `(x,y)` or `$(\mVectorUnit{e}_1,\mVectorUnit{e}_2)$`, not `x--y` or `x\text{-}y` |
 | Symbol case | lower-case for scalars and vectors (including placeholder/dummy variables); upper-case for rank-2 tensors and collections |
