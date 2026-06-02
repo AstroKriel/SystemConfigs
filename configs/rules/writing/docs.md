@@ -117,3 +117,4 @@ git clone https://github.com/myusername/myrepo.git
 | Active voice | prefer "run this command" over "this command should be run" |
 | Present tense | prefer "this fixes" over "this will fix" |
 | No personal references | write for a general reader, not yourself |
+| No manual line wrapping | prose flows to the editor's window width; do not insert line breaks within paragraphs |
