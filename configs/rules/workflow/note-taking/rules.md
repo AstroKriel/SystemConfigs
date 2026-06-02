@@ -46,7 +46,7 @@ When in doubt: a rule answers "what is the convention?" A note answers "what is 
 3. From `<dotfiles>/`, run `uv run -m scripts.setup.rules_files` to relink and `uv run -m scripts.setup.rules_index` to regenerate the index.
 4. Commit following `workflow/git.md`.
 
-**New file:** name it `<concept>.md`; one word or a short phrase naming the subject. Open with a title and a one-line description so the map entry is meaningful.
+**New file:** name it `<concept>.md`; one word or a short phrase naming the subject. Open with a title, then a single-sentence description in noun-phrase scope form (`<Topic>: <coverage>`), present tense, with no second sentence or cross-references; this sentence becomes the index entry.
 
 **Promoting a file to a bundle:** when a single file grows to cover sub-topics that each warrant their own section, convert it to a subdirectory. Create a `README.md` inside it for any context that applies to the bundle as a whole, and split the content into per-topic files.
 
