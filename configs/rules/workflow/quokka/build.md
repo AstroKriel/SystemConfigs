@@ -8,8 +8,8 @@ Building, configuring, and running Quokka.
 |---|---|
 | `<quokka-checkout>/CLAUDE.md` | Architecture, build commands, code style, GPU safety. Maintained by the repo. |
 | `<quokka-checkout>/AGENTS.md` | LLM agent guidance for the Quokka codebase. Maintained by the repo. |
-| `ProjectNotes/codebases/quokka/` | Orientation: what Quokka is, file locations on this machine. |
-| `ProjectNotes/<paper>/` | Paper project context and notes. |
+| `<project-notes>/codebases/quokka/` | Orientation: what Quokka is, file locations on this machine. |
+| `<project-notes>/<paper>/` | Paper project context and notes. |
 
 ---
 
@@ -48,6 +48,10 @@ ninja -C build/3d-release <ProblemName>
 # Run
 cd tests && ../build/3d-release/src/problems/<ProblemName>/<ProblemName> ../inputs/<ProblemName>.toml
 ```
+
+### Prefer raw tools over the wrapper
+
+Drive `cmake`, `ninja`, and the compiled binary directly rather than through `scripts/bash/quokka` or CTest; the wrapper and harness encode other contributors' tolerances and plumbing. Reserve the wrapper for listing problems and bulk test runs. When validating a branch, configure a fresh build tree; never reuse an inherited one. Do not go below CMake to hand-invoke the compiler — the build system and its required flags are not optional.
 
 ---
 

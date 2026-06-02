@@ -24,7 +24,7 @@ File and folder naming on disk.
 | Case | Pattern | Examples |
 |---|---|---|
 | Conventional scaffolding files | all-uppercase, casing itself is the signal | `README.md`, `CLAUDE.md`, `LICENSE`, `MEMORY.md` |
-| Proper-noun roots | TitleCase or PascalCase, treated as a name | `DotFiles/`, `GitHelpers/`, `~/Projects/`, `~/Pictures/` |
+| Proper-noun roots | TitleCase or PascalCase, treated as a name | `SystemConfigs/`, `GitHelpers/`, `~/Downloads/`, `~/Pictures/` |
 | Tool-mandated names | as the tool requires | `Makefile`, `Dockerfile` |
 
 ---

@@ -14,12 +14,12 @@ This is distinct from HPC notes (see `hpc.md`): HPC notes record how to use a sh
 
 ## Structure
 
-Each machine has its own repository, stored wherever is convenient on that machine (e.g. `~/Projects/<MachineName>/`). The repository structure:
+Each machine has its own repository, stored wherever is convenient on that machine (e.g. `~/repos/<MachineName>/`). The repository structure:
 
 ```text
 <MachineName>/
 ├── README.md  # machine name, OS, hardware summary, purpose
-├── setup.md  # installation steps: OS, packages, dotfiles, services
+├── setup.md  # installation steps: OS, packages, configs, services
 ├── pending-issues.md  # open issues and unresolved configuration problems
 └── debug-diary/  # retrospective entries for resolved issues
     └── YYYY-MM-DD.md  # one file per resolved issue
@@ -33,7 +33,7 @@ The `README.md` is the orientation document: what the machine is and what it is 
 
 | Belongs | Does not belong |
 |---|---|
-| Hardware specs and OS version | Dotfiles themselves (those go in `<dotfiles>/`) |
+| Hardware specs and OS version | Config files themselves (those go in `<system-configs>/`) |
 | Package and service installation steps | Project data or results |
 | Non-obvious configuration decisions | HPC cluster details (see `hpc.md`) |
 | Open and resolved configuration issues | Binding conventions (promote to `~/.rules/`) |
@@ -52,6 +52,6 @@ When an issue is resolved, remove it from `pending-issues.md` and add a dated en
 
 ## Keeping notes current
 
-Update `setup.md` when a significant configuration change is made: a new service, a package upgrade that required intervention, a dotfiles change with machine-specific implications. The goal is that `setup.md` remains reproducible at any point in time.
+Update `setup.md` when a significant configuration change is made: a new service, a package upgrade that required intervention, a config change with machine-specific implications. The goal is that `setup.md` remains reproducible at any point in time.
 
 When a machine is retired, add a final `README.md` note marking the retirement date and disposition.

@@ -12,9 +12,9 @@ Covered by this file:
 
 | Category | Location |
 |---|---|
-| Research papers | `ProjectNotes/<paper>/` |
-| Teaching projects | `ProjectNotes/student-projects/`, `ProjectNotes/bitesize-python/` |
-| Student supervision | `ProjectNotes/student-projects/<student>/` |
+| Research papers | `<project-notes>/<paper>/` |
+| Teaching projects | `<project-notes>/student-projects/`, `<project-notes>/bitesize-python/` |
+| Student supervision | `<project-notes>/student-projects/<student>/` |
 
 ---
 
@@ -36,7 +36,7 @@ Start with just `README.md`. Add files only as the project grows. Two guiding pr
 
 ### threads/
 
-Each thread is a subfolder containing `README.md` and, if needed, `figures/`. When a question is settled, add `**Resolved:**` at the top of the thread `README.md` with the conclusion in one sentence. Figures not tied to a thread belong in the project repo, not ProjectNotes.
+Each thread is a subfolder containing `README.md` and, if needed, `figures/`. When a question is settled, add `**Resolved:**` at the top of the thread `README.md` with the conclusion in one sentence. Figures not tied to a thread belong in the project repo, not `<project-notes>`.
 
 ---
 

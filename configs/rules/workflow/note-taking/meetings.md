@@ -8,7 +8,7 @@ Notes for recurring group meetings and ad-hoc discussions; stored under `<projec
 
 A meeting note captures what was discussed, decided, or assigned in a single meeting or a recurring series. It is the written record of the meeting, not a task list or a minutes document.
 
-Location: `ProjectNotes/meetings/`
+Location: `<project-notes>/meetings/`
 
 ---
 

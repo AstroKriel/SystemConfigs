@@ -10,7 +10,7 @@ A code note covers a tool, library, or codebase that is used regularly but not o
 
 This is distinct from project notes: a code note is about the tool itself, not about a project that happens to use it.
 
-Location: `ProjectNotes/codebases/<code>/`
+Location: `<project-notes>/codebases/<code>/`
 
 ---
 

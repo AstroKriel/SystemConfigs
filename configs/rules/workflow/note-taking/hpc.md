@@ -8,7 +8,7 @@ Notes on HPC clusters you use but do not own or administer; each lives under `<p
 
 An HPC note covers a cluster that is accessed remotely: login details, hardware specs, scheduler configuration, storage layout, and accumulated operational knowledge. It does not cover setup steps that belong in a per-machine setup repo (see `personal-machine.md`).
 
-Location: `ProjectNotes/hpcs/<cluster>/`
+Location: `<project-notes>/hpcs/<cluster>/`
 
 ---
 
@@ -33,7 +33,7 @@ When a codebase requires host-specific build steps (toolchain sourcing, GPU back
 |---|---|
 | Hardware specs and partition layout | Output data from runs |
 | Storage tier paths and quotas | Project-specific analysis |
-| Scheduler flags and queue behaviour | Dotfiles or shell config (those go in setup repos) |
+| Scheduler flags and queue behaviour | Config files or shell config (those go in setup repos) |
 | Module load sequences | Binding workflow conventions (promote to `~/.rules/`) |
 | Known outages and maintenance windows | |
 
