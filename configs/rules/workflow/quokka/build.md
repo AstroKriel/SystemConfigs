@@ -1,6 +1,6 @@
 # Quokka: Build and Run
 
-Build, configure, and run Quokka.
+Building, configuring, and running Quokka.
 
 ## Related
 

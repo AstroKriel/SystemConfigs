@@ -1,6 +1,6 @@
 # LaTeX Writing Style
 
-Rules for formatting LaTeX documents, particularly scientific notes and papers.
+LaTeX writing style, particularly for scientific notes and papers.
 
 ---
 

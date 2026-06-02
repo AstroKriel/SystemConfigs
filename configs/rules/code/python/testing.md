@@ -1,6 +1,6 @@
 # Python: Testing
 
-How unit tests and validation tests are structured and run.
+Python unit and validation tests: structure and execution.
 
 ---
 

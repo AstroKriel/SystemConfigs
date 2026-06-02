@@ -1,6 +1,6 @@
 # Python: Classes and Data Structures
 
-How classes, enums, and dataclasses are defined and structured.
+Python class structure: classes, enums, and dataclasses.
 
 ---
 

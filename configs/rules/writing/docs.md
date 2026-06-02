@@ -1,6 +1,6 @@
 # Documentation Style
 
-These rules apply when writing or editing any markdown documentation: setup guides, design notes, lessons learned, and reference files.
+Markdown documentation style: setup guides, design notes, lessons learned, and reference files.
 
 ---
 

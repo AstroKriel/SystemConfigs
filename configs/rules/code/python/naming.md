@@ -1,6 +1,6 @@
 # Python: Naming and Imports
 
-How to name things: files, modules, functions, classes, variables, mathematical variables, and constants.
+Python naming and imports: files, modules, functions, classes, variables, and constants.
 
 ---
 

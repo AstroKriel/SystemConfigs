@@ -1,6 +1,6 @@
 # Scientific Writing
 
-These rules apply when writing scientific prose: manuscripts, papers, theses, and technical reports intended for publication.
+Scientific prose style: manuscripts, papers, theses, and technical reports for publication.
 
 ---
 

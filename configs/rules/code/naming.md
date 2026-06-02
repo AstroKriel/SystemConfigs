@@ -1,6 +1,6 @@
 # Naming
 
-How to name files and folders on disk.
+File and folder naming on disk.
 
 ---
 

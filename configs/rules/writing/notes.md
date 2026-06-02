@@ -1,6 +1,6 @@
 # Notes Writing Style
 
-Rules for writing notes on behalf of the user: project logs, meeting notes, codebase notes, and supervision records.
+Style for notes written on the user's behalf: project logs, meeting notes, codebase notes, and supervision records.
 
 ---
 

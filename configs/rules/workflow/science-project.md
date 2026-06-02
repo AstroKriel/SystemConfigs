@@ -1,6 +1,10 @@
 # Science Project
 
-Lifecycle conventions for science projects: starting, running, and archiving.
+Science project lifecycle in the Asgard ecosystem: starting, running, and archiving.
+
+---
+
+## Ecosystem context
 
 Science projects live in the Asgard ecosystem. All project code builds on `jormi` as the shared foundation; interaction with specific simulation codes is provided by `ww-*-sims` interface layers. See `../code/asgard.md` for ecosystem conventions (structure, imports, logging).
 

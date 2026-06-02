@@ -1,6 +1,6 @@
 # Python: Module Setup
 
-How to configure a Python library package: build backend, source layout, and editable installation.
+Python library package setup: build backend, source layout, and editable installation.
 
 ---
 

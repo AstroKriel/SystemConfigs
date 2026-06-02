@@ -1,6 +1,6 @@
 # Git Rules
 
-Commit format, scope, branch naming, and PR title conventions.
+Git workflow: commit format, scope, branch naming, and PR titles.
 
 ## Format
 

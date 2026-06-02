@@ -1,6 +1,6 @@
 # Python: File Layout
 
-How a file is structured internally: wrappers, section markers, imports, and type aliases.
+Python file layout: wrappers, section markers, imports, and type aliases.
 
 ---
 

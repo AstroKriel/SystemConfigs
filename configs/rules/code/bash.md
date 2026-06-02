@@ -1,6 +1,6 @@
 # Bash Style
 
-Rules for bash script style: preamble, variables, sections, and terminal output.
+Bash script style: preamble, variables, sections, and terminal output.
 
 ---
 

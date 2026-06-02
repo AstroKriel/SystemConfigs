@@ -1,6 +1,6 @@
 # LaTeX Project Structure
 
-How a LaTeX project is laid out: file structure, figure organisation, tables, bibliography management, and submission versioning.
+LaTeX project structure: files, figures, tables, bibliography management, and submission versioning.
 
 ---
 

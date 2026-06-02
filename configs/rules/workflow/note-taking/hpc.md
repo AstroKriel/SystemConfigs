@@ -1,6 +1,6 @@
 # HPC Notes
 
-Notes for HPC clusters that are used but not owned or administered. Each cluster has its own directory under `<project-notes>/hpcs/`.
+Notes on HPC clusters you use but do not own or administer; each lives under `<project-notes>/hpcs/`.
 
 ---
 
@@ -18,13 +18,12 @@ Location: `ProjectNotes/hpcs/<cluster>/`
 hpcs/<cluster>/
 ├── README.md  # cluster reference sheet; includes codebase-specific build sections where needed
 ├── log.md     # dated entries: outages, queue changes, module updates, workarounds
-├── tasks.md   # open setup and documentation tasks
-└── jobs/      # example job scripts and submission patterns
+└── tasks.md   # open setup and documentation tasks
 ```
 
-The `README.md` is the reference sheet: everything needed to start a session from scratch. It should include the login hostname, available partitions, and the storage tier paths mapped to the concepts defined in `workflow/remote-work/hpc.md` (`home`, `fast-storage`, `project` where available). Also record any non-standard module load sequences.
+The `README.md` is the reference sheet: everything needed to start a session from scratch. It should include the login hostname, available partitions, and the storage tier paths mapped to the concepts defined in `workflow/remote-work/hpc.md` (`home`, `fast-storage`, `project` where available). Also record any non-standard module load sequences, and a single minimal job script inline as a `## Minimal Job Script` section. Do not keep a separate folder of job-script templates: the canonical submission files for a run live in that run's `jobs/` directory on the cluster (see `workflow/remote-work/hpc.md`), and the inline minimal script covers the host-specific pattern.
 
-When a codebase requires host-specific build steps (toolchain sourcing, GPU backend flags, module stack), add a `## <codebase>` section to `README.md`.
+When a codebase requires host-specific build steps (toolchain sourcing, GPU backend flags, module stack), add it as a `### <codebase>` subsection under the README's `## Software` section (titled `## Software` or `## Software / Modules`), alongside the cluster's general module notes.
 
 ---
 

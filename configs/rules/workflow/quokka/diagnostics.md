@@ -1,6 +1,6 @@
 # Quokka: Data Extraction and Diagnostics
 
-Rules for extracting and working with Quokka simulation output, and for diagnosing failed runs.
+Quokka data extraction and diagnostics: simulation output and failed-run diagnosis.
 
 ---
 

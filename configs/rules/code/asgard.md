@@ -1,6 +1,6 @@
 # Asgard Project Conventions
 
-These rules apply when working within the `Asgard/` project. They complement the general Python conventions in the neighbouring `python/` directory and take precedence where they overlap.
+Conventions for the `Asgard/` project, complementing and overriding the general `python/` conventions where they overlap.
 
 ---
 

@@ -1,6 +1,6 @@
 # Personal Machine Notes
 
-Notes for machines that are owned and actively maintained. Each machine has its own setup repository, separate from `ProjectNotes/`.
+Notes on machines you own and maintain; each has its own setup repository, separate from `<project-notes>/`.
 
 ---
 

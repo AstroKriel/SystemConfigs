@@ -1,6 +1,6 @@
 # SSH
 
-Key pair management, config file conventions, and agent forwarding.
+SSH: key-pair management, config file conventions, and agent forwarding.
 
 ---
 

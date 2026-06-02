@@ -1,6 +1,6 @@
 # HPC Workflow
 
-Conventions for working on HPC clusters: onboarding, module loading, job submission, and data management.
+HPC cluster workflow: onboarding, module loading, job submission, and data management.
 
 ---
 
