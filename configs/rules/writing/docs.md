@@ -9,8 +9,8 @@ Markdown documentation style: setup guides, design notes, lessons learned, and r
 | Rule | |
 |---|---|
 | ASCII only | no Unicode punctuation: no em dashes, no curly quotes, no ellipsis characters |
-| No em dashes as punctuation | use a comma, semicolon, or full stop instead; never use `—` to set off a clause |
-| Exception: N/A in tables | `—` is permitted in table cells to indicate an empty or not-applicable entry; use it consistently across all tables (never mix with `--` or `-` for the same purpose) |
+| No em dashes | not in prose, not in tables; use a comma, semicolon, or full stop instead |
+| Not-applicable entries | write `N/A`, or let context show an entry is missing |
 | File-organisation trees | inside fenced ```text blocks only, box-drawing characters (`├──`, `└──`, `│`, `─`) are permitted; ASCII everywhere else |
 | Tree comments | `  # <comment>` with exactly two spaces between the entry and `#`; no column alignment |
 | Placeholders | use `<angle-brackets>`: `<package-name>`, `<username>`, `<commit-hash>` |
