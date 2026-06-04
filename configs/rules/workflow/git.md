@@ -136,7 +136,6 @@ username/verb/short-description
 | Verbs | same as commits: `add`, `fix`, `refactor`, `update`, `del`, etc. |
 | Avoid | dates, vague names (`wip`, `temp`, `fix-stuff`), and anything longer than needed |
 | Lifecycle | delete branches after merging; rebase onto `main` before opening a PR |
-| Audit | before starting new work, run `git_helpers show-branches-status` and delete any branch with no open PR and no recent activity |
 
 ---
 
