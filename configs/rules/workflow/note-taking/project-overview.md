@@ -34,6 +34,14 @@ Start with just `README.md`. Add files only as the project grows. Two guiding pr
 └── notes/     # refs, background material, stable context
 ```
 
+### README.md
+
+The README is the entry point. It should orient anyone landing cold: what the project is, where to find things, and where to look for supporting context. For compute-heavy projects it includes three standard sections:
+
+- `## Context`: relative-path pointers to the HPC notes, codebase notes, and rules that the project depends on. Use relative paths for anything inside `<project-notes>/`; use `~/.rules/<path>` for rules. Do not use absolute machine paths.
+- `## Machines`: one row per machine, with its role in the project (e.g. which runs go where).
+- The task and thread index sections that link to `tasks/` and `threads/`.
+
 ### threads/
 
 Each thread is a subfolder containing `README.md` and, if needed, `figures/`. When a question is settled, add `**Resolved:**` at the top of the thread `README.md` with the conclusion in one sentence. Figures not tied to a thread belong in the project repo, not `<project-notes>`.
