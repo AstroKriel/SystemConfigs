@@ -15,11 +15,12 @@ Building, configuring, and running Quokka.
 
 ## Build Directories
 
-Each configuration gets its own named build tree under `build/`. Never share a build tree between configurations. Always pass `-DQUOKKA_PYTHON=OFF`; do not create a Python environment inside `quokka/`. All analysis goes through `ww-quokka-sims/`.
-
 | Rule | |
 |---|---|
 | Always start cold | A build tree is only valid for the session and branch that created it. Wipe and reconfigure when resuming work in a new session or after switching branches. |
+| One config per tree | Never share a build tree between configurations. Name each tree after its configuration, e.g. `build/3d-release`, `build/3d-debug`. |
+| No Python | Always pass `-DQUOKKA_PYTHON=OFF`. Do not create a Python environment inside the quokka checkout; all analysis goes through `ww-quokka-sims`. |
+| Toolchain | When a host needs a non-default compiler, source `~/.config/quokka/profile.sh` before running CMake. Per-host specifics live in `<project-notes>/hpcs/<host>/`. |
 
 Common configurations:
 
@@ -28,8 +29,6 @@ cmake -S . -B build/3d-release -G Ninja -DCMAKE_BUILD_TYPE=Release -DAMReX_SPACE
 cmake -S . -B build/3d-debug   -G Ninja -DCMAKE_BUILD_TYPE=Debug   -DAMReX_SPACEDIM=3 -DQUOKKA_PYTHON=OFF
 cmake -S . -B build/3d-asan    -G Ninja -DCMAKE_BUILD_TYPE=Debug   -DAMReX_SPACEDIM=3 -DQUOKKA_PYTHON=OFF -DENABLE_ASAN=ON
 ```
-
-When a host needs a non-default toolchain, source `~/.config/quokka/profile.sh` before running CMake or Ninja. Per-host specifics live in `<project-notes>/hpcs/<host>/`.
 
 ---
 
