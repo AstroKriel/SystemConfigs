@@ -18,7 +18,9 @@ Activate the virtual environment for `ww-quokka-sims` before running any command
 |---|---|
 | Diagnostics first | The diagnostic commands are the primary interface with simulation data; use them before writing any custom extraction code. |
 | Plot on the host | When sim data lives on a remote host, run the diagnostic commands there. Copy only the derived outputs back. |
-| Post-analysis from derived | For comparisons or derived quantities, load the extracted file from `derived/`; do not re-read the plotfile. |
+| Post-analysis from derived | For comparisons or derived quantities, load the extracted JSON/CSV data file from `derived/`; do not re-read the plotfile. |
+| Data over images | When `--save-data` has been run, all numerical conclusions must come from the saved data file. Do not read figure image files; figures are outputs for the user, not inputs for analysis. |
+| Broken shebang | If console scripts fail with `bad interpreter: No such file or directory`, the venv was created at a different path. Check the cluster note for the current venv path and invoke via `PYTHONPATH=<ww-quokka-sims>/src:<jormi>/src <venv>/bin/python3 -m <module>`. |
 
 **Extraction:**
 

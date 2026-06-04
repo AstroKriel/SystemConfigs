@@ -9,7 +9,7 @@ Markdown documentation style: setup guides, design notes, lessons learned, and r
 | Rule | |
 |---|---|
 | ASCII only | no Unicode punctuation: no em dashes, no curly quotes, no ellipsis characters |
-| No em dashes | not in prose, not in tables; use a comma, semicolon, or full stop instead |
+| No em dashes or double hyphens | not in prose, not in tables, not as separators; `--` is not an acceptable substitute; use a comma, semicolon, or full stop instead |
 | Not-applicable entries | write `N/A`, or let context show an entry is missing |
 | File-organisation trees | inside fenced ```text blocks only, box-drawing characters (`├──`, `└──`, `│`, `─`) are permitted; ASCII everywhere else |
 | Tree comments | `  # <comment>` with exactly two spaces between the entry and `#`; no column alignment |

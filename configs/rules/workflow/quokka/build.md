@@ -17,7 +17,11 @@ Building, configuring, and running Quokka.
 
 Each configuration gets its own named build tree under `build/`. Never share a build tree between configurations. Always pass `-DQUOKKA_PYTHON=OFF`; do not create a Python environment inside `quokka/`. All analysis goes through `ww-quokka-sims/`.
 
-Remove the build directory first when starting fresh. Common configurations:
+| Rule | |
+|---|---|
+| Always start cold | Delete any existing build directory before configuring. Never reuse a build tree you did not create in the current session, regardless of whether it appears intact. The only exception is continuing a build within the same session that created it. |
+
+Common configurations:
 
 ```bash
 cmake -S . -B build/3d-release -G Ninja -DCMAKE_BUILD_TYPE=Release -DAMReX_SPACEDIM=3 -DQUOKKA_PYTHON=OFF
@@ -51,7 +55,7 @@ cd tests && ../build/3d-release/src/problems/<ProblemName>/<ProblemName> ../inpu
 
 ### Prefer raw tools over the wrapper
 
-Drive `cmake`, `ninja`, and the compiled binary directly rather than through `scripts/bash/quokka` or CTest; the wrapper and harness encode other contributors' tolerances and plumbing. Reserve the wrapper for listing problems and bulk test runs. When validating a branch, configure a fresh build tree; never reuse an inherited one. Do not go below CMake to hand-invoke the compiler — the build system and its required flags are not optional.
+Drive `cmake`, `ninja`, and the compiled binary directly rather than through `scripts/bash/quokka` or CTest; the wrapper and harness encode other contributors' tolerances and plumbing. Reserve the wrapper for listing problems and bulk test runs. Do not go below CMake to hand-invoke the compiler — the build system and its required flags are not optional.
 
 ---
 
@@ -178,6 +182,13 @@ For short-lived trial runs (testing a parameter, trialing a scheme), use `tmp/` 
 
 A clean exit is consistent with a silently broken solver. Always include at least one `*Convergence` problem when validating a build or code change.
 
+### Solver-path changes
+
+| Rule | |
+|---|---|
+| Full smoke-test before commit | Any change to a flux, reconstruction, EMF, or Riemann solver path must clear the full MHD smoke-test set (`AlfvenWaveLinear`, `BrioWuShockTube`, `OrszagTang`) before being committed. |
+| No speculative commits | Do not commit a solver change as a hypothesis to test. Run the tests first, then commit only a change that demonstrably improves the target metric without regressing other tests. Revert immediately if it does not help. |
+
 ### MHD smoke-test set
 
 | Problem | n_cell | stop_time | What it exercises |
@@ -201,4 +212,5 @@ cd tests && ../build/3d-release/src/problems/<ProblemName>/<ProblemName> ../inpu
 | Richardson refines nx only | Oblique modes (`num_modes_y != 0` or `num_modes_z != 0`) will not converge under this strategy. The tests abort on nonzero transverse modes. |
 | No resistivity | `FastWaveConvergence` and `SlowWaveConvergence` abort if `mhd.resistivity != 0`. |
 | MPI decomposition | Set `amr.blocking_factor_x = 16` and `amr.max_grid_size = 128`. |
+| Rank count | Size `--ntasks` to the largest resolution in the sweep. At nx=512 on a single rank, the sweep takes hours; use at least 16 ranks. `max_grid_size=32` gives 16 boxes at nx=512 and is compatible with `blocking_factor_x=16`. |
 | TOML overrides | Set `setup.machine_precision_target = 0` to disable early exit and run the full resolution sweep. |
