@@ -19,7 +19,7 @@ Each configuration gets its own named build tree under `build/`. Never share a b
 
 | Rule | |
 |---|---|
-| Always start cold | Delete any existing build directory before configuring. Never reuse a build tree you did not create in the current session, regardless of whether it appears intact. The only exception is continuing a build within the same session that created it. |
+| Always start cold | A build tree is only valid for the session and branch that created it. Wipe and reconfigure when resuming work in a new session or after switching branches. |
 
 Common configurations:
 
