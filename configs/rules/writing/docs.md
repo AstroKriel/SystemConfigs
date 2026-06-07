@@ -13,7 +13,7 @@ Markdown documentation style: setup guides, design notes, lessons learned, and r
 | Not-applicable entries | write `N/A`, or let context show an entry is missing |
 | File-organisation trees | inside fenced ```text blocks only, box-drawing characters (`├──`, `└──`, `│`, `─`) are permitted; ASCII everywhere else |
 | Tree comments | `  # <comment>` with exactly two spaces between the entry and `#`; no column alignment |
-| Placeholders | use `<angle-brackets>`: `<package-name>`, `<username>`, `<commit-hash>` |
+| Placeholders | use `<angle-brackets>`: `<package-name>`, `<username>`, `<commit-hash>`; define each placeholder where it first appears, as a variable is defined when introduced in maths |
 
 ---
 
