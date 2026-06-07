@@ -44,7 +44,7 @@ The README is the entry point. It should orient anyone landing cold: what the pr
 
 ### threads/
 
-Each thread is a subfolder containing `README.md` and, if needed, `figures/`. When a question is settled, add `**Resolved:**` at the top of the thread `README.md` with the conclusion in one sentence. Figures not tied to a thread belong in the project repo, not `<project-notes>`.
+Each thread is a subfolder containing `README.md` and, if needed, `figures/`. The `README.md` opens with the bottom line (the resolution once settled, the open question while active); for an investigation, it then tells how the finding was reached as a deduction story, the observations and what each one ruled in or out, leading to the conclusion. Active or resolved status is tracked in the threads index, not as an in-body label. Figures not tied to a thread belong in the project repo, not `<project-notes>`.
 
 ---
 

@@ -20,10 +20,13 @@ Location: `<project-notes>/codebases/<code>/`
 codebases/<code>/
 ├── README.md  # what the code is, version in use, how to install and invoke
 ├── log.md     # dated entries: discovered behaviours, workarounds, version changes
-└── recipes/   # reusable invocation patterns and configuration snippets
+├── recipes/   # reusable invocation patterns and configuration snippets
+└── threads/   # focused investigations (bug hunts, validations); same shape as project threads
 ```
 
 The `README.md` covers the essential facts: what the code does, which version is current, and the canonical invocation. A new user of the notes should be able to orient quickly from the README alone.
+
+A `threads/` subfolder holds focused investigations into the code's behaviour (a bug hunt, a workaround, a validation), following the project `threads/` shape in `./project.md`: one subfolder per thread whose `README.md` opens with the bottom line, with any durable conclusion promoted into the code `README.md` or `log.md`.
 
 ---
 
