@@ -63,13 +63,32 @@ Simulations go under `<fast-storage>/<project>/`. Sim directories are grouped by
 └── tmp/
 ```
 
-`tmp/` is for short-lived diagnostic work: quick test runs, exploratory plots. Organise by concept and date: `tmp/<concept>/<YYYYMMDD>-<sub-topic>/`.
+`tmp/` is for short-lived diagnostic work: quick test runs, exploratory plots, and throwaway scripts that drive a specific run. Organise by concept and date: `tmp/<concept>/<YYYYMMDD>-<sub-topic>/`. These scripts are not committed; they are ephemeral and often carry hardcoded paths.
 
 ---
 
 ## Code Deployment
 
 Deploy only what the cluster needs to execute the job: typically the project repo or the relevant `ww-*-sims` interface layer. Record what was deployed and any build steps in the cluster `log.md`.
+
+### Source, builds, and data
+
+| Artifact | Tier | Why |
+|---|---|---|
+| Source checkout | `home` (or a shared tier) | One checkout per cluster; small, version-controlled, shared across nodes. |
+| Build tree | `fast-storage` (node-local) | Heavy artifacts stay off the small `home` quota, and a build can be node- or GPU-specific. Never build into `home`. |
+| Run data | `fast-storage` | Bulk output; not backed up. |
+
+Each project's notes declare where its data and builds live on each cluster, in a `## Data and builds` section of the project `README.md`, so locations stay discoverable.
+
+### Builds under active development
+
+When a codebase is under active development, builds and runs nest one level deeper, by thread (the project's `threads/`), so each build is tied to the branch for its thread:
+
+- For out-of-source build systems (e.g. CMake), one source checkout is kept and each thread's build tree lives under the thread on `fast-storage`, configured against that source on the thread's branch.
+- For codes where the build is the run directory (compile-time grid or modules baked in per run), each run directory is its own build, grouped by thread.
+
+A single source checkout is on one branch at a time, so a thread's build is valid only while that branch is checked out. A thread's build and runs are deleted once the thread is shelved or merged. A matured project that pins a code version replaces the rolling per-thread builds with one frozen build at the pinned commit.
 
 ---
 
