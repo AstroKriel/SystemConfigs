@@ -50,6 +50,10 @@ set_mode() {
     gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme" || true
   fi
 
+  pkill conky 2>/dev/null || true
+  sleep 1
+  conky --config="$HOME/.config/conky/conky.conf" &
+
   printf 'XFCE theme set to %s (%s)\n' "$mode" "$gtk_theme"
 }
 
