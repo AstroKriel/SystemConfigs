@@ -17,10 +17,11 @@ Building, configuring, and running Quokka.
 
 | Rule | |
 |---|---|
-| Always start cold | A build tree is only valid for the session and branch that created it. Wipe and reconfigure when resuming work in a new session or after switching branches. |
+| Always start cold | A build tree is only valid for the session, node architecture, and branch that created it. Delete `CMakeCache.txt` and reconfigure when resuming work in a new session, switching branches, or moving to a different node type. |
 | One config per tree | Never share a build tree between configurations. Name each tree after its configuration, e.g. `build/3d-release`, `build/3d-debug`. |
 | No Python | Always pass `-DQUOKKA_PYTHON=OFF`. Do not create a Python environment inside the quokka checkout; all analysis goes through `ww-quokka-sims`. |
 | Toolchain | When a host needs a non-default compiler, source `~/.config/quokka/profile.sh` before running CMake. Per-host specifics live in `<project-notes>/hpcs/<host>/`. |
+| Pin build tools explicitly | On HPC nodes, always pass `-DCMAKE_MAKE_PROGRAM`, `-DCMAKE_AR`, and `-DCMAKE_RANLIB` explicitly on the cmake command line, **and** `rm -f CMakeCache.txt` before configuring. Command-line `-DCMAKE_*` flags are silently overridden by cached values when `CMakeCache.txt` exists — deleting the cache is the only reliable fix. |
 
 Common configurations:
 
@@ -29,6 +30,23 @@ cmake -S . -B build/3d-release -G Ninja -DCMAKE_BUILD_TYPE=Release -DAMReX_SPACE
 cmake -S . -B build/3d-debug   -G Ninja -DCMAKE_BUILD_TYPE=Debug   -DAMReX_SPACEDIM=3 -DQUOKKA_PYTHON=OFF
 cmake -S . -B build/3d-asan    -G Ninja -DCMAKE_BUILD_TYPE=Debug   -DAMReX_SPACEDIM=3 -DQUOKKA_PYTHON=OFF -DENABLE_ASAN=ON
 ```
+
+On HPC nodes where system modules may be architecture-specific, use portable tool installs instead:
+
+```bash
+# Install a portable ninja wheel (manylinux, works on any x86_64 node):
+pip install --user ninja          # installs to ~/.local/bin/ninja
+
+# Then configure with explicit tool pins:
+rm -f "$BUILD/CMakeCache.txt"
+cmake -S "$SRC" -B "$BUILD" -G Ninja \
+    -DCMAKE_MAKE_PROGRAM=$HOME/.local/bin/ninja \
+    -DCMAKE_AR=/usr/bin/ar \
+    -DCMAKE_RANLIB=/usr/bin/ranlib \
+    ...
+```
+
+This avoids crashes when module-provided tools are compiled for a different CPU ISA than the build node. See `workflow/remote-work/hpc.md` for the general rule.
 
 ---
 
@@ -167,6 +185,13 @@ AMReX profiling output (`ProfData_*`) lands in the working directory; with `--ch
 | `jobs/extract.sh` | Run `ww-quokka-sims` diagnostics; output goes to `derived/` |
 
 For short-lived trial runs (testing a parameter, trialing a scheme), use `tmp/` at the project root rather than a full `<concept>/<sim-name>/` directory. See `workflow/remote-work/hpc.md` for the naming convention.
+
+### Run settings
+
+| Rule | |
+|---|---|
+| Verbose output | Always set `amr.v = 1`. This enables FOFC firing counts, retry events, and other internal solver diagnostics that are silent at the default `amr.v = 0`. |
+| Plotfiles | Always set `plottime_interval = <interval>`. Write snapshots at regular intervals so the evolution can be inspected, not just the outcome. A run that crashes with no plotfiles leaves nothing to analyse. |
 
 ---
 
