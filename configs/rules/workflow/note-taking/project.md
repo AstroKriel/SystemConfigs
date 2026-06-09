@@ -58,6 +58,29 @@ Each thread is a subfolder containing `README.md` and, if needed, `figures/`, an
 └── notes/     # reference material (project description, setup details, etc.)
 ```
 
+### notes/ and tasks/ pairing
+
+When a project grows a `tasks/` folder, the `notes/` folder grows a matching file for each topic. The two files for the same topic are complementary: `tasks/<topic>.md` holds only active and pending work; `notes/<topic>.md` holds the durable record of what exists or has been done.
+
+The lifecycle of a piece of work:
+1. It starts as a task in `tasks/<topic>.md`.
+2. When it completes, its record moves to `notes/<topic>.md`; the checkbox is removed, not just ticked.
+3. `tasks/<topic>.md` shrinks over time. `notes/<topic>.md` grows.
+
+A `tasks/<topic>.md` file that is nothing but ticked checkboxes is a sign the notes file is missing or out of date.
+
+**What goes in `notes/<topic>.md`:**
+
+- Organise by subject, then by system or subsystem (e.g. HPC cluster, machine, or environment) as subsections.
+- Each dataset or run is recorded with its parameters listed as an itemised list before any table of runs. Parameters include resolution, stop time, plot interval, scheme, Mach number, and any other values a reader would need to reproduce or interpret the data.
+- Contextual remarks and caveats following a table go in a `> **Note:**` blockquote, not as inline prose.
+- Storage paths, naming conventions, and machine-assignment rationale belong here, not in tasks.
+
+**What stays in `tasks/<topic>.md`:**
+
+- Uncompleted checkboxes only. No reference material, no completed items, no storage layout docs.
+- A brief status line at the top noting current priority and what is blocked or in flight.
+
 ---
 
 ## What belongs here
