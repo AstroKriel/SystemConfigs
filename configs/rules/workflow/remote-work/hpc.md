@@ -39,6 +39,20 @@ Directives are scheduler-specific (SLURM uses `#SBATCH`, PBS uses `#PBS`); check
 
 **Module loading:** always `module purge` before loading. Pin the full module string (name and version) from the cluster `README.md` and use it verbatim across all jobs for that cluster. Log any version changes in `log.md`.
 
+**Validate before chaining:** Before submitting a build-then-run dependency chain (`sbatch --dependency=afterok:$BUILD_ID`), run the build step once in a short interactive or devel allocation first. A failing build marks all downstream jobs as `DependencyNeverSatisfied` with no diagnostic — the queue shows the symptom, not the cause, and jobs sit there burning wait time.
+
+---
+
+## Module Architecture
+
+On clusters with mixed CPU architectures, module system packages may be compiled for a specific ISA. A module-provided binary can crash with `SIGILL` on a node with a different architecture, even if it loaded cleanly on the login node.
+
+Before relying on a module-provided binary for a build tool (e.g., make, ninja, ar, ranlib), verify it matches the architecture of the node where the build will run (`module show <name>` shows the build provenance). When in doubt:
+
+- Use system binaries for low-level tools (e.g., `/usr/bin/ar`)
+- Use portable installs for build drivers (e.g., `pip install --user ninja` installs a `manylinux` wheel that is portable across all x86_64 nodes)
+- Record the working tool choices in the cluster notes
+
 ---
 
 ## Run Directory Layout
@@ -70,6 +84,10 @@ Simulations go under `<fast-storage>/<project>/`. Sim directories are grouped by
 ## Code Deployment
 
 Deploy only what the cluster needs to execute the job: typically the project repo or the relevant `ww-*-sims` interface layer. Record what was deployed and any build steps in the cluster `log.md`.
+
+### Syncing source changes: git, not rsync
+
+Make code changes **locally**, commit, and push; then bring them to the remote with `git pull` (or `git fetch` + `git reset --hard origin/<branch>` when the remote working tree has stray edits). **Never `rsync`/`scp` source files between local and a cluster checkout.** Doing so desyncs the working tree from git history, breaks output provenance (the build no longer corresponds to a commit), and silently diverges the two trees. This applies to source code only; output data still comes back via the Data Transfer rules below.
 
 ### Source, builds, and data
 
