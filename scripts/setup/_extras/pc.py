@@ -10,6 +10,12 @@ EXTRAS: dict[str, ExtraConfig] = {
         source_path=EXTRAS_DIR / "pc" / "path-aliases.sh",
         target_path=Path.home() / ".path_aliases",
     ),
+    "pc/ssh-agent.sh":
+    ExtraConfig(
+        name="pc ssh agent",
+        source_path=EXTRAS_DIR / "pc" / "ssh-agent.sh",
+        target_path=Path.home() / ".shell_ssh_agent",
+    ),
 }
 
 ## } MODULE

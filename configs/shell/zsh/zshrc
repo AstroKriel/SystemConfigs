@@ -25,16 +25,7 @@ source_if_present "$HOME/.shell_paths"
 source_if_present "$HOME/.path_aliases"
 source_if_present "$HOME/.shell_local"
 source_if_present "$HOME/.shell_hpc"
-
-##
-## === SSH AGENT
-##
-
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    if command -v keychain &>/dev/null; then
-        eval $(keychain --eval --quiet id_ed25519_github)
-    fi
-fi
+source_if_present "$HOME/.shell_ssh_agent"
 
 ##
 ## === COMPLETION
