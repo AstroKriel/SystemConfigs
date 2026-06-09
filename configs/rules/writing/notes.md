@@ -23,10 +23,11 @@ Notes are written for a reader who picks them up cold, without the author presen
 
 | Rule | |
 |---|---|
-| Scenario first | open with the situation the reader is in (e.g. "when saving spectra ..."), not the abstract subject |
-| The domain's own words | use the field or tool's own terms (e.g. `quantity`, `saving`); do not coin shorthand a fresh reader would not recognise |
-| Plainly causal | spell out cause and effect in full sentences; avoid clipped fragments |
-| Purpose-framed instructions | state the goal, then the concrete action ("to avoid this, opt out of ...") |
-| Essential first | lead with the bottom line; defer secondary detail to its own section |
-| Evidence as it was | quote what the evidence actually said; do not paraphrase it into something more specific than it was |
-| Diagnosis as a story | when recording how something was found, narrate the observations and what each one ruled in or out, leading to the conclusion; not a bare list of steps |
+| Opening | open with the situation the reader is in (e.g. "when saving spectra ..."), not the abstract subject |
+| Terminology | use the field or tool's own terms (e.g. `quantity`, `saving`); do not coin shorthand a fresh reader would not recognise |
+| Cause and effect | spell out cause and effect in full sentences; avoid clipped fragments |
+| Instructions | state the goal, then the concrete action ("to avoid this, opt out of ...") |
+| Ordering | lead with the bottom line; defer secondary detail to its own section |
+| What to omit | leave out the chronological back-and-forth, false starts, and internal status; keep a wrong turn only when it sharpens the conclusion, such as a ruled-out hypothesis |
+| Evidence | quote what the evidence actually said; do not paraphrase it into something more specific than it was |
+| Recounting an investigation | when recording how something was found, narrate the observations and what each one ruled in or out, leading to the conclusion; not a bare list of steps |
