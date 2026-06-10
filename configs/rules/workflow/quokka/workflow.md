@@ -96,7 +96,8 @@ Drive `cmake`, `ninja`, and the compiled binary directly rather than through `sc
 
 | Parameter | Values | Notes |
 |---|---|---|
-| `hydro.reconstruction_order` | `2` (PPM), `3` (PPM+), `5` (PPM-EP) | Spatial reconstruction order. |
+| `hydro.reconstruction_order` | `1` (PCM), `2` (PLM), `3` (PPM), `5` (PPM-EP) | Spatial reconstruction order for hydro. |
+| `mhd.emf_reconstruction_order` | `1` (PCM), `2` (PLM), `3` (PPM), `5` (PPM-EP) | Spatial reconstruction order for MHD. Must match `hydro.reconstruction_order` in convergence tests. |
 | `hydro.rk_integrator_order` | `2` | RK2 time integration. Standard for all MHD runs. |
 | `hydro.use_dual_energy` | `0` | Disable for MHD. |
 
@@ -174,7 +175,7 @@ Quokka maps onto the standard project layout from `workflow/remote-work/hpc.md`:
 Point AMReX output to `plotfiles/` in the run TOML:
 
 ```toml
-amr.plot_file = "plotfiles/plt"
+plotfile_prefix = "plotfiles/plt"
 ```
 
 AMReX profiling output (`ProfData_*`) lands in the working directory; with `--chdir`/`-d` set to the run directory, this goes to the run root rather than `logs/`.
@@ -192,6 +193,7 @@ For short-lived trial runs (testing a parameter, trialing a scheme), use `tmp/` 
 |---|---|
 | Verbose output | Always set `amr.v = 1`. This enables FOFC firing counts, retry events, and other internal solver diagnostics that are silent at the default `amr.v = 0`. |
 | Plotfiles | Always set `plottime_interval = <interval>`. Write snapshots at regular intervals so the evolution can be inspected, not just the outcome. A run that crashes with no plotfiles leaves nothing to analyse. |
+| Pass TOML as a relative path | In SLURM job scripts, always pass the input file as a bare filename (`sim_params.toml`), not an absolute path, and set `--chdir` to the run directory. AMReX ParmParse treats any command-line token containing `=` as an inline key=value pair. Absolute paths through directories named with `key=value` segments (e.g. `angle=0-nx=1-ny=0-nz=0`) crash the parser silently with misleading errors about missing definitions. |
 
 ---
 
@@ -237,4 +239,4 @@ cd tests && ../build/3d-release/src/problems/<ProblemName>/<ProblemName> ../inpu
 | No resistivity | `FastWaveConvergence` and `SlowWaveConvergence` abort if `mhd.resistivity != 0`. |
 | MPI decomposition | Set `amr.blocking_factor_x = 16` and `amr.max_grid_size = 128`. |
 | Rank count | Size `--ntasks` to the largest resolution in the sweep. At nx=512 on a single rank, the sweep takes hours; use at least 16 ranks. `max_grid_size=32` gives 16 boxes at nx=512 and is compatible with `blocking_factor_x=16`. |
-| TOML overrides | Set `setup.machine_precision_target = 0` to disable early exit and run the full resolution sweep. |
+| TOML overrides | Set `setup.machine_precision_target = 0` to disable early exit and run the full resolution sweep. Set `setup.nx_max = <N>` to control the maximum resolution (default is 128; set to 2048 for paper runs). |
