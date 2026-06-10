@@ -46,6 +46,10 @@ The README is the entry point. It should orient anyone landing cold: what the pr
 
 Each thread is a subfolder containing `README.md` and, if needed, `figures/`, and is a standalone investigation that can be shared on its own. A thread does not inherit context from the rest of `<project-notes>`: it states any background the reader needs, and a reference to another thread is made so that it still resolves when only the thread directories are shared (a relative link to the sibling thread), never by assuming the surrounding notes. The `README.md` opens with `**Opened:**` and, once settled, `**Resolved:**` dates, then states the bottom line (the resolution once settled, the open question while active); for an investigation, it then tells how the finding was reached as a deduction story, the observations and what each one ruled in or out, leading to the conclusion. Figures not tied to a thread belong in the project repo, not `<project-notes>`.
 
+### log/
+
+The log is an append-only session trail. Each file covers one session (named `YYYY-MM-DD.md`) and is a snapshot of what was understood at that moment. Notes and threads evolve over time; the log does not. Some duplication between the log and notes is expected and acceptable: if a finding first surfaces in a log entry, it belongs there even if it later appears in notes or threads. Omit stable reference material (parameters, storage paths, naming conventions) — that belongs in `notes/`.
+
 ---
 
 ## Structure: Student Supervision
