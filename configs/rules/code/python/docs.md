@@ -80,6 +80,17 @@ Fields
 | Formatting | use backticks for parameter names, flag names, config keys, filenames, and literal values: `` `param_name` ``, `` `--dry-run` ``, `` `this-system.toml` ``, `` `True` `` |
 | Silence | leave obvious code uncommented: standard NumPy idioms, straightforward validation calls, and self-documenting function names need no explanation |
 
+### Type-checker suppressions
+
+| Rule | |
+|---|---|
+| Form | `# pyright: ignore[reportXxx]` |
+| Never use | `# type: ignore[mypy-code]`; pyright silently ignores mypy error codes, so the suppression has no effect |
+| Never use | bare `# type: ignore`; suppresses all errors on the line, not just the one intended |
+| When | only genuine false positives that cannot be resolved at the type signature level |
+
+---
+
 Mathematical notation is preferred over English prose where appropriate:
 
 ```python
