@@ -39,7 +39,7 @@ Directives are scheduler-specific (SLURM uses `#SBATCH`, PBS uses `#PBS`); check
 
 **Module loading:** always `module purge` before loading. Pin the full module string (name and version) from the cluster `README.md` and use it verbatim across all jobs for that cluster. Log any version changes in `log.md`.
 
-**Validate before chaining:** Before submitting a build-then-run dependency chain (`sbatch --dependency=afterok:$BUILD_ID`), run the build step once in a short interactive or devel allocation first. A failing build marks all downstream jobs as `DependencyNeverSatisfied` with no diagnostic — the queue shows the symptom, not the cause, and jobs sit there burning wait time.
+**Validate before chaining:** Before submitting a build-then-run dependency chain (`sbatch --dependency=afterok:$BUILD_ID`), run the build step once in a short interactive or devel allocation first. A failing build marks all downstream jobs as `DependencyNeverSatisfied` with no diagnostic; the queue shows the symptom, not the cause, and jobs sit there burning wait time.
 
 ---
 

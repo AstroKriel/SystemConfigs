@@ -48,7 +48,7 @@ Each thread is a subfolder containing `README.md` and, if needed, `figures/`, an
 
 ### log/
 
-The log is an append-only session trail. Each file covers one session (named `YYYY-MM-DD.md`) and is a snapshot of what was understood at that moment. Notes and threads evolve over time; the log does not. Some duplication between the log and notes is expected and acceptable: if a finding first surfaces in a log entry, it belongs there even if it later appears in notes or threads. Omit stable reference material (parameters, storage paths, naming conventions) — that belongs in `notes/`.
+The log is an append-only session trail. Each file covers one session (named `YYYY-MM-DD.md`) and is a snapshot of what was understood at that moment. Notes and threads evolve over time; the log does not. Some duplication between the log and notes is expected and acceptable: if a finding first surfaces in a log entry, it belongs there even if it later appears in notes or threads. Omit stable reference material (parameters, storage paths, naming conventions); that belongs in `notes/`.
 
 ---
 

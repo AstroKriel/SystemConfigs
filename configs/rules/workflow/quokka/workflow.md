@@ -21,7 +21,7 @@ Building, configuring, and running Quokka.
 | One config per tree | Never share a build tree between configurations. Name each tree after its configuration, e.g. `build/3d-release`, `build/3d-debug`. |
 | No Python | Always pass `-DQUOKKA_PYTHON=OFF`. Do not create a Python environment inside the quokka checkout; all analysis goes through `ww-quokka-sims`. |
 | Toolchain | When a host needs a non-default compiler, source `~/.config/quokka/profile.sh` before running CMake. Per-host specifics live in `<project-notes>/hpcs/<host>/`. |
-| Pin build tools explicitly | On HPC nodes, always pass `-DCMAKE_MAKE_PROGRAM`, `-DCMAKE_AR`, and `-DCMAKE_RANLIB` explicitly on the cmake command line, **and** `rm -f CMakeCache.txt` before configuring. Command-line `-DCMAKE_*` flags are silently overridden by cached values when `CMakeCache.txt` exists — deleting the cache is the only reliable fix. |
+| Pin build tools explicitly | On HPC nodes, always pass `-DCMAKE_MAKE_PROGRAM`, `-DCMAKE_AR`, and `-DCMAKE_RANLIB` explicitly on the cmake command line, **and** `rm -f CMakeCache.txt` before configuring. Command-line `-DCMAKE_*` flags are silently overridden by cached values when `CMakeCache.txt` exists; deleting the cache is the only reliable fix. |
 
 Common configurations:
 
@@ -72,7 +72,7 @@ cd tests && ../build/3d-release/src/problems/<ProblemName>/<ProblemName> ../inpu
 
 ### Prefer raw tools over the wrapper
 
-Drive `cmake`, `ninja`, and the compiled binary directly rather than through `scripts/bash/quokka` or CTest; the wrapper and harness encode other contributors' tolerances and plumbing. Reserve the wrapper for listing problems and bulk test runs. Do not go below CMake to hand-invoke the compiler — the build system and its required flags are not optional.
+Drive `cmake`, `ninja`, and the compiled binary directly rather than through `scripts/bash/quokka` or CTest; the wrapper and harness encode other contributors' tolerances and plumbing. Reserve the wrapper for listing problems and bulk test runs. Do not go below CMake to hand-invoke the compiler; the build system and its required flags are not optional.
 
 ---
 
