@@ -32,7 +32,7 @@ Markdown documentation style: setup guides, design notes, lessons learned, and r
 | Gradient | `nabla s` |
 | Cross product | `f x g` |
 
-`f`, `g` stand for generic vector fields; `s` stands for a generic scalar field.
+`f`, `g` are examples of vector fields, and `s` a scalar field.
 
 ---
 
