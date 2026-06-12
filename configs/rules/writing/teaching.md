@@ -112,13 +112,13 @@ Use exact technical terms. Define each one at first appearance, in the same sent
 
 ## Code Blocks
 
-Code blocks contain only code. Explanatory content belongs in prose before or after the block, not in inline comments.
+Code blocks contain only code. Distinguish between annotation comments and teaching comments.
 
 | Rule | |
 |---|---|
-| No teaching comments | do not explain what a line does, what a tool reports, or why it matters inside a comment |
-| Prose placement | put the explanation in the sentence immediately before or after the block |
-| Exception | a comment is acceptable when it would plausibly appear in real code, such as a rhetorical question illustrating the problem being solved |
+| Annotation comments | labelling what code computes or marking a section, as would appear in real code: `# d/dx`, `## div b = d(b_i)/d(x_i)` |
+| Teaching comments | explaining why a line was chosen, what a tool reports, or restating what the surrounding prose says; these belong in prose, not in the block |
+| Prose placement | put teaching-level explanation in the sentence immediately before or after the block |
 
 ---
 
