@@ -17,6 +17,16 @@ Markdown documentation style: setup guides, design notes, lessons learned, and r
 
 ---
 
+## Math and Field Notation
+
+| Rule | |
+|---|---|
+| Scalars and vectors | lowercase letters: `b` not `B`, `j` not `J` |
+| Greek quantities | spell out in words: `rho`, `eta`; do not use Unicode symbols |
+| Code identifiers | exempt: source-code names keep their casing (`B_face`, `Jx`) |
+
+---
+
 ## Inline Formatting
 
 | Rule | |
