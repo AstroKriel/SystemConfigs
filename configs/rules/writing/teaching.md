@@ -49,7 +49,6 @@ When recommending a practice, say what goes wrong if you do not follow it, not j
 | Rule | |
 |---|---|
 | Name the failure mode | be specific: data corruption, silent wrong results, unreadable history |
-| Place it close to the rule | do not bury the consequence in a later paragraph |
 
 Prefer:
 
@@ -72,14 +71,30 @@ State benefits in terms of what changes in the reader's workflow, not in terms o
 | Rule | |
 |---|---|
 | Anchor to a concrete situation | name who can do what, and when |
-| Present tense | "the test points straight at the ability you broke", not "the test will help identify breakage" |
 | No abstract virtues | "reproducible", "correct", and "robust" are conclusions, not arguments; show what they mean in practice |
 
 ---
 
-## Paragraph structure
+## Expectations over guarantees
 
-Open each paragraph with its conclusion. Supporting sentences follow; they do not build to a reveal.
+Frame outcomes the reader will see as things to expect and verify, not facts being asserted.
+
+| Rule | |
+|---|---|
+| Use "you should see" | not a bare statement of fact |
+| Pair with the failure case | say what would appear if the expectation were not met |
+
+Prefer:
+
+```text
+For <context>, you should see <outcome>. If <condition were not met>, <tool> would <response>.
+```
+
+Not:
+
+```text
+<Outcome>. <Tool> confirms every contract.
+```
 
 ---
 
@@ -115,7 +130,8 @@ Write as a more experienced colleague showing the reader something, not as an in
 |---|---|
 | Second person | address the reader as "you" throughout |
 | Collegial, not condescending | assume the reader is capable; explain why, not just what |
-| No "in this lesson we will" | see Opening |
+| Flowing sentences | prefer sentences that read as continuation; avoid short punchy standalone clauses |
+| Topic sentence | open each paragraph with its conclusion; supporting sentences follow |
 
 Occasional informality is acceptable when it acknowledges a shared experience ("you have probably been here before"); clumsy or sloppy phrasing is not.
 
@@ -132,3 +148,18 @@ Where a concept can be demonstrated by deliberately breaking something, invite t
 | Name the file and the change | be specific enough that the reader can act without guessing |
 | State the expected outcome | say which test fails or which error appears |
 | Close the loop | tell the reader to undo the change and confirm it passes |
+
+---
+
+## Lesson Structure
+
+Problem/solution lessons follow a consistent four-part structure.
+
+| Section | Purpose |
+|---|---|
+| The Problem | motivate the lesson; show the cost of the status quo |
+| The Solutions | one subsection per tool or approach |
+| The Lesson: Try Breaking Something | interactive exercises; see [[Interactive exercises]] |
+| In Summary | table of what each layer catches, followed by a closing paragraph |
+
+Apply this structure only when a clear problem and distinct solution layers exist. Concept-driven or modelling lessons may not fit it.
