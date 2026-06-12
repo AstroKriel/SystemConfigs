@@ -24,7 +24,7 @@ hpcs/<cluster>/
 
 The `README.md` is the reference sheet: everything needed to start a session from scratch. It should include the login hostname, available partitions, and the storage tier paths mapped to the concepts defined in `workflow/remote-work/hpc.md` (`home`, `fast-storage`, `project` where available). Also record any non-standard module load sequences, and a single minimal job script inline as a `## Minimal Job Script` section. Do not keep a separate folder of job-script templates: the canonical submission files for a run live in that run's `jobs/` directory on the cluster (see `workflow/remote-work/hpc.md`), and the inline minimal script covers the host-specific pattern.
 
-When a codebase requires host-specific build steps (toolchain sourcing, GPU backend flags, module stack), add it as a `### <codebase>` subsection under the README's `## Software` section (titled `## Software` or `## Software / Modules`), alongside the cluster's general module notes.
+Separate code checkout locations from build configuration. Use a `## Codes` section (a table of code name, checkout path, and role) to record which codebases are installed on the cluster and where. Do not repeat remote URLs or other codebase facts here; those belong in the codebase's own notes. When a codebase requires host-specific build steps (toolchain sourcing, GPU backend flags, module stack), record those as a `### <codebase>` subsection under `## Software` (or `## Software / Modules`).
 
 ---
 
