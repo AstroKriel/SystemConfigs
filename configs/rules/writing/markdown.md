@@ -21,9 +21,18 @@ Markdown documentation style: setup guides, design notes, lessons learned, and r
 
 | Rule | |
 |---|---|
-| Scalars and vectors | lowercase letters: `b` not `B`, `j` not `J` |
-| Greek quantities | spell out in words: `rho`, `eta`; do not use Unicode symbols |
-| Code identifiers | exempt: source-code names keep their casing (`B_face`, `Jx`) |
+| Scalars and vectors | lowercase letters; `f`, `g` |
+| Greek quantities | spell out in words; `<greek>` |
+| Code identifiers | exempt: source-code names keep their casing; `<CodeVar>` |
+| Laplacian | `nabla^2 f` |
+| Biharmonic | `nabla^4 f` |
+| Higher powers | `nabla^N f` for any N |
+| Divergence | `div(f)` |
+| Curl | `curl(f)` |
+| Gradient | `nabla s` |
+| Cross product | `f x g` |
+
+`f`, `g` stand for generic vector fields; `s` stands for a generic scalar field.
 
 ---
 
