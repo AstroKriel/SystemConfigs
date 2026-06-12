@@ -95,6 +95,18 @@ Use exact technical terms. Define each one at first appearance, in the same sent
 
 ---
 
+## Code Blocks
+
+Code blocks contain only code. Explanatory content belongs in prose before or after the block, not in inline comments.
+
+| Rule | |
+|---|---|
+| No teaching comments | do not explain what a line does, what a tool reports, or why it matters inside a comment |
+| Prose placement | put the explanation in the sentence immediately before or after the block |
+| Exception | a comment is acceptable when it would plausibly appear in real code, such as a rhetorical question illustrating the problem being solved |
+
+---
+
 ## Register
 
 Write as a more experienced colleague showing the reader something, not as an instructor delivering a lesson.
@@ -115,6 +127,8 @@ Where a concept can be demonstrated by deliberately breaking something, invite t
 
 | Rule | |
 |---|---|
+| Single working script | start from a correct, working solution; do not provide separate before/after files |
+| Reader owns the breaking | exercises guide the reader to deliberately break and restore specific behaviour |
 | Name the file and the change | be specific enough that the reader can act without guessing |
 | State the expected outcome | say which test fails or which error appears |
 | Close the loop | tell the reader to undo the change and confirm it passes |
