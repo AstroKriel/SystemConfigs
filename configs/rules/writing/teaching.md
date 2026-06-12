@@ -153,7 +153,13 @@ Where a concept can be demonstrated by deliberately breaking something, invite t
 
 ## Lesson Structure
 
-Problem/solution lessons follow a consistent four-part structure.
+Every lesson follows a three-phase arc, regardless of format:
+
+1. **The problem**: motivate the lesson; show the cost of the status quo
+2. **The solution or examples**: work through the tools, approach, or technique
+3. **The outcome**: show what the reader now has; name the payoff
+
+Lessons with a clear problem and distinct solution layers follow the four-part structure:
 
 | Section | Purpose |
 |---|---|
@@ -162,4 +168,4 @@ Problem/solution lessons follow a consistent four-part structure.
 | The Lesson: Try Breaking Something | interactive exercises; see [[Interactive exercises]] |
 | In Summary | table of what each layer catches, followed by a closing paragraph |
 
-Apply this structure only when a clear problem and distinct solution layers exist. Concept-driven or modelling lessons may not fit it.
+Other lessons adapt the arc to their flow. Section names may vary; the progression should be recognisable.
