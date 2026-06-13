@@ -54,7 +54,7 @@ class Test<Concept>_<Aspect>:
 
     def test_<behaviour>(
         self,
-        <fixture>: pytest.<FixtureType>,
+        <fixture>: pytest.<FixtureType>[str],
     ) -> None:
         ...
         assert <condition>
