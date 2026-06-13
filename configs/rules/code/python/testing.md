@@ -18,6 +18,8 @@ class Test<Concept>_<Aspect>(unittest.TestCase):
     ): ...
 ```
 
+Use plain pytest classes or functions instead of `unittest.TestCase` when a pytest fixture is genuinely needed and `TestCase` would make the test worse. The canonical case is `capsys` for testing stdout/stderr: it captures what actually reaches the terminal, while mocking the console internals is more fragile.
+
 Private helper functions for building test fixtures use a leading underscore: `_make_<fixture>()`.
 
 ### Assertions
