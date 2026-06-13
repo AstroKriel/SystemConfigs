@@ -80,8 +80,11 @@ Always use strong, specific verb prefixes. Avoid weak or generic leading words t
 | Abbreviated names | never; `language` not `lang`, `index` not `idx` |
 | Directories | `directory` when only one in scope; `_dir` suffix when multiple: `source_dir`, `target_dir` |
 | Comprehension variables | prepend `_` if the name would conflict with an existing name in scope |
-| Booleans | `is_*` or `has_*` prefix |
+| State predicates | `is_*` or `has_*` prefix: `is_loading`, `has_errors` |
+| Action flags | verb or adjective phrase, no `is_*`: `verbose`, `dry_run`, `overwrite` |
 | Receiver variables | name after the noun in the called function: `<noun> = <verb>_<noun>(...)`, not `result` |
+
+Fields wired directly to a CLI flag use the argparse-derived name (`--<flag-param>` -> `<flag_param>`) regardless of prefix convention.
 
 ---
 
