@@ -12,13 +12,14 @@ Covered by this file:
 
 | Category | Location |
 |---|---|
-| Research papers | `<project-notes>/<paper>/` |
-| Teaching projects | `<project-notes>/student-projects/`, `<project-notes>/bitesize-python/` |
-| Student supervision | `<project-notes>/student-projects/<student>/` |
+| Research projects | `<project-notes>/research/<project>/` |
+| Student supervision | `<project-notes>/research/student-projects/<student>/` |
+| Teaching projects | `<project-notes>/<teaching-project>/` |
+| Tools | `<project-notes>/<tool>/` |
 
 ---
 
-## Structure: Research Papers
+## Structure: Research Projects
 
 Start with just `README.md`. Add files only as the project grows. Two guiding principles:
 
