@@ -20,6 +20,25 @@ class Test<Concept>_<Aspect>(unittest.TestCase):
 
 Use plain pytest classes or functions when a pytest fixture is genuinely the better tool. The canonical case is `capsys` for stdout/stderr testing: it captures what the terminal receives regardless of how the code produces it, while mocking the output object is more fragile and implementation-specific.
 
+```python
+class Test<Concept>_<Aspect>:
+
+    def test_<behaviour>(
+        self,
+        <fixture>: pytest.<FixtureType>,
+    ) -> None:
+        ...
+        assert <condition>
+
+    def test_<behaviour>_raises(
+        self,
+    ) -> None:
+        with pytest.raises(
+            <ErrorType>,
+        ):
+            ...
+```
+
 Private helper functions for building test fixtures use a leading underscore: `_make_<fixture>()`.
 
 ### Assertions
