@@ -38,7 +38,9 @@ def <verb>_<noun>(
 | Rule | |
 |---|---|
 | Public functions | fully annotated, parameters and return types |
+| Void return type | always annotate with `-> None`; never omit the return type even when obvious |
 | Union types | `NDArray[Any] \| list[float]`, `str \| Path`, `float \| None` |
+| `Any` | use only when genuinely heterogeneous (e.g. mixed-type containers, argparse kwargs); never as a default escape hatch |
 | Private functions | type hints yes, docstrings optional |
 | Complex types | use `TypeAlias` |
 
