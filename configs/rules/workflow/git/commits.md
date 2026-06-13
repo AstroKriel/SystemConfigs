@@ -1,4 +1,4 @@
-# Git Rules
+# Git: Commits
 
 Git workflow: commit format, scope, branch naming, and PR titles.
 
