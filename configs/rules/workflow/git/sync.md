@@ -1,12 +1,15 @@
 # Git: Sync Strategy
 
-How to move code between branches and machines.
+Git sync: pull strategy, merge approach, and multi-device workflow discipline.
 
 ## Pull strategy
 
-Always pull with rebase, never merge. `pull.rebase = true` is set as a global default by `git_helpers set-global-config`; run this on every new machine before starting work.
+| Rule | |
+|---|---|
+| Pull strategy | always rebase, never merge; `pull.rebase = true` |
+| Apply on new machines | run `git_helpers set-global-config` before starting work |
 
-Rebasing replays local commits on top of the remote instead of creating a merge commit. This keeps history linear and handles the common case of resuming work on a different machine cleanly.
+Rebasing replays local commits on top of the remote instead of creating a merge commit. This keeps history linear and is the right default when working across multiple devices.
 
 ---
 
@@ -17,15 +20,18 @@ Rebasing replays local commits on top of the remote instead of creating a merge 
 | Feature branch into `main` | squash merge: collapse all commits into one clean entry |
 | Long-running or integration branch | regular merge or rebase; do not squash |
 
-Squash merging keeps `main`'s log readable — one entry per feature — and forces a good summary commit message at merge time. Do not squash branches where the individual commit history carries meaning (e.g. long-lived collaboration branches, submodule pointer bumps).
+Squash merging keeps `main`'s log readable: one entry per feature, with a clean commit message at merge time. Do not squash branches where the individual commit history carries meaning (e.g. long-lived collaboration branches, submodule pointer bumps).
 
 ---
 
 ## Multi-device discipline
 
-Push at the end of every session, even for incomplete work. Pull before touching anything when resuming on a different machine. The remote is always the source of truth; local is always a working copy.
-
-HPCs are consumers only: pull code from the remote, never commit or push from an HPC. All development happens on a local machine.
+| Rule | |
+|---|---|
+| End of session | push before switching to another machine, even for incomplete work |
+| Start of session | pull before touching anything on a new machine |
+| Source of truth | the remote; local is always a working copy |
+| HPCs | pull only; never commit or push from an HPC |
 
 ---
 

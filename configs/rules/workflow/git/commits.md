@@ -82,7 +82,10 @@ add: initial repo structure.
 
 ## Presenting Commits
 
-When suggesting commits, always present each one as a copy-pasteable shell block containing both the `git add` and `git commit` commands. Always use `cd` to navigate into the repo; never use `git -C`.
+| Rule | |
+|---|---|
+| Format | one shell block per commit containing both `git add` and `git commit` |
+| Navigation | always use `cd` to enter the repo; never use `git -C` |
 
 Single repository:
 
