@@ -19,7 +19,7 @@ dev = [
     "basedpyright>=1.34.0",
 ]
 
-[tool.pyright]
+[tool.basedpyright]
 include = ["setup_routine.py", "scripts", "src/local_helpers"]
 extraPaths = ["src"]
 
@@ -28,5 +28,8 @@ reportMissingImports = true
 reportMissingTypeStubs = false  # third-party packages rarely ship stubs
 
 ## --- rules to suppress
+reportExplicitAny = "none"
+reportAny = "none"
 reportImplicitStringConcatenation = "none"  # valid style for long error messages
+reportImplicitOverride = "none"
 reportUnusedCallResult = "none"  # setup helpers and argparse builders are called for side effects
