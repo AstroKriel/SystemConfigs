@@ -12,7 +12,7 @@ Covered by this file:
 
 | Category | Location |
 |---|---|
-| Research projects | `<project-notes>/research/<project>/` |
+| Research projects (lead author) | `<project-notes>/research/lead-author/<project>/` |
 | Student supervision | `<project-notes>/research/student-projects/<student>/` |
 | Teaching projects | `<project-notes>/<teaching-project>/` |
 | Tools | `<project-notes>/<tool>/` |
