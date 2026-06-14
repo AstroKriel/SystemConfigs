@@ -13,6 +13,8 @@ create_alias_if_present --var DCODE --alias dcode --dir "$DREPOS/codebases"
 create_alias_if_present --var DQUOKKA --alias dquokka --dir "$DCODE/quokka"
 create_alias_if_present --var DPENCIL --alias dpencil --dir "$DCODE/pencil-code"
 
+create_alias_if_present --var DTOOLS --alias dtools --dir "$DREPOS/tools"
+
 create_alias_if_present --var DSYS --alias dsys --dir "$DREPOS/system"
 create_alias_if_present --var DSCONFIGS --alias dsconfigs --dir "$DSYS/SystemConfigs"
 create_alias_if_present --var DSNOTES --alias dsnotes --dir "$DSYS/SystemNotes"
