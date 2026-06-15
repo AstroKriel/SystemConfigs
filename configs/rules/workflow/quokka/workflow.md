@@ -60,7 +60,7 @@ Use git worktrees to work on multiple feature branches in parallel without switc
 | Main checkout on `development` | The primary checkout tracks `development`. Worktrees branch off from there. |
 | One worktree per feature branch | Create a worktree for each active branch; delete it when the branch is merged or shelved. |
 | Naming | Name each worktree after its branch with `/` replaced by `-`, placed as a sibling to the main checkout directory. Branch `<scope>/<type>/<name>` becomes `quokka-<scope>-<type>-<name>`. |
-| Initialise submodules on creation | After `git worktree add`, run `git submodule update --init` inside the new worktree before building. |
+| Initialise submodules on creation | After `git worktree add`, run `git submodule update --init` inside the new worktree before building. The `--init` flag is required on any fresh worktree: submodule registration does not carry over from the main checkout automatically. Subsequent updates (e.g. after pulling a new pin) only need `git submodule update`. |
 | Extern drift | Each worktree has its own `extern/` working tree; submodule pins are per-branch. If a feature branch falls behind `development` on submodule pins, fix by merging or rebasing `development` into the feature branch so the pins come back into sync. |
 | Build directories | Each worktree has its own build tree. On local, build dirs live inside the worktree (`build/3d-release`, etc.). On HPC, source lives on quota-limited Ceph home; build dirs go on node-local scratch. See Build locations below. |
 | Trial run data | Short-lived `tmp/` runs belong inside the feature worktree, not the main checkout. |
