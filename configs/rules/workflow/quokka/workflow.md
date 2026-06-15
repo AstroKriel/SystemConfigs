@@ -19,7 +19,6 @@ Building, configuring, and running Quokka.
 |---|---|
 | Always start cold | A build tree is only valid for the session, node architecture, and branch that created it. Delete `CMakeCache.txt` and reconfigure when resuming work in a new session, switching branches, or moving to a different node type. |
 | One config per tree | Never share a build tree between configurations. Name each tree after its configuration, e.g. `build/3d-release`, `build/3d-debug`. |
-| Branch-named build dirs | When comparing branches side by side (e.g. on HPC), name the build directory after the branch: `build-<branch>`, replacing `/` with `-`. Never use `=` in directory names; AMReX ParmParse treats any command-line token containing `=` as a `key=value` pair and will crash if an absolute path through such a directory is passed as an argument. |
 | No Python | Always pass `-DQUOKKA_PYTHON=OFF`. Do not create a Python environment inside the quokka checkout; all analysis goes through `ww-quokka-sims`. |
 | Toolchain | When a host needs a non-default compiler, source `~/.config/quokka/profile.sh` before running CMake. Per-host specifics live in `<project-notes>/hpcs/<host>/`. |
 | Pin build tools explicitly | On HPC nodes, always pass `-DCMAKE_MAKE_PROGRAM`, `-DCMAKE_AR`, and `-DCMAKE_RANLIB` explicitly on the cmake command line, **and** `rm -f CMakeCache.txt` before configuring. Command-line `-DCMAKE_*` flags are silently overridden by cached values when `CMakeCache.txt` exists; deleting the cache is the only reliable fix. |
@@ -62,7 +61,8 @@ Use git worktrees to work on multiple feature branches in parallel without switc
 | Naming | Name each worktree after its branch with `/` replaced by `-`, placed as a sibling to the main checkout directory. Branch `<scope>/<type>/<name>` becomes `quokka-<scope>-<type>-<name>`. |
 | Initialise submodules on creation | After `git worktree add`, run `git submodule update --init` inside the new worktree before building. |
 | Extern drift | Each worktree has its own `extern/` working tree; submodule pins are per-branch. If a feature branch falls behind `development` on submodule pins, fix by merging or rebasing `development` into the feature branch so the pins come back into sync. |
-| Build directories | Each worktree has its own build tree following the same conventions as above: `build/3d-release`, `build/3d-debug`, etc. |
+| Build directories | Each worktree has its own build tree. On local, build dirs live inside the worktree (`build/3d-release`, etc.). On HPC, source lives on quota-limited Ceph home; build dirs go on node-local scratch. See Build locations below. |
+| Trial run data | Short-lived `tmp/` runs belong inside the feature worktree, not the main checkout. |
 
 ```bash
 # Create a worktree for a feature branch (run from the main checkout):
@@ -73,6 +73,34 @@ git submodule update --init
 # Remove a worktree when the branch is merged or shelved:
 git worktree remove ../quokka-<branch-slug>
 ```
+
+### Build locations
+
+Worktrees are the same concept on local and HPC; only where the build tree lives differs. `<branch-slug>` is the branch name with `/` replaced by `-` (e.g. `<scope>-add-<name>`).
+
+**Local:** build dirs sit inside the worktree, source and build co-located. Run from inside the worktree directory:
+
+```bash
+cmake -S . -B build/3d-release -G Ninja -DCMAKE_BUILD_TYPE=Release -DAMReX_SPACEDIM=3 -DQUOKKA_PYTHON=OFF
+cmake -S . -B build/3d-debug   -G Ninja -DCMAKE_BUILD_TYPE=Debug   -DAMReX_SPACEDIM=3 -DQUOKKA_PYTHON=OFF
+ninja -C build/3d-release <ProblemName>
+```
+
+**HPC:** source worktrees live on quota-limited home; build trees go on node-local scratch. Use explicit `-S`/`-B` to separate them. Toolchain flags vary per host; see host notes and the portable tool install block in Build Directories above:
+
+```bash
+SRC=<codes>/quokka-<branch-slug>
+BUILD=<scratch>/$USER/quokka-<branch-slug>/build/<config>
+rm -f "$BUILD/CMakeCache.txt"
+cmake -S "$SRC" -B "$BUILD" -G Ninja \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DAMReX_SPACEDIM=3 \
+    -DQUOKKA_PYTHON=OFF \
+    # ... plus host-specific toolchain flags
+ninja -C "$BUILD" <ProblemName>
+```
+
+`<codes>` and `<scratch>` are defined in `<project-notes>/hpcs/<host>/`. The worktree name (`quokka-<branch-slug>`) is the same in both cases; only the root path differs.
 
 ---
 
