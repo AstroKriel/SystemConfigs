@@ -19,6 +19,7 @@ Building, configuring, and running Quokka.
 |---|---|
 | Always start cold | A build tree is only valid for the session, node architecture, and branch that created it. Delete `CMakeCache.txt` and reconfigure when resuming work in a new session, switching branches, or moving to a different node type. |
 | One config per tree | Never share a build tree between configurations. Name each tree after its configuration, e.g. `build/3d-release`, `build/3d-debug`. |
+| Branch-named build dirs | When comparing branches side by side (e.g. on HPC), name the build directory after the branch: `build-<branch>`, replacing `/` with `-`. Never use `=` in directory names; AMReX ParmParse treats any command-line token containing `=` as a `key=value` pair and will crash if an absolute path through such a directory is passed as an argument. |
 | No Python | Always pass `-DQUOKKA_PYTHON=OFF`. Do not create a Python environment inside the quokka checkout; all analysis goes through `ww-quokka-sims`. |
 | Toolchain | When a host needs a non-default compiler, source `~/.config/quokka/profile.sh` before running CMake. Per-host specifics live in `<project-notes>/hpcs/<host>/`. |
 | Pin build tools explicitly | On HPC nodes, always pass `-DCMAKE_MAKE_PROGRAM`, `-DCMAKE_AR`, and `-DCMAKE_RANLIB` explicitly on the cmake command line, **and** `rm -f CMakeCache.txt` before configuring. Command-line `-DCMAKE_*` flags are silently overridden by cached values when `CMakeCache.txt` exists; deleting the cache is the only reliable fix. |
@@ -47,6 +48,31 @@ cmake -S "$SRC" -B "$BUILD" -G Ninja \
 ```
 
 This avoids crashes when module-provided tools are compiled for a different CPU ISA than the build node. See `workflow/remote-work/hpc.md` for the general rule.
+
+---
+
+## Git Worktrees
+
+Use git worktrees to work on multiple feature branches in parallel without switching branches or invalidating builds.
+
+| Rule | |
+|---|---|
+| Main checkout on `development` | The primary checkout tracks `development`. Worktrees branch off from there. |
+| One worktree per feature branch | Create a worktree for each active branch; delete it when the branch is merged or shelved. |
+| Naming | Name each worktree after its branch with `/` replaced by `-`, placed as a sibling to the main checkout directory. Branch `<scope>/<type>/<name>` becomes `quokka-<scope>-<type>-<name>`. |
+| Initialise submodules on creation | After `git worktree add`, run `git submodule update --init` inside the new worktree before building. |
+| Extern drift | Each worktree has its own `extern/` working tree; submodule pins are per-branch. If a feature branch falls behind `development` on submodule pins, fix by merging or rebasing `development` into the feature branch so the pins come back into sync. |
+| Build directories | Each worktree has its own build tree following the same conventions as above: `build/3d-release`, `build/3d-debug`, etc. |
+
+```bash
+# Create a worktree for a feature branch (run from the main checkout):
+git worktree add ../quokka-<branch-slug> <branch>
+cd ../quokka-<branch-slug>
+git submodule update --init
+
+# Remove a worktree when the branch is merged or shelved:
+git worktree remove ../quokka-<branch-slug>
+```
 
 ---
 
@@ -198,6 +224,17 @@ For short-lived trial runs (testing a parameter, trialing a scheme), use `tmp/` 
 ---
 
 ## Testing
+
+### Before pushing
+
+| Rule | |
+|---|---|
+| In-scope target | `AlfvenWaveLinear` for MHD changes; confirms the feature compiles and runs |
+| Out-of-scope target | `HydroBlast3D` or `RadMarshak` for MHD changes; confirms no unintended breakage outside the changed area |
+
+General principle: `workflow/git/before-push.md`.
+
+---
 
 ### Pass/fail signal
 
