@@ -30,7 +30,7 @@ Update about once a week, preferably when there is time to reboot and check the 
 | `lightdm` | Display manager. |
 | `xfce` | Desktop environment. |
 
-**Changelogs and forums.** For hardware-adjacent packages (`linux`, `wireplumber`, `pipewire`, `alsa-ucm-conf`, `alsa-firmware`, `sof-firmware`, `fwupd`), read the Arch package page and upstream release notes. Search the Arch forums and Framework community (`community.frame.work`) for the package versions being upgraded plus this hardware (`Framework 13`, `Ryzen AI 300`). Issues frequently appear in the forums before they are documented upstream.
+**Changelogs and forums.** For hardware-adjacent packages (`linux`, `wireplumber`, `pipewire`, `alsa-ucm-conf`, `alsa-firmware`, `sof-firmware`, `fwupd`), read the Arch package page and upstream release notes. Search the Arch forums and Framework community (`https://community.frame.work`) for the package versions being upgraded plus this hardware (`Framework 13`, `Ryzen AI 300`). Issues frequently appear in the forums before they are documented upstream.
 
 **Active workarounds.** Review `pending-issues.md`. For each open workaround, decide what to test after the upgrade before you start.
 
@@ -117,7 +117,7 @@ pacman -Q linux linux 6.19.12.arch1-1
 
 | Step | Action |
 |---|---|
-| Search online before diagnosing locally | Check the Arch forums, Framework community (`community.frame.work`), and upstream issue trackers. Hardware issues on this machine are often known and documented; extended local diagnosis without checking online is inefficient. |
+| Search online before diagnosing locally | Check the Arch forums, Framework community (`https://community.frame.work`), and upstream issue trackers. Hardware issues on this machine are often known and documented; extended local diagnosis without checking online is inefficient. |
 | Check what changed | `grep upgraded /var/log/pacman.log | tail -50` to identify which packages were updated and when. |
 | Check the pre-upgrade snapshot before reconstructing | If a config file needs to be recovered, read the snapper pre-upgrade snapshot: `sudo snapper list` to find the number, then `sudo cat /.snapshots/<n>/snapshot/<path>`. Never reconstruct from memory. |
 | Establish a baseline before removing a workaround | Before removing any workaround, run the test that confirms it is working. Remove it, then run the same test again. This isolates whether the removal caused the regression. |
