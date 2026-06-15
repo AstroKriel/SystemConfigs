@@ -40,6 +40,8 @@ SystemNotes/<machine>/
 
 `debug-diary/` is retrospective: each file records a resolved issue, what caused it, and how it was fixed. Entries are append-only and are never edited after the fact. When an issue is resolved, remove it from `pending-issues.md` and add a dated entry to `debug-diary/`.
 
+Every resolution gets a diary entry, including trivial ones that self-resolved upstream. A trivial entry can be brief (symptom, when first noticed, what resolved it, and the date), but it must exist. Without it, a recurrence has no context: no record of the original symptom, no indication of when it disappeared, and no basis for recognising that the same issue has returned.
+
 To keep `setup.md` reproducible, update it whenever a significant configuration change is made: a new service, a package upgrade that required intervention, or a config change with machine-specific implications. When a machine is retired, add a final `README.md` note marking the retirement date and disposition.
 
 ### Research reference entry
