@@ -39,6 +39,50 @@ Sequence:
 
 ---
 
+## Data Placement
+
+Choose where data or scratch work goes based on its scope and intended lifespan:
+
+| Location | Lifespan | Use when |
+|---|---|---|
+| `/tmp/` | reboot-ephemeral | shell pipes, one-shot outputs; fine to lose on reboot |
+| `~/tmp/` | indefinite | personal operational scratch; survives reboots but has no project or scientific home |
+| `freyja/` | until formalised | prototyping with intent to open a mimir project |
+| `<project>/scratch/` | project lifetime | data belonging to an active mimir project |
+
+### Project scratch: `scratch/`
+
+Untracked and mixed data for an active project lives under `scratch/` at the project root. Thread subfolder names mirror `<project-notes>/threads/`:
+
+```text
+<project>/
+└── scratch/
+    ├── <thread>.gitignored/   # untracked
+    └── <thread>/              # tracked (small reference files, configs)
+```
+
+- Add `*.gitignored` to the project's `.gitignore`. The suffix on each folder makes its tracking status self-labelling.
+- `scratch/` itself is tracked. It appears in git only once a non-gitignored item or `.gitkeep` exists inside it.
+- Data not tied to any thread goes in `scratch/misc.gitignored/`.
+
+### Scratch folder structure: `/tmp/` and `~/tmp/`
+
+Both `/tmp/` and `~/tmp/` group items by a concept folder. Inside it, leaf items get a `<YYYY-MM-DD>-<description>` prefix:
+
+```text
+~/tmp/
+└── <concept>/
+    └── <YYYY-MM-DD>-<description>
+```
+
+For `/tmp/`, add a user namespace first: `/tmp/<username>/<concept>/`.
+
+**Naming the concept folder:** ask "what is this work about?" The answer, slugified, is the concept name. If the answer is a named entity in the Asgard ecosystem (a tool or a mimir project), use its canonical slug. If the answer is an activity with no canonical name, coin a short lowercase descriptor. Named entities take priority over descriptors.
+
+Review and prune `~/tmp/` by concept every three months.
+
+---
+
 ## Scaffolding a New Interface Layer
 
 When a project needs data from a simulation code not yet covered by a `ww-*-sims` package, create a new one under `Asgard/sindri/submodules/`.
