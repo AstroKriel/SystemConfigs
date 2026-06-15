@@ -50,12 +50,14 @@ def setup_extra(
         directory=extra.target_path.parent,
         logger_fn=LOG_MESSAGE,
         dry_run=dry_run,
+        privileged=extra.privileged,
     )
     apply_shell_actions.create_symlink(
         source_path=extra.source_path,
         target_path=extra.target_path,
         logger_fn=LOG_MESSAGE,
         dry_run=dry_run,
+        privileged=extra.privileged,
     )
 
 
@@ -113,6 +115,7 @@ def remove_symlinks(
             target_path=extra.target_path,
             logger_fn=LOG_MESSAGE,
             dry_run=dry_run,
+            privileged=extra.privileged,
         )
     LOG_MESSAGE(
         log_messages.format_dry_run(

@@ -14,6 +14,7 @@ class ExtraConfig:
     source_path: Path
     target_path: Path
     requires: tuple[str, ...] = ()
+    privileged: bool = False
 
 
 ## } MODULE

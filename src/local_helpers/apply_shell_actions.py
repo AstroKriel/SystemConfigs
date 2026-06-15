@@ -52,17 +52,24 @@ def ensure_dir_exists(
     directory: Path,
     logger_fn: Callable[[str], None],
     dry_run: bool = False,
+    privileged: bool = False,
 ) -> None:
     """Ensure that the directory exists; create it if it does not."""
     if directory.exists():
         return
-    if dry_run:
+    if privileged:
+        args = ["sudo", "mkdir", "-p", str(directory)]
+        run_command(
+            args=args,
+            logger_fn=logger_fn,
+            description=" ".join(args),
+            dry_run=dry_run,
+            capture_output=False,
+        )
+    elif dry_run:
         logger_fn(f"[dry-run] Would create directory: {directory}")
     else:
-        directory.mkdir(
-            parents=True,
-            exist_ok=True,
-        )
+        directory.mkdir(parents=True, exist_ok=True)
         logger_fn(f"Created directory: {directory}")
 
 
@@ -118,6 +125,7 @@ def create_symlink(
     target_path: Path,
     logger_fn: Callable[[str], None],
     dry_run: bool = False,
+    privileged: bool = False,
 ) -> None:
     """Create a symlink from `target_path` to `source_path`; back up existing files first."""
     if not source_path.exists():
@@ -129,6 +137,7 @@ def create_symlink(
             target_path=target_path,
             logger_fn=logger_fn,
             dry_run=dry_run,
+            privileged=privileged,
         )
         return
     if _already_linked_correctly(
@@ -159,6 +168,7 @@ def create_symlink(
             target_path=target_path,
             logger_fn=logger_fn,
             dry_run=dry_run,
+            privileged=privileged,
         )
         return
     if not _types_match(
@@ -180,6 +190,7 @@ def create_symlink(
         target_path=target_path,
         logger_fn=logger_fn,
         dry_run=dry_run,
+        privileged=privileged,
     )
 
 
@@ -188,11 +199,21 @@ def remove_symlink(
     target_path: Path,
     logger_fn: Callable[[str], None],
     dry_run: bool = False,
+    privileged: bool = False,
 ) -> None:
     """Remove a symlink at the given path; do nothing if the path is not a symlink."""
     if not target_path.is_symlink():
         return
-    if dry_run:
+    if privileged:
+        args = ["sudo", "rm", str(target_path)]
+        run_command(
+            args=args,
+            logger_fn=logger_fn,
+            description=" ".join(args),
+            dry_run=dry_run,
+            capture_output=False,
+        )
+    elif dry_run:
         logger_fn(f"[dry-run] Would remove symlink: {target_path}")
     else:
         target_path.unlink()
@@ -256,9 +277,19 @@ def _make_symlink(
     target_path: Path,
     logger_fn: Callable[[str], None],
     dry_run: bool,
+    privileged: bool = False,
 ) -> None:
     """Create a symlink from `target_path` to `source_path`."""
-    if dry_run:
+    if privileged:
+        args = ["sudo", "ln", "-sf", str(source_path), str(target_path)]
+        run_command(
+            args=args,
+            logger_fn=logger_fn,
+            description=" ".join(args),
+            dry_run=dry_run,
+            capture_output=False,
+        )
+    elif dry_run:
         logger_fn(f"[dry-run] Would symlink: {source_path} -> {target_path}")
     else:
         target_path.symlink_to(source_path)
