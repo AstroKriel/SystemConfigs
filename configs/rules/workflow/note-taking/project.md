@@ -28,11 +28,12 @@ Start with just `README.md`. Add files only as the project grows. Two guiding pr
 
 ```text
 <paper>/
-├── README.md  # overview; becomes index as project grows
-├── log/       # session trail; one file per session named YYYY-MM-DD.md
-├── tasks.md   # task list; splits into tasks/ when tasks span multiple domains
-├── threads/   # active explorations and open questions
-└── notes/     # refs, background material, stable context
+├── README.md      # overview; becomes index as project grows
+├── log/           # session trail; one file per session named YYYY-MM-DD.md
+├── tasks.md       # task list; splits into tasks/ when tasks span multiple domains
+├── threads/       # active explorations and open questions
+│   └── archived/  # resolved threads
+└── notes/         # refs, background material, stable context
 ```
 
 ### README.md
@@ -45,7 +46,7 @@ The README is the entry point. It should orient anyone landing cold: what the pr
 
 ### threads/
 
-Each thread is a subfolder containing `README.md` and, if needed, `figures/`, and is a standalone investigation that can be shared on its own. A thread does not inherit context from the rest of `<project-notes>`: it states any background the reader needs, and a reference to another thread is made so that it still resolves when only the thread directories are shared (a relative link to the sibling thread), never by assuming the surrounding notes. The `README.md` opens with `**Opened:**` and, once settled, `**Resolved:**` dates, then states the bottom line (the resolution once settled, the open question while active); for an investigation, it then tells how the finding was reached as a deduction story, the observations and what each one ruled in or out, leading to the conclusion. Figures not tied to a thread belong in the project repo, not `<project-notes>`.
+Each thread is a subfolder containing `README.md` and, if needed, `figures/`, and is a standalone investigation that can be shared on its own. A thread does not inherit context from the rest of `<project-notes>`: it states any background the reader needs, and references to other threads are made by folder name in backticks (e.g. `<thread-name>/`), not by relative path, so that the reference remains valid if the thread is later archived. The `README.md` opens with `**Opened:**` and, once settled, `**Resolved:**` dates, then states the bottom line (the resolution once settled, the open question while active); for an investigation, it then tells how the finding was reached as a deduction story, the observations and what each one ruled in or out, leading to the conclusion. Resolved threads move to `archived/`; update the index entry to reflect the resolved status and date. Figures that are not tied to a thread belong in the project repo, not `<project-notes>`.
 
 ### log/
 
