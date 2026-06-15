@@ -8,6 +8,7 @@ Building, configuring, and running Quokka.
 |---|---|
 | `<quokka-checkout>/CLAUDE.md` | Architecture, build commands, code style, GPU safety. Maintained by the repo. |
 | `<quokka-checkout>/AGENTS.md` | LLM agent guidance for the Quokka codebase. Maintained by the repo. |
+| `<quokka-checkout>/docs/markdown/` | Full user and developer documentation. Key files: `mhd_module.md` (MHD physics and runtime controls), `parameters.md` (all TOML parameters), `running_on_hpc_clusters.md` (cluster-specific build procedures), `contributing.md` (git workflow, PR guidelines, code style). |
 | `<project-notes>/codebases/quokka/` | Orientation: what Quokka is, file locations on this machine. |
 | `<project-notes>/<paper>/` | Paper project context and notes. |
 
@@ -138,32 +139,44 @@ Drive `cmake`, `ninja`, and the compiled binary directly rather than through `sc
 
 ### TOML parameters
 
-**MHD schemes:**
+AMReX exposes many parameters and often multiple ways to achieve the same thing. This section documents the preferred parameters and values for MHD runs, not an exhaustive reference.
+
+**`geometry` / `quokka` (domain setup):**
 
 | Parameter | Values | Notes |
 |---|---|---|
-| `mhd.emf_compute_scheme` | `"FelkerStone2017"`, `"Balsara2025"`, `"Quokka2026"` | How edge-centred EMFs are computed from face-centred fluxes. |
-| `mhd.emf_averaging_scheme` | `"LondrilloDelZanna2004"`, `"Balsara2025"` | How EMFs are averaged at shared edges between adjacent faces. |
-| `mhd.resistivity` | float, default `0` | Physical resistivity; enforces parabolic timestep limit `dt < dx^2 / (2 * eta)`. |
+| `geometry.prob_lo` | float array | Lower corner of the domain per dimension. |
+| `geometry.prob_hi` | float array | Upper corner of the domain per dimension. Cell size follows: `dx = (prob_hi - prob_lo) / n_cell`. |
+| `quokka.bc` | `"periodic"`, `"reflecting"` | Required. Boundary conditions for all fields. Reflecting BC support for magnetic fields is incomplete; use periodic for MHD tests. |
 
-**Reconstruction and integration:**
-
-| Parameter | Values | Notes |
-|---|---|---|
-| `hydro.reconstruction_order` | `1` (PCM), `2` (PLM), `3` (PPM), `5` (PPM-EP) | Spatial reconstruction order for hydro. |
-| `mhd.emf_reconstruction_order` | `1` (PCM), `2` (PLM), `3` (PPM), `5` (PPM-EP) | Spatial reconstruction order for MHD. Must match `hydro.reconstruction_order` in convergence tests. |
-| `hydro.rk_integrator_order` | `2` | RK2 time integration. Standard for all MHD runs. |
-| `hydro.use_dual_energy` | `0` | Disable for MHD. |
-
-**Grid and AMR:**
+**`amr`:**
 
 | Parameter | Recommended | Notes |
 |---|---|---|
+| `amr.n_cell` | int array | Number of cells per dimension. Sets resolution; `dx` follows from domain size. |
 | `amr.max_level` | `0` | Single-level for most MHD tests. |
 | `amr.blocking_factor_x` | `16` | See MPI decomposition below. |
 | `amr.max_grid_size` | `128` | See MPI decomposition below. |
 | `do_reflux` | `0` | Disable for single-level runs. |
 | `do_subcycle` | `0` | Disable for single-level runs. |
+
+**`hydro`:**
+
+| Parameter | Values | Notes |
+|---|---|---|
+| `hydro.rk_integrator_order` | `2` | RK2 time integration. Standard for all MHD runs. |
+| `hydro.reconstruction_order` | `1` (PCM), `2` (PLM), `3` (PPM), `5` (PPM-EP) | Spatial reconstruction order for hydro. |
+| `hydro.use_dual_energy` | `0` | Disable for MHD. |
+| `hydro.artificial_viscosity_k` | float, optional | Scalar viscosity coefficient; adds diffusive flux to momentum equations. Use to damp post-shock oscillations. |
+
+**`mhd`:**
+
+| Parameter | Values | Notes |
+|---|---|---|
+| `mhd.emf_compute_scheme` | `"FelkerStone2017"`, `"Balsara2025"`, `"Quokka2026"` | How edge-centred EMFs are computed from face-centred fluxes. |
+| `mhd.emf_averaging_scheme` | `"LondrilloDelZanna2004"`, `"Balsara2025"` | How EMFs are averaged at shared edges between adjacent faces. |
+| `mhd.emf_reconstruction_order` | `1` (PCM), `2` (PLM), `3` (PPM), `5` (PPM-EP) | Spatial reconstruction order for MHD. Must match `hydro.reconstruction_order` in convergence tests. |
+| `mhd.resistivity` | float, default `0` | Physical resistivity; enforces parabolic timestep limit `dt < dx^2 / (2 * eta)`. |
 
 ### EMF scheme reference
 
