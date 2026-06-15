@@ -12,7 +12,7 @@ Update about once a week, preferably when there is time to reboot and check the 
 
 ## Before updating
 
-**Arch news.** Open `https://archlinux.org/news/` and scan recent posts for `requires manual intervention` or `may require manual intervention`. If a relevant post exists, read it and follow the instructions before proceeding. Pay attention to posts involving:
+**Arch news:** Open `https://archlinux.org/news/` and scan recent posts for `requires manual intervention` or `may require manual intervention`. If a relevant post exists, read it and follow the instructions before proceeding. Pay attention to posts involving:
 
 | Package | What it is |
 |---|---|
@@ -30,9 +30,9 @@ Update about once a week, preferably when there is time to reboot and check the 
 | `lightdm` | Display manager. |
 | `xfce` | Desktop environment. |
 
-**Changelogs and forums.** For hardware-adjacent packages (`linux`, `wireplumber`, `pipewire`, `alsa-ucm-conf`, `alsa-firmware`, `sof-firmware`, `fwupd`), read the Arch package page and upstream release notes. Search the Arch forums and Framework community (`https://community.frame.work`) for the package versions being upgraded plus this hardware (`Framework 13`, `Ryzen AI 300`). Issues frequently appear in the forums before they are documented upstream.
+**Changelogs and forums:** For hardware-adjacent packages (`linux`, `wireplumber`, `pipewire`, `alsa-ucm-conf`, `alsa-firmware`, `sof-firmware`, `fwupd`), read the Arch package page and upstream release notes. Search the Arch forums and Framework community (`https://community.frame.work`) for the package versions being upgraded plus this hardware (`Framework 13`, `Ryzen AI 300`). Issues frequently appear in the forums before they are documented upstream.
 
-**Active workarounds.** Review `pending-issues.md`. For each open workaround, decide what to test after the upgrade before you start.
+**Active workarounds:** Review `pending-issues.md`. For each open workaround, decide what to test after the upgrade before you start.
 
 ---
 
@@ -133,4 +133,8 @@ paccache -dk2        # dry run: show what would be removed, keeping 2 newest
 sudo paccache -rk2   # remove, keeping the 2 newest versions of each package
 ```
 
-Check cache size: `du -sh /var/cache/pacman/pkg`.
+Check cache size:
+
+```bash
+du -sh /var/cache/pacman/pkg
+```
