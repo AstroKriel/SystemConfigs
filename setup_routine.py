@@ -82,7 +82,7 @@ def validate_profile(
         if not extra.source_path.exists():
             LOG_MESSAGE(f"Missing extra source file: {extra.source_path}")
             is_valid = False
-        missing_platform_tags = sorted(set(extra.requires) - set(profile.platforms))
+        missing_platform_tags = sorted(set(extra.required_platforms) - set(profile.platforms))
         if missing_platform_tags:
             LOG_MESSAGE(
                 f"`extras` subscription `{extra_key}` is missing platform tag(s): "
