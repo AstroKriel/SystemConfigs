@@ -13,8 +13,8 @@ class ExtraConfig:
     name: str
     source_path: Path
     target_path: Path
-    requires: tuple[str, ...] = ()
-    privileged: bool = False
+    required_platforms: tuple[str, ...] = ()
+    requires_sudo: bool = False
 
 
 ## } MODULE

@@ -9,14 +9,14 @@ EXTRAS: dict[str, ExtraConfig] = {
         name="PBS scheduler aliases",
         source_path=EXTRAS_DIR / "hpc" / "pbs.sh",
         target_path=Path.home() / ".shell_hpc",
-        requires=("linux", "remote", "hpc", "pbs"),
+        required_platforms=("linux", "remote", "hpc", "pbs"),
     ),
     "hpc/slurm.sh":
     ExtraConfig(
         name="Slurm scheduler aliases",
         source_path=EXTRAS_DIR / "hpc" / "slurm.sh",
         target_path=Path.home() / ".shell_hpc",
-        requires=("linux", "remote", "hpc", "slurm"),
+        required_platforms=("linux", "remote", "hpc", "slurm"),
     ),
 }
 

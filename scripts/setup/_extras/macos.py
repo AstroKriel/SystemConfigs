@@ -9,7 +9,7 @@ EXTRAS: dict[str, ExtraConfig] = {
         name="macOS disabled navigation keys",
         source_path=EXTRAS_DIR / "macos" / "disable-navigation-keys.dict",
         target_path=Path.home() / "Library" / "KeyBindings" / "DefaultKeyBinding.dict",
-        requires=("macos", ),
+        required_platforms=("macos", ),
     ),
 }
 

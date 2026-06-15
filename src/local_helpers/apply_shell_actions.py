@@ -52,12 +52,12 @@ def ensure_dir_exists(
     directory: Path,
     logger_fn: Callable[[str], None],
     dry_run: bool = False,
-    privileged: bool = False,
+    requires_sudo: bool = False,
 ) -> None:
     """Ensure that the directory exists; create it if it does not."""
     if directory.exists():
         return
-    if privileged:
+    if requires_sudo:
         args = ["sudo", "mkdir", "-p", str(directory)]
         run_command(
             args=args,
@@ -125,7 +125,7 @@ def create_symlink(
     target_path: Path,
     logger_fn: Callable[[str], None],
     dry_run: bool = False,
-    privileged: bool = False,
+    requires_sudo: bool = False,
 ) -> None:
     """Create a symlink from `target_path` to `source_path`; back up existing files first."""
     if not source_path.exists():
@@ -137,7 +137,7 @@ def create_symlink(
             target_path=target_path,
             logger_fn=logger_fn,
             dry_run=dry_run,
-            privileged=privileged,
+            requires_sudo=requires_sudo,
         )
         return
     if _already_linked_correctly(
@@ -168,7 +168,7 @@ def create_symlink(
             target_path=target_path,
             logger_fn=logger_fn,
             dry_run=dry_run,
-            privileged=privileged,
+            requires_sudo=requires_sudo,
         )
         return
     if not _types_match(
@@ -190,7 +190,7 @@ def create_symlink(
         target_path=target_path,
         logger_fn=logger_fn,
         dry_run=dry_run,
-        privileged=privileged,
+        requires_sudo=requires_sudo,
     )
 
 
@@ -199,12 +199,12 @@ def remove_symlink(
     target_path: Path,
     logger_fn: Callable[[str], None],
     dry_run: bool = False,
-    privileged: bool = False,
+    requires_sudo: bool = False,
 ) -> None:
     """Remove a symlink at the given path; do nothing if the path is not a symlink."""
     if not target_path.is_symlink():
         return
-    if privileged:
+    if requires_sudo:
         args = ["sudo", "rm", str(target_path)]
         run_command(
             args=args,
@@ -277,10 +277,10 @@ def _make_symlink(
     target_path: Path,
     logger_fn: Callable[[str], None],
     dry_run: bool,
-    privileged: bool = False,
+    requires_sudo: bool = False,
 ) -> None:
     """Create a symlink from `target_path` to `source_path`."""
-    if privileged:
+    if requires_sudo:
         args = ["sudo", "ln", "-sf", str(source_path), str(target_path)]
         run_command(
             args=args,

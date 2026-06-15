@@ -42,7 +42,7 @@ def setup_extra(
 ) -> None:
     """Symlink one extra config file if the active profile satisfies its requirements."""
     if platform_tags is not None:
-        missing = sorted(set(extra.requires) - set(platform_tags))
+        missing = sorted(set(extra.required_platforms) - set(platform_tags))
         if missing:
             LOG_MESSAGE(f"Skipping {extra.name}; missing profile platform tag(s): {', '.join(missing)}")
             return
@@ -50,14 +50,14 @@ def setup_extra(
         directory=extra.target_path.parent,
         logger_fn=LOG_MESSAGE,
         dry_run=dry_run,
-        privileged=extra.privileged,
+        requires_sudo=extra.requires_sudo,
     )
     apply_shell_actions.create_symlink(
         source_path=extra.source_path,
         target_path=extra.target_path,
         logger_fn=LOG_MESSAGE,
         dry_run=dry_run,
-        privileged=extra.privileged,
+        requires_sudo=extra.requires_sudo,
     )
 
 
@@ -115,7 +115,7 @@ def remove_symlinks(
             target_path=extra.target_path,
             logger_fn=LOG_MESSAGE,
             dry_run=dry_run,
-            privileged=extra.privileged,
+            requires_sudo=extra.requires_sudo,
         )
     LOG_MESSAGE(
         log_messages.format_dry_run(
