@@ -42,6 +42,8 @@ SystemNotes/<machine>/
 
 Every resolution gets a diary entry, including trivial ones that self-resolved upstream. A trivial entry can be brief (symptom, when first noticed, what resolved it, and the date), but it must exist. Without it, a recurrence has no context: no record of the original symptom, no indication of when it disappeared, and no basis for recognising that the same issue has returned.
 
+If forum threads, bug reports, or upstream issues are found during investigation, include their URLs in the diary entry. They confirm the issue is not machine-specific and serve as a reference point if the issue recurs or evolves upstream.
+
 To keep `setup.md` reproducible, update it whenever a significant configuration change is made: a new service, a package upgrade that required intervention, or a config change with machine-specific implications. When a machine is retired, add a final `README.md` note marking the retirement date and disposition.
 
 ### Research reference entry
