@@ -1,6 +1,6 @@
 # Arch Update Routine: Framework 13
 
-Routine for maintaining this Arch system.
+Routine for maintaining the Framework 13 running Arch Linux on X11: preparation, update execution, post-update checks, and recovery.
 
 ---
 
@@ -73,10 +73,7 @@ Read the transaction summary before accepting. Stop and inspect if the update wa
 | Audio services | `systemctl --user status pipewire pipewire-pulse wireplumber` | All active/running. | Inspect the failed unit and test devices with `wpctl status`. |
 | Display manager | `systemctl status lightdm` | `Active: active (running)`. | Inspect `journalctl -b -u lightdm`. |
 
-After the checks above, test every active workaround from `pending-issues.md`. Device enumeration is not enough; test actual functionality:
-
-- **Internal mic:** `arecord -f S16_LE -r 48000 -c 2 -d 3 /tmp/test.wav && aplay /tmp/test.wav`. Real audio has mean well below max in `ffmpeg -i /tmp/test.wav -af volumedetect -f null /dev/null 2>&1`.
-- **Portal:** `systemctl --user status xdg-desktop-portal`.
+After the checks above, test every active workaround from `pending-issues.md`. Device enumeration is not enough; test actual functionality. Each entry in `pending-issues.md` lists its own test command under "Next steps".
 
 ---
 
