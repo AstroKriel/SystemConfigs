@@ -115,12 +115,14 @@ pacman -Q linux linux 6.19.12.arch1-1
 
 ## When something breaks
 
+Try targeted fixes first and escalate only as needed.
+
 | Step | Action |
 |---|---|
-| Search online before diagnosing locally | Check the Arch forums, Framework community (`https://community.frame.work`), and upstream issue trackers. Hardware issues on this machine are often known and documented; extended local diagnosis without checking online is inefficient. |
-| Check what changed | `grep upgraded /var/log/pacman.log | tail -50` to identify which packages were updated and when. |
-| Check the pre-upgrade snapshot before reconstructing | If a config file needs to be recovered, read the snapper pre-upgrade snapshot: `sudo snapper list` to find the number, then `sudo cat /.snapshots/<n>/snapshot/<path>`. Never reconstruct from memory. |
-| Establish a baseline before removing a workaround | Before removing any workaround, run the test that confirms it is working. Remove it, then run the same test again. This isolates whether the removal caused the regression. |
+| Diagnose before acting | Check `grep upgraded /var/log/pacman.log \| tail -50` to identify what changed. Search the Arch forums, Framework community (`https://community.frame.work`), and upstream issue trackers. For hardware-adjacent packages (`wireplumber`, `pipewire`, `alsa-ucm-conf`, `sof-firmware`), read the upstream release notes: forums surface symptoms; changelogs explain intentional behavior changes. |
+| Downgrade the offending package | If the breaking package is known, downgrade from the cache: list versions with `ls /var/cache/pacman/pkg/<package>*`, then `sudo pacman -U /var/cache/pacman/pkg/<package>-<version>.pkg.tar.zst`. |
+| Restore a config file from the snapshot | Go to snapper before attempting any reconstruction. Find the pre-upgrade snapshot: `sudo snapper list`. Restore a single file: `sudo snapper undochange <pre>..<post> <path>`. Or read and recreate: `sudo cat /.snapshots/<n>/snapshot/<path>`. Never reconstruct from memory. |
+| Full system rollback | If the break is too broad to fix surgically: `sudo snapper rollback <n>` then reboot. This sets the pre-upgrade btrfs subvolume as the new default. Use as a last resort. |
 
 ---
 
