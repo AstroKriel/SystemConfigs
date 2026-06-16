@@ -36,4 +36,6 @@ extras = [
   "arch-x11/zathura/zathurarc",
   "pc/path-aliases.sh",
   "pc/ssh-agent.sh",
+  "arch-x11/no-ucm.conf",
+  "arch-x11/xfce-session.service",
 ]

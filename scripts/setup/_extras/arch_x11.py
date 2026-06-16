@@ -95,6 +95,21 @@ EXTRAS: dict[str, ExtraConfig] = {
         target_path=Path.home() / ".config" / "zathura" / "zathurarc",
         required_platforms=("linux", "x11"),
     ),
+    "arch-x11/no-ucm.conf":
+    ExtraConfig(
+        name="WirePlumber no-UCM workaround",
+        source_path=EXTRAS_DIR / "arch-x11" / "no-ucm.conf",
+        target_path=Path("/etc") / "wireplumber" / "wireplumber.conf.d" / "no-ucm.conf",
+        required_platforms=("linux", "x11"),
+        requires_sudo=True,
+    ),
+    "arch-x11/xfce-session.service":
+    ExtraConfig(
+        name="XFCE graphical-session target activation",
+        source_path=EXTRAS_DIR / "arch-x11" / "xfce-session.service",
+        target_path=Path.home() / ".config" / "systemd" / "user" / "xfce-session.service",
+        required_platforms=("linux", "x11", "xfce"),
+    ),
 }
 
 ## } MODULE
