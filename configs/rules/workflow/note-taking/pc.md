@@ -25,6 +25,8 @@ SystemNotes/<machine>/
 ├── README.md          # machine name, OS, hardware summary, purpose
 ├── setup.md           # installation steps: OS, packages, configs, services
 ├── pending-issues.md  # open issues and unresolved configuration problems
+├── notes/             # distilled facts about how subsystems work on this machine
+│   └── <topic>.md     # one file per topic area; updated in place as understanding deepens
 └── debug-diary/       # retrospective entries for resolved issues
     └── YYYY-MM-DD.md  # one file per resolved issue
 ```
@@ -43,6 +45,16 @@ SystemNotes/<machine>/
 Every resolution gets a diary entry, including trivial ones that self-resolved upstream. A trivial entry can be brief (symptom, when first noticed, what resolved it, and the date), but it must exist. Without it, a recurrence has no context: no record of the original symptom, no indication of when it disappeared, and no basis for recognising that the same issue has returned.
 
 If forum threads, bug reports, or upstream issues are found during investigation, include their URLs in the diary entry. They confirm the issue is not machine-specific and serve as a reference point if the issue recurs or evolves upstream.
+
+`notes/` collects distilled facts about how this machine works: hardware quirks, non-obvious subsystem behavior, and anything discovered through investigation that belongs to the machine rather than to a specific issue. Each file covers one topic area and is updated in place as understanding deepens. It is not a diary and not a procedure list; it is reference material for before you act.
+
+| Belongs | Does not belong |
+|---|---|
+| Facts about how a subsystem works on this hardware | Reproduction steps (those go in `setup.md`) |
+| Known platform limitations and their causes | Active workarounds (those go in `pending-issues.md`) |
+| Context explaining why a config is the way it is | Per-issue narratives (those go in `debug-diary/`) |
+
+Update a `notes/` file whenever investigation reveals something about how a subsystem behaves on this machine that would not be obvious from the config or package documentation alone.
 
 To keep `setup.md` reproducible, update it whenever a significant configuration change is made: a new service, a package upgrade that required intervention, or a config change with machine-specific implications. When a machine is retired, add a final `README.md` note marking the retirement date and disposition.
 
