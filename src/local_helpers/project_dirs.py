@@ -33,7 +33,8 @@ class SourceDirs:
 
     root: Path
     shell: Path
-    extras: Path
+    system: Path
+    workarounds: Path
     editors: Path
     tools: Path
     rules: Path
@@ -42,7 +43,8 @@ class SourceDirs:
 SOURCES = SourceDirs(
     root=_PROJECT_ROOT,
     shell=_PROJECT_ROOT / "configs" / "shell",
-    extras=_PROJECT_ROOT / "configs" / "extras",
+    system=_PROJECT_ROOT / "configs" / "system",
+    workarounds=_PROJECT_ROOT / "configs" / "workarounds",
     editors=_PROJECT_ROOT / "configs" / "editors",
     tools=_PROJECT_ROOT / "configs" / "tools",
     rules=_PROJECT_ROOT / "configs" / "rules",

@@ -5,7 +5,8 @@ from pathlib import Path
 
 from local_helpers import project_dirs
 
-EXTRAS_DIR = project_dirs.SOURCES.extras
+SYSTEM_DIR = project_dirs.SOURCES.system
+WORKAROUNDS_DIR = project_dirs.SOURCES.workarounds
 
 
 @dataclass

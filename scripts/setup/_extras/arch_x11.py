@@ -1,112 +1,112 @@
 ## { MODULE
 
 from pathlib import Path
-from scripts.setup._extras.config import ExtraConfig, EXTRAS_DIR
+from scripts.setup._extras.config import ExtraConfig, SYSTEM_DIR, WORKAROUNDS_DIR
 
 EXTRAS: dict[str, ExtraConfig] = {
-    "arch-x11/lightdm-locale.xprofile":
+    "pc/arch-x11/lightdm-locale.xprofile":
     ExtraConfig(
         name="LightDM xprofile locale",
-        source_path=EXTRAS_DIR / "arch-x11" / "lightdm-locale.xprofile",
+        source_path=SYSTEM_DIR / "pc" / "arch-x11" / "lightdm-locale.xprofile",
         target_path=Path.home() / ".xprofile",
         required_platforms=("linux", "x11", "lightdm"),
     ),
-    "arch-x11/mouse-workspace-buttons.xbindkeysrc":
+    "pc/arch-x11/mouse-workspace-buttons.xbindkeysrc":
     ExtraConfig(
         name="xbindkeys mouse buttons",
-        source_path=EXTRAS_DIR / "arch-x11" / "mouse-workspace-buttons.xbindkeysrc",
+        source_path=SYSTEM_DIR / "pc" / "arch-x11" / "mouse-workspace-buttons.xbindkeysrc",
         target_path=Path.home() / ".xbindkeysrc",
         required_platforms=("linux", "x11"),
     ),
-    "arch-x11/touchpad-workspace-gestures.conf":
+    "pc/arch-x11/touchpad-workspace-gestures.conf":
     ExtraConfig(
         name="libinput-gestures workspaces",
-        source_path=EXTRAS_DIR / "arch-x11" / "touchpad-workspace-gestures.conf",
+        source_path=SYSTEM_DIR / "pc" / "arch-x11" / "touchpad-workspace-gestures.conf",
         target_path=Path.home() / ".config" / "libinput-gestures.conf",
         required_platforms=("linux", "x11", "xfce"),
     ),
-    "arch-x11/xfce-theme-toggle":
+    "pc/arch-x11/xfce-theme-toggle":
     ExtraConfig(
         name="XFCE theme toggle",
-        source_path=EXTRAS_DIR / "arch-x11" / "xfce-theme-toggle",
+        source_path=SYSTEM_DIR / "pc" / "arch-x11" / "xfce-theme-toggle",
         target_path=Path.home() / ".local" / "bin" / "xfce-theme-toggle",
         required_platforms=("linux", "x11", "xfce"),
     ),
-    "arch-x11/conky/conky.conf":
+    "pc/arch-x11/conky/conky.conf":
     ExtraConfig(
         name="conky config",
-        source_path=EXTRAS_DIR / "arch-x11" / "conky" / "conky.conf",
+        source_path=SYSTEM_DIR / "pc" / "arch-x11" / "conky" / "conky.conf",
         target_path=Path.home() / ".config" / "conky" / "conky.conf",
         required_platforms=("linux", "x11"),
     ),
-    "arch-x11/conky/conky.desktop":
+    "pc/arch-x11/conky/conky.desktop":
     ExtraConfig(
         name="conky autostart",
-        source_path=EXTRAS_DIR / "arch-x11" / "conky" / "conky.desktop",
+        source_path=SYSTEM_DIR / "pc" / "arch-x11" / "conky" / "conky.desktop",
         target_path=Path.home() / ".config" / "autostart" / "conky.desktop",
         required_platforms=("linux", "x11"),
     ),
-    "arch-x11/conky/conky-battery":
+    "pc/arch-x11/conky/conky-battery":
     ExtraConfig(
         name="conky battery script",
-        source_path=EXTRAS_DIR / "arch-x11" / "conky" / "conky-battery",
+        source_path=SYSTEM_DIR / "pc" / "arch-x11" / "conky" / "conky-battery",
         target_path=Path.home() / ".local" / "bin" / "conky-battery",
         required_platforms=("linux", "x11"),
     ),
-    "arch-x11/conky/conky-gpu":
+    "pc/arch-x11/conky/conky-gpu":
     ExtraConfig(
         name="conky GPU script",
-        source_path=EXTRAS_DIR / "arch-x11" / "conky" / "conky-gpu",
+        source_path=SYSTEM_DIR / "pc" / "arch-x11" / "conky" / "conky-gpu",
         target_path=Path.home() / ".local" / "bin" / "conky-gpu",
         required_platforms=("linux", "x11"),
     ),
-    "arch-x11/conky/conky-cpu-temp":
+    "pc/arch-x11/conky/conky-cpu-temp":
     ExtraConfig(
         name="conky CPU temp script",
-        source_path=EXTRAS_DIR / "arch-x11" / "conky" / "conky-cpu-temp",
+        source_path=SYSTEM_DIR / "pc" / "arch-x11" / "conky" / "conky-cpu-temp",
         target_path=Path.home() / ".local" / "bin" / "conky-cpu-temp",
         required_platforms=("linux", "x11"),
     ),
-    "arch-x11/conky/conky-gpu-temp":
+    "pc/arch-x11/conky/conky-gpu-temp":
     ExtraConfig(
         name="conky GPU temp script",
-        source_path=EXTRAS_DIR / "arch-x11" / "conky" / "conky-gpu-temp",
+        source_path=SYSTEM_DIR / "pc" / "arch-x11" / "conky" / "conky-gpu-temp",
         target_path=Path.home() / ".local" / "bin" / "conky-gpu-temp",
         required_platforms=("linux", "x11"),
     ),
-    "arch-x11/window-management/center-window":
+    "pc/arch-x11/window-management/center-window":
     ExtraConfig(
         name="center-window script",
-        source_path=EXTRAS_DIR / "arch-x11" / "window-management" / "center-window",
+        source_path=SYSTEM_DIR / "pc" / "arch-x11" / "window-management" / "center-window",
         target_path=Path.home() / ".local" / "bin" / "center-window",
         required_platforms=("linux", "x11"),
     ),
-    "arch-x11/window-management/tile-window":
+    "pc/arch-x11/window-management/tile-window":
     ExtraConfig(
         name="tile-window script",
-        source_path=EXTRAS_DIR / "arch-x11" / "window-management" / "tile-window",
+        source_path=SYSTEM_DIR / "pc" / "arch-x11" / "window-management" / "tile-window",
         target_path=Path.home() / ".local" / "bin" / "tile-window",
         required_platforms=("linux", "x11"),
     ),
-    "arch-x11/zathura/zathurarc":
+    "pc/arch-x11/zathura/zathurarc":
     ExtraConfig(
         name="zathura config",
-        source_path=EXTRAS_DIR / "arch-x11" / "zathura" / "zathurarc",
+        source_path=SYSTEM_DIR / "pc" / "arch-x11" / "zathura" / "zathurarc",
         target_path=Path.home() / ".config" / "zathura" / "zathurarc",
         required_platforms=("linux", "x11"),
     ),
-    "arch-x11/no-ucm.conf":
+    "workarounds/arch-x11/no-ucm.conf":
     ExtraConfig(
         name="WirePlumber no-UCM workaround",
-        source_path=EXTRAS_DIR / "arch-x11" / "no-ucm.conf",
+        source_path=WORKAROUNDS_DIR / "arch-x11" / "no-ucm.conf",
         target_path=Path("/etc") / "wireplumber" / "wireplumber.conf.d" / "no-ucm.conf",
         required_platforms=("linux", "x11"),
         requires_sudo=True,
     ),
-    "arch-x11/xfce-session.service":
+    "workarounds/arch-x11/xfce-session.service":
     ExtraConfig(
         name="XFCE graphical-session target activation",
-        source_path=EXTRAS_DIR / "arch-x11" / "xfce-session.service",
+        source_path=WORKAROUNDS_DIR / "arch-x11" / "xfce-session.service",
         target_path=Path.home() / ".config" / "systemd" / "user" / "xfce-session.service",
         required_platforms=("linux", "x11", "xfce"),
     ),
