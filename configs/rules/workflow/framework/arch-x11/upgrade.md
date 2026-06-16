@@ -121,7 +121,7 @@ Try targeted fixes first and escalate only as needed.
 |---|---|
 | Diagnose before acting | Check `grep upgraded /var/log/pacman.log \| tail -50` to identify what changed. Search the Arch forums, Framework community (`https://community.frame.work`), and upstream issue trackers. For hardware-adjacent packages (`wireplumber`, `pipewire`, `alsa-ucm-conf`, `sof-firmware`), read the upstream release notes: forums surface symptoms; changelogs explain intentional behavior changes. |
 | Downgrade the offending package | If the breaking package is known, downgrade from the cache: list versions with `ls /var/cache/pacman/pkg/<package>*`, then `sudo pacman -U /var/cache/pacman/pkg/<package>-<version>.pkg.tar.zst`. |
-| Read the pre-upgrade snapshot before touching any config | Before adjusting, reconstructing, or diagnosing any config file that may have changed during the upgrade, read the pre-upgrade snapshot to establish what was there: `sudo snapper list` to find the snapshot number, then `sudo cat /.snapshots/<n>/snapshot/<path>`. To restore: `sudo snapper undochange <pre>..<post> <path>`. Never reconstruct from memory. |
+| Read the pre-upgrade snapshot before touching any config | Before adjusting or reconstructing any config file that may have changed during the upgrade, read the pre-upgrade snapshot to establish what was there: `sudo snapper list` to find the snapshot number, then `sudo cat /.snapshots/<n>/snapshot/<path>`. To restore: `sudo snapper undochange <pre>..<post> <path>`. Never reconstruct from memory. |
 | Full system rollback | If the break is too broad to fix surgically: `sudo snapper rollback <n>` then reboot. This sets the pre-upgrade btrfs subvolume as the new default. Use as a last resort. |
 
 ---
