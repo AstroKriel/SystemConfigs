@@ -36,7 +36,7 @@ SystemNotes/<machine>/
 | Non-obvious configuration decisions | HPC cluster details (see `hpc.md`) |
 | Open and resolved configuration issues | Binding conventions (promote to `~/.rules/`) |
 
-`pending-issues.md` is for issues that are currently open: unresolved problems, known workarounds in place, or configuration gaps. It is a live document; entries are added and removed as issues open and close.
+`pending-issues.md` is for issues that are currently open: unresolved problems, known workarounds in place, or configuration gaps. It is a live document; entries are added and removed as issues open and close. Every entry for an active workaround must include a concrete test command under "Next steps" that confirms the workaround is functioning. Without it, there is no defined pass or fail condition for post-update checks.
 
 `debug-diary/` is retrospective: each file records a resolved issue, what caused it, and how it was fixed. Entries are append-only and are never edited after the fact. When an issue is resolved, remove it from `pending-issues.md` and add a dated entry to `debug-diary/`.
 
