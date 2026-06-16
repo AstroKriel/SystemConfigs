@@ -55,7 +55,7 @@ If forum threads, bug reports, or upstream issues are found during investigation
 | Context explaining why a config is the way it is | Per-issue narratives (those go in `debug-diary/`) |
 | Sources: upstream docs, man pages, forums, issues, specs | |
 
-Update a `notes/` file whenever investigation uncovers how a subsystem works, why a config decision was made, or what an upstream change actually means.
+Update a `notes/` file whenever investigation uncovers how a subsystem works, why a config decision was made, or what an upstream change actually means. If the investigation was prompted by a specific issue or upgrade, reference the relevant `debug-diary/` entry or `pending-issues.md` entry at the top of the file. This links the knowledge back to the event that forced it.
 
 To keep `setup.md` reproducible, update it whenever a significant configuration change is made: a new service, a package upgrade that required intervention, or a config change with machine-specific implications. When a machine is retired, add a final `README.md` note marking the retirement date and disposition.
 
