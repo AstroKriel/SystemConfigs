@@ -14,7 +14,7 @@ One line only. No extended description below the subject.
 
 ## Actions
 
-Use only these actions:
+Use these actions as the default vocabulary. Other verbs are permitted when none of the standard ones fit precisely, as long as the verb is specific and imperative.
 
 | Action | When |
 |---|---|
@@ -29,6 +29,7 @@ Use only these actions:
 | `config` | config file changes |
 | `docs` | documentation only |
 | `test` | test additions or fixes |
+| `extend` | adding capability to existing functionality |
 
 ---
 
@@ -136,7 +137,7 @@ username/verb/short-description
 | Length | max 50 characters |
 | Characters | alphanumeric, `-`, and `/` only |
 | Purpose | one branch per logical change |
-| Verbs | same as commits: `add`, `fix`, `refactor`, `update`, `del`, etc. |
+| Verbs | same as commits: `add`, `fix`, `refactor`, `update`, `extend`, `del`, etc. |
 | Avoid | dates, vague names (`wip`, `temp`, `fix-stuff`), and anything longer than needed |
 | Lifecycle | delete branches after merging; rebase onto `main` before opening a PR |
 
