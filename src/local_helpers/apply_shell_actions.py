@@ -78,6 +78,7 @@ def backup_file(
     target_path: Path,
     logger_fn: Callable[[str], None],
     dry_run: bool = False,
+    requires_sudo: bool = False,
 ) -> Path | None:
     """
     Backup a file or symlink at the given path.
@@ -98,7 +99,16 @@ def backup_file(
             )
         except Exception as error:
             logger_fn(f"Warning: failed to resolve symlink {target_path}: {error}")
-        if dry_run:
+        if requires_sudo:
+            args = ["sudo", "rm", str(target_path)]
+            run_command(
+                args=args,
+                logger_fn=logger_fn,
+                description=" ".join(args),
+                dry_run=dry_run,
+                capture_output=False,
+            )
+        elif dry_run:
             logger_fn(f"[dry-run] Would remove symlink: {target_path}")
         else:
             target_path.unlink()
@@ -108,6 +118,7 @@ def backup_file(
         target_path=target_path,
         logger_fn=logger_fn,
         dry_run=dry_run,
+        requires_sudo=requires_sudo,
     )
     if backup_path:
         logger_fn(
@@ -162,6 +173,7 @@ def create_symlink(
             target_path=target_path,
             logger_fn=logger_fn,
             dry_run=dry_run,
+            requires_sudo=requires_sudo,
         )
         _make_symlink(
             source_path=source_path,
@@ -184,6 +196,7 @@ def create_symlink(
         target_path=target_path,
         logger_fn=logger_fn,
         dry_run=dry_run,
+        requires_sudo=requires_sudo,
     )
     _make_symlink(
         source_path=source_path,
@@ -230,13 +243,23 @@ def _rename_with_timestamp(
     target_path: Path,
     logger_fn: Callable[[str], None],
     dry_run: bool = False,
+    requires_sudo: bool = False,
 ) -> Path | None:
     """Rename a file or directory in place by appending a timestamp; return the new path or None."""
     if not target_path.exists() and not target_path.is_symlink():
         return None
     timestamp = log_messages.get_timestamp().replace(" ", ".")
     backup_path = target_path.with_stem(f"{target_path.stem}.{timestamp}")
-    if dry_run:
+    if requires_sudo:
+        args = ["sudo", "mv", str(target_path), str(backup_path)]
+        run_command(
+            args=args,
+            logger_fn=logger_fn,
+            description=" ".join(args),
+            dry_run=dry_run,
+            capture_output=False,
+        )
+    elif dry_run:
         logger_fn(f"[dry-run] Would rename {target_path} -> {backup_path}")
     else:
         logger_fn(f"Renaming {target_path} -> {backup_path}")
