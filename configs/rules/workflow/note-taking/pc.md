@@ -46,15 +46,16 @@ Every resolution gets a diary entry, including trivial ones that self-resolved u
 
 If forum threads, bug reports, or upstream issues are found during investigation, include their URLs in the diary entry. They confirm the issue is not machine-specific and serve as a reference point if the issue recurs or evolves upstream.
 
-`notes/` collects distilled facts about how this machine works: hardware quirks, non-obvious subsystem behavior, and anything discovered through investigation that belongs to the machine rather than to a specific issue. Each file covers one topic area and is updated in place as understanding deepens. It is not a diary and not a procedure list; it is reference material for before you act.
+`notes/` documents what was learned about this machine's subsystems: how they work, why they are configured the way they are, and where that understanding came from. Each file covers one topic area and is updated in place as understanding deepens. Record sources alongside facts: upstream documentation, man pages, forum threads, GitHub issues, and release notes. Knowing where information came from is part of the value; it surfaces which documentation is authoritative for each part of the system, so you know where to look when a related issue arises.
 
 | Belongs | Does not belong |
 |---|---|
-| Facts about how a subsystem works on this hardware | Reproduction steps (those go in `setup.md`) |
+| How a subsystem works on this hardware | Reproduction steps (those go in `setup.md`) |
 | Known platform limitations and their causes | Active workarounds (those go in `pending-issues.md`) |
 | Context explaining why a config is the way it is | Per-issue narratives (those go in `debug-diary/`) |
+| Sources: upstream docs, man pages, forums, issues, specs | |
 
-Update a `notes/` file whenever investigation reveals something about how a subsystem behaves on this machine that would not be obvious from the config or package documentation alone.
+Update a `notes/` file whenever investigation uncovers how a subsystem works, why a config decision was made, or what an upstream change actually means.
 
 To keep `setup.md` reproducible, update it whenever a significant configuration change is made: a new service, a package upgrade that required intervention, or a config change with machine-specific implications. When a machine is retired, add a final `README.md` note marking the retirement date and disposition.
 
