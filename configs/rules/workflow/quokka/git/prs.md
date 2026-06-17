@@ -42,7 +42,7 @@ Use **bold sub-headers** to break up longer descriptions. Common sub-headers:
 | **Energy conservation.** | tests confirming energy is transferred correctly between components |
 | **Known issues.** | draft PRs: items that must be resolved before the PR is ready for review |
 
-When a test has been run to validate the change, always include a figure. The caption or surrounding prose must state the test name, any non-default parameters, and the resolution used.
+Wherever a test result is cited, include a figure. The caption or surrounding prose must state the test name, any non-default parameters, and the resolution used.
 
 Equations follow the notation rules in [`writing/markdown.md`](../../../writing/markdown.md).
 

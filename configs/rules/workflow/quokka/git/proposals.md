@@ -24,11 +24,11 @@ Open with a paragraph tracing the causal chain: what exists, what follows from i
 
 Then use the following sections as relevant:
 
-**`## Proposed change`**: the concrete design. State every new parameter with its name and default value inline: "`setup.<param>` (default: `<value>`)". Use bullet lists for multi-part designs and tables for structured comparisons (e.g. a Keep/Remove table when consolidating binaries).
+**`## Proposed change`**: the concrete design. Include parameter names with defaults and interface signatures where relevant. Use bullet lists for multi-part designs and tables for structured comparisons.
 
 **`## Test pipeline impact`**: whether the change affects existing tests. "None" is a complete answer; follow it with the reason, typically that the default behaviour is preserved and the new behaviour is opt-in.
 
-**`## Motivation`**: why this is worth doing. When both timescales apply, use **Immediate:** and **Longer term:** bold sub-labels.
+**`## Motivation`**: why this is worth doing. When both immediate and longer-term motivations apply, split them with bold sub-labels.
 
 **`## Relation to other proposals`**: dependencies and relationships to other open discussions or PRs. State the nature of the relationship in one phrase: "Dependency of", "Depends on", "Prerequisite for".
 
@@ -36,6 +36,12 @@ Then use the following sections as relevant:
 
 ---
 
+## Citing test results
+
+Wherever a test result is quoted to motivate or support a design choice, include a figure and state the test name and any non-default parameters used.
+
+---
+
 ## After posting
 
-Notify Ben Wibking, Mark Krumholz, and ChongChong He on Slack with a link to the discussion. Wait for feedback before starting implementation.
+Notify on Slack with a link to the discussion. Wait for feedback before starting implementation.
