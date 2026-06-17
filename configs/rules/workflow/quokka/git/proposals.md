@@ -20,19 +20,19 @@ Small bug fixes and self-contained additions that do not affect other contributo
 
 ## Structure
 
-Open with a paragraph describing the current state and why it is a problem. No heading for this opening; the problem statement should be immediately clear from the first sentence.
+Open with a paragraph tracing the causal chain: what exists, what follows from it, and why that is a problem. No heading; the problem should be clear from the first sentence. Do not state that something is a problem without also stating the consequence.
 
 Then use the following sections as relevant:
 
-**`## Proposed change`**: the concrete design. Include parameter names, defaults, and interface signatures where relevant. Use bullet lists for multi-part designs and tables for structured comparisons.
+**`## Proposed change`**: the concrete design. State every new parameter with its name and default value inline: "`setup.<param>` (default: `<value>`)". Use bullet lists for multi-part designs and tables for structured comparisons (e.g. a Keep/Remove table when consolidating binaries).
 
-**`## CI impact`**: whether the change affects existing tests. If the default behaviour is preserved, say so explicitly.
+**`## Test pipeline impact`**: whether the change affects existing tests. "None" is a complete answer; follow it with the reason, typically that the default behaviour is preserved and the new behaviour is opt-in.
 
-**`## Motivation`**: why this is worth doing. Split into immediate and longer-term motivations when both apply.
+**`## Motivation`**: why this is worth doing. When both timescales apply, use **Immediate:** and **Longer term:** bold sub-labels.
 
-**`## Relation to other proposals`**: dependencies and relationships to other open discussions or PRs.
+**`## Relation to other proposals`**: dependencies and relationships to other open discussions or PRs. State the nature of the relationship in one phrase: "Dependency of", "Depends on", "Prerequisite for".
 
-**`## Deferred`**: items explicitly out of scope for this proposal, with a reason. This prevents scope creep and signals to reviewers what not to expect.
+**`## Deferred`**: items explicitly out of scope for this proposal, with a reason and a cross-reference where one exists. This prevents scope creep and signals to reviewers what not to expect.
 
 ---
 
