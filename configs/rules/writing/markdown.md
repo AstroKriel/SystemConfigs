@@ -1,6 +1,6 @@
 # Documentation Style
 
-Markdown documentation style: setup guides, design notes, lessons learned, and reference files.
+Style conventions for Markdown documentation across setup guides, design notes, and reference files.
 
 ---
 
@@ -21,7 +21,7 @@ Markdown documentation style: setup guides, design notes, lessons learned, and r
 
 | Rule | |
 |---|---|
-| Scalars and vectors | lowercase letters; `f`, `g` |
+| Scalars and vectors | lowercase letters; `f`, `g`. Where both appear together, use index notation to distinguish: `f_i` for vector components, `s` for scalars. |
 | Greek quantities | spell out in words; `<greek>` |
 | Code identifiers | exempt: source-code names keep their casing; `<CodeVar>` |
 | Laplacian | `nabla^2 f` |
@@ -31,8 +31,20 @@ Markdown documentation style: setup guides, design notes, lessons learned, and r
 | Curl | `curl(f)` |
 | Gradient | `nabla s` |
 | Cross product | `f x g` |
+| Total derivative | `d_<i> <f>` |
+| Partial derivative | `partial_<i> <f>` |
+| Material derivative | `D_<i> <f>` |
+| Subscripts | `_<subscript>` |
+| Superscripts | `^<power>` |
 
-`f`, `g` are examples of vector fields, and `s` a scalar field.
+---
+
+## Equation Formatting
+
+| Case | Format |
+|---|---|
+| Simple definition or short expression | inline backtick |
+| Equation that carries significance | fenced code block |
 
 ---
 
@@ -44,6 +56,7 @@ Markdown documentation style: setup guides, design notes, lessons learned, and r
 | Values and flags | backticks: `<bool>`, `--<flag>`, `<setting>=<value>` |
 | Emphasis | use **bold** for warnings and key terms; avoid italic |
 | Runnable instructions | commands the reader is expected to run belong in a code block, not inline prose |
+| Files in the same repo | use a relative Markdown link; display the path in backticks |
 
 ---
 
