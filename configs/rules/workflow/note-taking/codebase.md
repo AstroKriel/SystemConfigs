@@ -26,7 +26,7 @@ codebases/<code>/
 
 The `README.md` covers the essential facts: what the code does, which version is current, and the canonical invocation. A new user of the notes should be able to orient quickly from the README alone.
 
-A `threads/` subfolder holds focused investigations into the code's behaviour (a bug hunt, a workaround, a validation), following the project `threads/` shape in `./project.md`: one subfolder per thread whose `README.md` opens with the bottom line, with any durable conclusion promoted into the code `README.md` or `log.md`.
+A `threads/` subfolder holds focused investigations into the code's behaviour (a bug hunt, a workaround, a validation), following the project `threads/` shape in [`project.md`](project.md): one subfolder per thread whose `README.md` opens with the bottom line, with any durable conclusion promoted into the code `README.md` or `log.md`.
 
 ---
 

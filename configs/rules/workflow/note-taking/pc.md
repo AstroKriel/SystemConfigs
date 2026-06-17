@@ -12,7 +12,7 @@ Personal machine notes have two forms, serving different purposes:
 
 **Research reference entry**: a lightweight reference sheet at `<project-notes>/pcs/<machine>/README.md`, analogous to an HPC reference sheet. It records the machine's role in the research workflow and which code checkouts live on it. It does not duplicate setup steps or config details; those belong in the setup repository. The reference entry is what to consult during active research; the setup repository is what to consult when (re)configuring the machine.
 
-Both forms are distinct from HPC notes (see `hpc.md`): HPC notes record how to use a shared cluster; personal machine notes record how a machine is configured and used.
+Both forms are distinct from HPC notes (see [`hpc.md`](hpc.md)): HPC notes record how to use a shared cluster; personal machine notes record how a machine is configured and used.
 
 ---
 
@@ -35,7 +35,7 @@ SystemNotes/<machine>/
 |---|---|
 | Hardware specs and OS version | Config files themselves (those go in `<system-configs>/`) |
 | Package and service installation steps | Project data or results |
-| Non-obvious configuration decisions | HPC cluster details (see `hpc.md`) |
+| Non-obvious configuration decisions | HPC cluster details (see [`hpc.md`](hpc.md)) |
 | Open and resolved configuration issues | Binding conventions (promote to `~/.rules/`) |
 
 `pending-issues.md` is for issues that are currently open: unresolved problems, known workarounds in place, or configuration gaps. It is a live document; entries are added and removed as issues open and close. Every entry for an active workaround must include a concrete test command under "Next steps" that confirms the workaround is functioning. Without it, there is no defined pass or fail condition for post-update checks.

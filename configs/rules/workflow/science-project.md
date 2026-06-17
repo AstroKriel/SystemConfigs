@@ -1,12 +1,12 @@
 # Science Project
 
-Science project lifecycle in the Asgard ecosystem: starting, running, and archiving.
+How to start, run, and archive science projects in the Asgard ecosystem.
 
 ---
 
 ## Ecosystem context
 
-Science projects live in the Asgard ecosystem. All project code builds on `jormi` as the shared foundation; interaction with specific simulation codes is provided by `ww-*-sims` interface layers. See `../code/asgard.md` for ecosystem conventions (structure, imports, logging).
+Science projects live in the Asgard ecosystem. All project code builds on `jormi` as the shared foundation; interaction with specific simulation codes is provided by `ww-*-sims` interface layers. See [`../code/asgard.md`](../code/asgard.md) for ecosystem conventions (structure, imports, logging).
 
 ---
 
@@ -18,7 +18,7 @@ Sequence:
 
 1. Create the repo following the naming conventions in the Publication and Archival section below
 2. Register it as a git submodule under `Asgard/mimir/`
-3. Initialise a uv project and configure `pyproject.toml` per `../code/python/setup-project.md`
+3. Initialise a uv project and configure `pyproject.toml` per [`../code/python/setup-project.md`](../code/python/setup-project.md)
 4. Add `jormi` and any relevant `ww-*-sims` packages as editable dependencies
 5. Open a notes directory: `<project-notes>/<project>/` with `README.md`
 6. Push to GitHub
@@ -102,7 +102,7 @@ ww-<code>-sims/
 
 `load.py` reads files from disk and returns `jormi` field objects. `meta.py` extracts run metadata: grid, units, simulation parameters. No array computation goes in the interface layer; all math belongs in `jormi/ww_arrays/`.
 
-Reference the new package as an editable install during development. See `../code/asgard.md` for the `pyproject.toml` pattern.
+Reference the new package as an editable install during development. See [`../code/asgard.md`](../code/asgard.md) for the `pyproject.toml` pattern.
 
 ---
 
@@ -125,4 +125,4 @@ The local folder name and the GitHub repository name follow different convention
 
 For two or three authors, include all names; for more, use only the first author's name.
 
-Precision promotion is not the responsibility of project code in `mimir/`; it belongs in `jormi/`. See `../code/asgard.md` for the data representation rule.
+Precision promotion is not the responsibility of project code in `mimir/`; it belongs in `jormi/`. See [`../code/asgard.md`](../code/asgard.md) for the data representation rule.

@@ -1,6 +1,6 @@
 # Quokka: MHD Configuration
 
-Quokka MHD configuration: TOML parameters, EMF schemes, MPI decomposition.
+How to configure Quokka for MHD simulations, covering TOML parameters, EMF schemes, and MPI decomposition.
 
 ## Build requirement
 
@@ -66,6 +66,18 @@ AMReX exposes many parameters and often multiple ways to achieve the same thing.
 
 ---
 
+## Resistivity
+
+Enable with `mhd.resistivity = <eta>`. The parabolic timestep limit is enforced automatically.
+
+| Rule | |
+|---|---|
+| No resistivity in Richardson convergence tests | `FastWaveConvergence` and `SlowWaveConvergence` abort if `mhd.resistivity != 0`. Resistivity validation uses `AlfvenWaveLinear`. |
+| Reference input | `inputs/AlfvenWaveLinear_resistive.toml` (eta=0.01, grid-aligned, FS17+LD04). |
+| Analytic reference | Amplitude decays as `exp(-gamma*t)` where `gamma = eta*k^2/2`. Velocity lags B by `phi = arctan(gamma/omega_real)`. |
+
+---
+
 ## MPI decomposition
 
 Setting `amr.blocking_factor_x` to `max(16, nx)` and `amr.max_grid_size` to `nx` forces a single AMReX box at every resolution, making all MPI ranks beyond the first idle with no warning. Always set:
@@ -82,15 +94,3 @@ This allows AMReX to split a 512-cell domain into up to 32 boxes.
 ## Minimum cell count
 
 The hydro stencil uses `nghost = 4`. A single-box periodic grid below 8 cells per dim has opposite-side ghosts overlapping inside the valid region. Use at least 8 cells per dim under periodic boundary conditions.
-
----
-
-## Resistivity
-
-Enable with `mhd.resistivity = <eta>`. The parabolic timestep limit is enforced automatically.
-
-| Rule | |
-|---|---|
-| No resistivity in Richardson convergence tests | `FastWaveConvergence` and `SlowWaveConvergence` abort if `mhd.resistivity != 0`. Resistivity validation uses `AlfvenWaveLinear`. |
-| Reference input | `inputs/AlfvenWaveLinear_resistive.toml` (eta=0.01, grid-aligned, FS17+LD04). |
-| Analytic reference | Amplitude decays as `exp(-gamma*t)` where `gamma = eta*k^2/2`. Velocity lags B by `phi = arctan(gamma/omega_real)`. |

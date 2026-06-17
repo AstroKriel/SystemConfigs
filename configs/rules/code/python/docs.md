@@ -1,6 +1,6 @@
 # Python: Docstrings and Comments
 
-Python docstrings and comments.
+How to write Python docstrings and inline comments.
 
 ---
 

@@ -1,6 +1,6 @@
 # Quokka: Testing
 
-Quokka testing: pre-push gates, smoke tests, convergence tests, and pass/fail signals.
+How to test Quokka before pushing, from smoke tests through convergence tests and pass/fail signals.
 
 ## Before pushing
 
@@ -9,7 +9,7 @@ Quokka testing: pre-push gates, smoke tests, convergence tests, and pass/fail si
 | In-scope target | `AlfvenWaveLinear` for MHD changes; confirms the feature compiles and runs. |
 | Out-of-scope target | `HydroBlast3D` or `RadMarshak` for MHD changes; confirms no unintended breakage outside the changed area. |
 
-General principle: `workflow/git/review-branch.md`.
+General principle: [`workflow/git/review-branch.md`](../git/review-branch.md).
 
 ---
 

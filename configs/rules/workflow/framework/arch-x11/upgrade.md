@@ -1,6 +1,6 @@
 # Arch Update Routine: Framework 13
 
-Routine for maintaining the Framework 13 running Arch Linux on X11: preparation, update execution, post-update checks, and recovery.
+The routine for keeping the Framework 13 on Arch Linux/X11 up to date, from preparation through post-update recovery.
 
 ---
 

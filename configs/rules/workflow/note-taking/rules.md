@@ -1,6 +1,6 @@
 # Rules
 
-The `~/.rules/` system: what it is, what belongs in it, and how to add, extend, and promote rules.
+How to use, add to, and extend the `~/.rules/` system.
 
 ---
 
@@ -44,14 +44,13 @@ When in doubt: a rule answers "what is the convention?" A note answers "what is 
 1. Find the right file. Read `~/.rules/README.md` for the full index. Use an existing file if the topic fits; create a new one if nothing covers it.
 2. Edit the source under `<system-configs>/configs/rules/`.
 3. From `<system-configs>/`, run `uv run -m scripts.setup.rules_files` to relink and `uv run -m scripts.setup.rules_index` to regenerate the index.
-4. Commit following `workflow/git.md`.
+4. Commit following [`workflow/git/commits.md`](../git/commits.md).
 
-**New file:** name it `<concept>.md`; one word or a short phrase naming the subject. Open with a title, then a single-sentence description in noun-phrase scope form (`<Topic>: <coverage>`), present tense, with no second sentence or cross-references; this sentence becomes the index entry.
+**New file:** name it `<concept>.md`; one word or a short phrase naming the subject. Open with a title, then a single sentence in natural prose describing what the file covers, in present tense, with no second sentence or cross-references; this sentence becomes the index entry.
 
 **Promoting a file to a bundle:** when a single file grows to cover sub-topics that each warrant their own section, convert it to a subdirectory. Create a `README.md` inside it for any context that applies to the bundle as a whole, and split the content into per-topic files.
 
 **New bundle:** when the concept is large from the start, create the subdirectory directly. Add a `README.md` if there is bundle-level context to capture. Follow the existing bundle pattern in `code/python/` or `code/quokka/`.
-
 ---
 
 ## Promoting a finding
@@ -63,4 +62,4 @@ To promote:
 1. Identify which `~/.rules/` file the convention belongs in.
 2. Phrase it as a rule: prescriptive, not descriptive.
 3. In the notes source, note the promotion if the investigation entry is still live. The rule itself carries no back-reference.
-4. Commit following `workflow/git.md`.
+4. Commit following [`workflow/git/commits.md`](../git/commits.md).

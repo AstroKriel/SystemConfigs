@@ -47,7 +47,7 @@ cmake -S "$SRC" -B "$BUILD" -G Ninja \
     ...
 ```
 
-> **Note:** module-provided tools are compiled for a specific CPU ISA; using them on a different node type causes silent crashes. See `workflow/remote-work/hpc.md` for the general rule.
+> **Note:** module-provided tools are compiled for a specific CPU ISA; using them on a different node type causes silent crashes. See [`workflow/remote-work/hpc.md`](../remote-work/hpc.md) for the general rule.
 
 ---
 
@@ -133,7 +133,7 @@ Drive `cmake`, `ninja`, and the compiled binary directly rather than through `sc
 
 ## HPC Run Setup
 
-Quokka maps onto the standard project layout from `workflow/remote-work/hpc.md`:
+Quokka maps onto the standard project layout from [`workflow/remote-work/hpc.md`](../remote-work/hpc.md):
 
 | Concept | Quokka name | Notes |
 |---|---|---|
@@ -165,7 +165,7 @@ AMReX profiling output (`ProfData_*`) lands in the working directory; with `--ch
 | `jobs/sim.sh` | Run the Quokka executable with the problem TOML |
 | `jobs/extract.sh` | Run `ww-quokka-sims` diagnostics; output goes to `derived/` |
 
-For short-lived trial runs (testing a parameter, trialing a scheme), use `tmp/` at the project root rather than a full `<concept>/<sim-name>/` directory. See `workflow/remote-work/hpc.md` for the naming convention.
+For short-lived trial runs (testing a parameter, trialing a scheme), use `tmp/` at the project root rather than a full `<concept>/<sim-name>/` directory. See [`workflow/remote-work/hpc.md`](../remote-work/hpc.md) for the naming convention.
 
 ### Run settings
 

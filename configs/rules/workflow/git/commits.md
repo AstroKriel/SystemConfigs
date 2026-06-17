@@ -1,6 +1,6 @@
 # Git: Commits
 
-Git workflow: commit format, scope, branch naming, and PR titles.
+Conventions for git commits, branch naming, and PR titles.
 
 ## Format
 

@@ -1,6 +1,6 @@
 # Python: Functions and Data Structures
 
-Python function definitions: signatures, call-site layout, structure, and type annotations.
+How to write Python function definitions, covering signatures, call-site layout, and type annotations.
 
 ---
 

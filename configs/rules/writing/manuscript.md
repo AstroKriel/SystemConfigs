@@ -1,6 +1,6 @@
 # Scientific Writing
 
-Scientific prose style: manuscripts, papers, theses, and technical reports for publication.
+Style conventions for scientific prose in manuscripts, papers, theses, and technical reports.
 
 ---
 

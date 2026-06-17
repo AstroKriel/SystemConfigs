@@ -1,6 +1,6 @@
 # Python: Naming and Imports
 
-Python naming and imports: files, modules, functions, classes, variables, and constants.
+Naming conventions for Python identifiers and how to organize imports.
 
 ---
 

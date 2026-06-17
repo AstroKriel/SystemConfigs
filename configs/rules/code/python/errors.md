@@ -1,6 +1,6 @@
 # Python: Error Handling
 
-Python error handling: which exceptions to raise and how to phrase messages.
+How to handle errors in Python, including which exceptions to raise and how to phrase their messages.
 
 ---
 

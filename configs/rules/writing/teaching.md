@@ -1,8 +1,8 @@
 # Teaching Voice
 
-Writing style for lesson content: READMEs and accompanying prose in teaching repositories.
+Writing style for lesson content in teaching repositories, covering READMEs and accompanying prose.
 
-Extends `markdown.md`: all formatting, structure, and prose mechanics from that file apply here. This file adds conventions specific to teaching material.
+Extends [`markdown.md`](markdown.md): all formatting, structure, and prose mechanics from that file apply here. This file adds conventions specific to teaching material.
 
 ---
 

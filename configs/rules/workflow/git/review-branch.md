@@ -1,6 +1,6 @@
 # Git: Branch Review
 
-Before pushing, step through every changed file on the branch and confirm the diff is correct.
+How to review a branch before pushing by stepping through every changed file.
 
 ---
 

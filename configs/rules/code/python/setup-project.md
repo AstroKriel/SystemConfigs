@@ -1,6 +1,6 @@
 # Python: Project Setup
 
-Python project setup: package manager, `pyproject.toml`, type checker, and pytest.
+How to set up a Python project, from package manager and `pyproject.toml` through type checking and pytest.
 
 ---
 
@@ -69,7 +69,7 @@ dev = [
 ]
 ```
 
-For editable local library dependencies, see `setup-module.md`.
+For editable local library dependencies, see [`setup-module.md`](setup-module.md).
 
 ---
 

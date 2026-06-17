@@ -6,7 +6,7 @@ Notes on HPC clusters you use but do not own or administer; each lives under `<p
 
 ## Scope
 
-An HPC note covers a cluster that is accessed remotely: login details, hardware specs, scheduler configuration, storage layout, and accumulated operational knowledge. It does not cover setup steps that belong in a per-machine setup repo (see `personal-machine.md`).
+An HPC note covers a cluster that is accessed remotely: login details, hardware specs, scheduler configuration, storage layout, and accumulated operational knowledge. It does not cover setup steps that belong in a per-machine setup repo (see [`pc.md`](pc.md)).
 
 Location: `<project-notes>/hpcs/<cluster>/`
 
@@ -22,7 +22,7 @@ hpcs/<cluster>/
 └── threads/   # focused investigations (a scheduler quirk, a perf problem); same shape as project threads
 ```
 
-The `README.md` is the reference sheet: everything needed to start a session from scratch. It should include the login hostname, available partitions, and the storage tier paths mapped to the concepts defined in `workflow/remote-work/hpc.md` (`home`, `fast-storage`, `project` where available). Also record any non-standard module load sequences, and a single minimal job script inline as a `## Minimal Job Script` section. Do not keep a separate folder of job-script templates: the canonical submission files for a run live in that run's `jobs/` directory on the cluster (see `workflow/remote-work/hpc.md`), and the inline minimal script covers the host-specific pattern.
+The `README.md` is the reference sheet: everything needed to start a session from scratch. It should include the login hostname, available partitions, and the storage tier paths mapped to the concepts defined in [`workflow/remote-work/hpc.md`](../remote-work/hpc.md) (`home`, `fast-storage`, `project` where available). Also record any non-standard module load sequences, and a single minimal job script inline as a `## Minimal Job Script` section. Do not keep a separate folder of job-script templates: the canonical submission files for a run live in that run's `jobs/` directory on the cluster (see [`workflow/remote-work/hpc.md`](../remote-work/hpc.md)), and the inline minimal script covers the host-specific pattern.
 
 Separate code checkout locations from build configuration. Use a `## Codes` section (a table of code name, checkout path, and role) to record which codebases are installed on the cluster and where. Do not repeat remote URLs or other codebase facts here; those belong in the codebase's own notes. When a codebase requires host-specific build steps (toolchain sourcing, GPU backend flags, module stack), record those as a `### <codebase>` subsection under `## Software` (or `## Software / Modules`).
 

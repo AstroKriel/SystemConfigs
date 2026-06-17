@@ -38,7 +38,7 @@ Asgard projects extend the standard import order with two additional library gro
 
 ### Referencing Personal Libraries
 
-During active development, personal libraries are referenced as editable installs. The path for sindri packages is `../submodules/<package-name>`; see `code/python/setup-module.md` for the full pattern.
+During active development, personal libraries are referenced as editable installs. The path for sindri packages is `../submodules/<package-name>`; see [`code/python/setup-module.md`](python/setup-module.md) for the full pattern.
 
 Once a project has matured and the dependency has stabilised, personal libraries are referenced as a pinned git commit:
 

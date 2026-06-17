@@ -1,6 +1,6 @@
 # Git: Sync Strategy
 
-Git sync: pull strategy, merge approach, and multi-device workflow discipline.
+How to keep git repos in sync across devices, covering pull strategy, merge approach, and workflow discipline.
 
 ## Pull strategy
 

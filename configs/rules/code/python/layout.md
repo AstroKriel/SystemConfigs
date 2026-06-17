@@ -1,6 +1,6 @@
 # Python: File Layout
 
-Python file layout: wrappers, section markers, imports, and type aliases.
+How to lay out a Python file, from wrappers and section markers through imports and type aliases.
 
 ---
 

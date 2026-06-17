@@ -1,6 +1,6 @@
 # Python: Classes and Data Structures
 
-Python class structure: classes, enums, and dataclasses.
+How to structure Python classes, enums, and dataclasses.
 
 ---
 
