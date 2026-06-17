@@ -22,13 +22,15 @@ Small bug fixes and self-contained additions that do not affect other contributo
 
 Open with a paragraph tracing the causal chain: what exists, what follows from it, and why that is a problem. No heading; the problem should be clear from the first sentence. Do not state that something is a problem without also stating the consequence.
 
-Then use the following sections as relevant:
+The following sections are always expected:
 
 **`## Proposed change`**: the concrete design. Include parameter names with defaults and interface signatures where relevant. Use bullet lists for multi-part designs and tables for structured comparisons.
 
 **`## Test pipeline impact`**: whether the change affects existing tests. "None" is a complete answer; follow it with the reason, typically that the default behaviour is preserved and the new behaviour is opt-in.
 
 **`## Motivation`**: why this is worth doing. When both immediate and longer-term motivations apply, split them with bold sub-labels.
+
+Use the following sections where they apply:
 
 **`## Relation to other proposals`**: dependencies and relationships to other open discussions or PRs. State the nature of the relationship in one phrase: "Dependency of", "Depends on", "Prerequisite for".
 
