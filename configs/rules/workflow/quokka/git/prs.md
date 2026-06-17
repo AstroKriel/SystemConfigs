@@ -1,0 +1,82 @@
+# Quokka: Pull Requests
+
+How to open and describe pull requests against the Quokka `development` branch.
+
+> **Note:** open a PR only after completing the branch review in [`workflow/git/review-branch.md`](../../git/review-branch.md) and confirming local tests pass.
+
+---
+
+## Title
+
+Follow the PR title rules in [`workflow/git/commits.md`](../../git/commits.md): sentence case, imperative, no trailing period, under 72 characters.
+
+```
+Action <Component>: short detail
+```
+
+The title becomes the squashed commit message on merge, so it must be specific enough to stand alone in `git log`.
+
+---
+
+## Structure
+
+The GitHub PR template provides three top-level sections:
+
+| Section | Role |
+|---|---|
+| `### Description` | What changed, why, and the reasoning behind design choices. |
+| `### Related issues` | Links to the proposal this PR implements and any it enables. |
+| `### Checklist` | Repo compliance items; includes the GPU test trigger. |
+
+---
+
+## Description
+
+Write in first person. Cover what changed, why, and the reasoning behind any non-obvious design choices: what you tried, what you found, and what tradeoffs you made. Reviewers benefit from understanding the judgment, not just the outcome.
+
+Use **bold sub-headers** to break up longer descriptions. Common sub-headers:
+
+| Sub-header | When to use |
+|---|---|
+| **Validation.** | convergence results or analytic comparisons confirming correct behaviour |
+| **Energy conservation.** | tests confirming energy is transferred correctly between components |
+| **Known issues.** | draft PRs: items that must be resolved before the PR is ready for review |
+
+When a test has been run to validate the change, always include a figure. The caption or surrounding prose must state the test name, any non-default parameters, and the resolution used.
+
+Equations follow the notation rules in [`writing/markdown.md`](../../../writing/markdown.md).
+
+---
+
+## Draft vs ready
+
+Open as a draft when the implementation is complete enough to share but has known issues to resolve before review. Use a **Known issues.** sub-header in the description to list them explicitly.
+
+Convert to ready for review once all known issues are resolved and the checklist is complete.
+
+---
+
+## Related issues
+
+Always link both the discussion or issue this PR implements and any discussions or issues this PR unblocks or enables. Explain the relationship in one sentence each.
+
+```
+- #<N>: this PR implements the proposal.
+- #<M>: this PR is a prerequisite; <brief reason why>.
+```
+
+---
+
+## Checklist
+
+The repo template checklist:
+
+- [ ] I have added a description (see above).
+- [ ] I have added a link to any related issues (if applicable; see above).
+- [ ] I have read the [Contributing Guide](https://github.com/quokka-astro/quokka/blob/development/CONTRIBUTING.md).
+- [ ] I have added tests for any new physics that this PR adds to the code.
+- [ ] *(For quokka-astro org members)* I have manually triggered the GPU tests with the magic comment `/azp run`.
+
+The tests item applies when the PR adds a new physical process. It does not apply to infrastructure or harness changes.
+
+After opening the PR, post `/azp run` as a comment to trigger the GPU test pipeline.
