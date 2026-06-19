@@ -36,7 +36,15 @@ Cover the following:
 - **What is wrong**: the observed behaviour, with enough detail to reproduce it.
 - **What is expected**: what correct behaviour looks like.
 - **Sims tested**: which configurations showed the bug and which did not. This constrains the failure mode.
-- **Reproduction**: minimal input file, parameters, or code path that triggers the bug.
+- **Reproduction**: the complete input deck in a fenced `toml` code block using `## section` grouping. Include every parameter, not just those that differ from the default. If local code edits are required to reproduce the bug, include the diff. Follow with a fenced `bash` code block showing the build and run commands from the project root:
+
+  ```bash
+  cmake -S . -B build/3d-release -G Ninja -DCMAKE_BUILD_TYPE=Release -DAMReX_SPACEDIM=3 -DQUOKKA_PYTHON=OFF
+  ninja -C build/3d-release <ProblemName>
+  cd tests && mpirun -np <N> ../build/3d-release/src/problems/<ProblemName>/<ProblemName> ../inputs/<ProblemName>.toml
+  ```
+
+  State whether the bug fails every time; if intermittent, give an approximate failure rate.
 - **Diagnosis**: where in the code the failure appears to originate and what the root cause is. If the root cause is not yet known, say so explicitly.
 - **Proposed fix**: what should change to resolve the issue, and why that approach is correct over alternatives. Omit only if genuinely unknown.
 - **Context**: relevant configuration (build type, dimensionality, compiler, platform) if the bug may be environment-specific.
