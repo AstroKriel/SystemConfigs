@@ -77,7 +77,7 @@ Simulations go under `<fast-storage>/<project>/`. Sim directories are grouped by
 └── tmp/
 ```
 
-`tmp/` is for short-lived diagnostic work: quick test runs, exploratory plots, and throwaway scripts that drive a specific run. Organise by concept and date: `tmp/<concept>/<YYYYMMDD>-<sub-topic>/`. These scripts are not committed; they are ephemeral and often carry hardcoded paths.
+`tmp/` follows the same concept and naming conventions as `~/tmp/` in `workflow/science-project.md`, but on remote systems it lives under `<fast-storage>/<project>/`, not under `~`. Placing it on `home` consumes the small quota and causes usage spikes.
 
 ---
 
