@@ -13,6 +13,14 @@ The routine for keeping the Framework 13 on Arch Linux/X11 up to date, from prep
 
 ## Before updating
 
+**Mirrorlist health:** Before anything else, confirm the mirrorlist has active servers:
+
+```bash
+grep -c '^Server' /etc/pacman.d/mirrorlist
+```
+
+Must return a non-zero count. If it returns 0, the mirrorlist is broken (e.g. replaced by a `pacman-mirrorlist` upgrade); restore from the latest snapper snapshot before proceeding.
+
 **Arch news:** Open `https://archlinux.org/news/` and scan recent posts for `requires manual intervention` or `may require manual intervention`. If a relevant post exists, read it and follow the instructions before proceeding. Pay attention to posts involving:
 
 | Package | What it is |
@@ -29,6 +37,7 @@ The routine for keeping the Framework 13 on Arch Linux/X11 up to date, from prep
 | `sof-firmware` / `alsa-firmware` | Audio firmware. |
 | `fwupd` | Firmware update tool. |
 | `lightdm` | Display manager. |
+| `pambase` | PAM base configuration; changes affect login auth, sudo, and gnome-keyring unlock at login. |
 | `xfce` | Desktop environment. |
 
 **Changelogs and forums:** For hardware-adjacent packages (`linux`, `wireplumber`, `pipewire`, `alsa-ucm-conf`, `alsa-firmware`, `sof-firmware`, `fwupd`), read the Arch package page and upstream release notes. Search the Arch forums and Framework community (`https://community.frame.work`) for the package versions being upgraded plus this hardware (`Framework 13`, `Ryzen AI 300`). Issues frequently appear in the forums before they are documented upstream.
