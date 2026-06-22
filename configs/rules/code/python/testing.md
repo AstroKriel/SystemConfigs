@@ -6,7 +6,9 @@ How to structure and run Python unit and validation tests.
 
 ## Unit Tests (utests)
 
-Unit tests live under `utests/`, mirroring the source structure. Run via pytest. Test files are named `test_<module_name>.py`. Tests are organised into focused classes named after what they test.
+- Live under `utests/`, mirroring the source structure.
+- Run via pytest; test files are named `test_<module_name>.py`.
+- Organised into focused classes named after what they test.
 
 ### TestCase (default)
 
@@ -78,7 +80,8 @@ Private helper functions for building test fixtures use a leading underscore: `_
 
 Validation tests live under `vtests/`, mirroring the source structure. Use them when a unit test is not practical: for example, testing numerical convergence, decomposition accuracy, or integrated behaviour across modules.
 
-Vtests are not pytest-based. Run them via `uv run vtests/run_all.py`. Do not use pytest to run vtests; pytest cannot collect them because vtest classes take `__init__` arguments.
+- Not pytest-based; run via `uv run vtests/run_all.py`.
+- Do not use pytest to run vtests; it cannot collect them because vtest classes take `__init__` arguments.
 
 Each vtest is a standalone script with a `main()` function, discovered and run via `vtests/run_all.py`. Where possible, save visual output (plots, diagrams) alongside the test:
 

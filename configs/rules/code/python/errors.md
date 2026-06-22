@@ -6,7 +6,8 @@ How to handle errors in Python, including which exceptions to raise and how to p
 
 ## Assertions
 
-Use `assert` only for internal invariants that indicate a programming error if violated. Never use `assert` to validate inputs or enforce runtime constraints; use `ensure_*` for those.
+- Use `assert` only for internal invariants that indicate a programming error if violated.
+- Never use `assert` to validate inputs or enforce runtime constraints; use `ensure_*` for those.
 
 ---
 

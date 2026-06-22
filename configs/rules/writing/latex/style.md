@@ -77,7 +77,8 @@ Multi-equation example:
 
 ## Footnotes
 
-Content goes on its own indented line; the closing brace goes on its own line. Never attach a footnote directly to a math expression (`$...$\footnote{}`); the marker reads as an exponent. Rephrase so the marker attaches to a word.
+- Content goes on its own indented line; the closing brace goes on its own line.
+- Never attach directly to a math expression (`$...$\footnote{}`); the marker reads as an exponent. Rephrase so the marker attaches to a word.
 
 ```latex
 \footnote{

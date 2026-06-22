@@ -6,7 +6,8 @@ The routine for keeping the Framework 13 on Arch Linux/X11 up to date, from prep
 
 ## When to update
 
-Update about once a week, preferably when there is time to reboot and check the system afterwards. Avoid starting an update before travel, calls, teaching, or deadlines where a reboot or small fix would be disruptive.
+- Update about once a week, preferably when there is time to reboot and check the system afterwards.
+- Avoid starting before travel, calls, teaching, or deadlines where a reboot or small fix would be disruptive.
 
 ---
 
@@ -57,7 +58,8 @@ Close running browsers and long-lived apps first; upgrading a package while it i
 paru -Syu
 ```
 
-Read the transaction summary before accepting. Stop and inspect if the update wants to remove major system packages, the kernel, the bootloader, or a large number of unrelated packages.
+- Read the transaction summary before accepting.
+- Stop and inspect if the update wants to remove major system packages, the kernel, the bootloader, or a large number of unrelated packages.
 
 ---
 
@@ -87,7 +89,7 @@ Reboot after updates involving any of:
 - `systemd`
 - `mesa`
 
-Also reboot if the system behaves unexpectedly after updating.
+- Also reboot if the system behaves unexpectedly after updating.
 
 ```bash
 systemctl reboot

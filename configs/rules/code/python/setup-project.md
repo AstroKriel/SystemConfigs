@@ -17,7 +17,8 @@ How to set up a Python project, from package manager and `pyproject.toml` throug
 └── utests/  # unit tests
 ```
 
-Keep `scripts/` and `src/<package>/` separate from the start. Scripts are entry points; `src/<package>/` is reusable logic.
+- Keep `scripts/` and `src/<package>/` separate from the start.
+- `scripts/` holds entry points; `src/<package>/` holds reusable logic.
 
 ---
 

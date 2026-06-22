@@ -49,4 +49,5 @@ Cover the following:
 - **Proposed fix**: what should change to resolve the issue, and why that approach is correct over alternatives. Omit only if genuinely unknown.
 - **Context**: relevant configuration (build type, dimensionality, compiler, platform) if the bug may be environment-specific.
 
-Include figures, log output, or error messages where they add information that prose alone cannot convey. Wherever a test result is cited, state the test name and any non-default parameters used.
+- Include figures, log output, or error messages where they add information that prose alone cannot convey.
+- Wherever a test result is cited, state the test name and any non-default parameters used.

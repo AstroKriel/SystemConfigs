@@ -110,7 +110,9 @@ When a codebase is under active development, builds and runs nest one level deep
 - For out-of-source build systems (e.g. CMake), one source checkout is kept and each thread's build tree lives under the thread on `fast-storage`, configured against that source on the thread's branch.
 - For codes where the build is the run directory (compile-time grid or modules baked in per run), each run directory is its own build, grouped by thread.
 
-A single source checkout is on one branch at a time, so a thread's build is valid only while that branch is checked out. A thread's build and runs are deleted once the thread is shelved or merged. A matured project that pins a code version replaces the rolling per-thread builds with one frozen build at the pinned commit.
+- A single source checkout is on one branch at a time; a thread's build is valid only while that branch is checked out.
+- A thread's build and runs are deleted once the thread is shelved or merged.
+- A matured project that pins a code version replaces the rolling per-thread builds with one frozen build at the pinned commit.
 
 ---
 

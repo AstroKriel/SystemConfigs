@@ -8,7 +8,8 @@ How to extract simulation output and diagnose failed Quokka runs.
 
 **Package:** `ww-quokka-sims`
 
-Activate the virtual environment for `ww-quokka-sims` before running any command. The environment path is machine-specific; check `<project-notes>` for the current host.
+- Activate the virtual environment before running any command.
+- The environment path is machine-specific; check `<project-notes>` for the current host.
 
 ---
 

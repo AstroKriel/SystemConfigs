@@ -20,7 +20,9 @@ Small bug fixes and self-contained additions that do not affect other contributo
 
 ## Structure
 
-Open with a paragraph tracing the causal chain: what exists, what follows from it, and why that is a problem. No heading; the problem should be clear from the first sentence. Do not state that something is a problem without also stating the consequence.
+- Open with a paragraph tracing the causal chain: what exists, what follows from it, and why that is a problem.
+- No heading; the problem should be clear from the first sentence.
+- Do not state that something is a problem without also stating the consequence.
 
 The following sections are always expected:
 

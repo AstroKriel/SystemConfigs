@@ -8,9 +8,11 @@ How to write Python docstrings and inline comments.
 
 Prose style follows `~/.rules/writing/docs.md`: short and direct, active voice, no filler words.
 
-Write docstrings for all public functions, methods, classes, and dataclasses. Docstrings are optional for private functions and methods.
+- Write docstrings for all public functions, methods, classes, and dataclasses.
+- Docstrings are optional for private functions and methods.
 
-One-liners have the opening and closing `"""` on the same line. Multi-line docstrings open with `"""` and the text immediately on the first line; the closing `"""` sits on its own line:
+- One-liners: opening and closing `"""` on the same line.
+- Multi-line: `"""` opens with text immediately on the first line; closing `"""` on its own line.
 
 ```python
 """<One-sentence description ending with a period>."""
@@ -28,7 +30,8 @@ One-liners have the opening and closing `"""` on the same line. Multi-line docst
 | Compound behaviour | join related clauses with `;` rather than starting a new sentence or using "and" or "where"; prefer a semicolon-joined one-liner over a multi-line paragraph unless the second clause genuinely requires its own sentence |
 | Second paragraph | add only when the opening sentence leaves something genuinely unclear: edge case behaviour, what triggers a raise, a non-obvious side effect; 2-4 sentences max; never restate what the type annotations already say |
 
-Add a `Parameters ---` section when there are four or more parameters and their constraints are not clear from the type hints alone. Only document what the annotation does not already say:
+- Add a `Parameters ---` section when there are four or more parameters and their constraints are not clear from the type hints alone.
+- Only document what the annotation does not already say.
 
 ```python
 """
