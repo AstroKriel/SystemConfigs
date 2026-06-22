@@ -49,7 +49,9 @@ Scope answers **where** the change is. Granularity depends on how localised the 
 
 ## Granularity
 
-One logical change per commit. Split when changes are independently revertable and target different scopes. Keep together when changes are interdependent or incomplete in isolation.
+- One logical change per commit.
+- Split when changes are independently revertable and target different scopes.
+- Keep together when changes are interdependent or incomplete in isolation.
 
 ---
 

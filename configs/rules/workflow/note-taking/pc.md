@@ -38,15 +38,20 @@ SystemNotes/<machine>/
 | Non-obvious configuration decisions | HPC cluster details (see [`hpc.md`](hpc.md)) |
 | Open and resolved configuration issues | Binding conventions (promote to `~/.rules/`) |
 
-`pending-issues.md` is for issues that are currently open: unresolved problems, known workarounds in place, or configuration gaps. It is a live document; entries are added and removed as issues open and close. Every entry for an active workaround must include a concrete test command under "Next steps" that confirms the workaround is functioning. Without it, there is no defined pass or fail condition for post-update checks.
+### pending-issues.md
 
-`debug-diary/` is retrospective: each file records a resolved issue, what caused it, and how it was fixed. Entries are append-only and are never edited after the fact. When an issue is resolved, remove it from `pending-issues.md` and add a dated entry to `debug-diary/`.
+- Scope: currently open issues; unresolved problems, known workarounds in place, configuration gaps.
+- Live document: entries are added and removed as issues open and close.
+- Every active workaround entry must include a concrete test command under "Next steps" (defines the pass/fail condition for post-update checks).
 
-Every resolution gets a diary entry, including trivial ones that self-resolved upstream. A trivial entry can be brief (symptom, when first noticed, what resolved it, and the date), but it must exist. Without it, a recurrence has no context: no record of the original symptom, no indication of when it disappeared, and no basis for recognising that the same issue has returned.
+### debug-diary/
 
-If forum threads, bug reports, or upstream issues are found during investigation, include their URLs in the diary entry. They confirm the issue is not machine-specific and serve as a reference point if the issue recurs or evolves upstream.
+- Append-only: each file records a resolved issue, its cause, and the fix; never edited after the fact.
+- When an issue resolves: remove it from `pending-issues.md` and add a dated entry here.
+- Every resolution gets an entry, including trivial ones. A trivial entry needs: symptom, when first noticed, what resolved it, and the date.
+- If forum threads, bug reports, or upstream issues were found: include their URLs in the entry (confirms the issue is not machine-specific; reference point if it recurs or evolves upstream).
 
-`notes/` documents what was learned about this machine's subsystems: how they work, why they are configured the way they are, and where that understanding came from. Each file covers one topic area and is updated in place as understanding deepens. Record sources alongside facts: upstream documentation, man pages, forum threads, GitHub issues, and release notes. Knowing where information came from is part of the value; it surfaces which documentation is authoritative for each part of the system, so you know where to look when a related issue arises.
+### notes/
 
 | Belongs | Does not belong |
 |---|---|
@@ -55,9 +60,15 @@ If forum threads, bug reports, or upstream issues are found during investigation
 | Context explaining why a config is the way it is | Per-issue narratives (those go in `debug-diary/`) |
 | Sources: upstream docs, man pages, forums, issues, specs | |
 
-Update a `notes/` file whenever investigation uncovers how a subsystem works, why a config decision was made, or what an upstream change actually means. If the investigation was prompted by a specific issue or upgrade, reference the relevant `debug-diary/` entry or `pending-issues.md` entry at the top of the file. This links the knowledge back to the event that forced it.
+- One file per topic; updated in place as understanding deepens.
+- Record sources alongside facts: upstream docs, man pages, forum threads, GitHub issues, release notes.
+- Update whenever investigation uncovers how a subsystem works, why a config decision was made, or what an upstream change means.
+- If prompted by an issue or upgrade: reference the relevant `debug-diary/` or `pending-issues.md` entry at the top of the file.
 
-To keep `setup.md` reproducible, update it whenever a significant configuration change is made: a new service, a package upgrade that required intervention, or a config change with machine-specific implications. When a machine is retired, add a final `README.md` note marking the retirement date and disposition.
+### setup.md
+
+- Update whenever a significant config change is made: a new service, a package upgrade that required intervention, or a config change with machine-specific implications.
+- When a machine is retired: add a final `README.md` note with the retirement date and disposition.
 
 ### Research reference entry
 
@@ -73,5 +84,4 @@ The `README.md` covers:
 - the machine's role in the research workflow;
 - a pointer to the setup repository;
 - a `## Codes` table (code name, checkout path, role); no remote URLs, which belong in the codebase's own notes.
-
-To keep the reference entry current, update it whenever checkout paths change or the machine's research role changes.
+- update whenever checkout paths change or the machine's research role changes.

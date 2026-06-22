@@ -46,4 +46,5 @@ Wherever a test result is quoted to motivate or support a design choice, include
 
 ## After posting
 
-Notify on Slack with a link to the discussion. Wait for feedback before starting implementation.
+- Notify on Slack with a link to the discussion.
+- Wait for feedback before starting implementation.

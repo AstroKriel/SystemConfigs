@@ -32,7 +32,9 @@ The GitHub PR template provides three top-level sections:
 
 ## Description
 
-Write in first person. Cover what changed, why, and the reasoning behind any non-obvious design choices: what you tried, what you found, and what tradeoffs you made. Reviewers benefit from understanding the judgment, not just the outcome.
+- Write in first person.
+- Cover what changed, why, and the reasoning behind any non-obvious design choices: what you tried, what you found, and what tradeoffs you made.
+- Reviewers benefit from understanding the judgment, not just the outcome.
 
 Use **bold sub-headers** to break up longer descriptions. Common sub-headers:
 
@@ -42,23 +44,22 @@ Use **bold sub-headers** to break up longer descriptions. Common sub-headers:
 | **Energy conservation.** | tests confirming energy is transferred correctly between components |
 | **Known issues.** | draft PRs: items that must be resolved before the PR is ready for review |
 
-Wherever a test result is cited, include a figure. The caption or surrounding prose must state the test name, any non-default parameters, and the resolution used.
-
-Equations follow the notation rules in [`writing/markdown.md`](../../../writing/markdown.md).
+- Wherever a test result is cited, include a figure; the caption or surrounding prose must state the test name, any non-default parameters, and the resolution used.
+- Equations follow the notation rules in [`writing/markdown.md`](../../../writing/markdown.md).
 
 ---
 
 ## Draft vs ready
 
-Open as a draft when the implementation is complete enough to share but has known issues to resolve before review. Use a **Known issues.** sub-header in the description to list them explicitly.
-
-Convert to ready for review once all known issues are resolved and the checklist is complete.
+- Open as a draft when the implementation is complete enough to share but has known issues to resolve before review; use a **Known issues.** sub-header in the description to list them explicitly.
+- Convert to ready for review once all known issues are resolved and the checklist is complete.
 
 ---
 
 ## Related issues
 
-Always link both the discussion or issue this PR implements and any discussions or issues this PR unblocks or enables. Explain the relationship in one sentence each.
+- Link the discussion or issue this PR implements and any discussions or issues this PR unblocks or enables.
+- Explain the relationship in one sentence each.
 
 ```
 - #<N>: this PR implements the proposal.
@@ -77,6 +78,5 @@ The repo template checklist:
 - [ ] I have added tests for any new physics that this PR adds to the code.
 - [ ] *(For quokka-astro org members)* I have manually triggered the GPU tests with the magic comment `/azp run`.
 
-The tests item applies when the PR adds a new physical process. It does not apply to infrastructure or harness changes.
-
-After opening the PR, post `/azp run` as a comment to trigger the GPU test pipeline.
+- The tests item applies when the PR adds a new physical process; not to infrastructure or harness changes.
+- After opening the PR, post `/azp run` as a comment to trigger the GPU test pipeline.

@@ -127,7 +127,9 @@ cd tests && ../build/3d-release/src/problems/<ProblemName>/<ProblemName> ../inpu
 
 ### Prefer raw tools over the wrapper
 
-Drive `cmake`, `ninja`, and the compiled binary directly rather than through `scripts/bash/quokka` or CTest; the wrapper and harness encode other contributors' tolerances and plumbing. Reserve the wrapper for listing problems and bulk test runs. Do not go below CMake to hand-invoke the compiler; the build system and its required flags are not optional.
+- Drive `cmake`, `ninja`, and the compiled binary directly rather than through `scripts/bash/quokka` or CTest; the wrapper and harness encode other contributors' tolerances and plumbing.
+- Reserve the wrapper for listing problems and bulk test runs.
+- Do not go below CMake to hand-invoke the compiler; the build system and its required flags are not optional.
 
 ---
 

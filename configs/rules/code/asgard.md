@@ -16,9 +16,8 @@ README files in `Asgard/` default to project-local workflow notes; `~/.rules/wri
 
 ## Data Representation
 
-Simulation interface layers preserve the representation of the data as read from disk. If the source data are `float32`, loaders return `float32` fields by default rather than silently casting/promoting to `float64`.
-
-Numerical promotion belongs in the computation layer (`jormi/`). When an operation requires higher precision for correctness or stability, the compute-side implementation converts or promotes the relevant arrays there.
+- Interface layers preserve the source representation: `float32` data returns as `float32`, not silently promoted to `float64`.
+- Numerical promotion belongs in the computation layer (`jormi/`); the compute-side implementation converts or promotes arrays when an operation requires higher precision.
 
 ---
 
@@ -51,11 +50,9 @@ Once a project has matured and the dependency has stabilised, personal libraries
 
 ## Terminal Feedback
 
-User-facing terminal feedback in Asgard projects uses `jormi.ww_io.manage_log`. This covers actions, progress messages, warnings, summaries, skipped work, created/saved files, validation-script pass/fail status, and other operational messages intended for a person reading the terminal.
-
-Pure compute helpers, low-level transformations, and routine internal state do not use `manage_log`; they return values or raise exceptions. Raised exceptions are not replaced with logging unless the function is responsible for handling the error and continuing.
-
-Direct terminal output is limited to: the logger implementation itself, generated shell-script content, and raw child-process output streamed by a subprocess helper. `print()` is not used for user-facing feedback; functions accept a `verbose` flag when a message is optional.
+- User-facing terminal feedback uses `jormi.ww_io.manage_log`: actions, progress messages, warnings, summaries, skipped work, created/saved files, validation-script pass/fail status, and other operational messages intended for a person reading the terminal.
+- Pure compute helpers, low-level transformations, and routine internal state do not use `manage_log`; they return values or raise exceptions. Raised exceptions are not replaced with logging unless the function is responsible for handling the error and continuing.
+- Direct terminal output is limited to: the logger implementation itself, generated shell-script content, and raw child-process output streamed by a subprocess helper. `print()` is not used for user-facing feedback; functions accept a `verbose` flag when a message is optional.
 
 ### Log functions
 

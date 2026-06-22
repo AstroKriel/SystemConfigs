@@ -38,7 +38,8 @@ Use short aliases that match the name used elsewhere: cluster notes, job scripts
 
 ## Agent Forwarding
 
-Enable agent forwarding only on hosts that need it (typically a login node that must authenticate to a downstream service). Add it per host, not globally.
+- Enable only on hosts that need it (typically a login node that must authenticate to a downstream service).
+- Add it per host, not globally.
 
 ```
 Host <login-node>
@@ -53,4 +54,7 @@ Host <login-node>
 
 ## Key Records
 
-After creating a key, save a record containing the public key, the `ssh-keygen` command used, and the `~/.ssh/config` block for that connection. Store records in the machine setup repo. These are the reference when auditing which services a device has access to.
+After creating a key:
+
+- Save a record containing the public key, the `ssh-keygen` command used, and the `~/.ssh/config` block for that connection.
+- Store records in the machine setup repo; they are the reference when auditing which services a device has access to.

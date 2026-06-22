@@ -116,4 +116,5 @@ A single source checkout is on one branch at a time, so a thread's build is vali
 
 ## Data Transfer
 
-Transfer only reduced data to a local machine; never transfer raw output. Use `rsync` and preserve directory structure.
+- Transfer only reduced data to a local machine; never transfer raw output.
+- Use `rsync` and preserve directory structure.

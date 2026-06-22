@@ -79,7 +79,7 @@ For `/tmp/`, add a user namespace first: `/tmp/<username>/<concept>/`.
 
 **Naming the concept folder:** ask "what is this work about?" The answer, slugified, is the concept name. If the answer is a named entity in the Asgard ecosystem (a tool or a mimir project), use its canonical slug. If the answer is an activity with no canonical name, coin a short lowercase descriptor. Named entities take priority over descriptors.
 
-Review and prune `~/tmp/` by concept every three months.
+- Review and prune `~/tmp/` by concept every three months.
 
 ---
 
@@ -100,7 +100,9 @@ ww-<code>-sims/
 └── utests/
 ```
 
-`load.py` reads files from disk and returns `jormi` field objects. `meta.py` extracts run metadata: grid, units, simulation parameters. No array computation goes in the interface layer; all math belongs in `jormi/ww_arrays/`.
+- `load.py` reads files from disk and returns `jormi` field objects.
+- `meta.py` extracts run metadata: grid, units, simulation parameters.
+- No array computation goes in the interface layer; all math belongs in `jormi/ww_arrays/`.
 
 Reference the new package as an editable install during development. See [`../code/asgard.md`](../code/asgard.md) for the `pyproject.toml` pattern.
 
