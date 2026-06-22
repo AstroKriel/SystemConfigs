@@ -1,6 +1,6 @@
 # Quokka: MHD Configuration
 
-How to configure Quokka for MHD simulations, covering TOML parameters, EMF schemes, and MPI decomposition.
+How to configure Quokka for MHD simulations, covering TOML parameters, electromotive force (EMF) schemes, and MPI decomposition.
 
 ## Build requirement
 
@@ -18,7 +18,7 @@ AMReX exposes many parameters and often multiple ways to achieve the same thing.
 |---|---|---|
 | `geometry.prob_lo` | float array | Lower corner of the domain per dimension. |
 | `geometry.prob_hi` | float array | Upper corner of the domain per dimension. Cell size follows: `dx = (prob_hi - prob_lo) / n_cell`. |
-| `quokka.bc` | `"periodic"`, `"reflecting"` | Required. Boundary conditions for all fields. Reflecting BC support for magnetic fields is incomplete; use periodic for MHD tests. |
+| `quokka.bc` | `"periodic"`, `"reflecting"` | Required. Boundary conditions for all fields. Reflecting boundary-condition support for magnetic fields is incomplete; use periodic for MHD tests. |
 
 **`amr`:**
 
@@ -36,8 +36,8 @@ AMReX exposes many parameters and often multiple ways to achieve the same thing.
 
 | Parameter | Values | Notes |
 |---|---|---|
-| `hydro.rk_integrator_order` | `2` | RK2 time integration. Standard for all MHD runs. |
-| `hydro.reconstruction_order` | `1` (PCM), `2` (PLM), `3` (PPM), `5` (PPM-EP) | Spatial reconstruction order for hydro. |
+| `hydro.rk_integrator_order` | `2` | Second-order Runge-Kutta (RK2) time integration. Standard for all MHD runs. |
+| `hydro.reconstruction_order` | `1`, `2`, `3`, `5` | Spatial reconstruction order for hydro; see [Reconstruction schemes](#reconstruction-schemes). |
 | `hydro.use_dual_energy` | `0` | Disable for MHD. |
 | `hydro.artificial_viscosity_coefficient` | float, optional | Scalar viscosity coefficient; adds diffusive flux to momentum equations. Use to damp post-shock oscillations. |
 
@@ -47,7 +47,7 @@ AMReX exposes many parameters and often multiple ways to achieve the same thing.
 |---|---|---|
 | `mhd.emf_compute_scheme` | `"FelkerStone2017"`, `"Balsara2025"`, `"Quokka2026"` | How edge-centred EMFs are computed from face-centred fluxes. |
 | `mhd.emf_averaging_scheme` | `"LondrilloDelZanna2004"`, `"Balsara2025"` | How EMFs are averaged at shared edges between adjacent faces. |
-| `mhd.emf_reconstruction_order` | `1` (PCM), `2` (PLM), `3` (PPM), `5` (PPM-EP) | Spatial reconstruction order for MHD. Must match `hydro.reconstruction_order` in convergence tests. |
+| `mhd.emf_reconstruction_order` | `1`, `2`, `3`, `5` | Spatial reconstruction order for MHD; see [Reconstruction schemes](#reconstruction-schemes). Must match `hydro.reconstruction_order` in convergence tests. |
 | `mhd.resistivity` | float, default `0` | Physical resistivity; enforces parabolic timestep limit `dt < dx^2 / (2 * eta)`. |
 
 ---
@@ -69,6 +69,19 @@ All three compute schemes are stable and comparable in accuracy; `Quokka2026` is
 
 ---
 
+## Reconstruction schemes
+
+Spatial reconstruction (interpolation) schemes, lowest to highest order. Set via `hydro.reconstruction_order` and `mhd.emf_reconstruction_order`.
+
+| Value | Scheme | Reconstruction | Notes |
+|---|---|---|---|
+| `1` | PCM | piecewise-constant | Most diffusive. |
+| `2` | PLM | piecewise-linear | |
+| `3` | PPM | piecewise-parabolic | Can lose convergence at high resolution on smooth flows (the limiter clips smooth extrema). |
+| `5` | PPM-EP | piecewise-parabolic, extremum-preserving | Most accurate; limiter preserves smooth extrema, so convergence holds for smooth flows. |
+
+---
+
 ## Resistivity
 
 Enable with `mhd.resistivity = <eta>`. The parabolic timestep limit is enforced automatically.
@@ -76,7 +89,7 @@ Enable with `mhd.resistivity = <eta>`. The parabolic timestep limit is enforced 
 | Rule | |
 |---|---|
 | No resistivity in Richardson convergence tests | `FastWaveConvergence` and `SlowWaveConvergence` abort if `mhd.resistivity != 0`. Resistivity validation uses `AlfvenWaveLinear`. |
-| Reference input | `inputs/AlfvenWaveLinear_resistive.toml` (eta=0.01, grid-aligned, FS17+LD04). |
+| Reference input | `inputs/AlfvenWaveLinear_resistive.toml` (eta=0.01, grid-aligned, FelkerStone2017 + LondrilloDelZanna2004). |
 | Analytic reference | Amplitude decays as `exp(-gamma*t)` where `gamma = eta*k^2/2`. Velocity lags B by `phi = arctan(gamma/omega_real)`. |
 
 ---
