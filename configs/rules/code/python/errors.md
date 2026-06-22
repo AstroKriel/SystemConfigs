@@ -35,7 +35,7 @@ How to handle errors in Python, including which exceptions to raise and how to p
 | `:` | narrows scope; each colon introduces a more specific detail: `"config error: output_dir: path does not exist."` |
 | `;` | joins a contrasting clause (`got`, `searched in`, `found N`): `"must be positive; got -1."` |
 | Chaining | wrap caught exceptions with `raise ... from error`; the chain carries the why, don't repeat it in the message |
-| Soft errors | accept `raise_error: bool = True`; raise when `True`, log/warn when `False` |
+| Soft errors | accept `raise_error: bool = True`; raise when `True`, log/warn when `False`; use only at high-level entry points where a caller may want to continue past a single failure; low-level helpers always raise unconditionally |
 
 | Message type | Pattern |
 |---|---|
