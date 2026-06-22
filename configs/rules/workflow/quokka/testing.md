@@ -82,3 +82,5 @@ cd tests && mpirun -n <N> ../build/3d-release/src/problems/<ProblemName>/<Proble
 | MPI decomposition | Set `amr.blocking_factor_x = 16` and `amr.max_grid_size = 128`. |
 | Rank count | Size `--ntasks` to the largest resolution in the sweep. At nx=512 on a single rank, the sweep takes hours; use at least 16 ranks. `max_grid_size=32` gives 16 boxes at nx=512 and is compatible with `blocking_factor_x=16`. |
 | TOML overrides | Set `setup.machine_precision_target = 0` to disable early exit and run the full resolution sweep. Set `setup.nx_max = <N>` to control the maximum resolution (default is 128; set to 2048 for paper runs). |
+
+> **Note:** `max_grid_size = 128` gives one box of `128^3` cells per GPU. Scaling tests show strong scaling efficiency drops below 70% when cells per GPU fall below `128^3`; this is the minimum safe box size. `blocking_factor_x = 16` ensures grid dimensions are multiples of 16, satisfying GPU memory alignment requirements.
