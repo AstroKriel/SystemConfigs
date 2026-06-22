@@ -52,6 +52,16 @@ Always use strong, specific verb prefixes. Avoid weak or generic leading words t
 | `resolve_*` | disambiguation between options |
 | `extract_*` | pull data from a larger structure |
 
+### Validation trio
+
+`as_*`, `ensure_*`, and `check_*` each validate; they differ in return type and failure behaviour:
+
+| Prefix | Returns | On failure |
+|---|---|---|
+| `as_*` | converted/canonical value | always raises |
+| `ensure_*` | `None` | always raises |
+| `check_*` | `bool` | returns `False`; may optionally raise |
+
 | Rule | Detail |
 |---|---|
 | Module private helpers | leading underscore: `_<verb>_<noun>()` |
