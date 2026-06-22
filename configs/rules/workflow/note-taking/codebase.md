@@ -1,6 +1,6 @@
 # Codebase Notes
 
-Notes on tools and codebases in active use; each lives under `<project-notes>/codebases/`.
+Notes on tools and codebases in active use; each lives under `<project-notes>/codebases/<code>/`.
 
 ---
 
@@ -10,7 +10,7 @@ A code note covers a tool, library, or codebase that is used regularly but not o
 
 This is distinct from project notes: a code note is about the tool itself, not about a project that happens to use it.
 
-Location: `<project-notes>/codebases/<code>/`
+**A tool you also develop.** When you own or primarily develop the code, its investigations and dated behaviour already live in the project notes, so the codebase note legitimately shrinks to a router: `README.md` plus file-location orientation pointing at the project notes and `~/.rules/`. With no pinned release, record a rolling baseline (branch + commit + date) in `log.md` rather than a version in the README.
 
 ---
 
@@ -24,9 +24,11 @@ codebases/<code>/
 └── threads/   # focused investigations (bug hunts, validations); same shape as project threads
 ```
 
-The `README.md` covers the essential facts: what the code does, which version is current, and the canonical invocation. A new user of the notes should be able to orient quickly from the README alone.
+The `README.md` orients a new reader on its own. It is the only required file; `log.md`, `recipes/`, and `threads/` are created when first needed. Keep the README to orientation, and route the rest:
 
-A `threads/` subfolder holds focused investigations into the code's behaviour (a bug hunt, a workaround, a validation), following the project `threads/` shape in [`project.md`](project.md): one subfolder per thread whose `README.md` opens with the bottom line, with any durable conclusion promoted into the code `README.md` or `log.md`.
+- a dated discovery goes in `log.md`;
+- a reusable invocation or configuration snippet goes in `recipes/`;
+- an investigation goes in `threads/` (the project thread shape in [`project.md`](project.md)), with any durable conclusion promoted back into the code `README.md` or `log.md`.
 
 ---
 
@@ -37,12 +39,11 @@ A `threads/` subfolder holds focused investigations into the code's behaviour (a
 | Installation and environment setup | Source code for the tool itself |
 | Known bugs and workarounds | Results produced by running the tool |
 | Invocation patterns and flags | Project-specific analysis using the tool |
-| Version-specific behaviour | Binding conventions (promote to `~/.rules/`) |
-
-When a workaround solidifies into a binding convention, promote it to the appropriate file in `~/.rules/code/`.
+| Version-specific behaviour | Binding conventions (promote to `~/.rules/code/`) |
 
 ---
 
 ## Keeping notes current
 
-Update `README.md` when the installed version changes or the canonical invocation changes. Add a log entry for any non-obvious behaviour discovered during use, even if it seems minor: future debugging often traces back to behaviour first noticed in passing.
+- Update `README.md` when the installed version or the canonical invocation changes.
+- Add a log entry for any non-obvious behaviour discovered in use, even minor: future debugging often traces back to behaviour first noticed in passing.

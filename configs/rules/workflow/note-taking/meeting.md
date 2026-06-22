@@ -8,8 +8,6 @@ Notes for recurring group meetings and ad-hoc discussions; stored under `<projec
 
 A meeting note captures what was discussed, decided, or assigned in a single meeting or a recurring series. It is the written record of the meeting, not a task list or a minutes document.
 
-Location: `<project-notes>/meetings/`
-
 ---
 
 ## Structure
@@ -23,7 +21,7 @@ meetings/
     └── YYYY-MM-DD-<topic>.md  # one file per meeting
 ```
 
-For recurring series, the `README.md` is the persistent reference: who attends, how often, and what the group is for. Individual session files are append-only records.
+For recurring series, the `README.md` is the persistent reference; the session files are append-only records.
 
 ---
 

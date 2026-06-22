@@ -66,6 +66,12 @@ To keep `setup.md` reproducible, update it whenever a significant configuration 
 └── README.md  # hardware summary, role, and code checkouts
 ```
 
-The `README.md` covers: machine name and OS, a hardware summary table, the machine's role in the research workflow, a pointer to the setup repository, and a `## Codes` table (code name, checkout path, role). Do not repeat remote URLs here; those belong in the codebase's own notes.
+The `README.md` covers:
+
+- machine name and OS;
+- a hardware summary table;
+- the machine's role in the research workflow;
+- a pointer to the setup repository;
+- a `## Codes` table (code name, checkout path, role); no remote URLs, which belong in the codebase's own notes.
 
 To keep the reference entry current, update it whenever checkout paths change or the machine's research role changes.

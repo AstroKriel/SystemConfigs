@@ -24,7 +24,7 @@ Covered by this file:
 Start with just `README.md`. Add files only as the project grows. Two guiding principles:
 
 - The entry point for any folder is always `README.md`.
-- A file splits into a folder of the same name when its content spans multiple domains or grows too large.
+- A file splits into a folder of the same name when its content spans multiple domains or grows too large (the top rung of the structure ladder in [`writing/markdown.md`](../../writing/markdown.md)).
 
 ```text
 <paper>/
@@ -40,17 +40,28 @@ Start with just `README.md`. Add files only as the project grows. Two guiding pr
 
 The README is the entry point. It should orient anyone landing cold: what the project is, where to find things, and where to look for supporting context. For compute-heavy projects it includes three standard sections:
 
-- `## Context`: relative-path pointers to the HPC notes, codebase notes, and rules that the project depends on. Use relative paths for anything inside `<project-notes>/`; use `~/.rules/<path>` for rules. Do not use absolute machine paths.
+- `## Context`: pointers to the HPC notes, codebase notes, and rules that the project depends on. For anything inside `<project-notes>/`, write the path root-relative as `<project-notes>/<path>` (not relative to the file the pointer sits in); use `~/.rules/<path>` for rules. Do not use absolute machine paths.
 - `## Machines`: one row per machine, with its role in the project (e.g. which runs go where).
 - The task and thread index sections that link to `tasks/` and `threads/`.
 
 ### threads/
 
-Each thread is a subfolder containing `README.md` and, if needed, `figures/`, and is a standalone investigation that can be shared on its own. A thread does not inherit context from the rest of `<project-notes>`: it states any background the reader needs, and references to other threads are made by folder name in backticks (e.g. `<thread-name>/`), not by relative path, so that the reference remains valid if the thread is later archived. The `README.md` opens with `**Opened:**` and, once settled, `**Resolved:**` dates, then states the bottom line (the resolution once settled, the open question while active); for an investigation, it then tells how the finding was reached as a deduction story, the observations and what each one ruled in or out, leading to the conclusion. Resolved threads move to `archived/`; update the index entry to reflect the resolved status and date. Figures that are not tied to a thread belong in the project repo, not `<project-notes>`.
+Each thread is a standalone investigation that can be shared on its own:
+
+- it is a subfolder with `README.md` and, if needed, `figures/`, `analysis/`, and a minimal `reproducer/` (config snippets or fixtures, never source or run results);
+- if it has analysis scripts, it carries a self-contained `uv`-managed environment (`pyproject.toml` + `uv.lock`, with `.venv/` gitignored) so they run via `uv run`; shared libraries (e.g. `jormi`) are pinned to a git commit, never a local path, so the environment reconstructs wherever the thread is shared;
+- it inherits no context from the rest of `<project-notes>`: it states any background the reader needs, and references other threads by folder name in backticks (e.g. `<thread-name>/`), not by relative path, so the reference survives archiving;
+- its `README.md` opens with `**Opened:**` and, once settled, `**Resolved:**` dates, then the bottom line (the resolution once settled, the open question while active); for an investigation, it then tells how the finding was reached as a deduction story, the observations and what each one ruled in or out;
+- resolved threads move to `archived/`, with the index entry updated to the resolved status and date; a conclusion carried out of a thread must not be stated more broadly than the thread established.
+
+Figures not tied to a thread belong in the project repo, not `<project-notes>`.
 
 ### log/
 
-The log is an append-only session trail. Each file covers one session (named `YYYY-MM-DD.md`) and is a snapshot of what was understood at that moment. Notes and threads evolve over time; the log does not. Some duplication between the log and notes is expected and acceptable: if a finding first surfaces in a log entry, it belongs there even if it later appears in notes or threads. Omit stable reference material (parameters, storage paths, naming conventions); that belongs in `notes/`.
+The log is an append-only session trail: each file (`YYYY-MM-DD.md`) is a snapshot of one session's understanding at that moment. Notes and threads evolve; the log does not.
+
+- Some duplication with notes is expected: if a finding first surfaces in a log entry, it belongs there even if it later appears in notes or threads.
+- Omit stable reference material (parameters, storage paths, naming conventions); that belongs in `notes/`.
 
 ---
 
