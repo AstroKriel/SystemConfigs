@@ -114,6 +114,7 @@ When code, comments, and docstrings use mathematical notation, keep naming align
 | Prefer | `<symbol>_<label>`, `<operation>_<quantity>`, `<symbol>_<label>_<qualifier>` |
 | Avoid | `<symbol><label>`, `<operation><quantity>`, `<symbol><label><qualifier>` |
 | Scope | apply to variable names, comments, docstrings, and user-facing labels; preserve established public labels |
+| Representation suffix | in dynamic-typed code, the name must carry what a static type would; append the container or representation type after the quantity name: `<quantity>_<representation>` |
 
 ### Field Identifiers (`field_name`)
 

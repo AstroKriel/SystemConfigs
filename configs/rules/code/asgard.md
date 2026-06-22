@@ -21,19 +21,6 @@ README files in `Asgard/` default to project-local workflow notes; `~/.rules/wri
 
 ---
 
-## Variable Naming
-
-When holding jormi `Field` objects or plain arrays, suffix the physics name to show the container type:
-
-| Suffix | Container | Example |
-|---|---|---|
-| `_sarray` | scalar NumPy array | `density_sarray` |
-| `_varray` | vector NumPy array | `velocity_varray` |
-| `_sfield` | jormi scalar `Field` | `density_sfield` |
-| `_vfield` | jormi vector `Field` | `velocity_vfield` |
-
----
-
 ## Imports
 
 Asgard projects extend the standard import order with two additional library groups, placed based on how the dependency is referenced:
