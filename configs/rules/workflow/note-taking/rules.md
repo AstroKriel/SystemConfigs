@@ -34,6 +34,7 @@ A rule belongs in `~/.rules/` when it is a binding convention: it applies across
 | Commit message format | Status of an ongoing investigation |
 | Agent collaboration modes | HPC machine hardware specs |
 | File and folder naming conventions | Lessons learned from a specific simulation run |
+| Which tool or library to use and the non-obvious constraints | API documentation: which function to call, which arguments to pass; read the library instead |
 
 When in doubt: a rule answers "what is the convention?" A note answers "what is known?". See `README.md` in this bundle for the full decision rubric.
 
