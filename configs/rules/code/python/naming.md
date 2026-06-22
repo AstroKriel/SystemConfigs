@@ -105,17 +105,6 @@ When code, comments, and docstrings use mathematical notation, keep naming align
 | Avoid | `<symbol><label>`, `<operation><quantity>`, `<symbol><label><qualifier>` |
 | Scope | apply to variable names, comments, docstrings, and user-facing labels; preserve established public labels |
 
-### Variable Type Suffixes
-
-Suffix variable names to indicate the container type when holding physics data:
-
-| Suffix | Container | Example |
-|---|---|---|
-| `_sfield` | jormi scalar `Field` | `density_sfield` |
-| `_vfield` | jormi vector `Field` | `velocity_vfield` |
-| `_sarray` | untyped scalar NumPy array | `density_sarray` |
-| `_varray` | untyped vector NumPy array | `velocity_varray` |
-
 ### Field Identifiers (`field_name`)
 
 The `field_name` string on `Field` objects is a plain-text snake_case identifier, not a LaTeX expression. Three rules cover most cases:
