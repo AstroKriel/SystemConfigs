@@ -41,6 +41,8 @@ Directives are scheduler-specific (SLURM uses `#SBATCH`, PBS uses `#PBS`); check
 
 **Validate before chaining:** Before submitting a build-then-run dependency chain (`sbatch --dependency=afterok:$BUILD_ID`), run the build step once in a short interactive or devel allocation first. A failing build marks all downstream jobs as `DependencyNeverSatisfied` with no diagnostic; the queue shows the symptom, not the cause, and jobs sit there burning wait time.
 
+**Short test job before production at untested scale:** When the cluster's short or interactive queue runs ahead of the production queue, use a short test job (~100 steps) to validate an untested resolution or node count before tying up a long-queue slot. Check the application's startup output for the expected resource counts (MPI ranks, GPU devices); a misconfigured allocation can let the job start and run silently wrong.
+
 ---
 
 ## Module Architecture
