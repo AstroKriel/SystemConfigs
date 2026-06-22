@@ -37,3 +37,9 @@ git_helpers show-diff-committed --path <file>
 ```
 
 For each file, make sure you understand what changed and why, that no unintended changes are present, and that all callers or dependents of changed code were updated. Move to the next file only once this is clear.
+
+---
+
+## Before pushing
+
+If the repository defines pre-commit, format, or lint hooks, run them before pushing and resolve what they report. Matching CI locally avoids a push-fix-push round-trip, and the hooks catch mechanical issues the file-by-file review is not meant to (formatting, leftover merge-conflict markers, malformed config files). The invocation is repository-specific; find it in the repository's own docs or config.
