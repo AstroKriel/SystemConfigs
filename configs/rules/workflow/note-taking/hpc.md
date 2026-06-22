@@ -40,6 +40,12 @@ Separate code checkout locations from build configuration. Use a `## Codes` sect
 
 ---
 
+## Citing sources
+
+Every non-obvious factual claim should carry its source: a link for web-sourced facts, or the command used to verify for machine-checked facts (e.g. `(from: \`<command>\`)`). A single attribution at the section or table level is sufficient when all entries share the same source. A command citation is more useful than a date: it tells the reader how to re-verify, not just when someone last checked.
+
+---
+
 ## Keeping notes current
 
 Update `README.md` when login details, storage paths, or scheduler configuration change. Add a log entry for outages, unexpected queue behaviour, or environment changes that affected a run. Use `tasks.md` for open setup and documentation items.
