@@ -89,7 +89,7 @@ def generate_index(*, dry_run: bool) -> None:
         if Path(relative_path).name == "README.md":
             continue
         title, description = _extract_entry(source_path)
-        heading = f"## `{relative_path}`" + (f": {title}" if title else "")
+        heading = f"## [`{relative_path}`]({relative_path})" + (f": {title}" if title else "")
         entries.append(f"{heading}\n\n{description}\n")
     ## assemble and write index
     content = _HEADER + "\n".join(entries)
