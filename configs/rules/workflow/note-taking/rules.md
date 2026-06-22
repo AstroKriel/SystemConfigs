@@ -65,7 +65,7 @@ When in doubt: a rule answers "what is the convention?" A note answers "what is 
 
 ## Promoting a finding
 
-A finding in the notes system becomes a rule when it can be stated as "always X" or "never Y" and applies to future work, not just to the instance that produced it.
+A finding in the notes system becomes a rule when it represents a stable convention you would apply again in future work, not just to the instance that produced it. Phrase it prescriptively, but do not force it into a binary: a convention that applies in most contexts is still worth capturing.
 
 To promote:
 
