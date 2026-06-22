@@ -18,8 +18,9 @@ Production and campaign machines are a separate category, not a testing tier.
 
 ## Before pushing
 
-| Rule | |
+| Rule | Detail |
 |---|---|
+| Always run with MPI | Always prefix the executable with `mpirun -n <N>`, where `<N>` is the core count for the current machine (see machine notes). Running single-proc inflates wall time by the full rank count and defeats the time budget. |
 | Test the changed-area | A problem that exercises the modified code. For MHD changes, `SlowWaveConvergence` is the primary correctness probe (compressive; couples all MHD modes; most sensitive to solver defects). `AlfvenWaveLinearConvergence` is a quicker smoke check and the vehicle for induction/resistivity validation. |
 | Test unrelated-areas | A problem outside the modified code (`HydroBlast3D` or `RadMarshak` for MHD changes); confirms no unintended breakage elsewhere. |
 | Test on CPU and GPU | Run the pre-push tests on both a CPU build and a GPU build before opening a PR. This is mandatory for any change that touches device code (flux, reconstruction, electromotive force [EMF], Riemann, or time-stepping kernels): changes may pass on CPU, but fail on GPU through lambda-capture errors, managed-memory races, or device-side asserts, so CPU-only validation is insufficient whenever the change could affect GPU execution. The GPU build belongs to the `cluster` tier when the `local` machine has no usable GPU. |
@@ -43,7 +44,7 @@ General principle: [`workflow/git/review-branch.md`](../git/review-branch.md).
 
 ## Solver-path changes
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Full smoke-test before commit | Any change to a flux, reconstruction, EMF, or Riemann solver path must clear the full MHD smoke-test set (`SlowWaveConvergence`, `BrioWuShockTube`, `OrszagTang`) before being committed. |
 | No speculative commits | Do not commit a solver change as a hypothesis to test. Run the tests first, then commit only a change that demonstrably improves the target metric without regressing other tests. Revert immediately if it does not help. |
@@ -62,14 +63,19 @@ Run each with:
 
 ```bash
 ninja -C build/3d-release <ProblemName>
-cd tests && ../build/3d-release/src/problems/<ProblemName>/<ProblemName> ../inputs/<ProblemName>.toml
+cd tests && mpirun -n <N> ../build/3d-release/src/problems/<ProblemName>/<ProblemName> ../inputs/<ProblemName>.toml
 ```
+
+**Tier-based domain scaling:** Never change `stop_time`; adjust `n_cell` only. Collapse dimensions that are not being resolved to 8 cells. Scale active-dimension resolution to the compute tier:
+
+- `local`: 64 cells in active dims. `OrszagTang` becomes `64x64x8` (~3 min; nx^3 scaling from the reference 128^2 run of ~20 min). `SlowWaveConvergence` caps the sweep at `setup.nx_max=128`.
+- `cluster`: reference `n_cell` from the table above.
 
 ---
 
 ## Convergence tests
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Correctness gate | The `*Convergence` problems are the only tests that fail the exit code when the solver is wrong. Treat a nonzero exit as a real regression, not flakiness. |
 | No resistivity | `FastWaveConvergence` and `SlowWaveConvergence` abort if `mhd.resistivity != 0`. |

@@ -17,7 +17,7 @@ set -euo pipefail
 
 ## Variables
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Configurable state | `UPPER_CASE`; placed at the top of the script before any logic |
 | Internal variables | `lower_case`; derived values, loop variables, local paths |
@@ -39,7 +39,7 @@ cd "$SCRIPT_DIR"
 
 ## Comments and Sections
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Standalone marker | `##` |
 | Inline marker | `#`, two spaces between code and marker |
@@ -51,7 +51,7 @@ cd "$SCRIPT_DIR"
 
 ## Terminal Output
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Case | lower case throughout |
 | Errors | `echo "error: <message>"` |

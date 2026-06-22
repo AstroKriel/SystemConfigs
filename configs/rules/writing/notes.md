@@ -8,7 +8,7 @@ Style for writing notes on the user's behalf, from project logs and meeting note
 
 When the user dictates or describes something to be recorded, do not transcribe literally. Expand shorthand and informal language to its full meaning in context. The notes should read as if written by someone with full knowledge of the project, not as a transcript of what was said.
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Expand shorthand | resolve abbreviations and informal shorthand using project context; e.g. expand a `<short-tag>` to the full `<project-or-feature-name>` it refers to |
 | Natural language | write in complete, articulate sentences; do not carry over clipped phrasing from the user's input |
@@ -21,7 +21,7 @@ When the user dictates or describes something to be recorded, do not transcribe 
 
 Notes are written for a reader who picks them up cold, without the author present: a collaborator continuing the work, or yourself months later. The reader did not live through the work, so the note carries them through it rather than assuming the context that prompted it.
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Opening | open with the situation the reader is in (e.g. "when saving spectra ..."), not the abstract subject |
 | Terminology | use the field or tool's own terms (e.g. `quantity`, `saving`); do not coin shorthand a fresh reader would not recognise |

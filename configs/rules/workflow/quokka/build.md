@@ -16,7 +16,7 @@ Quokka build and run workflow on local and hpc systems.
 
 ## Build Directories
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Always start cold | A build tree is only valid for the session, node architecture, and branch that created it. Delete `CMakeCache.txt` and reconfigure when resuming work in a new session, switching branches, or moving to a different node type. |
 | One config per tree | Never share a build tree between configurations. Name each tree after its configuration, e.g. `build/3d-release`, `build/3d-debug`. |
@@ -55,7 +55,7 @@ cmake -S "$SRC" -B "$BUILD" -G Ninja \
 
 Use git worktrees to work on multiple feature branches in parallel without switching branches or invalidating builds.
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Main checkout on `development` | The primary checkout tracks `development`. Worktrees branch off from there. |
 | One worktree per feature branch | Create a worktree for each active branch; delete it when the branch is merged or shelved. |
@@ -171,7 +171,7 @@ For short-lived trial runs (testing a parameter, trialing a scheme), use `tmp/` 
 
 ### Run settings
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Verbose output | Always set `amr.v = 1`. This enables FOFC firing counts, retry events, and other internal solver diagnostics that are silent at the default `amr.v = 0`. |
 | Plotfiles | Always set `plottime_interval = <interval>`. Write snapshots at regular intervals so the evolution can be inspected, not just the outcome. A run that crashes with no plotfiles leaves nothing to analyse. |

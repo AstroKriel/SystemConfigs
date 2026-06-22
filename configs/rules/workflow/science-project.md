@@ -89,7 +89,7 @@ When a paper is accepted:
 
 The local folder name and the GitHub repository name follow different conventions:
 
-| | Format | Example |
+| Location | Format | Example |
 |---|---|---|
 | Local folder | `<author1>[-<author2>]-<year>-<title-identifiers>` | `<author1>-<author2>-2025-<title>` |
 | GitHub | `<Author1>[<Author2>]<year>_<title-identifiers>` | `<Author1><Author2>2025_<title>` |

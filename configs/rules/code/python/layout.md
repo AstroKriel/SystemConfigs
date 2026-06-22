@@ -56,7 +56,7 @@ Subsection markers use a single line:
 
 **Style:**
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Per line | one import per line |
 | Within groups | `import ...` lines first, then `from ... import ...` lines |
@@ -69,7 +69,7 @@ Subsection markers use a single line:
 
 Exceptions to the module imports rule:
 
-| Exception | |
+| Exception | Detail |
 |---|---|
 | Third-party with namespace prefix | `from <package>.<module> import <Class> as <prefix>_<Class>`; use `mpl_` for matplotlib, `scipy_` for scipy, `rich_` for rich |
 | Universally idiomatic stdlib | `from pathlib import Path`, `from typing import Any`, `from dataclasses import dataclass`, `from enum import Enum` |

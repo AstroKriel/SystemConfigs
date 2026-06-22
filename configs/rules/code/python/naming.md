@@ -8,7 +8,7 @@ Naming conventions for Python identifiers and how to organize imports.
 
 Filename conventions follow `~/.rules/code/naming.md`, applied with `_` as the word delimiter.
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Casing | `snake_case` for all filenames |
 | Scripts | verb-noun: `<verb>_<noun>.py` |
@@ -18,7 +18,7 @@ Filename conventions follow `~/.rules/code/naming.md`, applied with `_` as the w
 
 ### Module Growth
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Name on promotion | a module promoted to a package keeps its original name |
 | Sub-module naming | same verb-noun convention: `<verb>_<noun>.py` |
@@ -52,7 +52,7 @@ Always use strong, specific verb prefixes. Avoid weak or generic leading words t
 | `resolve_*` | disambiguation between options |
 | `extract_*` | pull data from a larger structure |
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Module private helpers | leading underscore: `_<verb>_<noun>()` |
 | Script helpers | no underscore prefix, even when internal to the script |
@@ -62,7 +62,7 @@ Always use strong, specific verb prefixes. Avoid weak or generic leading words t
 
 ## Classes
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Casing | `PascalCase` for all class, enum, and dataclass names |
 | Private classes | leading underscore: `_<Name>` |
@@ -71,7 +71,7 @@ Always use strong, specific verb prefixes. Avoid weak or generic leading words t
 
 ## Variables
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Casing | `snake_case` exclusively, never camelCase |
 | Abbreviations | acceptable when well-known within the domain |
@@ -92,14 +92,14 @@ Fields wired directly to a CLI flag use the argparse-derived name (`--<flag-para
 
 When code, comments, and docstrings use mathematical notation, keep naming aligned with Einstein-style conventions.
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Scalars | lower-case: `<scalar>` |
 | Vectors | lower-case with an index: `<vector>_<index>` |
 | Tensors | upper-case with indices: `<Tensor>_<index><index>` |
 | Code names | preserve the same distinction in variable names where practical |
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Separators | underscores between all components: subscript labels, operators, and qualifiers |
 | Prefer | `<symbol>_<label>`, `<operation>_<quantity>`, `<symbol>_<label>_<qualifier>` |

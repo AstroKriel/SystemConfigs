@@ -86,7 +86,7 @@ Spatial reconstruction (interpolation) schemes, lowest to highest order. Set via
 
 Enable with `mhd.resistivity = <eta>`. The parabolic timestep limit is enforced automatically.
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | No resistivity in Richardson convergence tests | `FastWaveConvergence` and `SlowWaveConvergence` abort if `mhd.resistivity != 0`. Resistivity validation uses `AlfvenWaveLinear`. |
 | Reference input | `inputs/AlfvenWaveLinear_resistive.toml` (eta=0.01, grid-aligned, FelkerStone2017 + LondrilloDelZanna2004). |

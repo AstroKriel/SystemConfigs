@@ -57,7 +57,7 @@ Scope answers **where** the change is. Granularity depends on how localised the 
 
 ## Details
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Specificity | name what specifically changed, never vague summaries like `update text`, `fix things`, `mend` |
 | Case | lowercase throughout |
@@ -85,7 +85,7 @@ add: initial repo structure.
 
 ## Presenting Commits
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Format | one shell block per commit containing both `git add` and `git commit` |
 | Navigation | always use `cd` to enter the repo; never use `git -C` |
@@ -132,7 +132,7 @@ For shared repos (multiple contributors), prepend a username:
 username/verb/short-description
 ```
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Case | lowercase throughout |
 | Separators | `/` for namespaces, `-` for words within a namespace |
@@ -155,7 +155,7 @@ Action: short detail
 
 PR titles diverge from commit message style in three ways: sentence case (not lowercase), no trailing period, and no `(scope)` parens. The reason is rendering context: commit messages live mostly in `git log` (terse); PR titles also appear in GitHub lists and release notes where sentence case reads better.
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Case | sentence case: first word capitalised; rest follows normal sentence rules |
 | Voice | imperative present: `Add`, `Fix`, `Update`, never `Adds` or `Added` |

@@ -6,7 +6,7 @@ Conventions for formatting, structuring, and writing Markdown documentation.
 
 ## Characters
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | ASCII only | no Unicode punctuation: no em dashes, no curly quotes, no ellipsis characters |
 | No em dashes or double hyphens | not in prose, not in tables, not as separators; `--` is not an acceptable substitute; use a comma, semicolon, or full stop instead |
@@ -19,7 +19,7 @@ Conventions for formatting, structuring, and writing Markdown documentation.
 
 ## Inline Formatting
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Code, paths, commands, keys | always in backticks: `<command>`, `~/.config/<app>/<file>`, `<Modifier>+<Key>` |
 | Values and flags | backticks: `<bool>`, `--<flag>`, `<setting>=<value>` |
@@ -30,7 +30,7 @@ Conventions for formatting, structuring, and writing Markdown documentation.
 
 ## Math and Field Notation
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Scalars and vectors | lowercase letters; `f`, `g`. Where both appear together, use index notation to distinguish: `f_i` for vector components, `s` for scalars. |
 | Greek quantities | spell out in words; `<greek>` |
@@ -61,7 +61,7 @@ Conventions for formatting, structuring, and writing Markdown documentation.
 
 ## Structure
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Section separators | `---` between top-level sections |
 | Headings | `##` for top-level sections, `###` for subsections |
@@ -69,6 +69,7 @@ Conventions for formatting, structuring, and writing Markdown documentation.
 | Bold sub-labels | `**Label:**` to group related tables within a section when a `###` heading is too heavy |
 | Numbered lists | for sequential steps or ordered rules where position carries meaning |
 | Bullet lists | for unordered items |
+| Table column names | every column must have a name; an unnamed column is a sign the table should be a bullet list |
 
 ---
 
@@ -136,7 +137,7 @@ For setup guides, add a design decisions or lessons learned section where releva
 
 ## Prose Style
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Short and direct | no filler words or throat-clearing |
 | Active voice | prefer "run this command" over "this command should be run" |
@@ -150,7 +151,7 @@ For setup guides, add a design decisions or lessons learned section where releva
 
 Examples should illustrate the concept, not a specific instance. Use `<angle-bracket>` placeholders instead of real names, paths, or values. This applies to inline examples and code blocks alike.
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | No personal names | no real usernames, hostnames, or email addresses |
 | No machine-specific paths | use `~/.config/<app>/<file>`, not `~/.config/conky/conky.conf` |

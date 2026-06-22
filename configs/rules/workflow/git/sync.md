@@ -4,7 +4,7 @@ How to keep git repos in sync across devices, covering pull strategy, merge appr
 
 ## Pull strategy
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Pull strategy | always rebase, never merge; `pull.rebase = true` |
 | Apply on new machines | run `git_helpers set-global-config` before starting work |
@@ -26,7 +26,7 @@ Squash merging keeps `main`'s log readable: one entry per feature, with a clean 
 
 ## Multi-device discipline
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | End of session | push before switching to another machine, even for incomplete work |
 | Start of session | pull before touching anything on a new machine |

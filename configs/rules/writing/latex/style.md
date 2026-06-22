@@ -6,7 +6,7 @@ LaTeX writing style, particularly for scientific notes and papers.
 
 ## Document Structure
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | No paragraph indentation | add `\setlength{\parindent}{0pt}` and `\setlength{\parskip}{6pt}` to the preamble |
 | No `\paragraph*{}` headings | fold the label into running prose instead |
@@ -15,7 +15,7 @@ LaTeX writing style, particularly for scientific notes and papers.
 
 ## Cross-references
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Equation, figure, and table references | use `\cref{...}` standalone (from `cleveref`); never `equation~\ref{...}`, `figure~\ref{...}`, etc.; do not precede `\cref` with a descriptive name |
 | Section references | use `§\ref{sec:...}` |
@@ -38,7 +38,7 @@ Three-part hierarchy: `type:group:name`. The group is the context; the name is t
 
 ## Mathematics
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Inline math | use `$ ... $` |
 | All display math | use `align` or `align*`; never `$$` or `equation` |

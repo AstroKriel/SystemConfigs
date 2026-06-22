@@ -24,7 +24,7 @@ Prose style follows `~/.rules/writing/docs.md`: short and direct, active voice, 
 """
 ```
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Opening sentence | imperative or declarative voice: "Compute X", "Return X"; sentence case; ends with a period |
 | Compound behaviour | join related clauses with `;` rather than starting a new sentence or using "and" or "where"; prefer a semicolon-joined one-liner over a multi-line paragraph unless the second clause genuinely requires its own sentence |
@@ -60,7 +60,7 @@ Fields
 """
 ```
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Names and values | backticks: `` `param_name` ``, `` `True` ``, `` `None` `` |
 | Inline math | code style: `` `y = a * x^b` `` |
@@ -72,7 +72,7 @@ Fields
 
 ## Comments
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Standalone marker | `##` (double hash); harder to accidentally uncomment than `#` |
 | Inline marker | `#` (single hash) when the comment sits to the right of code on the same line |
@@ -85,7 +85,7 @@ Fields
 
 ### Type-checker suppressions
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Form | `# pyright: ignore[reportXxx]` |
 | Never use | `# type: ignore[mypy-code]`; pyright silently ignores mypy error codes, so the suppression has no effect |

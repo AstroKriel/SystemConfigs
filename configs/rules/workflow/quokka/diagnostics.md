@@ -15,7 +15,7 @@ How to extract simulation output and diagnose failed Quokka runs.
 
 ## Workflow
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Diagnostics first | The diagnostic commands are the primary interface with simulation data; use them before writing any custom extraction code. |
 | Plot on the host | When sim data lives on a remote host, run the diagnostic commands there. Copy only the derived outputs back. |

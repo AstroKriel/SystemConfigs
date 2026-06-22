@@ -6,7 +6,7 @@ Style conventions for scientific prose in manuscripts, papers, theses, and techn
 
 ## Argument Structure
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Begin from tension, not machinery | introduce what is unresolved before equations, methods, or numerics |
 | Build arguments causally | end each paragraph by surfacing the consequence or gap that the next paragraph must resolve |
@@ -17,7 +17,7 @@ Style conventions for scientific prose in manuscripts, papers, theses, and techn
 
 ## Physical Interpretation
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Physical interpretation first | state the physical picture in words before introducing the equation that encodes it |
 | Mechanisms over labels | name what moves, transfers, or converts, under what conditions, and why the direction is what it is |
@@ -29,7 +29,7 @@ Style conventions for scientific prose in manuscripts, papers, theses, and techn
 
 ## Mathematical Writing
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Inline math | use `$ ... $` |
 | Use mathematics to expose structure | group and label equation terms by the physical process they represent, not by algebraic convenience |
@@ -43,7 +43,7 @@ Style conventions for scientific prose in manuscripts, papers, theses, and techn
 
 ## Grammar
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | No contractions | write "do not", "it is", "we have" |
 | No sentence-initial conjunctions | replace "And," "But," with "Moreover,", "However,", "In contrast," |
@@ -56,7 +56,7 @@ Style conventions for scientific prose in manuscripts, papers, theses, and techn
 
 ## Rhetorical Style
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Match epistemic markers to confidence | use "consistent with", "suggest", "expect" for uncertain claims; use direct language for established results; avoid intensifiers like "very" and "really" |
 | Connect logically dependent sentences | when two adjacent sentences share a causal or conditional link, join them with "since", "when", "in which case", or a semicolon rather than a period; a period between dependent thoughts interrupts the argument's momentum |

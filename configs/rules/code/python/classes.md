@@ -6,7 +6,7 @@ How to structure Python classes, enums, and dataclasses.
 
 ## Classes
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Private classes | leading underscore; implementation details supporting public classes; not re-exported |
 
@@ -44,7 +44,7 @@ class <EnumName>(Enum):
 
 ## Dataclasses
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Containers | prefer `@dataclass(frozen=True)`, immutability by default |
 | Derived attributes | use `@cached_property` |

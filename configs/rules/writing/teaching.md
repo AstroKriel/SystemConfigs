@@ -10,7 +10,7 @@ Extends [`markdown.md`](markdown.md): all formatting, structure, and prose mecha
 
 Each lesson opens with a single sentence that captures the core idea or payoff. It should be self-contained and sharp enough to orient a reader who has not yet read anything else.
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | One sentence | the opening line is not a preamble; it earns the lesson |
 | States the idea, not the plan | write what is true, not what you are about to cover |
@@ -34,7 +34,7 @@ In this lesson we will cover <topic>.
 
 Introduce the pain before the cure. The reader needs to feel the cost of the current approach before they can appreciate the alternative. The solution should never appear cold.
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | State the problem first | describe the situation that motivates the lesson before showing the fix |
 | Make the cost concrete | name what breaks, what gets lost, or what becomes hard |
@@ -46,7 +46,7 @@ Introduce the pain before the cure. The reader needs to feel the cost of the cur
 
 When recommending a practice, say what goes wrong if you do not follow it, not just what goes right if you do.
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Name the failure mode | be specific: data corruption, silent wrong results, unreadable history |
 
@@ -68,7 +68,7 @@ Not:
 
 State benefits in terms of what changes in the reader's workflow, not in terms of abstract correctness or completeness.
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Anchor to a concrete situation | name who can do what, and when |
 | No abstract virtues | "reproducible", "correct", and "robust" are conclusions, not arguments; show what they mean in practice |
@@ -79,7 +79,7 @@ State benefits in terms of what changes in the reader's workflow, not in terms o
 
 Frame outcomes the reader will see as things to expect and verify, not facts being asserted.
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Use "you should see" | not a bare statement of fact |
 | Pair with the failure case | say what would appear if the expectation were not met |
@@ -102,7 +102,7 @@ Not:
 
 Use exact technical terms. Define each one at first appearance, in the same sentence or the one immediately after. Do not avoid jargon; do not leave it unexplained.
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Use the precise term | "immutable", "contracted", "first-order accurate" |
 | Define at first use | "<term>, which means <definition>: <concrete consequence>" |
@@ -114,7 +114,7 @@ Use exact technical terms. Define each one at first appearance, in the same sent
 
 Code blocks contain only code. Distinguish between annotation comments and teaching comments.
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Annotation comments | labelling what code computes or marking a section, as would appear in real code: `# d/dx`, `## div b = d(b_i)/d(x_i)` |
 | Teaching comments | explaining why a line was chosen, what a tool reports, or restating what the surrounding prose says; these belong in prose, not in the block |
@@ -126,7 +126,7 @@ Code blocks contain only code. Distinguish between annotation comments and teach
 
 Write as a more experienced colleague showing the reader something, not as an instructor delivering a lesson.
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Second person | address the reader as "you" throughout |
 | Collegial, not condescending | assume the reader is capable; explain why, not just what |
@@ -141,7 +141,7 @@ Occasional informality is acceptable when it acknowledges a shared experience ("
 
 Where a concept can be demonstrated by deliberately breaking something, invite the reader to do it.
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Single working script | start from a correct, working solution; do not provide separate before/after files |
 | Reader owns the breaking | exercises guide the reader to deliberately break and restore specific behaviour |

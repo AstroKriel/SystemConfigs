@@ -35,7 +35,7 @@ def <verb>_<noun>(
 
 ## Type Annotations
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Public functions | fully annotated, parameters and return types |
 | Void return type | always annotate with `-> None`; never omit the return type even when obvious |
@@ -48,7 +48,7 @@ def <verb>_<noun>(
 
 ## Structure
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Size | typically 20-80 lines, single-responsibility |
 | Blank lines | no blank lines inside a function body, except one blank line above and below a nested function definition |

@@ -6,7 +6,7 @@ File and folder naming on disk.
 
 ## In General
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Casing | lower-case |
 | Concept delimiter | `_` between words inside one concept: `<word>_<word>` |

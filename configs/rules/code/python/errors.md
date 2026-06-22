@@ -25,7 +25,7 @@ How to handle errors in Python, including which exceptions to raise and how to p
 
 ## Messages
 
-| Rule | |
+| Rule | Detail |
 |---|---|
 | Capitalisation | lowercase throughout; capitalise only where the word itself requires it (proper nouns, class names, acronyms) |
 | Punctuation | always end with a period |
