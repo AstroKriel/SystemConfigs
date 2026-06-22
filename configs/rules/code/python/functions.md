@@ -60,7 +60,8 @@ def <verb>_<noun>(
 
 ## Call Sites
 
-Pass each argument explicitly by keyword name. Positional-only arguments (e.g. `str.split(",", 1)`) are exempt and may stay inline.
+- Pass each argument explicitly by keyword name.
+- Positional-only arguments (e.g. `str.split(",", 1)`) are exempt and may stay inline.
 
 **Single-argument calls** stay on one line:
 

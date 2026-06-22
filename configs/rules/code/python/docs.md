@@ -8,8 +8,12 @@ How to write Python docstrings and inline comments.
 
 Prose style follows `~/.rules/writing/docs.md`: short and direct, active voice, no filler words.
 
+### Scope
+
 - Write docstrings for all public functions, methods, classes, and dataclasses.
 - Docstrings are optional for private functions and methods.
+
+### Format
 
 - One-liners: opening and closing `"""` on the same line.
 - Multi-line: `"""` opens with text immediately on the first line; closing `"""` on its own line.
@@ -30,6 +34,8 @@ Prose style follows `~/.rules/writing/docs.md`: short and direct, active voice, 
 | Compound behaviour | join related clauses with `;` rather than starting a new sentence or using "and" or "where"; prefer a semicolon-joined one-liner over a multi-line paragraph unless the second clause genuinely requires its own sentence |
 | Second paragraph | add only when the opening sentence leaves something genuinely unclear: edge case behaviour, what triggers a raise, a non-obvious side effect; 2-4 sentences max; never restate what the type annotations already say |
 
+### Parameters
+
 - Add a `Parameters ---` section when there are four or more parameters and their constraints are not clear from the type hints alone.
 - Only document what the annotation does not already say.
 
@@ -44,7 +50,9 @@ Parameters
 """
 ```
 
-Add a `Fields ---` section to a dataclass when field names alone do not convey their constraints or expected shape:
+### Fields
+
+- Add a `Fields ---` section to a dataclass when field names alone do not convey their constraints or expected shape:
 
 ```python
 """
@@ -83,18 +91,9 @@ Fields
 | Formatting | use backticks for parameter names, flag names, config keys, filenames, and literal values: `` `param_name` ``, `` `--dry-run` ``, `` `this-system.toml` ``, `` `True` `` |
 | Silence | leave obvious code uncommented: standard NumPy idioms, straightforward validation calls, and self-documenting function names need no explanation |
 
-### Type-checker suppressions
+### Mathematical notation
 
-| Rule | Detail |
-|---|---|
-| Form | `# pyright: ignore[reportXxx]` |
-| Never use | `# type: ignore[mypy-code]`; pyright silently ignores mypy error codes, so the suppression has no effect |
-| Never use | bare `# type: ignore`; suppresses all errors on the line, not just the one intended |
-| When | only genuine false positives that cannot be resolved at the type signature level |
-
----
-
-Mathematical notation is preferred over English prose where appropriate:
+- Prefer mathematical notation over English prose in comments where appropriate:
 
 ```python
 ## <out> = <values>^2
@@ -104,3 +103,13 @@ numpy.multiply(
     out=<out>,
 )
 ```
+
+### Type-checker suppressions
+
+| Rule | Detail |
+|---|---|
+| Form | `# pyright: ignore[reportXxx]` |
+| Never use | `# type: ignore[mypy-code]`; pyright silently ignores mypy error codes, so the suppression has no effect |
+| Never use | bare `# type: ignore`; suppresses all errors on the line, not just the one intended |
+| When | only genuine false positives that cannot be resolved at the type signature level |
+

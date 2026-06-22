@@ -46,11 +46,20 @@ When in doubt: a rule answers "what is the convention?" A note answers "what is 
 3. From `<system-configs>/`, run `uv run -m scripts.setup.rules_files` to relink and `uv run -m scripts.setup.rules_index` to regenerate the index.
 4. Commit following [`workflow/git/commits.md`](../git/commits.md).
 
-**New file:** name it `<concept>.md`; one word or a short phrase naming the subject. Open with a title, then a single sentence in natural prose describing what the file covers, in present tense, with no second sentence or cross-references; this sentence becomes the index entry.
+**New file:**
+- name it `<concept>.md`; one word or a short phrase naming the subject
+- open with a title, then a single present-tense sentence describing what the file covers; no second sentence or cross-references
+- that sentence becomes the index entry
 
-**Promoting a file to a bundle:** when a single file grows to cover sub-topics that each warrant their own section, convert it to a subdirectory. Create a `README.md` inside it for any context that applies to the bundle as a whole, and split the content into per-topic files.
+**Promoting a file to a bundle:**
+- when a single file grows to cover sub-topics that each warrant their own section, convert it to a subdirectory
+- create a `README.md` inside for any context that applies to the bundle as a whole
+- split content into per-topic files
 
-**New bundle:** when the concept is large from the start, create the subdirectory directly. Add a `README.md` if there is bundle-level context to capture. Follow the existing bundle pattern in `code/python/` or `code/quokka/`.
+**New bundle:**
+- when the concept is large from the start, create the subdirectory directly
+- add a `README.md` if there is bundle-level context to capture
+- follow the existing bundle pattern in `code/python/` or `code/quokka/`
 ---
 
 ## Promoting a finding
@@ -61,5 +70,5 @@ To promote:
 
 1. Identify which `~/.rules/` file the convention belongs in.
 2. Phrase it as a rule: prescriptive, not descriptive.
-3. In the notes source, note the promotion if the investigation entry is still live. The rule itself carries no back-reference.
+3. In the notes source, note the promotion if the investigation entry is still live; the rule itself carries no back-reference.
 4. Commit following [`workflow/git/commits.md`](../git/commits.md).
