@@ -30,6 +30,7 @@ AMReX exposes many parameters and often multiple ways to achieve the same thing.
 | `amr.max_grid_size` | `128` | See MPI decomposition below. |
 | `do_reflux` | `0` | Disable for single-level runs. |
 | `do_subcycle` | `0` | Disable for single-level runs. |
+| `plotfile_prefix` | `"plotfiles/plt"` | Output path prefix for plotfiles; defaults to `plt` in the run working directory if absent. |
 
 **`hydro`:**
 
@@ -38,7 +39,7 @@ AMReX exposes many parameters and often multiple ways to achieve the same thing.
 | `hydro.rk_integrator_order` | `2` | RK2 time integration. Standard for all MHD runs. |
 | `hydro.reconstruction_order` | `1` (PCM), `2` (PLM), `3` (PPM), `5` (PPM-EP) | Spatial reconstruction order for hydro. |
 | `hydro.use_dual_energy` | `0` | Disable for MHD. |
-| `hydro.artificial_viscosity_k` | float, optional | Scalar viscosity coefficient; adds diffusive flux to momentum equations. Use to damp post-shock oscillations. |
+| `hydro.artificial_viscosity_coefficient` | float, optional | Scalar viscosity coefficient; adds diffusive flux to momentum equations. Use to damp post-shock oscillations. |
 
 **`mhd`:**
 
@@ -53,11 +54,13 @@ AMReX exposes many parameters and often multiple ways to achieve the same thing.
 
 ## EMF scheme reference
 
-| Compute scheme | Stability | Notes |
-|---|---|---|
-| `FelkerStone2017` | Most stable | Safe default; well-validated reference. |
-| `Balsara2025` | Stable | |
-| `Quokka2026` | Least stable | Known to go unstable for the slow wave at high resolution with PPM-EP. |
+All three compute schemes are stable and comparable in accuracy; `Quokka2026` is the recommended default (fastest).
+
+| Compute scheme | Notes |
+|---|---|
+| `Quokka2026` | Recommended default. |
+| `Balsara2025` | Alternative. |
+| `FelkerStone2017` | Well-validated reference. |
 
 | Averaging scheme | Notes |
 |---|---|
