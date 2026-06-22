@@ -74,10 +74,9 @@ Always use strong, specific verb prefixes. Avoid weak or generic leading words t
 | Rule | Detail |
 |---|---|
 | Casing | `snake_case` exclusively, never camelCase |
-| Abbreviations | acceptable when well-known within the domain |
+| Abbreviations | domain acronyms only: `mhd`, `cfl`, `eos`; never single-letter physics symbols (`magnetic_field` not `b`, `density` not `rho`) or shortened English words (`language` not `lang`, `index` not `idx`) |
 | Descriptive names | use qualified names that read as subscript notation: `<qualifier>_<noun>` |
 | Single-letter names | never; names must always indicate what is being worked with |
-| Abbreviated names | never; `language` not `lang`, `index` not `idx` |
 | Directories | `directory` when only one in scope; `_dir` suffix when multiple: `source_dir`, `target_dir` |
 | Comprehension variables | prepend `_` if the name would conflict with an existing name in scope |
 | State predicates | `is_*` or `has_*` prefix: `is_loading`, `has_errors` |
@@ -94,10 +93,10 @@ When code, comments, and docstrings use mathematical notation, keep naming align
 
 | Rule | Detail |
 |---|---|
-| Scalars | lower-case: `<scalar>` |
-| Vectors | lower-case with an index: `<vector>_<index>` |
-| Tensors | upper-case with indices: `<Tensor>_<index><index>` |
-| Code names | preserve the same distinction in variable names where practical |
+| Scalars | lower-case physics name: `<physics_quantity>` |
+| Vectors | lower-case physics name with index: `<physics_quantity>_<index>` |
+| Tensors | upper-case physics name with indices (notation only): `<PhysicsQuantity>_<index><index>` |
+| Code names | full English physics name, not a symbol: `magnetic_field` not `b`, `velocity` not `v`, `density` not `rho` |
 
 | Rule | Detail |
 |---|---|
@@ -105,6 +104,17 @@ When code, comments, and docstrings use mathematical notation, keep naming align
 | Prefer | `<symbol>_<label>`, `<operation>_<quantity>`, `<symbol>_<label>_<qualifier>` |
 | Avoid | `<symbol><label>`, `<operation><quantity>`, `<symbol><label><qualifier>` |
 | Scope | apply to variable names, comments, docstrings, and user-facing labels; preserve established public labels |
+
+### Variable Type Suffixes
+
+Suffix variable names to indicate the container type when holding physics data:
+
+| Suffix | Container | Example |
+|---|---|---|
+| `_sfield` | jormi scalar `Field` | `density_sfield` |
+| `_vfield` | jormi vector `Field` | `velocity_vfield` |
+| `_sarray` | untyped scalar NumPy array | `density_sarray` |
+| `_varray` | untyped vector NumPy array | `velocity_varray` |
 
 ### Field Identifiers (`field_name`)
 
