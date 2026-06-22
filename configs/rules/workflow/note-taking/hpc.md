@@ -69,6 +69,29 @@ What does not belong in the note, and where it goes instead:
 
 ---
 
+## tasks.md lifecycle
+
+Follows the same discipline as project notes (see [`workflow/note-taking/project.md`](project.md)):
+
+- Only open items live in `tasks.md`. No ticked checkboxes, no reference material.
+- When a task completes, move the relevant fact to the appropriate node file or `README.md`, then remove the task entry entirely.
+- Tasks pending an external party (IT, sysadmin) get a status note inline: contact name, date sent, and what to verify once resolved. Example: `(emailed Ole 2026-06-22; confirm /vol/parzival/ssd mounts from lanzelot)`.
+
+---
+
+## threads/
+
+Open a thread when an investigation takes more than a few commands to resolve -- a scheduler quirk, a filesystem anomaly, a performance problem. Each thread is a subfolder with a `README.md`:
+
+- Opens with the question being investigated.
+- Records the steps taken and what each one ruled in or out.
+- Closes with the resolution and where the finding was promoted (node file, `README.md`, or `log.md`).
+- Resolved threads move to `threads/archived/`.
+
+Do not put the investigation trail in the node file or `README.md` directly; those hold only the reusable result.
+
+---
+
 ## Keeping notes current
 
 - Update `README.md` when login details, storage paths, or scheduler configuration change.
