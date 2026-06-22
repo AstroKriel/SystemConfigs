@@ -33,11 +33,13 @@ When access to a new cluster is gained:
 
 Directives are scheduler-specific (SLURM uses `#SBATCH`, PBS uses `#PBS`); check the cluster `README.md` for the scheduler type.
 
-**Naming:** `<project>-<descriptor>`, short enough to read in the queue. Examples: `<project>-mhd-512`, `<project>-cs-test`.
+**Naming:** `<project>-<descriptor>`, short enough to read in the queue.
 
 **Working directory:** set explicitly to the run directory using `--chdir` (SLURM) or `-d` (PBS). Do not rely on submission directory or home directory defaults.
 
 **Module loading:** always `module purge` before loading. Pin the full module string (name and version) from the cluster `README.md` and use it verbatim across all jobs for that cluster. Log any version changes in `log.md`.
+
+**Checkpointing for wall-time-limited jobs:** For jobs that may run close to the partition's wall time limit, enable checkpointing at a coarse enough cadence that one or two checkpoints exist before the job ends. This allows a restart from near the cutoff rather than from the beginning.
 
 **Validate before chaining:** Before submitting a build-then-run dependency chain (`sbatch --dependency=afterok:$BUILD_ID`), run the build step once in a short interactive or devel allocation first. A failing build marks all downstream jobs as `DependencyNeverSatisfied` with no diagnostic; the queue shows the symptom, not the cause, and jobs sit there burning wait time.
 
