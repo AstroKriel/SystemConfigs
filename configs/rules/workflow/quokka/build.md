@@ -18,7 +18,7 @@ Quokka build and run workflow on local and hpc systems.
 
 | Rule | Detail |
 |---|---|
-| Always start cold | A build tree is only valid for the toolchain, node architecture, and branch that created it. Delete `CMakeCache.txt` and reconfigure when the toolchain or modules may have changed (e.g. a new HPC login), switching branches, or moving to a different node type. |
+| Always start cold | Do not assume a build is still valid when resuming work on a branch. Delete `CMakeCache.txt` and reconfigure from scratch. |
 | One config per tree | Never share a build tree between configurations. Name each tree after its configuration, e.g. `build/3d-release`, `build/3d-debug`. |
 | No Python | Always pass `-DQUOKKA_PYTHON=OFF`. Do not create a Python environment inside the quokka checkout; all analysis goes through `ww-quokka-sims`. |
 | Toolchain | When a host needs a non-default compiler, source `~/.config/quokka/profile.sh` before running CMake. Per-host specifics live in `<project-notes>/hpcs/<host>/`. |
