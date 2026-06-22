@@ -107,7 +107,7 @@ ninja -C "$BUILD" <ProblemName>
 
 ## The `quokka` Script
 
-`scripts/bash/quokka` is a thin wrapper around CMake, Ninja, and CTest. Use it for listing problems, running tests, and CTest operations. Config and build use raw CMake and Ninja directly.
+`scripts/bash/quokka` is a thin wrapper around CMake, Ninja, and CTest.
 
 | Command | What it does |
 |---|---|
