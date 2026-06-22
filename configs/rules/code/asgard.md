@@ -73,3 +73,28 @@ All messages: lowercase throughout; names and identifiers in backticks, runtime 
 | `log_outcome` | pass/fail result for an individual vtest case | noun phrase; no period |
 | `log_summary` | end-of-run summary with key metrics | noun phrase title; key-value notes, values bare; no period |
 | `log_debug` | temporary verbose detail; remove once the issue is resolved | sentence; period |
+
+---
+
+## Scaffolding a New Interface Layer
+
+When a project needs data from a simulation code not yet covered by a `ww-*-sims` package, create a new one under `Asgard/sindri/submodules/`.
+
+Structure follows existing interface packages:
+
+```text
+ww-<code>-sims/
+├── pyproject.toml
+├── src/
+│   └── ww_<code>_sims/
+│       ├── __init__.py
+│       ├── load.py
+│       └── meta.py
+└── utests/
+```
+
+- `load.py` reads files from disk and returns `jormi` field objects.
+- `meta.py` extracts run metadata: grid, units, simulation parameters.
+- No array computation goes in the interface layer; all math belongs in `jormi/ww_arrays/`.
+
+Reference the new package as an editable install during development. See [Referencing Personal Libraries](#referencing-personal-libraries) for the `pyproject.toml` pattern.

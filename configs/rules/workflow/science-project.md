@@ -4,12 +4,6 @@ How to start, run, and archive science projects in the Asgard ecosystem.
 
 ---
 
-## Ecosystem context
-
-Science projects live in the Asgard ecosystem. All project code builds on `jormi` as the shared foundation; interaction with specific simulation codes is provided by `ww-*-sims` interface layers. See [`../code/asgard.md`](../code/asgard.md) for ecosystem conventions (structure, imports, logging).
-
----
-
 ## Starting a New mimir Project
 
 Start a new mimir project once the core idea is solid and prototyping in `freyja/` has validated the approach.
@@ -80,31 +74,6 @@ For `/tmp/`, add a user namespace first: `/tmp/<username>/<concept>/`.
 **Naming the concept folder:** ask "what is this work about?" The answer, slugified, is the concept name. If the answer is a named entity in the Asgard ecosystem (a tool or a mimir project), use its canonical slug. If the answer is an activity with no canonical name, coin a short lowercase descriptor. Named entities take priority over descriptors.
 
 - Review and prune `~/tmp/` by concept every three months.
-
----
-
-## Scaffolding a New Interface Layer
-
-When a project needs data from a simulation code not yet covered by a `ww-*-sims` package, create a new one under `Asgard/sindri/submodules/`.
-
-Structure follows existing interface packages:
-
-```text
-ww-<code>-sims/
-├── pyproject.toml
-├── src/
-│   └── ww_<code>_sims/
-│       ├── __init__.py
-│       ├── load.py
-│       └── meta.py
-└── utests/
-```
-
-- `load.py` reads files from disk and returns `jormi` field objects.
-- `meta.py` extracts run metadata: grid, units, simulation parameters.
-- No array computation goes in the interface layer; all math belongs in `jormi/ww_arrays/`.
-
-Reference the new package as an editable install during development. See [`../code/asgard.md`](../code/asgard.md) for the `pyproject.toml` pattern.
 
 ---
 
