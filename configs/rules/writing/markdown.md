@@ -1,6 +1,6 @@
 # Documentation Style
 
-Style conventions for Markdown documentation across setup guides, design notes, and reference files.
+Conventions for formatting, structuring, and writing Markdown documentation.
 
 ---
 
@@ -14,6 +14,17 @@ Style conventions for Markdown documentation across setup guides, design notes, 
 | File-organisation trees | inside fenced ```text blocks only, box-drawing characters (`├──`, `└──`, `│`, `─`) are permitted; ASCII everywhere else |
 | Tree comments | `  # <comment>` with exactly two spaces between the entry and `#`; no column alignment |
 | Placeholders | use `<angle-brackets>`: `<package-name>`, `<username>`, `<commit-hash>`; define each placeholder where it first appears, as a variable is defined when introduced in maths |
+
+---
+
+## Inline Formatting
+
+| Rule | |
+|---|---|
+| Code, paths, commands, keys | always in backticks: `<command>`, `~/.config/<app>/<file>`, `<Modifier>+<Key>` |
+| Values and flags | backticks: `<bool>`, `--<flag>`, `<setting>=<value>` |
+| Emphasis | use **bold** for warnings and key terms; avoid italic |
+| Files in the same repo | use a relative Markdown link; display the path in backticks |
 
 ---
 
@@ -48,18 +59,6 @@ Style conventions for Markdown documentation across setup guides, design notes, 
 
 ---
 
-## Inline Formatting
-
-| Rule | |
-|---|---|
-| Code, paths, commands, keys | always in backticks: `<command>`, `~/.config/<app>/<file>`, `<Modifier>+<Key>` |
-| Values and flags | backticks: `<bool>`, `--<flag>`, `<setting>=<value>` |
-| Emphasis | use **bold** for warnings and key terms; avoid italic |
-| Runnable instructions | commands the reader is expected to run belong in a code block, not inline prose |
-| Files in the same repo | use a relative Markdown link; display the path in backticks |
-
----
-
 ## Structure
 
 | Rule | |
@@ -73,15 +72,26 @@ Style conventions for Markdown documentation across setup guides, design notes, 
 
 ---
 
-## Tables
+## Choosing a form
 
-Use tables for:
+Content grows over time, so it lives in the lightest form that holds it now and is promoted up a ladder as it outgrows that form. Each rung is extended by slotting in a unit, never by rewriting:
 
-- Rules and conventions
-- File locations and their purpose
-- Sensor names, hardware details, component summaries
-- Common tweaks (what to change and where)
-- Structured comparisons
+| Rung | Use when | Grow by |
+|---|---|---|
+| Bullet list | A few standalone concepts that share no columns | Adding bullets |
+| Table | Items share two or more real columns: a mapping, a comparison, or a label-to-definition lookup | Adding rows |
+| Subsection with a table or bullets | One concept grows rich enough to need its own heading and internal structure | Adding subsections |
+| Sub-file | A section outgrows the file or spans domains (see [`workflow/note-taking/project.md`](../workflow/note-taking/project.md)) | Adding files |
+
+Promote when the current rung strains:
+
+- A bullet that keeps gaining the same repeated field wants to be a table.
+- A table cell that turns dense wants to be a subsection.
+- A subsection that turns large wants to be its own file.
+
+A table earns its place only with two or more columns that each carry the same kind of value in every row. To test a would-be table, name the second column: if it has one consistent name and value-kind per row it is a table; if the only honest name is "Notes", the cells differ in kind and it is still a bullet list.
+
+Prose is the one form off the ladder: it cannot be extended or reorganised without rewriting. Reserve it for the **why** behind a rule or the **philosophy** of a concept (see [Capturing the Why](#capturing-the-why)), never for a set of rules.
 
 ---
 
@@ -109,36 +119,18 @@ Example:
 
 Document the reason behind non-obvious decisions, workarounds, and design choices. A reader should understand not just what to do, but why.
 
-Rules belong in tables. Prose is for two cases: explaining the **why** behind a non-obvious rule, and capturing the **philosophy** behind a concept where the rule alone would feel arbitrary. Both are written as statements of fact, not instructions; if prose is restating a table rule, cut it.
+Prose earns its place in only two cases:
+
+- the **why** behind a non-obvious rule;
+- the **philosophy** of a concept where the rule alone would feel arbitrary.
+
+Write it as statements of fact, not instructions, and cut any sentence that only restates a rule belonging in a table or list.
 
 For setup guides, add a design decisions or lessons learned section where relevant. Cover:
 
 - Why one approach was chosen over alternatives
 - What broke and what fixed it
 - Constraints that are not obvious from the config alone
-
----
-
-## Examples
-
-Examples should illustrate the concept, not a specific instance. Use `<angle-bracket>` placeholders instead of real names, paths, or values. This applies to inline examples and code blocks alike.
-
-| Rule | |
-|---|---|
-| No personal names | no real usernames, hostnames, or email addresses |
-| No machine-specific paths | use `~/.config/<app>/<file>`, not `~/.config/conky/conky.conf` |
-| No real package names as examples | use `<package-name>`, not a specific package |
-| Exception | when the example IS the specific thing being documented (e.g. the exact command to install a particular app) |
-
-```bash
-git clone https://github.com/<username>/<repo>.git
-```
-
-Not:
-
-```bash
-git clone https://github.com/myusername/myrepo.git
-```
 
 ---
 
@@ -151,3 +143,16 @@ git clone https://github.com/myusername/myrepo.git
 | Present tense | prefer "this fixes" over "this will fix" |
 | No personal references | write for a general reader, not yourself |
 | No manual line wrapping | prose flows to the editor's window width; do not insert line breaks within paragraphs. Does not apply to structured fields where each line is a distinct labeled item (e.g. `**Status:** ...` / `**Next action:** ...` blocks). |
+
+---
+
+## Anonymous Examples
+
+Examples should illustrate the concept, not a specific instance. Use `<angle-bracket>` placeholders instead of real names, paths, or values. This applies to inline examples and code blocks alike.
+
+| Rule | |
+|---|---|
+| No personal names | no real usernames, hostnames, or email addresses |
+| No machine-specific paths | use `~/.config/<app>/<file>`, not `~/.config/conky/conky.conf` |
+| No real package names as examples | use `<package-name>`, not a specific package |
+| Exception | when the example **is** the specific thing being documented (e.g. the exact command to install a particular app) |
