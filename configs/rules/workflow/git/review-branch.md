@@ -42,4 +42,5 @@ For each file, make sure you understand what changed and why, that no unintended
 
 ## Before pushing
 
-If the repository defines pre-commit, format, or lint hooks, run them before pushing and resolve what they report. Matching CI locally avoids a push-fix-push round-trip, and the hooks catch mechanical issues the file-by-file review is not meant to (formatting, leftover merge-conflict markers, malformed config files). The invocation is repository-specific; find it in the repository's own docs or config.
+- Run any pre-commit, format, or lint hooks the repository defines before pushing; resolve what they report.
+- The invocation is repository-specific; find it in the repository's own docs or config.
