@@ -93,21 +93,20 @@ All messages: lowercase throughout; names and identifiers in backticks, runtime 
 
 When a project needs data from a simulation code not yet covered by a `ww-*-sims` package, create a new one under `Asgard/sindri/submodules/`.
 
-Structure follows existing interface packages:
-
 ```text
 ww-<code>-sims/
 ├── pyproject.toml
 ├── src/
 │   └── ww_<code>_sims/
 │       ├── __init__.py
-│       ├── load.py
-│       └── meta.py
+│       └── <module>.py   # internal organisation grows as the interface matures
 └── utests/
 ```
 
-- `load.py` reads files from disk and returns `jormi` field objects.
-- `meta.py` extracts run metadata: grid, units, simulation parameters.
-- No array computation goes in the interface layer; all math belongs in `jormi/ww_arrays/`.
+The package bridges the simulation code's file format to jormi field objects. What belongs here:
+
+- loading from disk: read raw data from the simulation's file format; return jormi field objects
+- metadata: grid, units, and simulation parameters from snapshot files
+- format-specific derived fields: quantities that require knowledge of the simulation code's conventions or variable layout; general reusable physics computations belong in `jormi/` instead
 
 Reference the new package as an editable install during development. See [Referencing Personal Libraries](#referencing-personal-libraries) for the `pyproject.toml` pattern.
