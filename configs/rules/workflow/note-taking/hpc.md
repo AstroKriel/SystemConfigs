@@ -65,14 +65,7 @@ What does not belong in the note, and where it goes instead:
 
 - Every non-obvious factual claim carries its source: a link for web-sourced facts; a verifying command for machine-checked ones.
 - A command citation beats a date: it shows how to re-verify, not just when someone last checked.
-- For hardware or system fact tables, add a `> **Note:**` after the table with a `| Purpose | Command |` table mapping each command to what it checks. One note covers the whole section; do not annotate individual rows. Example:
-
-  > **Note:** verified with:
-  >
-  > | Purpose | Command |
-  > |---|---|
-  > | CPU vendor, core count, NUMA topology | `lscpu` |
-  > | Total RAM | `lsmem --output SIZE,ONLINE,STATE --summary` |
+- For hardware or system fact tables, add a `> **Note:**` after the table with a `| Purpose | Command |` table mapping each command to what it checks. One note covers the whole section; do not annotate individual rows.
 
 ---
 
