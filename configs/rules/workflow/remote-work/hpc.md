@@ -61,7 +61,9 @@ Before relying on a module-provided binary for a build tool (e.g., make, ninja, 
 
 ## Run Directory Layout
 
-Simulations go under `<fast-storage>/<project>/`. Sim directories are grouped by scientific concept; each sim directory is self-contained (no symlinks) so it can be moved or archived without breaking.
+Simulations go under `<fast-storage>/<science-project>/`. Resolve `<fast-storage>` from the cluster's `## Instance` section before acting; on clusters with multiple allocation projects it maps to a project-specific placeholder (e.g. `<scratch-jh2>`), giving a full path of `<scratch-jh2>/<science-project>/`. Note that `<science-project>` is the research project name (e.g. `mhd-turbulence`), not an allocation project code.
+
+Sim directories are grouped by scientific concept; each sim directory is self-contained (no symlinks) so it can be moved or archived without breaking.
 
 | Concept | Role | Name defined by |
 |---|---|---|
