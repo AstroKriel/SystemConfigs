@@ -62,6 +62,7 @@ SystemNotes/<machine>/
 
 - One file per topic; updated in place as understanding deepens.
 - Record sources alongside facts: upstream docs, man pages, forum threads, GitHub issues, release notes.
+- For hardware or system fact tables, add a `> **Note:**` after the table with a `| Purpose | Command |` table mapping each command to what it checks. One note covers the whole section; do not annotate individual rows.
 - Update whenever investigation uncovers how a subsystem works, why a config decision was made, or what an upstream change means.
 - If prompted by an issue or upgrade: reference the relevant `debug-diary/` or `pending-issues.md` entry at the top of the file.
 
