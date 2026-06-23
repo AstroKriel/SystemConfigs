@@ -58,7 +58,7 @@ What does not belong in the note, and where it goes instead:
 - Output data from runs.
 - Project-specific analysis (it lives in the project notes).
 - Config and shell files (they live in the setup repo).
-- Hardened workflow conventions, and generic scheduler/module usage, get promoted to `~/.rules/`; keep only cluster-specific flags here.
+- Hardened workflow conventions, and generic scheduler/module usage, get promoted to `<rules>/`; keep only cluster-specific flags here.
 
 ---
 

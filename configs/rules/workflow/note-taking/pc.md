@@ -36,7 +36,7 @@ SystemNotes/<machine>/
 | Hardware specs and OS version | Config files themselves (those go in `<system-configs>/`) |
 | Package and service installation steps | Project data or results |
 | Non-obvious configuration decisions | HPC cluster details (see [`hpc.md`](hpc.md)) |
-| Open and resolved configuration issues | Binding conventions (promote to `~/.rules/`) |
+| Open and resolved configuration issues | Binding conventions (promote to `<rules>/`) |
 
 ### pending-issues.md
 

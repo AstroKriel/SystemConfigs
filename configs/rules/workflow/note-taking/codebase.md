@@ -10,7 +10,7 @@ A code note covers a tool, library, or codebase that is used regularly but not o
 
 This is distinct from project notes: a code note is about the tool itself, not about a project that happens to use it.
 
-**A tool you also develop.** When you own or primarily develop the code, its investigations and dated behaviour already live in the project notes, so the codebase note legitimately shrinks to a router: `README.md` plus file-location orientation pointing at the project notes and `~/.rules/`. With no pinned release, record a rolling baseline (branch + commit + date) in `log.md` rather than a version in the README.
+**A tool you also develop.** When you own or primarily develop the code, its investigations and dated behaviour already live in the project notes, so the codebase note legitimately shrinks to a router: `README.md` plus file-location orientation pointing at the project notes and `<rules>/`. With no pinned release, record a rolling baseline (branch + commit + date) in `log.md` rather than a version in the README.
 
 ---
 
@@ -39,7 +39,7 @@ The `README.md` orients a new reader on its own. It is the only required file; `
 | Installation and environment setup | Source code for the tool itself |
 | Known bugs and workarounds | Results produced by running the tool |
 | Invocation patterns and flags | Project-specific analysis using the tool |
-| Version-specific behaviour | Binding conventions (promote to `~/.rules/code/`) |
+| Version-specific behaviour | Binding conventions (promote to `<rules>/code/`) |
 
 ---
 

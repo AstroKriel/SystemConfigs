@@ -40,7 +40,7 @@ Start with just `README.md`. Add files only as the project grows. Two guiding pr
 
 The README is the entry point. It should orient anyone landing cold: what the project is, where to find things, and where to look for supporting context. For compute-heavy projects it includes three standard sections:
 
-- `## Context`: pointers to the HPC notes, codebase notes, and rules that the project depends on. For anything inside `<project-notes>/`, write the path root-relative as `<project-notes>/<path>` (not relative to the file the pointer sits in); use `~/.rules/<path>` for rules. Do not use absolute machine paths.
+- `## Context`: pointers to the HPC notes, codebase notes, and rules that the project depends on. For anything inside `<project-notes>/`, write the path root-relative as `<project-notes>/<path>` (not relative to the file the pointer sits in); use `<rules>/<path>` for rules. Do not use absolute machine paths.
 - `## Machines`: one row per machine, with its role in the project (e.g. which runs go where).
 - The task and thread index sections that link to `tasks/` and `threads/`.
 
@@ -107,7 +107,7 @@ A `tasks/<topic>.md` file that is nothing but ticked checkboxes is a sign the no
 | Current status and open questions | Line-by-line code documentation |
 | Key findings and decisions | Raw simulation output |
 | Task lists | Configuration files (those go in the project repo) |
-| Notes on sources and references | Working conventions (promote to `~/.rules/`) |
+| Notes on sources and references | Working conventions (promote to `<rules>/`) |
 | Reproduction steps for a result | |
 
 ---

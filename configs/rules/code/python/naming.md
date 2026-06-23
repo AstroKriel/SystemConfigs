@@ -6,7 +6,7 @@ Naming conventions for Python identifiers and how to organize imports.
 
 ## Files and Modules
 
-Filename conventions follow `~/.rules/code/naming.md`, applied with `_` as the word delimiter.
+Filename conventions follow [`<rules>/code/naming.md`](../naming.md), applied with `_` as the word delimiter.
 
 | Rule | Detail |
 |---|---|

@@ -1,29 +1,18 @@
 # Asgard Project Conventions
 
-Conventions for the `Asgard/` project, complementing and overriding the general `python/` conventions where they overlap.
-
----
-
-## README Files
-
-README files in `Asgard/` default to project-local workflow notes; `~/.rules/writing/docs.md` is the baseline, with these exceptions:
-
-- a mildly personal tone is acceptable when the README documents the author's workflow or repo conventions
-- Unicode tree diagrams are acceptable when they are the clearest way to show repository layout
-- concise prose is preferred over rigid formal structure when the file is mainly for day-to-day use
+Conventions for the `Asgard` project, complementing and overriding the general `python` conventions where they overlap.
 
 ---
 
 ## Data Representation
 
-- Interface layers preserve the source representation: `float32` data returns as `float32`, not silently promoted to `float64`.
-- Numerical promotion belongs in the computation layer (`jormi/`); the compute-side implementation converts or promotes arrays when an operation requires higher precision.
+Return data with the dtype it has on disk; do not promote a quantity when reading it from file (e.g. `float32` to `float64`). Promote at the part of the stack where work is done with or on the quantity, that way the conversion is visible and easier to track.
 
 ---
 
 ## Imports
 
-Asgard projects extend the standard import order with two additional library groups, placed based on how the dependency is referenced:
+Asgard adds `## personal (remote)` and `## personal (local)` to the standard import order, based on how the dependency is declared:
 
 | Group | Purpose |
 |---|---|
@@ -33,13 +22,11 @@ Asgard projects extend the standard import order with two additional library gro
 | `## local` | imports from within the current project |
 | `## personal (local)` | personal libraries referenced as an editable install |
 
----
-
 ### Referencing Personal Libraries
 
-During active development, personal libraries are referenced as editable installs. The path for sindri packages is `../submodules/<package-name>`; see [`code/python/setup-module.md`](python/setup-module.md) for the full pattern.
+During active development, reference personal libraries as editable installs; see [`<rules>/code/python/setup-module.md`](python/setup-module.md) for the full pattern.
 
-Once a project has matured and the dependency has stabilised, personal libraries are referenced as a pinned git commit:
+Once a project matures and the dependency stabilises, pin personal libraries to a git commit:
 
 ```toml
 [tool.uv.sources]
@@ -74,6 +61,6 @@ The package bridges the simulation code's file format to jormi field objects. Wh
 
 - loading from disk: read raw data from the simulation's file format; return jormi field objects
 - metadata: grid, units, and simulation parameters from snapshot files
-- format-specific derived fields: quantities that require knowledge of the simulation code's conventions or variable layout; general reusable physics computations belong in `jormi/` instead
+- format-specific derived fields: quantities that require knowledge of the simulation code's conventions or variable layout; general reusable physics computations belong in `jormi` instead
 
 Reference the new package as an editable install during development. See [Referencing Personal Libraries](#referencing-personal-libraries) for the `pyproject.toml` pattern.

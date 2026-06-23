@@ -6,14 +6,14 @@ How to use, add to, and extend the `~/.rules/` system.
 
 ## What it is
 
-The canonical source is `<system-configs>/configs/rules/`. All `.md` files there are symlinked into `~/.rules/` by `uv run -m scripts.setup.rules_files` run from the SystemConfigs repo. Edit the source; never edit through a symlink.
+The canonical source is `<system-configs>/configs/rules/`. All `.md` files there are symlinked into `~/.rules/` (written `<rules>/` in cross-references throughout these files) by `uv run -m scripts.setup.rules_files` run from the SystemConfigs repo. Edit the source; never edit through a symlink.
 
 ---
 
 ## Structure
 
 ```text
-~/.rules/
+<rules>/
 ├── dev/  # conventions for producing code and scripts
 │   ├── python/  # Python language bundle
 │   └── quokka/  # Quokka project bundle
@@ -26,9 +26,9 @@ The canonical source is `<system-configs>/configs/rules/`. All `.md` files there
 
 ## What belongs here
 
-A rule belongs in `~/.rules/` when it is a binding convention: it applies across future uses of a tool, language, or context, and it prescribes how to do something.
+A rule belongs in `<rules>/` when it is a binding convention: it applies across future uses of a tool, language, or context, and it prescribes how to do something.
 
-| Belongs in `~/.rules/` | Does not belong |
+| Belongs in `<rules>/` | Does not belong |
 |---|---|
 | How to write a docstring | What a specific function does |
 | Commit message format | Status of an ongoing investigation |
@@ -42,7 +42,7 @@ When in doubt: a rule answers "what is the convention?" A note answers "what is 
 
 ## Adding a rule
 
-1. Find the right file. Read `~/.rules/README.md` for the full index. Use an existing file if the topic fits; create a new one if nothing covers it.
+1. Find the right file. Read [`<rules>/README.md`](../../README.md) for the full index. Use an existing file if the topic fits; create a new one if nothing covers it.
 2. Edit the source under `<system-configs>/configs/rules/`.
 3. From `<system-configs>/`, run `uv run -m scripts.setup.rules_files` to relink and `uv run -m scripts.setup.rules_index` to regenerate the index.
 4. Commit following [`workflow/git/commits.md`](../git/commits.md).
@@ -69,7 +69,7 @@ A finding in the notes system becomes a rule when it represents a stable convent
 
 To promote:
 
-1. Identify which `~/.rules/` file the convention belongs in.
+1. Identify which `<rules>/` file the convention belongs in.
 2. Phrase it as a rule: prescriptive, not descriptive.
 3. In the notes source, note the promotion if the investigation entry is still live; the rule itself carries no back-reference.
 4. Commit following [`workflow/git/commits.md`](../git/commits.md).

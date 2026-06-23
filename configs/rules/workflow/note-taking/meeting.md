@@ -32,7 +32,7 @@ For recurring series, the `README.md` is the persistent reference; the session f
 | What was discussed and by whom | Action items managed elsewhere (task tracker, issue) |
 | Decisions reached in the meeting | Slides or supporting materials (link, do not embed) |
 | Open questions raised | Background context that pre-dates the meeting |
-| Follow-up commitments noted | Binding conventions (promote to `~/.rules/`) |
+| Follow-up commitments noted | Binding conventions (promote to `<rules>/`) |
 
 ---
 
@@ -55,4 +55,4 @@ Each session file should open with the date and attendees, then follow the meeti
 - ...
 ```
 
-Keep entries factual. Record what was said and decided; do not editorialise. If a decision reached in a meeting becomes a binding convention, promote it to `~/.rules/`.
+Keep entries factual. Record what was said and decided; do not editorialise. If a decision reached in a meeting becomes a binding convention, promote it to `<rules>/`.

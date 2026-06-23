@@ -47,7 +47,7 @@ How to handle errors in Python, including which exceptions to raise and how to p
 ```python
 raise ValueError("`<param>` must be <constraint>.")
 raise ValueError(f"`<param>` must be <constraint>; got `{<param>}`.")
-raise ValueError(f"`{<param_name>}` must be one of {<valid_options>}; got `{<value>}`.")
+raise ValueError(f"`{<param>}` must be one of {<valid_options>}; got `{<value>}`.")
 raise ValueError(f"<item> not found: `{<key>}`; searched in {<location>}.")
 raise FileNotFoundError(f"config error: `<field>`: <reason>; got {<path>}.")
 raise RuntimeError(f"`{<command>}` failed.") from <error>

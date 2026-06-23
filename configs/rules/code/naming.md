@@ -31,4 +31,4 @@ File and folder naming on disk.
 
 ## In Python Packages
 
-Python modules and packages must be valid identifiers, so `-` is not allowed; only `_` may separate words. See `~/.rules/code/python/naming.md` for the full convention.
+Python modules and packages must be valid identifiers, so `-` is not allowed; only `_` may separate words. See [`<rules>/code/python/naming.md`](python/naming.md) for the full convention.

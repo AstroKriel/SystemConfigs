@@ -6,7 +6,7 @@ How to write Python docstrings and inline comments.
 
 ## Docstrings
 
-Prose style follows `~/.rules/writing/docs.md`: short and direct, active voice, no filler words.
+Prose style follows [`<rules>/writing/markdown.md`](../../writing/markdown.md): short and direct, active voice, no filler words.
 
 ### Scope
 
