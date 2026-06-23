@@ -25,7 +25,8 @@ hpcs/<cluster>/
 
 The `README.md` is the reference sheet, holding everything needed to start a session from scratch:
 
-- **Login hostname and access topology:** a sanitized snippet with `<username>` placeholders; the literal `~/.ssh/config` stays in the setup repo.
+- **Instance (`## Instance`):** a placeholder table at the top defining all account-specific values. Shared placeholders (`<username>`, `<home>`) go in one table. Per-project paths go under bold sub-labels (**`<project-code>:`**) with a one-line description and a placeholder table. Name path placeholders `<tier-project>` (e.g. `<scratch-jh2>`, `<gdata-jh2>`) so they are unambiguous when referenced anywhere else in the file. Every placeholder resolves to a literal string; `<project>` in job scripts is a runtime choice, not a placeholder to define here. SU budgets and current fill levels do not belong here; check them live with `nci_account` or equivalent.
+- **Login hostname and access topology:** a sanitized snippet using placeholders defined in `## Instance`; the literal `~/.ssh/config` stays in the setup repo.
 - **Partitions, scheduler flags, and queue behaviour.**
 - **Storage tiers:** mapped to the `home`/`fast-storage`/`project` concepts (`project` where available).
 - **Module load sequences:** the non-standard ones, under `## Software`.
