@@ -21,7 +21,7 @@ from local_helpers import project_dirs
 ##
 
 _RULES_DIR = project_dirs.SOURCES.rules
-_DEFAULT_OUTPUT = Path.home() / "tmp" / "rules.pdf"
+_DEFAULT_OUTPUT = Path.home() / ".rules" / "rules.pdf"
 _SKIP = {"README.md"}
 
 _PREAMBLE = r"""\documentclass[a4paper, 11pt]{article}
