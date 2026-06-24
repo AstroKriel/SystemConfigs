@@ -2,6 +2,27 @@
 
 How to test Quokka before pushing, from smoke tests through convergence tests and pass/fail signals.
 
+## Sim layout
+
+Test runs live in `sims/<purpose>/<problem>/` under the worktree. Each sim directory is self-contained: the compiled binary and `inputs.toml` are co-located there. Run the binary from inside the directory.
+
+```
+<worktree>/
+  sims/
+    correctness/
+      slow-wave-convergence/
+        SlowWaveConvergence   (binary)
+        inputs.toml
+    symmetry/
+      ot-rot180/
+        MHD_OrszagTang        (binary)
+        inputs.toml
+```
+
+The folder path encodes purpose, not just the problem name. Common purposes: `correctness/`, `symmetry/`, `smoke/`, `performance/`. Sim directories stay on the HPC under the worktree and are not committed to ProjectNotes.
+
+---
+
 ## Testing tiers
 
 Tests escalate across three tiers, in increasing cost and authority. The first two are run by hand before opening a pull request; the third runs automatically on it.
@@ -63,7 +84,8 @@ Run each with:
 
 ```bash
 ninja -C build/3d-release <ProblemName>
-cd tests && mpirun -n <N> ../build/3d-release/src/problems/<ProblemName>/<ProblemName> ../inputs/<ProblemName>.toml
+cp build/3d-release/src/problems/<ProblemName>/<ProblemName> sims/<purpose>/<ProblemName>/
+cd sims/<purpose>/<ProblemName> && mpirun -n <N> ./<ProblemName> inputs.toml
 ```
 
 **Tier-based domain scaling:** Never change `stop_time`; adjust `n_cell` only. Collapse dimensions that are not being resolved to 8 cells. Scale active-dimension resolution to the compute tier:
