@@ -25,13 +25,13 @@ hpcs/<cluster>/
 
 The `README.md` is the reference sheet, holding everything needed to start a session from scratch:
 
-- **Instance (`## Instance`):** a placeholder table at the top defining all account-specific values. Shared placeholders (`<username>`, `<home>`) go in one table. Per-project paths go under bold sub-labels (**`<project-code>:`**) with a one-line description and a placeholder table. Name path placeholders `<tier-project>` (e.g. `<scratch-jh2>`, `<gdata-jh2>`) so they are unambiguous when referenced anywhere else in the file. Every placeholder resolves to a literal string; `<project>` in job scripts is a runtime choice, not a placeholder to define here. SU budgets and current fill levels do not belong here; check them live with `nci_account` or equivalent.
+- **Instance (`## Instance`):** a placeholder table at the top defining all account-specific values. Shared placeholders (`<username>`, `<home>`) go in one table. Per-project paths go under bold sub-labels (**`<project-code>:`**) with a one-line description and a placeholder table. Name path placeholders `<tier-project>` (e.g. `<scratch-jh2>`, `<gdata-jh2>`) so they are unambiguous when referenced anywhere else in the file. **Always include the code root(s) as named placeholders** (e.g. `<codes>` for a flat layout, or `<sim-codes>` and `<analysis-codes>` when grouped by type); workflow rules reference these placeholders (e.g. `<codes>/quokka-<branch-slug>` for worktrees) and they must resolve here. Every placeholder resolves to a literal string; `<project>` in job scripts is a runtime choice, not a placeholder to define here. SU budgets and current fill levels do not belong here; check them live with `nci_account` or equivalent.
 - **Login hostname and access topology:** a sanitized snippet using placeholders defined in `## Instance`; the literal `~/.ssh/config` stays in the setup repo.
 - **Partitions, scheduler flags, and queue behaviour.**
 - **Storage tiers:** mapped to the `home`/`fast-storage`/`project` concepts (`project` where available).
 - **Module load sequences:** the non-standard ones, under `## Software`.
 - **Minimal job script:** one, inline, as `## Minimal Job Script`; not a folder of templates, since a run's submission files live in its `jobs/` directory on the cluster.
-- **Installed codes:** a `## Codes` table of name, checkout path, and role; no remote URLs or other codebase facts, which live in the codebase's own notes.
+- **Installed codes (`## Codes`):** a table of name, checkout path, and role; paths use the `<codes>` (or equivalent) placeholder defined in `## Instance`, not hardcoded strings. No remote URLs or other codebase facts, which live in the codebase's own notes. If no codes are installed yet, include the section as a stub so the gap is visible.
 - **Host-specific build steps:** a `### <codebase>` subsection under `## Software`, holding the distilled recipe only.
 - **Hardware specs and filesystems:** for a single node; once nodes diverge these move to `<node>.md`.
 
