@@ -2,7 +2,7 @@
 
 Quokka build and run workflow on local and hpc systems.
 
-## Related
+## Related Orientation
 
 | Location | What |
 |---|---|
@@ -10,7 +10,6 @@ Quokka build and run workflow on local and hpc systems.
 | `<quokka-checkout>/AGENTS.md` | LLM agent guidance for the Quokka codebase. Maintained by the repo. |
 | `<quokka-checkout>/docs/markdown/` | Full user and developer documentation. Key files: `mhd_module.md` (MHD physics and runtime controls), `parameters.md` (all TOML parameters), `running_on_hpc_clusters.md` (cluster-specific build procedures), `contributing.md` (git workflow, PR guidelines, code style). |
 | `<project-notes>/codebases/quokka/` | Orientation: what Quokka is, file locations on this machine. |
-| `<project-notes>/<paper>/` | Paper project context and notes. |
 
 ---
 
