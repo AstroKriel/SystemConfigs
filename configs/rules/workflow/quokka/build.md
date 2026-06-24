@@ -100,7 +100,7 @@ ninja -C build/3d-release <ProblemName>
 **HPC:** source worktrees live on quota-limited home; build trees go on node-local scratch. Use explicit `-S`/`-B` to separate them. Toolchain flags vary per host; see host notes and the portable tool install block in Build Directories above:
 
 ```bash
-SRC=<codes>/quokka-<branch-slug>
+SRC=<repos>/quokka-<branch-slug>
 BUILD=<scratch>/$USER/quokka-<branch-slug>/build/<config>
 rm -f "$BUILD/CMakeCache.txt"
 cmake -S "$SRC" -B "$BUILD" -G Ninja \
@@ -111,7 +111,7 @@ cmake -S "$SRC" -B "$BUILD" -G Ninja \
 ninja -C "$BUILD" <ProblemName>
 ```
 
-`<codes>` and `<scratch>` are defined in `<project-notes>/hpcs/<host>/`. The worktree name (`quokka-<branch-slug>`) is the same in both cases; only the root path differs.
+`<repos>` and `<scratch>` are defined in `<project-notes>/hpcs/<host>/`. The worktree name (`quokka-<branch-slug>`) is the same in both cases; only the root path differs.
 
 ---
 
