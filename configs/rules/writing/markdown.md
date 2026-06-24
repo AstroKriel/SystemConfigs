@@ -98,7 +98,7 @@ Prose is the one form off the ladder: it cannot be extended or reorganised witho
 
 ## Code Blocks
 
-Runnable commands and copy-paste instructions are written in code blocks, not inline prose. Inline code remains appropriate for naming a command, script, path, module, key, or flag when the reader is not being asked to run it. Runnable commands are shown in full, as they would actually be entered, with no ellipsis or shorthand.
+Runnable commands and copy-paste instructions are written in code blocks, not inline prose. Inline code remains appropriate for naming a command, script, path, module, key, or flag when the reader is not being asked to run it. Runnable commands are shown in full, as they would actually be entered, with no ellipsis or shorthand. Do not add inline comments that contain conditions or guidance requiring a decision; express those as prose before or between blocks.
 
 ---
 

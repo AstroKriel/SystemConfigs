@@ -60,18 +60,29 @@ Use git worktrees to work on multiple feature branches in parallel without switc
 | Main checkout on `development` | The primary checkout tracks `development`. Worktrees branch off from there. |
 | One worktree per feature branch | Create a worktree for each active branch; delete it when the branch is merged or shelved. |
 | Naming | Name each worktree after its branch with `/` replaced by `-`, placed as a sibling to the main checkout directory. Branch `<scope>/<type>/<name>` becomes `quokka-<scope>-<type>-<name>`. |
+| Pull before forking | Before creating a worktree, pull the source branch if it is a passive tracking branch (e.g. `development`). Skip this for active feature branches where the current state is intentional. |
 | Initialise submodules on creation | After `git worktree add`, run `git submodule update --init` inside the new worktree before building. The `--init` flag is required on any fresh worktree: submodule registration does not carry over from the main checkout automatically. Subsequent updates (e.g. after pulling a new pin) only need `git submodule update`. |
 | Extern drift | Each worktree has its own `extern/` working tree; submodule pins are per-branch. If a feature branch falls behind `development` on submodule pins, fix by merging or rebasing `development` into the feature branch so the pins come back into sync. |
 | Build directories | Each worktree has its own build tree. On local, build dirs live inside the worktree (`build/3d-release`, etc.). On HPC, source lives on quota-limited Ceph home; build dirs go on node-local scratch. See Build locations below. |
 | Trial run data | Short-lived `tmp/` runs belong inside the feature worktree, not the main checkout. |
 
+If the source branch is a passive tracking branch (e.g. `development`), pull before creating the worktree. Skip this for active feature branches where the current state is intentional.
+
 ```bash
-# Create a worktree for a feature branch (run from the main checkout):
+git pull
+```
+
+Then create the worktree:
+
+```bash
 git worktree add ../quokka-<branch-slug> <branch>
 cd ../quokka-<branch-slug>
 git submodule update --init
+```
 
-# Remove a worktree when the branch is merged or shelved:
+Remove a worktree when the branch is merged or shelved:
+
+```bash
 git worktree remove ../quokka-<branch-slug>
 ```
 
@@ -175,4 +186,4 @@ For short-lived trial runs (testing a parameter, trialing a scheme), use `tmp/` 
 |---|---|
 | Verbose output | Always set `amr.v = 1`. This enables FOFC firing counts, retry events, and other internal solver diagnostics that are silent at the default `amr.v = 0`. |
 | Plotfiles | Always set `plottime_interval = <interval>`. Write snapshots at regular intervals so the evolution can be inspected, not just the outcome. A run that crashes with no plotfiles leaves nothing to analyse. |
-| Pass TOML as a relative path | In SLURM job scripts, always pass the input file as a bare filename (`sim_params.toml`), not an absolute path, and set `--chdir` to the run directory. AMReX ParmParse treats any command-line token containing `=` as an inline key=value pair. Absolute paths through directories named with `key=value` segments (e.g. `angle=0-nx=1-ny=0-nz=0`) crash the parser silently with misleading errors about missing definitions. |
+| Pass TOML as a relative path | Always pass the input file as a bare filename (`sim_params.toml`), not an absolute path, and set the working directory to the run directory before invoking the binary (`cd $RUNDIR` in PBS/SLURM scripts; `--chdir` in SLURM). AMReX ParmParse treats any command-line token containing `=` as an inline key=value pair. Absolute paths through directories named with `key=value` segments (e.g. `ncells=1024-hyper=1e-3`) crash the parser silently with misleading errors about missing definitions. |
