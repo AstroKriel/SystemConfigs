@@ -63,7 +63,7 @@ Use git worktrees to work on multiple feature branches in parallel without switc
 | Initialise submodules on creation | After `git worktree add`, run `git submodule update --init` inside the new worktree before building. The `--init` flag is required on any fresh worktree: submodule registration does not carry over from the main checkout automatically. Subsequent updates (e.g. after pulling a new pin) only need `git submodule update`. |
 | Extern drift | Each worktree has its own `extern/` working tree; submodule pins are per-branch. If a feature branch falls behind `development` on submodule pins, fix by merging or rebasing `development` into the feature branch so the pins come back into sync. |
 | Build directories | Each worktree has its own build tree. On local, build dirs live inside the worktree (`build/3d-release`, etc.). On HPC, source lives on quota-limited Ceph home; build dirs go on node-local scratch. See Build locations below. |
-| Trial run data | Short-lived `tmp/` runs belong inside the feature worktree, not the main checkout. |
+| Trial run data | Short-lived `sims/` runs belong inside the feature worktree, not the main checkout. |
 
 If the source branch is a passive tracking branch (e.g. `development`), pull before creating the worktree. Skip this for active feature branches where the current state is intentional.
 
@@ -177,7 +177,7 @@ AMReX profiling output (`ProfData_*`) lands in the working directory; with `--ch
 | `jobs/sim.sh` | Run the Quokka executable with the problem TOML |
 | `jobs/extract.sh` | Run `ww-quokka-sims` diagnostics; output goes to `derived/` |
 
-For short-lived trial runs (testing a parameter, trialing a scheme), use `tmp/` at the project root rather than a full `<concept>/<sim-name>/` directory. See [`workflow/remote-work/hpc.md`](../remote-work/hpc.md) for the naming convention.
+For short-lived trial runs (testing a parameter, trialing a scheme), use `sims/<purpose>/<problem>/` under the worktree rather than a full `<concept>/<sim-name>/` directory. See [`workflow/quokka/testing.md`](testing.md) for the layout convention.
 
 ### Run settings
 

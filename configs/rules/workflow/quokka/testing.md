@@ -83,8 +83,8 @@ General principle: [`workflow/git/review-branch.md`](../git/review-branch.md).
 Run each with:
 
 ```bash
-ninja -C build/3d-release <ProblemName>
-cp build/3d-release/src/problems/<ProblemName>/<ProblemName> sims/<purpose>/<ProblemName>/
+ninja -C build/<config> <ProblemName>
+cp build/<config>/src/problems/<ProblemName>/<ProblemName> sims/<purpose>/<ProblemName>/
 cd sims/<purpose>/<ProblemName> && mpirun -n <N> ./<ProblemName> inputs.toml
 ```
 
