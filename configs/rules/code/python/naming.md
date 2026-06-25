@@ -106,7 +106,7 @@ When code, comments, and docstrings use mathematical notation, keep naming align
 | Scalars | lower-case physics name: `<physics_quantity>` |
 | Vectors | lower-case physics name with index: `<physics_quantity>_<index>` |
 | Tensors | upper-case physics name with indices (notation only): `<PhysicsQuantity>_<index><index>` |
-| Code names | full English physics name, not a symbol: `magnetic_field` not `b`, `velocity` not `v`, `density` not `rho` |
+| Code names | full English or physics shorthand; see below |
 
 | Rule | Detail |
 |---|---|
@@ -115,6 +115,22 @@ When code, comments, and docstrings use mathematical notation, keep naming align
 | Avoid | `<symbol><label>`, `<operation><quantity>`, `<symbol><label><qualifier>` |
 | Scope | apply to variable names, comments, docstrings, and user-facing labels; preserve established public labels |
 | Representation suffix | quantity first, then container or representation type: `<quantity>_<representation>` |
+
+**Full English mode**: quantity prefix is the full English physics name: `density`, `velocity`, `kinetic_energy`.
+
+**Physics shorthand mode**: permitted in function bodies that directly implement a formula. Quantity prefix follows standard physics notation; the representation suffix is unchanged.
+
+| Pattern | Rule | Examples |
+|---|---|---|
+| Single-char Latin | one universally agreed symbol | `v`, `b`, `p`, `j`, `s` |
+| Spelled-out Greek | full Greek name, never truncated | `rho`, `beta`, `omega`, `kappa` |
+| Energy variants | `e_<tag>` | `e_kin`, `e_int`, `e_mag`, `e_tot` |
+| Velocity-family | `v_<qualifier>` | `v_alfven` |
+| Magnitudes | `<symbol>_magn` | `v_magn`, `j_magn`, `omega_magn` |
+
+Quantities with no agreed standard symbol use full English only: `momentum`, `lorentz_force`, `cross_helicity`.
+
+**Scope rule**: one mode per function body. Do not mix `rho_sarray_3d` and `density_sarray_3d` within the same function.
 
 ### Field Identifiers (`field_name`)
 
