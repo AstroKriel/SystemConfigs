@@ -1,4 +1,4 @@
-# LaTeX: Style
+# LaTeX: Writing Style
 
 LaTeX writing style, particularly for scientific notes and papers.
 

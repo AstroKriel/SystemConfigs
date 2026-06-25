@@ -1,4 +1,4 @@
-# Writing: Markdown
+# Writing: Documentation Style
 
 Conventions for formatting, structuring, and writing Markdown documentation.
 

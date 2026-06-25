@@ -1,4 +1,4 @@
-# Code: Naming
+# Code: File and Folder Naming
 
 File and folder naming on disk.
 

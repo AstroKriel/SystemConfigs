@@ -1,4 +1,4 @@
-# Remote Work: SSH
+# Remote Work: SSH Configuration
 
 How to manage SSH keys, write the SSH config file, and set up agent forwarding.
 

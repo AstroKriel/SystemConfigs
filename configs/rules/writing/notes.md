@@ -1,4 +1,4 @@
-# Writing: Notes
+# Writing: Notes Style
 
 Style for writing notes on the user's behalf, from project logs and meeting notes to supervision records.
 
