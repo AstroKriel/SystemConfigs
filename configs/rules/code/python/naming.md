@@ -125,7 +125,7 @@ When code, comments, and docstrings use mathematical notation, keep naming align
 | Single-char Latin | one universally agreed symbol | `v`, `b`, `p`, `j`, `s` |
 | Spelled-out Greek | full Greek name, never truncated | `rho`, `beta`, `omega`, `kappa` |
 | Energy variants | `e_<tag>` | `e_kin`, `e_int`, `e_mag`, `e_tot` |
-| Velocity-family | `v_<qualifier>` | `v_alfven` |
+| Wave speeds | `c_<name>` | `c_alfven`, `c_sound`, `c_fast`, `c_slow` |
 | Magnitudes | `<symbol>_magn` | `v_magn`, `j_magn`, `omega_magn` |
 
 Quantities with no agreed standard symbol use full English only: `momentum`, `lorentz_force`, `cross_helicity`.
