@@ -83,7 +83,7 @@ Sim directories are grouped by scientific concept; each sim directory is self-co
 └── tmp/
 ```
 
-`tmp/` follows the same concept and naming conventions as `~/tmp/` in `workflow/science-project.md`, but on remote systems it lives under `<fast-storage>/<project>/`, not under `~`. Placing it on `home` consumes the small quota and causes usage spikes.
+`tmp/` follows the same concept and naming conventions as `~/tmp/` in [`<rules>/workflow/asgard/project.md`](../asgard/project.md), but on remote systems it lives under `<fast-storage>/<project>/`, not under `~`. Placing it on `home` consumes the small quota and causes usage spikes.
 
 ---
 
