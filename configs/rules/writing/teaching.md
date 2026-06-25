@@ -1,4 +1,4 @@
-# Teaching Voice
+# Writing: Teaching
 
 Writing style for lesson content in teaching repositories, covering READMEs and accompanying prose.
 

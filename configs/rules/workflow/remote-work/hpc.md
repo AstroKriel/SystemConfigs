@@ -1,4 +1,4 @@
-# HPC Workflow
+# Remote Work: HPC
 
 How to work on HPC clusters, covering onboarding, module loading, job submission, and data management.
 

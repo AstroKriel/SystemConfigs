@@ -1,4 +1,4 @@
-# Arch Update Routine: Framework 13
+# Framework: Arch Update Routine
 
 The routine for keeping the Framework 13 on Arch Linux/X11 up to date, from preparation through post-update recovery.
 

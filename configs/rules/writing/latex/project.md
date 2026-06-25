@@ -1,4 +1,4 @@
-# LaTeX Project Structure
+# LaTeX: Project Structure
 
 How to structure a LaTeX project, covering file layout, figures, tables, bibliography, and submission versioning.
 

@@ -1,4 +1,4 @@
-# Bash Style
+# Bash: Style
 
 Style conventions for bash scripts, covering structure, variables, and terminal output.
 

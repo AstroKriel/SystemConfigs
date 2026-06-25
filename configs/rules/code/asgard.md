@@ -1,4 +1,4 @@
-# Asgard Project Conventions
+# Asgard: Code Conventions
 
 Conventions for the `Asgard` project, complementing and overriding the general `python` conventions where they overlap.
 

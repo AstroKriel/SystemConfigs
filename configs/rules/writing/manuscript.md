@@ -1,4 +1,4 @@
-# Scientific Writing
+# Writing: Manuscript
 
 Style conventions for scientific prose in manuscripts, papers, theses, and technical reports.
 
