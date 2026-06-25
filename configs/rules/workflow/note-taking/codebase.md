@@ -1,4 +1,4 @@
-# Codebase Notes
+# Notes: Codebase
 
 Notes on tools and codebases in active use; each lives under `<project-notes>/codebases/<code>/`.
 

@@ -1,4 +1,4 @@
-# Rules
+# Notes: Rules
 
 How to use, add to, and extend the `~/.rules/` system.
 
@@ -50,6 +50,7 @@ When in doubt: a rule answers "what is the convention?" A note answers "what is 
 **New file:**
 - name it `<concept>.md`; one word or a short phrase naming the subject
 - open with a title, then a single present-tense sentence describing what the file covers; no second sentence or cross-references
+- title format: `<Bundle>: <Concept>` -- gives domain and topic in full so the file is self-describing without reference to its path; the description sentence narrows scope further
 - that sentence becomes the index entry
 
 **Promoting a file to a bundle:**

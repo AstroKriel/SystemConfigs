@@ -1,4 +1,4 @@
-# Project Notes
+# Notes: Project
 
 Notes on active research and teaching projects; each lives under `<project-notes>/`.
 

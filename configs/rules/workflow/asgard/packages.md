@@ -1,4 +1,4 @@
-# Asgard: Development Workflow
+# Asgard: Package Development
 
 Workflow conventions for developing Asgard Python packages.
 

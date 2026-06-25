@@ -1,4 +1,4 @@
-# Personal Machine Notes
+# Notes: Personal Machine
 
 Notes on machines you own and maintain; each has a setup repository and a research reference entry.
 

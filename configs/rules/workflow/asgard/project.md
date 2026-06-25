@@ -1,4 +1,4 @@
-# Science Project
+# Asgard: Science Project
 
 How to start, run, and archive science projects in the Asgard ecosystem.
 

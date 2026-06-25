@@ -1,4 +1,4 @@
-# HPC Notes
+# Notes: HPC
 
 Notes on HPC clusters you use but do not own or administer; each lives under `<project-notes>/hpcs/<cluster>/`.
 

@@ -1,4 +1,4 @@
-# Meeting Notes
+# Notes: Meeting
 
 Notes for recurring group meetings and ad-hoc discussions; stored under `<project-notes>/meetings/`.
 
