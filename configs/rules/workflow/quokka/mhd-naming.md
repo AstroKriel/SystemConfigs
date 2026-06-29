@@ -48,7 +48,7 @@ Rule: `<quantity>_w<n>[_<qualifier>]`
 
 - Always place an underscore between the quantity name and its index.
 - Prefix the index with `w` when it is a world-direction index (0=x, 1=y, 2=z).
-- Other index types use their own qualifier without `w`: `_q0`–`_q3` for quadrant, `_lo`/`_hi` for bounding edge position, `_m`/`_p` for minus/plus face side.
+- Other index types use their own qualifier without `w`: `_iquad0`–`_iquad3` for quadrant (first array index, quadrant type), `_lo`/`_hi` for bounding edge position, `_m`/`_p` for minus/plus face side.
 
 | Name | Meaning |
 |---|---|
@@ -57,7 +57,7 @@ Rule: `<quantity>_w<n>[_<qualifier>]`
 | `j_w1`, `j_w2` | current density component in world direction n |
 | `b_w0_T`, `b_w0_B` | b_w0 at top/bottom edge position |
 | `b_w1_L`, `b_w1_R` | b_w1 at left/right edge position |
-| `emf_w2_q0` | emf_w2 at quadrant 0 |
+| `emf_w2_iquad0` | emf_w2 at quadrant 0 (iquad == 0) |
 | `eta_j_w1_lo`, `eta_j_w1_hi` | resistive EMF (eta*j) in w1 direction at lo/hi bounding edge |
 | `eta_w1_lo` | resistivity scalar at the w1-edge lo position |
 | `ave_b_w1_lo` | average of b_w1 at the lo bounding edge |
