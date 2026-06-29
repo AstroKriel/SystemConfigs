@@ -24,18 +24,18 @@ Prefix pattern: `[centering_]a4_<quantity>[_w<n>]`
 | Quantity | Lowercase physics name: `b`, `u`, `emf`, `fspd`, `flux`. |
 | `_w<n>` | Required when the array lives on a specific face or edge direction. `n` is 0, 1, or 2. |
 
-Examples: `fc_a4_b_w0`, `a4_emf_w2_ave`, `cc_a4_cVars`.
+Examples: `fc_a4_b_wcomp0`, `a4_emf_wcomp2_ave`, `cc_a4_cVars`.
 
 ---
 
 ## World-direction index convention
 
-The loop variable `w0` is the face-normal direction. `w1 = (w0+1)%3`, `w2 = (w0+2)%3`. This is established at the top of any direction loop:
+The loop variable `wcomp0` is the face-normal direction. `wcomp1 = (wcomp0+1)%3`, `wcomp2 = (wcomp0+2)%3`. This is established at the top of any direction loop:
 
 ```cpp
-for (int w0 = 0; w0 < AMREX_SPACEDIM; ++w0) {
-    const int w1 = (w0 + 1) % 3;
-    const int w2 = (w0 + 2) % 3;
+for (int wcomp0 = 0; wcomp0 < AMREX_SPACEDIM; ++wcomp0) {
+    const int wcomp1 = (wcomp0 + 1) % 3;
+    const int wcomp2 = (wcomp0 + 2) % 3;
     ...
 }
 ```
@@ -52,15 +52,15 @@ Rule: `<quantity>_w<n>[_<qualifier>]`
 
 | Name | Meaning |
 |---|---|
-| `b_w0`, `b_w1`, `b_w2` | b-field component in world direction n |
-| `u_w0`, `u_w1` | velocity component in world direction n |
-| `j_w1`, `j_w2` | current density component in world direction n |
-| `b_w0_T`, `b_w0_B` | b_w0 at top/bottom edge position |
-| `b_w1_L`, `b_w1_R` | b_w1 at left/right edge position |
-| `emf_w2_iquad0` | emf_w2 at quadrant 0 (iquad == 0) |
-| `eta_j_w1_lo`, `eta_j_w1_hi` | resistive EMF (eta*j) in w1 direction at lo/hi bounding edge |
-| `eta_w1_lo` | resistivity scalar at the w1-edge lo position |
-| `ave_b_w1_lo` | average of b_w1 at the lo bounding edge |
+| `b_wcomp0`, `b_wcomp1`, `b_wcomp2` | b-field component in world direction n |
+| `u_wcomp0`, `u_wcomp1` | velocity component in world direction n |
+| `j_wcomp1`, `j_wcomp2` | current density component in world direction n |
+| `b_wcomp0_T`, `b_wcomp0_B` | b_wcomp0 at top/bottom edge position |
+| `b_wcomp1_L`, `b_wcomp1_R` | b_wcomp1 at left/right edge position |
+| `emf_wcomp2_iquad0` | emf_wcomp2 at quadrant 0 (iquad == 0) |
+| `eta_j_wcomp1_lo`, `eta_j_wcomp1_hi` | resistive EMF (eta*j) in wcomp1 direction at lo/hi bounding edge |
+| `eta_wcomp1_lo` | resistivity scalar at the wcomp1-edge lo position |
+| `ave_b_wcomp1_lo` | average of b_wcomp1 at the lo bounding edge |
 
 ---
 
@@ -69,9 +69,9 @@ Rule: `<quantity>_w<n>[_<qualifier>]`
 When a variable is a `std::array` of `amrex::Array4` (one per quadrant or per edge side), attach the plural `s` directly to the quantity name, before the direction qualifier:
 
 ```
-bs_w0, bs_w1    // arrays of b-field Array4 views
-us_w0, us_w1    // arrays of velocity Array4 views
-emfs_w2         // array of EMF Array4 views
+bs_wcomp0, bs_wcomp1    // arrays of b-field Array4 views
+us_wcomp0, us_wcomp1    // arrays of velocity Array4 views
+emfs_wcomp2         // array of EMF Array4 views
 ```
 
 ---
@@ -80,8 +80,8 @@ emfs_w2         // array of EMF Array4 views
 
 | Name | Type | Meaning |
 |---|---|---|
-| `delta_w0`, `delta_w1`, `delta_w2` | `std::array<int,3>` | Unit stencil step in the w0/w1/w2 direction |
-| `dx_w0`, `dx_w1`, `dx_w2` | `amrex::Real` | Cell size in the w0/w1/w2 direction |
+| `delta_wcomp0`, `delta_wcomp1`, `delta_wcomp2` | `std::array<int,3>` | Unit stencil step in the wcomp0/wcomp1/wcomp2 direction |
+| `dx_wcomp0`, `dx_wcomp1`, `dx_wcomp2` | `amrex::Real` | Cell size in the wcomp0/wcomp1/wcomp2 direction |
 
 ---
 
@@ -93,7 +93,7 @@ Index variable names follow the pattern `[letter][what-it-indexes]`. The letter 
 |---|---|---|
 | `i` | first (or only) array index | `icomp`, `ieside`, `iquad` |
 | `j` | second array index in a two-indexed array | `jquad`, `jeside` |
-| `w` | world-direction index (0=x, 1=y, 2=z) | `wcomp`, `w0`, `w1`, `w2` |
+| `w` | world-direction index (0=x, 1=y, 2=z) | `wcomp`, `wcomp0`, `wcomp1`, `wcomp2` |
 
 When embedded in a quantity name, the full index variable name replaces any fused shorthand:
 
@@ -108,15 +108,15 @@ When a specific slot value is known, the variable name in the quantity name beco
 ```
 b_icomp     // abstract: icomp is the loop variable
 b_i0        // concrete: first component (icomp == 0)
-b_w0        // concrete: world direction 0 (wcomp == 0)
+b_wcomp0        // concrete: world direction 0 (wcomp == 0)
 ```
 
-World-direction loops always use the `w0`/`w1`/`w2` pattern:
+World-direction loops always use the `wcomp0`/`wcomp1`/`wcomp2` pattern:
 
 ```cpp
-for (int w0 = 0; w0 < AMREX_SPACEDIM; ++w0) {
-    const int w1 = (w0 + 1) % 3;
-    const int w2 = (w0 + 2) % 3;
+for (int wcomp0 = 0; wcomp0 < AMREX_SPACEDIM; ++wcomp0) {
+    const int wcomp1 = (wcomp0 + 1) % 3;
+    const int wcomp2 = (wcomp0 + 2) % 3;
     ...
 }
 ```
@@ -127,7 +127,7 @@ for (int w0 = 0; w0 < AMREX_SPACEDIM; ++w0) {
 
 Short index variables do not require underscore separators:
 
-`icomp`, `ieside`, `iquad`, `jeside`, `jquad`, `wcomp`, `idx0`, `idx1`, `qi`, `w0`, `w1`, `w2`
+`icomp`, `ieside`, `iquad`, `jeside`, `jquad`, `wcomp`, `idx0`, `idx1`, `qi`, `wcomp0`, `wcomp1`, `wcomp2`
 
 The underscore rule applies only to multi-concept physics names where `_w<n>` or other qualifiers are needed to distinguish quantity from direction.
 
