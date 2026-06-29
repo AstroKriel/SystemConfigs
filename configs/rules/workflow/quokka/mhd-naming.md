@@ -87,21 +87,36 @@ emfs_w2         // array of EMF Array4 views
 
 ## Index letter convention
 
-Use the following letters consistently for loop variables and slot indices:
+Index variable names follow the pattern `[letter][what-it-indexes]`. The letter gives the index type; the suffix says what it ranges over. A bare letter without a suffix is not permitted.
 
-| Letter | Meaning | Examples |
+| Letter | Meaning | Full variable examples |
 |---|---|---|
-| `i` | first (or only) array index; no world-direction meaning | `icomp`, `ieside`, `iquad` |
-| `j` | second array index in a two-indexed array; distinguishes from `i` | `jquad`, `jeside` |
-| `w` | world-direction index; array slot and world direction differ | `w0`, `w1`, `w2` |
-| `x` | index where array slot and world direction are the same value | `x0`, `x1`, `x2`, `fc_a4_bx`, `fcx_mf_*` |
+| `i` | first (or only) array index | `icomp`, `ieside`, `iquad` |
+| `j` | second array index in a two-indexed array | `jquad`, `jeside` |
+| `w` | world-direction index (0=x, 1=y, 2=z) | `wcomp`, `w0`, `w1`, `w2` |
 
-When a loop iterates over all three world directions and the loop variable doubles as both array index and world direction, use `x0`/`x1`/`x2` (parallel to the `w0`/`w1`/`w2` face-loop pattern):
+When embedded in a quantity name, the full index variable name replaces any fused shorthand:
+
+| Old (fused) | Correct |
+|---|---|
+| `bi` | `b_icomp` |
+| `ui` | `u_icomp` |
+| `b_w` (no value) | `b_wcomp` |
+
+When a specific slot value is known, the variable name in the quantity name becomes `[letter][value]`:
+
+```
+b_icomp     // abstract: icomp is the loop variable
+b_i0        // concrete: first component (icomp == 0)
+b_w0        // concrete: world direction 0 (wcomp == 0)
+```
+
+World-direction loops always use the `w0`/`w1`/`w2` pattern:
 
 ```cpp
-for (int x0 = 0; x0 < 3; ++x0) {
-    int const x1 = (x0 + 1) % 3;
-    int const x2 = (x0 + 2) % 3;
+for (int w0 = 0; w0 < AMREX_SPACEDIM; ++w0) {
+    const int w1 = (w0 + 1) % 3;
+    const int w2 = (w0 + 2) % 3;
     ...
 }
 ```
@@ -110,9 +125,9 @@ for (int x0 = 0; x0 < 3; ++x0) {
 
 ## Short index variables
 
-Short conventional index variables do not require underscore separators:
+Short index variables do not require underscore separators:
 
-`icomp`, `ieside`, `iquad`, `jeside`, `jquad`, `idx0`, `idx1`, `qi`, `x0`, `x1`, `x2`
+`icomp`, `ieside`, `iquad`, `jeside`, `jquad`, `wcomp`, `idx0`, `idx1`, `qi`, `w0`, `w1`, `w2`
 
 The underscore rule applies only to multi-concept physics names where `_w<n>` or other qualifiers are needed to distinguish quantity from direction.
 
