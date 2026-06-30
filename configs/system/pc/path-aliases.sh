@@ -9,9 +9,9 @@ create_alias_if_present --var DREPOS --alias drepos --dir "$DHOME/repos"
 create_alias_if_present --var DPNOTES --alias dpnotes --dir "$DREPOS/ProjectNotes"
 create_alias_if_present --var DASGARD --alias dasgard --dir "$DREPOS/Asgard"
 
-create_alias_if_present --var DCODE --alias dcode --dir "$DREPOS/codebases"
-create_alias_if_present --var DQUOKKA --alias dquokka --dir "$DCODE/quokka"
-create_alias_if_present --var DPENCIL --alias dpencil --dir "$DCODE/pencil-code"
+create_alias_if_present --var DCODES --alias dcodes --dir "$DREPOS/codebases"
+create_alias_if_present --var DQUOKKA --alias dquokka --dir "$DCODES/quokka"
+create_alias_if_present --var DPENCIL --alias dpencil --dir "$DCODES/pencil-code"
 
 create_alias_if_present --var DTOOLS --alias dtools --dir "$DREPOS/tools"
 

@@ -132,6 +132,8 @@ Quantities with no agreed standard symbol use full English only: `momentum`, `lo
 
 **Scope rule**: one mode per function body. Do not mix `rho_sarray_3d` and `density_sarray_3d` within the same function.
 
+**Generic operands**: in functions that operate on two inputs of the same type without a specific physics identity (dot product, cross product), use `f` and `g` as the quantity prefix: `f_varray_3d`, `g_varray_3d`. Single-input generic functions omit the quantity prefix entirely: `varray_3d`.
+
 ### Field Identifiers (`field_name`)
 
 The `field_name` string on `Field` objects is a plain-text snake_case identifier, not a LaTeX expression. Three rules cover most cases:

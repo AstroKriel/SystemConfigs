@@ -88,6 +88,13 @@ EXTRAS: dict[str, ExtraConfig] = {
         target_path=Path.home() / ".local" / "bin" / "tile-window",
         required_platforms=("linux", "x11"),
     ),
+    "pc/arch-x11/autorandr/postswitch":
+    ExtraConfig(
+        name="autorandr postswitch hook",
+        source_path=SYSTEM_DIR / "pc" / "arch-x11" / "autorandr" / "postswitch",
+        target_path=Path.home() / ".config" / "autorandr" / "postswitch",
+        required_platforms=("linux", "x11"),
+    ),
     "pc/arch-x11/zathura/zathurarc":
     ExtraConfig(
         name="zathura config",

@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# X11 does not resize the framebuffer automatically when displays are connected
+# or disconnected. This computes the required framebuffer size from the current
+# xrandr state (after autorandr has applied the profile) and sets it explicitly.
+# Without this, black bars appear where the framebuffer extends past the active display area.
+fb=$(xrandr | awk '/ connected/ && /[0-9]+x[0-9]+\+[0-9]+\+[0-9]+/ {
+    # Extract WxH+X+Y from each connected output and compute its rightmost/bottommost pixel
+    match($0, /([0-9]+)x([0-9]+)\+([0-9]+)\+([0-9]+)/, a)
+    w = a[3] + a[1]; h = a[4] + a[2]
+    if (w > max_w) max_w = w
+    if (h > max_h) max_h = h
+} END { printf "%dx%d", max_w, max_h }')
+
+# Guard against bad output from awk (e.g. no connected outputs matched)
+if [ -n "$fb" ] && [ "$fb" != "0x0" ]; then
+    xrandr --fb "$fb"
+fi
+
+# Restart conky so it repositions itself for the new display layout
+pkill -9 conky
+sleep 3
+conky --config="$HOME/.config/conky/conky.conf" &
