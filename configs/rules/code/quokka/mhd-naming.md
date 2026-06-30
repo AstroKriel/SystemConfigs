@@ -1,15 +1,6 @@
 # Quokka: MHD Naming Conventions
 
-Naming and comment conventions for `mhd_system.hpp` and adjacent MHD source files. These rules apply inside the `MHDSystem` class and any GPU device functions it calls.
-
----
-
-## Comment style
-
-- Prose is lowercase throughout.
-- Acronyms stay uppercase: EMF, HLL, LLF, MHD, PPM.
-- Paper citations are proper nouns using the shorthand tag: `Balsara25a`, `Felker18a`, `LD2004`.
-- Function-header comments use the form: `// <description>; <CitationTag> (<Author(s)> <year>, <Journal> <vol>).`
+Naming and comment conventions for `mhd_system.hpp` and adjacent MHD source files in `quokka`.
 
 ---
 
