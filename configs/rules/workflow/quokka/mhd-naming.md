@@ -39,44 +39,35 @@ Omit only when centering is genuinely unknown at the declaration site (e.g. a ge
 | `mf_` | `amrex::MultiFab` |
 | `fabs_` | `amrex::FArrayBox` (locally extracted) |
 | `a4_` | single `amrex::Array4` |
-| (none) | `std::array` of `amrex::Array4`; plural Array4 containers omit the type marker |
+| (none) | `std::array` of `amrex::Array4`; plural containers omit the type marker |
 
 ### Quantity name
 
-Lowercase physics name: `b`, `u`, `emf`, `fspd`, `flux`, `cVars`.
-
-`std::array` containers use a **plural** quantity name regardless of element type.
-
-| Variable | Plural quantity | Element type |
-|---|---|---|
-| `fcw_mf_us_wcomp` | `us` | `MultiFab` |
-| `ec_mf_emfs_wcomp` | `emfs` | `MultiFab` |
-| `fcw_fspds_wcomp` | `fspds` | `Array4` (no type marker) |
-| `cc_fabs_us_wcomp` | `us` | `FArrayBox` |
+Lowercase physics name (`b`, `u`, `emf`, `fspd`, `flux`, `cVars`). `std::array` containers use a **plural** quantity name regardless of element type: `<X>` becomes `<Xs>` in the variable name.
 
 `cVars` is already plural; do not add a second `s`.
 
 ### Qualifier
 
-Qualifiers go **before** the world-direction index.
+Qualifiers go **before** the world-direction index: `<quantity>_<qualifier>_wcomp<n>`.
 
-| Qualifier | Meaning | Example |
-|---|---|---|
-| `ave` | averaged value | `emf_ave_wcomp2`, `ec_a4_emf_ave_wcomp2` |
-| `T`, `B`, `L`, `R`, `RT`, `LT`, `RB`, `LB` | edge position | `b_T_wcomp0`, `emf_RT_wcomp2` |
-| `dstar`, `T_star`, `R_star`, `L_star`, `B_star` | paper-symbol intermediate (Balsara25a) | `emf_dstar_wcomp2` |
-| `p`, `m` (on emf scalars) | plus/minus Riemann state | `emf_p_wcomp2`, `emf_m_wcomp1` |
-| `old`, `new` | time-level label | `fc_mf_cVars_old_wcomp` |
+| Qualifier | Meaning |
+|---|---|
+| `ave` | averaged value |
+| `T`, `B`, `L`, `R`, `RT`, `LT`, `RB`, `LB` | edge position (top, bottom, left, right, and corners) |
+| `dstar`, `T_star`, `R_star`, `L_star`, `B_star` | paper-symbol intermediate (Balsara25a) |
+| `p`, `m` (on emf scalars) | plus/minus Riemann state |
+| `old`, `new` | time-level label |
 
 ### Secondary indices
 
 Secondary indices come **after** the world-direction index. They are slot values that index into a container, not qualifiers.
 
-| Index | Meaning | Example |
-|---|---|---|
-| `_iquad0` to `_iquad3` | quadrant slot (iquad == n) | `emf_iquad0_wcomp2` |
-| `_lo`, `_hi` | bounding edge position | `eta_j_wcomp1_lo` |
-| `_m`, `_p` (on b-field Array4s) | jeside slot (jeside == 0 or 1) | `fc_a4_b_wcomp0_m` |
+| Index | Meaning |
+|---|---|
+| `_iquad0` to `_iquad3` | quadrant slot (iquad == n) |
+| `_lo`, `_hi` | bounding edge position |
+| `_m`, `_p` (on b-field Array4s) | jeside slot (jeside == 0 or 1) |
 
 The `_m`/`_p` suffix on **emf scalars** is a Riemann-state qualifier and goes before the world-direction index. On **b-field Array4s** extracted from a `jeside`-indexed container it is a slot value and goes after.
 
@@ -98,21 +89,16 @@ for (int wcomp0 = 0; wcomp0 < AMREX_SPACEDIM; ++wcomp0) {
 
 ## Scalar field variable naming
 
-Rule: `<quantity>[_<qualifier>]_w<n>`, then secondary indices after.
+Rule: `<quantity>[_<qualifier>]_wcomp<n>`, then secondary indices after.
 
-| Name | Meaning |
+| Pattern | Meaning |
 |---|---|
-| `b_wcomp0`, `b_wcomp1`, `b_wcomp2` | b-field component in world direction n |
-| `u_wcomp0`, `u_wcomp1` | velocity component in world direction n |
-| `j_wcomp1`, `j_wcomp2` | current density component in world direction n |
-| `b_T_wcomp0`, `b_B_wcomp0` | b-field at top/bottom edge position, world direction 0 |
-| `b_L_wcomp1`, `b_R_wcomp1` | b-field at left/right edge position, world direction 1 |
-| `emf_iquad0_wcomp2` | emf at quadrant 0 (iquad == 0), world direction 2 |
-| `emf_p_wcomp2`, `emf_m_wcomp2` | emf at plus/minus Riemann state, world direction 2 |
-| `emf_ave_wcomp2` | averaged emf, world direction 2 |
-| `eta_j_wcomp1_lo`, `eta_j_wcomp1_hi` | resistive EMF (eta*j) in wcomp1 direction at lo/hi bounding edge |
-| `eta_wcomp1_lo` | resistivity scalar at the wcomp1-edge lo position |
-| `ave_b_wcomp1_lo` | average of b_wcomp1 at the lo bounding edge |
+| `<qty>_wcomp<n>` | scalar physics quantity in world direction n |
+| `<qty>_<position>_wcomp<n>` | scalar at a named edge position |
+| `<qty>_<symbol>_wcomp<n>` | paper-symbol intermediate value |
+| `<qty>_iquad<k>_wcomp<n>` | scalar at quadrant k, world direction n |
+| `<qty>_p_wcomp<n>`, `<qty>_m_wcomp<n>` | plus/minus Riemann state, world direction n |
+| `<qty>_wcomp<n>_lo`, `<qty>_wcomp<n>_hi` | scalar at lo/hi bounding edge of wcomp<n> axis |
 
 ---
 
@@ -123,13 +109,7 @@ Rule: `<quantity>[_<qualifier>]_w<n>`, then secondary indices after.
 Add an `// indexing:` comment at each `std::array` field declaration to describe what each slot represents:
 
 ```
-// indexing: <variable>[<N>: <description>]
-```
-
-Example:
-
-```cpp
-std::array<amrex::MultiFab, 3> fcw_mf_us_wcomp;  // indexing: field[3: fc-normal direction]
+// indexing: field[<N>: <description>]
 ```
 
 ### Dual-purpose b-field containers
@@ -155,7 +135,7 @@ When a b-field container's slot index doubles as the stored field component (the
 
 Index variable names follow the pattern `[letter][what-it-indexes]`. The letter gives the index type; the suffix says what it ranges over. A bare letter without a suffix is not permitted.
 
-| Letter | Meaning | Full variable examples |
+| Letter | Meaning | Examples |
 |---|---|---|
 | `i` | first (or only) array index | `icomp`, `ieside`, `iquad` |
 | `j` | second array index in a two-indexed array | `jquad`, `jeside` |
@@ -165,26 +145,16 @@ When embedded in a quantity name, the full index variable name replaces any fuse
 
 | Old (fused) | Correct |
 |---|---|
-| `bi` | `b_icomp` |
-| `ui` | `u_icomp` |
+| `b_i` | `b_icomp` |
+| `u_i` | `u_icomp` |
 | `b_w` (no value) | `b_wcomp` |
 
 When a specific slot value is known, the variable name becomes `[letter][value]`:
 
 ```
-b_icomp     // abstract: icomp is the loop variable
-b_i0        // concrete: first component (icomp == 0)
-b_wcomp0    // concrete: world direction 0 (wcomp == 0)
-```
-
-World-direction loops always use the `wcomp0`/`wcomp1`/`wcomp2` pattern:
-
-```cpp
-for (int wcomp0 = 0; wcomp0 < AMREX_SPACEDIM; ++wcomp0) {
-    const int wcomp1 = (wcomp0 + 1) % 3;
-    const int wcomp2 = (wcomp0 + 2) % 3;
-    ...
-}
+<qty>_icomp     // abstract: icomp is the loop variable
+<qty>_i0        // concrete: first component (icomp == 0)
+<qty>_wcomp0    // concrete: world direction 0 (wcomp == 0)
 ```
 
 ---
@@ -195,7 +165,7 @@ Short index variables do not require underscore separators:
 
 `icomp`, `ieside`, `iquad`, `jeside`, `jquad`, `wcomp`, `idx0`, `idx1`, `wcomp0`, `wcomp1`, `wcomp2`
 
-The underscore rule applies only to multi-concept physics names where `_w<n>` or other qualifiers are needed to distinguish quantity from direction.
+The underscore rule applies only to multi-concept physics names where `_wcomp<n>` or other qualifiers are needed to distinguish quantity from direction.
 
 ---
 
