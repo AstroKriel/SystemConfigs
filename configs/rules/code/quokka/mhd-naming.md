@@ -141,14 +141,6 @@ Index variable names follow the pattern `[letter][what-it-indexes]`. The letter 
 | `j` | second array index in a two-indexed array | `jquad`, `jeside` |
 | `w` | world-direction index (0=x, 1=y, 2=z) | `wcomp`, `wcomp0`, `wcomp1`, `wcomp2` |
 
-When embedded in a quantity name, the full index variable name replaces any fused shorthand:
-
-| Old (fused) | Correct |
-|---|---|
-| `b_i` | `b_icomp` |
-| `u_i` | `u_icomp` |
-| `b_w` (no value) | `b_wcomp` |
-
 When a specific slot value is known, the variable name becomes `[letter][value]`:
 
 ```
