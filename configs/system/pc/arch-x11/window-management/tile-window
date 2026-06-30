@@ -1,9 +1,9 @@
 #!/bin/bash
-WIDTH_RATIO=75
 DIRECTION=$1
+WIDTH_RATIO=$2
 
-if [[ $DIRECTION != "left" && $DIRECTION != "right" ]]; then
-  echo "Usage: tile-window <left|right>" >&2
+if [[ $DIRECTION != "left" && $DIRECTION != "right" ]] || [[ -z $WIDTH_RATIO ]]; then
+  echo "Usage: tile-window <left|right> <width_ratio>" >&2
   exit 1
 fi
 
