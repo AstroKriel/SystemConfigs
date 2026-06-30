@@ -19,12 +19,12 @@ Prefix pattern: `[centering_]a4_<quantity>[_w<n>]`
 
 | Segment | Rule |
 |---|---|
-| Centering | `cc_` cell-centred, `fc_` face-centred, `ec_` edge-centred. Omit when centering is a function parameter and varies at the call site. |
+| Centering | `cc_` cell-centred, `fc_` face-centred, `ec_` edge-centred, `fcw_` array of face-centred MFs where the fc-normal matches the world-direction slot. Omit only when centering is genuinely unknown at the declaration site (e.g. a generic helper that accepts any centering). |
 | `a4_` | Always present; marks an `amrex::Array4` type. |
 | Quantity | Lowercase physics name: `b`, `u`, `emf`, `fspd`, `flux`. |
 | `_w<n>` | Required when the array lives on a specific face or edge direction. `n` is 0, 1, or 2. |
 
-Examples: `fc_a4_b_wcomp0`, `a4_emf_wcomp2_ave`, `cc_a4_cVars`.
+Examples: `fc_a4_b_wcomp0`, `ec_a4_emf_ave_wcomp2`, `cc_a4_cVars`.
 
 ---
 
@@ -44,20 +44,23 @@ for (int wcomp0 = 0; wcomp0 < AMREX_SPACEDIM; ++wcomp0) {
 
 ## Scalar field variable naming
 
-Rule: `<quantity>_w<n>[_<qualifier>]`
+Rule: `<quantity>[_<qualifier>]_w<n>`  (qualifier before world-direction index)
 
 - Always place an underscore between the quantity name and its index.
 - Prefix the index with `w` when it is a world-direction index (0=x, 1=y, 2=z).
-- Other index types use their own qualifier without `w`: `_iquad0`–`_iquad3` for quadrant (first array index, quadrant type), `_lo`/`_hi` for bounding edge position, `_m`/`_p` for minus/plus face side.
+- A qualifier (positional label, averaging tag, paper-symbol) comes BEFORE the world-direction index, not after.
+- Other index types use their own qualifier without `w`: `_iquad0`–`_iquad3` for quadrant (first array index, quadrant type), `_lo`/`_hi` for bounding edge position.
 
 | Name | Meaning |
 |---|---|
 | `b_wcomp0`, `b_wcomp1`, `b_wcomp2` | b-field component in world direction n |
 | `u_wcomp0`, `u_wcomp1` | velocity component in world direction n |
 | `j_wcomp1`, `j_wcomp2` | current density component in world direction n |
-| `b_wcomp0_T`, `b_wcomp0_B` | b_wcomp0 at top/bottom edge position |
-| `b_wcomp1_L`, `b_wcomp1_R` | b_wcomp1 at left/right edge position |
-| `emf_wcomp2_iquad0` | emf_wcomp2 at quadrant 0 (iquad == 0) |
+| `b_T_wcomp0`, `b_B_wcomp0` | b-field at top/bottom edge position, world direction 0 |
+| `b_L_wcomp1`, `b_R_wcomp1` | b-field at left/right edge position, world direction 1 |
+| `emf_iquad0_wcomp2` | emf at quadrant 0 (iquad == 0), world direction 2 |
+| `emf_p_wcomp2`, `emf_m_wcomp2` | emf at plus/minus face side, world direction 2 |
+| `emf_ave_wcomp2` | averaged emf, world direction 2 |
 | `eta_j_wcomp1_lo`, `eta_j_wcomp1_hi` | resistive EMF (eta*j) in wcomp1 direction at lo/hi bounding edge |
 | `eta_wcomp1_lo` | resistivity scalar at the wcomp1-edge lo position |
 | `ave_b_wcomp1_lo` | average of b_wcomp1 at the lo bounding edge |
@@ -127,7 +130,7 @@ for (int wcomp0 = 0; wcomp0 < AMREX_SPACEDIM; ++wcomp0) {
 
 Short index variables do not require underscore separators:
 
-`icomp`, `ieside`, `iquad`, `jeside`, `jquad`, `wcomp`, `idx0`, `idx1`, `qi`, `wcomp0`, `wcomp1`, `wcomp2`
+`icomp`, `ieside`, `iquad`, `jeside`, `jquad`, `wcomp`, `idx0`, `idx1`, `wcomp0`, `wcomp1`, `wcomp2`
 
 The underscore rule applies only to multi-concept physics names where `_w<n>` or other qualifiers are needed to distinguish quantity from direction.
 
