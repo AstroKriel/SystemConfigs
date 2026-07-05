@@ -12,6 +12,8 @@ this-system.toml
 
 ## generated outputs
 history.log
+
+## legacy private-key scratch; SSH records are now tracked under configs/system/ssh/records/
 ssh_keys/
 
 ## .
