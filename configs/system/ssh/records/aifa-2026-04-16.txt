@@ -1,0 +1,30 @@
+# aifa
+# Backfilled 2026-07-05 from ~/.ssh/id_ed25519_aifa.pub (key predates ssh_helper).
+
+## Command ran
+ssh-keygen -t ed25519 -a 100 -f "/home/nkriel/.ssh/id_ed25519_aifa" -C "for AIfA institute access from framework-arch created on 2026-04-16"
+
+## Files produced
+/home/nkriel/.ssh/id_ed25519_aifa  (private; never share its contents)
+/home/nkriel/.ssh/id_ed25519_aifa.pub  (public; share with the host granting access)
+
+## Public key
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEcGtLIenvfGdpBgGyX5ff9K8yByxxaeZ1coiu1oPuaO for AIfA institute access from framework-arch created on 2026-04-16
+
+## Deployed to
+aifa       portal.astro.uni-bonn.de   user nkriel
+parzival   via ProxyJump aifa         user nkriel
+lanzelot   via ProxyJump parzival     user nkriel
+
+## SSH config block
+Host aifa
+    HostName portal.astro.uni-bonn.de
+    User nkriel
+    IdentityFile ~/.ssh/id_ed25519_aifa
+    IdentitiesOnly yes
+
+## Deploy the key
+ssh-copy-id -i /home/nkriel/.ssh/id_ed25519_aifa.pub nkriel@portal.astro.uni-bonn.de
+
+## Test the connection
+ssh aifa

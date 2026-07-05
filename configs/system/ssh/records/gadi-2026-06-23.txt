@@ -1,0 +1,25 @@
+# gadi
+# Created: 2026-06-23 12:02:39
+
+## Command ran
+ssh-keygen -t ed25519 -a 100 -f "/home/nkriel/.ssh/id_ed25519_gadi" -C "for NCI Gadi supercomputer from framework-arch created on 2026-06-23"
+
+## Files produced
+/home/nkriel/.ssh/id_ed25519_gadi  (private; never share its contents)
+/home/nkriel/.ssh/id_ed25519_gadi.pub  (public; share with the host granting access)
+
+## Public key
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC/ZE2EpRmVN8VHb5gU4rqIglud6VUk3H7gMaIEKzLSL for NCI Gadi supercomputer from framework-arch created on 2026-06-23
+
+## SSH config block
+Host <ALIAS>
+	HostName <REMOTE_HOST>
+	User <REMOTE_USER>
+	IdentityFile /home/nkriel/.ssh/id_ed25519_gadi
+	IdentitiesOnly yes
+
+## Deploy the key
+ssh-copy-id -i /home/nkriel/.ssh/id_ed25519_gadi.pub <REMOTE_USER>@<REMOTE_HOST>
+
+## Test the connection
+ssh <ALIAS>

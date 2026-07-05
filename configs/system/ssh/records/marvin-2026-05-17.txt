@@ -1,0 +1,19 @@
+# marvin
+# Created: 2026-05-17 20:30:57
+
+## Command ran
+ssh-keygen -t ed25519 -a 100 -f "/home/nkriel/.ssh/id_ed25519_marvin" -C "for hpc cluster at uni bonn from framework-arch created on 2026-05-17"
+
+## Files produced
+/home/nkriel/.ssh/id_ed25519_marvin  (private; never share its contents)
+/home/nkriel/.ssh/id_ed25519_marvin.pub  (public; share with the host granting access)
+
+## Public key
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHuvaNMU+eZJzjp4Ls74/5ev2rq/RkcUMuqArIUK02E5 for hpc cluster at uni bonn from framework-arch created on 2026-05-17
+
+## SSH config block
+Host <ALIAS>
+	HostName <REMOTE_HOST>
+	User <REMOTE_USER>
+	IdentityFile /home/nkriel/.ssh/id_ed25519_marvin
+	IdentitiesOnly yes

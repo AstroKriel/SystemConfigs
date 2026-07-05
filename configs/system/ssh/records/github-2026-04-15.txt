@@ -1,0 +1,27 @@
+# github
+# Backfilled 2026-07-05 from ~/.ssh/id_ed25519_github.pub (key predates ssh_helper).
+
+## Command ran
+ssh-keygen -t ed25519 -a 100 -f "/home/nkriel/.ssh/id_ed25519_github" -C "for github ssh access from nkriel created on 2026-04-15"
+
+## Files produced
+/home/nkriel/.ssh/id_ed25519_github  (private; never share its contents)
+/home/nkriel/.ssh/id_ed25519_github.pub  (public; share with the host granting access)
+
+## Public key
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGTfJhokgs13Uw5A9tPLipczHQ5ZCRpyzOQEA+1WspnY for github ssh access from nkriel created on 2026-04-15
+
+## Deployed to
+github.com   registered as an account SSH key at https://github.com/settings/keys
+
+## SSH config block
+Host github.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519_github
+    IdentitiesOnly yes
+
+## Deploy the key
+Add the public key above at https://github.com/settings/keys
+
+## Test the connection
+ssh -T git@github.com
