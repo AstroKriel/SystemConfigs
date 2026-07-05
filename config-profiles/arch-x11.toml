@@ -40,3 +40,14 @@ extras = [
   "workarounds/arch-x11/no-ucm.conf",
   "workarounds/arch-x11/xfce-session.service",
 ]
+
+ssh_hosts = [
+  "aifa",
+  "cita",
+  "gadi",
+  "github",
+  "lanzelot",
+  "marvin",
+  "parzival",
+  "ricky",
+]
