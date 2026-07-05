@@ -1,0 +1,6 @@
+## Managed by SystemConfigs (configs/system/ssh/). Symlinked to ~/.ssh/config.
+## Per-host blocks are symlinked into ~/.ssh/config.d/ per the active profile's `ssh_hosts`.
+## Global `Host *` defaults live in config.d/zz-defaults.conf, included last on purpose:
+## ssh takes the first value it sees for most keywords, so per-host blocks win.
+
+Include ~/.ssh/config.d/*.conf
