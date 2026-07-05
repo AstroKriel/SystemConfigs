@@ -14,6 +14,7 @@ from scripts.setup import editors as setup_editors
 from scripts.setup import extras as setup_extras
 from scripts.setup import rules_files as setup_rules
 from scripts.setup import shell as setup_shell
+from scripts.setup import ssh as setup_ssh
 from scripts.setup import tools as setup_tools
 from local_helpers import load_profiles
 from local_helpers import log_messages
@@ -45,6 +46,7 @@ def validate_profile(
         ("editor", profile.editors, setup_editors.EDITORS),
         ("tool", profile.tools, setup_tools.TOOLS),
         ("extra", profile.extras, setup_extras.EXTRAS),
+        ("ssh host", profile.ssh_hosts, setup_ssh.available_host_keys()),
     ]
     for subscription_kind, subscribed_keys, available_configs in subscription_groups:
         unknown_subscription_keys = sorted(set(subscribed_keys) - set(available_configs))
@@ -149,6 +151,11 @@ def main() -> None:
             dry_run=dry_run,
             extra_keys=profile.extras if profile is not None else None,
         )
+        setup_ssh.remove_symlinks(
+            dry_run=dry_run,
+            host_keys=profile.ssh_hosts if profile is not None else None,
+            remove_scaffold=True,
+        )
         if profile is None or profile.link_rules:
             setup_rules.remove_symlinks(dry_run=dry_run)
         return
@@ -177,6 +184,10 @@ def main() -> None:
         dry_run=dry_run,
         extra_keys=profile.extras,
         platform_tags=profile.platforms,
+    )
+    setup_ssh.run(
+        dry_run=dry_run,
+        host_keys=profile.ssh_hosts,
     )
     if profile.link_rules:
         setup_rules.run(dry_run=dry_run)

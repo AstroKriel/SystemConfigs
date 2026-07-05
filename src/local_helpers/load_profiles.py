@@ -32,6 +32,7 @@ class SystemProfile:
     editors: tuple[str, ...]
     tools: tuple[str, ...]
     extras: tuple[str, ...]
+    ssh_hosts: tuple[str, ...]
     link_rules: bool
     set_login_shell: bool
 
@@ -81,6 +82,10 @@ def create_profile(
         extras=_get_string_tuple(
             raw_profile=raw_profile,
             key="extras",
+        ),
+        ssh_hosts=_get_string_tuple(
+            raw_profile=raw_profile,
+            key="ssh_hosts",
         ),
         link_rules=_get_bool(
             raw_profile=raw_profile,
