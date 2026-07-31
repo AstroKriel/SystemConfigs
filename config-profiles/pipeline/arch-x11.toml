@@ -1,0 +1,7 @@
+# pipeline-native `ConfigProfile` demo (`add/dynamic-registry`, step 3 `--plan`).
+# Not the tracked profile: `../arch-x11.toml` is still the real, legacy-shape
+# profile the live scripts read. This one only exercises `configs/tools/`,
+# since shell/editors/extras are not backfilled with `_config_spec.toml` yet
+# (`overview.md` branch-scope note).
+
+tools = ["ghostty", "tmux", "yazi"]
