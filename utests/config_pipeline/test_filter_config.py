@@ -162,6 +162,46 @@ class TestFilter_Membership(unittest.TestCase):
         )
 
 
+class TestFilter_Teardown(unittest.TestCase):
+
+    def test_unsubscribed_sibling_recorded_for_teardown(
+        self,
+    ):
+        full_registry = _make_full_registry(
+            test_case=self,
+            specs={"shell-bash": SHELL_BASH, "shell-zsh": SHELL_ZSH},
+        )
+        filtered = filter_config.filter_config_registry(
+            full_registry=full_registry,
+            profile=config_profile.ConfigProfile(shell=("shell-zsh",)),
+        )
+        ## `FIL-4`: `shell-bash` is recorded, not a member.
+        self.assertEqual(
+            filtered.teardown,
+            ("shell-bash",),
+        )
+        self.assertNotIn(
+            "shell-bash",
+            filtered.keys(),
+        )
+
+    def test_no_group_subscribed_yields_no_teardown(
+        self,
+    ):
+        full_registry = _make_full_registry(
+            test_case=self,
+            specs={"tmux": TMUX},
+        )
+        filtered = filter_config.filter_config_registry(
+            full_registry=full_registry,
+            profile=config_profile.ConfigProfile(tools=("tmux",)),
+        )
+        self.assertEqual(
+            filtered.teardown,
+            (),
+        )
+
+
 class TestFilter_Properties(unittest.TestCase):
 
     def test_filter_is_deterministic(

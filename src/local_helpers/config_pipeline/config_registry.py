@@ -31,6 +31,7 @@ class _ConfigRegistry:
     """
 
     entries: tuple[tuple[ConceptKey, config_spec.ConfigSpec], ...]
+    teardown: tuple[ConceptKey, ...] = ()
 
     def keys(
         self,
@@ -83,6 +84,10 @@ class FilteredConfigRegistry(_ConfigRegistry):
 
     Structurally identical to `FullConfigRegistry`: a strict subset with
     relationships intact (`FIL-5`), entries sorted by key (`FIL-6`).
+
+    `teardown` holds the unsubscribed sibling of each subscribed choice-group
+    member, sorted, for `resolve_config` to emit as derived teardown steps
+    (`FIL-4`, `ov#15`); it is always empty on a `FullConfigRegistry`.
     """
 
 

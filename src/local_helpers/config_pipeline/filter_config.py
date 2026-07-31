@@ -26,7 +26,10 @@ def filter_config_registry(
     Pure and host-free (`FIL-7`): consults no host state and raises only the
     host-free faults `SubscriptionError` (`FIL-2`) and `ChoiceGroupError`
     (`FIL-4`), gathered and reported together (`ov#4`). Bare-package `needs`
-    are recorded on their concept, never pulled in as members (`FIL-3`).
+    are recorded on their concept, never pulled in as members (`FIL-3`). Each
+    subscribed choice-group member's unsubscribed sibling is recorded on
+    `FilteredConfigRegistry.teardown`, for `resolve_config` to emit as
+    derived teardown (`FIL-4`, `ov#15`).
     """
     subscriptions = profile.subscriptions
     collected_errors: list[errors.ConfigPipelineError] = []
@@ -58,8 +61,13 @@ def filter_config_registry(
             key=lambda item: item[0],
         )
     )
+    teardown = _compute_teardown(
+        subscribed=known_keys,
+        full_registry=full_registry,
+    )
     return config_registry.FilteredConfigRegistry(
         entries=entries,
+        teardown=teardown,
     )
 
 
@@ -91,6 +99,33 @@ def _compute_needs_closure(
             if need in full_registry and need not in members:
                 pending.append(need)
     return members
+
+
+def _compute_teardown(
+    *,
+    subscribed: tuple[config_registry.ConceptKey, ...],
+    full_registry: config_registry.FullConfigRegistry,
+) -> tuple[config_registry.ConceptKey, ...]:
+    """
+    Find each subscribed choice-group member's unsubscribed sibling(s) in the
+    same `group`, for `resolve_config` to emit as derived teardown (`FIL-4`).
+
+    Runs after `_find_choice_group_errors` passes, so at most one subscribed
+    key per group is assumed; every other concept sharing that group is a
+    teardown target.
+    """
+    subscribed_group_by_key = {
+        key: full_registry[key].group for key in subscribed if full_registry[key].group is not None
+    }
+    subscribed_groups = set(subscribed_group_by_key.values())
+    if not subscribed_groups:
+        return ()
+    teardown = {
+        key
+        for key, spec in full_registry.as_map().items()
+        if spec.group in subscribed_groups and key not in subscribed_group_by_key
+    }
+    return tuple(sorted(teardown))
 
 
 def _find_choice_group_errors(

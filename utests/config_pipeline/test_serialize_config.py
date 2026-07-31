@@ -137,6 +137,38 @@ class TestSerialize_RoundTrip(unittest.TestCase):
             filtered,
         )
 
+    def test_filtered_registry_teardown_round_trips(
+        self,
+    ):
+        full_registry = _make_full_registry(
+            test_case=self,
+            specs={"tmux": TMUX},
+        )
+        ## `FIL-4`: `_teardown` is part of the artefact, not a side channel.
+        filtered = config_registry.FilteredConfigRegistry(
+            entries=full_registry.entries,
+            teardown=("shell-bash",),
+        )
+        restored = serialize_config.load_filtered_config_registry(
+            text=serialize_config.dump_filtered_config_registry(registry=filtered),
+        )
+        self.assertEqual(
+            restored,
+            filtered,
+        )
+
+    def test_full_registry_dump_omits_teardown_key(
+        self,
+    ):
+        full_registry = _make_full_registry(
+            test_case=self,
+            specs={"tmux": TMUX},
+        )
+        self.assertNotIn(
+            "_teardown",
+            serialize_config.dump_full_config_registry(registry=full_registry),
+        )
+
 
 class TestSerialize_Canonical(unittest.TestCase):
 

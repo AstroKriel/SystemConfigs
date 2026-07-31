@@ -31,24 +31,36 @@ def dump_filtered_config_registry(
     *,
     registry: config_registry.FilteredConfigRegistry,
 ) -> str:
-    """Serialise the filtered registry to canonical JSON, keys sorted (`FIL-6`)."""
+    """
+    Serialise the filtered registry to canonical JSON, keys sorted (`FIL-6`).
+
+    Carries a `_teardown` array of the derived teardown concept keys
+    alongside the concept entries (`FIL-4`); underscore-prefixed so it never
+    collides with a concept key (`_config_spec.toml` reserves that prefix).
+    """
     return _dump_entries(
         entries=registry.entries,
+        teardown=registry.teardown,
     )
 
 
 def _dump_entries(
     *,
     entries: tuple[tuple[config_registry.ConceptKey, config_spec.ConfigSpec], ...],
+    teardown: tuple[config_registry.ConceptKey, ...] = (),
 ) -> str:
     """
     Render `concept_key -> ConfigSpec` entries as full-fidelity JSON.
 
     `sort_keys` makes the output canonical and diffable; a trailing newline
     keeps the tracked lock file POSIX-clean. Serialisation is full fidelity so
-    it round-trips (`FUL-7`): every `ConfigSpec` field is emitted.
+    it round-trips (`FUL-7`): every `ConfigSpec` field is emitted. `teardown`
+    is omitted entirely when empty, so `full_config_registry` output (which
+    never carries teardown) is unaffected.
     """
-    document = {key: _spec_to_jsonable(spec=spec) for key, spec in entries}
+    document: dict[str, object] = {key: _spec_to_jsonable(spec=spec) for key, spec in entries}
+    if teardown:
+        document["_teardown"] = list(teardown)
     return json.dumps(document, indent=2, sort_keys=True) + "\n"
 
 
@@ -134,9 +146,11 @@ def load_filtered_config_registry(
     *,
     text: str,
 ) -> config_registry.FilteredConfigRegistry:
-    """Reconstruct a filtered registry from its JSON serialisation."""
+    """Reconstruct a filtered registry, `_teardown` included, from its JSON serialisation."""
+    document = cast(dict[str, object], json.loads(text))
     return config_registry.FilteredConfigRegistry(
-        entries=_load_entries(text=text),
+        entries=_entries_from_document(document=document),
+        teardown=tuple(sorted(cast("list[str]", document.get("_teardown", [])))),
     )
 
 
@@ -144,12 +158,19 @@ def _load_entries(
     *,
     text: str,
 ) -> tuple[tuple[config_registry.ConceptKey, config_spec.ConfigSpec], ...]:
-    document = cast(dict[str, object], json.loads(text))
+    return _entries_from_document(document=cast(dict[str, object], json.loads(text)))
+
+
+def _entries_from_document(
+    *,
+    document: dict[str, object],
+) -> tuple[tuple[config_registry.ConceptKey, config_spec.ConfigSpec], ...]:
     return tuple(
         sorted(
             (
                 (key, _spec_from_jsonable(raw_spec=cast(dict[str, object], raw_spec)))
                 for key, raw_spec in document.items()
+                if key != "_teardown"
             ),
             key=lambda item: item[0],
         )
