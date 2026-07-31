@@ -70,6 +70,25 @@ class ConfigSpecSchemaError(ConfigSpecError):
 
 
 ##
+## === PROFILE ERRORS
+##
+
+
+class ConfigProfileError(ConfigPipelineError):
+    """A pipeline-native profile TOML failed to parse."""
+
+    def __init__(
+        self,
+        *,
+        profile_path: Path,
+        reason: str,
+    ) -> None:
+        self.profile_path: Path = profile_path
+        self.reason: str = reason
+        super().__init__(f"config profile error: {profile_path}: {reason}.")
+
+
+##
 ## === REGISTRY AND RESOLUTION ERRORS
 ##
 
