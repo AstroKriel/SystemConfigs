@@ -90,6 +90,27 @@ class TestDiscover_Happy(unittest.TestCase):
             ("conky", "tmux"),
         )
 
+    def test_groups_override_scopes_the_scan(
+        self,
+    ):
+        ## a concept dir with no spec sits under a group not passed in
+        ## `groups`; it must never be visited, or this would raise.
+        configs_root = _make_configs_root(
+            test_case=self,
+            tree={
+                "tools": {"tmux": TMUX},
+                "extras": {"broken": None},
+            },
+        )
+        registry = discover_config.discover_full_config_registry(
+            configs_root=configs_root,
+            groups=("tools",),
+        )
+        self.assertEqual(
+            registry.keys(),
+            ("tmux",),
+        )
+
     def test_keys_are_sorted(
         self,
     ):

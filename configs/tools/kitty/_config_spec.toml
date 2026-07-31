@@ -1,0 +1,19 @@
+name = "Kitty terminal"
+
+[check]
+command   = "kitty"
+macos_app = "kitty.app"
+
+[[install]]
+when = { manager = "brew" }
+pkg  = "kitty"
+[[install]]
+when = { manager = "pacman" }
+pkg  = "kitty"
+
+# The whole concept directory links to ~/.config/kitty.
+[[link]]
+source = "."
+dir    = "~/.config"
+name   = "kitty"
+mode   = "link"

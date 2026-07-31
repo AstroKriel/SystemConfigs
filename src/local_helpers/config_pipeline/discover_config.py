@@ -27,6 +27,7 @@ CONFIG_GROUPS = ("tools", "editors", "shell", "extras", "managers", "rules")
 def discover_full_config_registry(
     *,
     configs_root: Path,
+    groups: tuple[str, ...] = CONFIG_GROUPS,
 ) -> config_registry.FullConfigRegistry:
     """
     Scan `configs/<group>/<concept>/_config_spec.toml` and build the registry.
@@ -36,9 +37,15 @@ def discover_full_config_registry(
     together (`ov#4`); a single fault fails the whole build with no partial
     registry (`FUL-6`). An unknown `needs` target is not checked here; the
     registry only records (`FUL-5`).
+
+    `groups` defaults to the full `CONFIG_GROUPS` set (`FUL-1`); passing a
+    narrower tuple is a scan-scoping escape hatch for partial backfill, not
+    part of `FUL-1` itself, since discovery still fails the whole build on
+    any concept directory that lacks a spec within a scanned group.
     """
     discovered = _scan_concept_dirs(
         configs_root=configs_root,
+        groups=groups,
     )
     collected_errors: list[errors.ConfigPipelineError] = []
     collected_errors.extend(
@@ -81,16 +88,17 @@ def discover_full_config_registry(
 def _scan_concept_dirs(
     *,
     configs_root: Path,
+    groups: tuple[str, ...],
 ) -> tuple[tuple[config_registry.ConceptKey, Path], ...]:
     """
     Return `(concept_key, concept_dir)` for every concept under a known group.
 
-    Groups are visited in `CONFIG_GROUPS` order and concepts in sorted order,
-    so the scan is deterministic; concept directories outside the known group
-    set are never seen (`FUL-1`).
+    Groups are visited in `groups` order and concepts in sorted order, so the
+    scan is deterministic; concept directories outside the given group set
+    are never seen (`FUL-1`).
     """
     discovered: list[tuple[config_registry.ConceptKey, Path]] = []
-    for group in CONFIG_GROUPS:
+    for group in groups:
         group_dir = configs_root / group
         if not group_dir.is_dir():
             continue

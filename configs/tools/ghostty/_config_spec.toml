@@ -1,0 +1,19 @@
+name = "Ghostty terminal"
+
+[check]
+command   = "ghostty"
+macos_app = "Ghostty.app"
+
+[[install]]
+when = { manager = "brew" }
+pkg  = "ghostty"
+[[install]]
+when = { manager = "pacman" }
+pkg  = "ghostty"
+
+# The whole concept directory links to ~/.config/ghostty.
+[[link]]
+source = "."
+dir    = "~/.config"
+name   = "ghostty"
+mode   = "link"
