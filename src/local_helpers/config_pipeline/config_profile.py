@@ -33,6 +33,11 @@ class ConfigProfile:
     shell: tuple[str, ...] = ()
     managers: tuple[str, ...] = ()
 
+    ## avenue-selection policy (`ov#13`), not subscription intent; excluded
+    ## from `subscriptions` below.
+    prefer_managers: tuple[str, ...] = ()
+    exclude_managers: tuple[str, ...] = ()
+
     @property
     def subscriptions(
         self,
