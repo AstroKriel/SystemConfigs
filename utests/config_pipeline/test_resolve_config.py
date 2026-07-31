@@ -97,6 +97,28 @@ class TestResolveConfig_AvenueSelection(unittest.TestCase):
         assert chosen is not None
         self.assertEqual(chosen.pkg, "tmux")
 
+    def test_absent_subscribed_manager_beats_absent_unsubscribed(
+        self,
+    ):
+        ## both `aur` and `brew` are absent; only `brew` is subscribed for
+        ## bootstrap, so it must win even though `aur` ranks first in the
+        ## config spec's own avenue order.
+        installs = (
+            _install(manager="aur", pkg="tmux"),
+            _install(manager="brew", pkg="tmux"),
+        )
+        descriptor = system_descriptor.SystemDescriptor(
+            platform_tags=(),
+            present_managers=(),
+        )
+        chosen = resolve_config._select_avenue(
+            installs=installs,
+            descriptor=descriptor,
+            profile=config_profile.ConfigProfile(managers=("brew",)),
+        )
+        assert chosen is not None
+        self.assertEqual(chosen.when.manager if chosen.when else None, "brew")
+
     def test_avn2_exclude_managers_removes_avenue(
         self,
     ):

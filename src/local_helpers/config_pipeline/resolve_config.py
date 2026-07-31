@@ -63,40 +63,64 @@ def _rank_avenues(
     Order a non-empty, already platform- and exclude-filtered avenue set by
     the remaining three ladder steps.
 
-    Capability (step 1) is a soft preference, not elimination: avenues whose
-    manager is present sort before absent ones, but only when at least one
-    present-or-manager-less avenue exists; otherwise capability is inert and
-    the absent-manager avenue stands, per `_select_avenue`'s docstring.
-    `prefer_managers` (step 3) reorders within that split, inert when its
-    target is absent (`AVN-3`). Config-spec order (step 4) is preserved as
-    the stable sort's tie-break; the global default ranking (step 5) never
-    actually distinguishes two entries once step 4 has run, since list order
-    is already total, but is folded in for completeness with `ov#16`.
+    Capability (step 1) is a soft preference, not elimination, ranked in
+    three tiers (`_capability_tier`): present or manager-less, then
+    absent-but-subscribed (bootstrappable by `MGR-2`), then
+    absent-and-unsubscribed (a dead end at `MGR-3`). Ranking by tier, rather
+    than filtering down to the best tier first, means an avenue is never
+    dropped outright; the top-ranked entry after sorting is `_select_avenue`'s
+    choice, per its docstring. `prefer_managers` (step 3) reorders within a
+    tier, inert when its target is absent (`AVN-3`). Config-spec order
+    (step 4) is preserved as the stable sort's tie-break; the global default
+    ranking (step 5) never actually distinguishes two entries once step 4 has
+    run, since list order is already total, but is folded in for
+    completeness with `ov#16`.
     """
-    present_or_managerless = tuple(
-        install
-        for install in installs
-        if install.when is None or install.when.manager is None or install.when.manager in descriptor.present_managers
-    )
-    capability_ranked = present_or_managerless if present_or_managerless else installs
 
     def sort_key(
         install: config_spec.InstallAvenue,
     ) -> tuple[int, int, int, int]:
         manager = install.when.manager if install.when is not None else None
+        tier = _capability_tier(
+            manager=manager,
+            descriptor=descriptor,
+            profile=profile,
+        )
         preferred = manager is not None and manager in profile.prefer_managers
         prefer_rank = profile.prefer_managers.index(manager) if preferred and manager is not None else len(profile.prefer_managers)
-        present = manager is None or manager in descriptor.present_managers
         global_rank = (
             capability_map.GLOBAL_DEFAULT_MANAGER_RANKING.index(manager)
             if manager is not None and manager in capability_map.GLOBAL_DEFAULT_MANAGER_RANKING
             else len(capability_map.GLOBAL_DEFAULT_MANAGER_RANKING)
         )
-        return (0 if present else 1, 0 if preferred else 1, prefer_rank, global_rank)
+        return (tier, 0 if preferred else 1, prefer_rank, global_rank)
 
-    ## Python's sort is stable, so equal keys keep `capability_ranked`'s
-    ## incoming order, which is config-spec order (step 4's tie-break).
-    return tuple(sorted(capability_ranked, key=sort_key))
+    ## Python's sort is stable, so equal keys keep `installs`'s incoming
+    ## order, which is config-spec order (step 4's tie-break).
+    return tuple(sorted(installs, key=sort_key))
+
+
+def _capability_tier(
+    *,
+    manager: str | None,
+    descriptor: system_descriptor_module.SystemDescriptor,
+    profile: config_profile.ConfigProfile,
+) -> int:
+    """
+    Rank an avenue's manager by usability: present or manager-less (0),
+    absent but subscribed for bootstrap (1, `MGR-2`), absent and
+    unsubscribed (2, a dead end at `MGR-3`).
+
+    Distinguishing tiers 1 and 2 is why capability is ranked per avenue
+    rather than filtered to one present/absent split: with two absent-manager
+    avenues, only one of them subscribed, picking the unsubscribed one would
+    hard-stop even though the subscribed one would have resolved.
+    """
+    if manager is None or manager in descriptor.present_managers:
+        return 0
+    if manager in profile.managers:
+        return 1
+    return 2
 
 
 def _platform_allows(
