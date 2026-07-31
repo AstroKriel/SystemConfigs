@@ -40,6 +40,17 @@ GLOBAL_DEFAULT_MANAGER_RANKING: tuple[ManagerKey, ...] = (
 ## assumed present; never bootstrapped (`ov#14`, `MGR-4`).
 BASE_MANAGERS: tuple[ManagerKey, ...] = ("pacman", "dnf", "apt")
 
+## the executable `detect_system.py` checks for with each manager key; `aur`
+## has no binary of its own, so it maps to this machine's AUR helper (`paru`).
+MANAGER_CHECK_COMMAND: dict[ManagerKey, str] = {
+    "pacman": "pacman",
+    "aur": "paru",
+    "brew": "brew",
+    "dnf": "dnf",
+    "apt": "apt",
+    "cargo": "cargo",
+}
+
 
 def candidate_managers(
     *,
