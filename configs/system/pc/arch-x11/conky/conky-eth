@@ -1,0 +1,12 @@
+#!/bin/sh
+# Detects whichever ethernet interface is actually up (usbeth0 via direct USB
+# dongle, eth1 via dock), rather than hardcoding one name that breaks on the other.
+iface=$(for f in /sys/class/net/*eth*/operstate; do
+  [ "$(cat "$f" 2>/dev/null)" = up ] && basename "$(dirname "$f")" && break
+done)
+iface=${iface:-eth0}
+if [ "$1" = "name" ]; then
+  echo "$iface"
+else
+  echo "\${$1 $iface}"
+fi
