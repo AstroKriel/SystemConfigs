@@ -40,8 +40,8 @@ Introduce the `<partition>/` level only when a machine hosts more than one OS in
 |---|---|
 | Hardware specs and OS version | Config files themselves (those go in `<system-configs>/`) |
 | Package and service installation steps | Project data or results |
-| Non-obvious configuration decisions | HPC cluster details (see [`hpc.md`](hpc.md)) |
-| Open and resolved configuration issues | Binding conventions (promote to `<rules>/`) |
+| Non-obvious configuration decisions, including the design of an already-built system (e.g. a keybinding scheme) | HPC cluster details (see [`hpc.md`](hpc.md)) |
+| Open and resolved configuration issues | A portable habit meant to apply beyond this one machine or system (promote to `<rules>/`) |
 
 ### pending-issues.md
 
