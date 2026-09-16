@@ -85,6 +85,8 @@ return {
 
   { -- Treesitter: better syntax highlighting and indentation
     "nvim-treesitter/nvim-treesitter",
+    branch = "master", -- keeps the classic `nvim-treesitter.configs` API this config uses;
+                        -- the `main` branch removed it in a rewrite
     build = ":TSUpdate", -- ensures parsers are up to date
     config = function()
       require("plugins.treesitter")
