@@ -12,6 +12,7 @@ platforms = [
 
 editors = [
   "zed",
+  "nvim",
 ]
 
 tools = [
