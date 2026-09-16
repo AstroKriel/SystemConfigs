@@ -39,15 +39,30 @@ vim.diagnostic.config({
   },
 })
 
--- lsp server list
+-- lsp server list (lspconfig names)
 local servers = {
-  pyright = {}, -- python
-  clangd  = {}, -- c++
+  pyright  = {}, -- python
+  clangd   = {}, -- c++
+  texlab   = {}, -- latex
+  lua_ls   = {}, -- lua
+  marksman = {}, -- markdown
+  bashls   = {}, -- bash
 }
+
+-- mason package names, only where they differ from the lspconfig name above
+local mason_name_overrides = {
+  lua_ls = "lua-language-server",
+  bashls = "bash-language-server",
+}
+
+local mason_package_names = {}
+for server_name, _ in pairs(servers) do
+  table.insert(mason_package_names, mason_name_overrides[server_name] or server_name)
+end
 
 -- ensure tools are installed
 require("mason-tool-installer").setup({
-  ensure_installed = vim.tbl_keys(servers),
+  ensure_installed = mason_package_names,
 })
 
 require("mason-lspconfig").setup({
