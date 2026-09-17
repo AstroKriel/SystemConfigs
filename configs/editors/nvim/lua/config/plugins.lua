@@ -88,6 +88,13 @@ return {
     branch = "master", -- keeps the classic `nvim-treesitter.configs` API this config uses;
                         -- the `main` branch removed it in a rewrite
     build = ":TSUpdate", -- ensures parsers are up to date
+    dependencies = {
+      { -- syntax-aware motions and text objects (]m between functions, am/im, ...)
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        branch = "master", -- must match the nvim-treesitter pin above: the `main`
+                            -- branch dropped the `textobjects` config table
+      },
+    },
     config = function()
       require("plugins.treesitter")
     end,
