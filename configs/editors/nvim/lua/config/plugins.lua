@@ -100,6 +100,16 @@ return {
     end,
   },
 
+  { -- Diagnostics, quickfix and symbols as a navigable list
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = "VeryLazy", -- not `cmd = "Trouble"`: the keymaps live in the config
+                        -- below, which would then never run until first use
+    config = function()
+      require("plugins.trouble")
+    end,
+  },
+
   -- ----------------------------------------
   -- EDITING ENHANCEMENTS
   -- ----------------------------------------
