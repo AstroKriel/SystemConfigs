@@ -65,14 +65,26 @@ require("mason-tool-installer").setup({
   ensure_installed = mason_package_names,
 })
 
-require("mason-lspconfig").setup({
-  handlers = {
-    function(server_name)
-      require("lspconfig")[server_name].setup({
-        capabilities = capabilities,
-      })
-    end,
-  },
+-- apply the cmp capabilities to every server. mason-lspconfig v2 dropped the
+-- `handlers` option it used to be passed through, so setting it there is
+-- silently ignored; `vim.lsp.config("*", ...)` is the replacement.
+vim.lsp.config("*", {
+  capabilities = capabilities,
 })
+
+-- v2 enables every installed server itself via vim.lsp.enable()
+require("mason-lspconfig").setup({})
+
+-- vim.lsp.enable() attaches on FileType. A file named on the command line
+-- (`nvim src/hydro/mhd_system.hpp`) has already fired FileType by the time the
+-- servers are enabled, so nothing attaches and the buffer silently has no LSP.
+-- Re-fire it once for buffers that are already loaded.
+vim.schedule(function()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].filetype ~= "" then
+      vim.api.nvim_exec_autocmds("FileType", { buffer = buf, modeline = false })
+    end
+  end
+end)
 
 -- .
