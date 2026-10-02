@@ -20,6 +20,10 @@
     "calt": false
   },
   "show_whitespaces": "all",
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": true
+  },
   "languages": {
     "Python": {
       "format_on_save": "off"
