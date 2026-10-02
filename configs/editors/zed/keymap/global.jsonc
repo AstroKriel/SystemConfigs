@@ -13,6 +13,7 @@
       "super-alt-d": "debug_panel::ToggleFocus",
       "super-alt-;": "terminal_panel::ToggleFocus",
       "super-alt-o": "go_to_line::Toggle",
+      "super-alt-p": "command_palette::Toggle",
       "super-alt-ctrl-'": "multi_workspace::ToggleWorkspaceSidebar",
       "super-alt-ctrl-o": "file_finder::Toggle",
       "super-alt-ctrl-f": "workspace::NewSearch",
@@ -20,8 +21,13 @@
       "super-alt-ctrl-;": "workspace::NewTerminal",
       "super-alt-ctrl-.": "zed::OpenSettings",
       "super-alt-ctrl-k": "zed::OpenKeymap",
-      "super-alt-ctrl-p": "command_palette::Toggle",
       "super-alt-ctrl-/": "projects::OpenRemote",
+    },
+  },
+  {
+    "context": "!Terminal",
+    "bindings": {
+      "ctrl-shift-c": null,
     },
   },
 ]
