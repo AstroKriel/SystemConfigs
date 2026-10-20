@@ -25,15 +25,16 @@ LaTeX writing style, particularly for scientific notes and papers.
 
 ## Labels
 
-Three-part hierarchy: `type:group:name`. The group is the context; the name is the specific item. Sub-groups use `-` within the group field.
+Colon-separated hierarchy: `type:group:name`, extended to as many levels as the context needs (`type:group:subgroup:name`, and deeper). The type comes first and the name last; each level in between narrows the context. Words within a level are joined with `-`. Use the type prefixes below as listed; write every other level in full, with no shorthand.
 
 | Type prefix | Use |
 |---|---|
 | `eqn:` | equations |
 | `sec:` | sections, subsections, subsubsections |
 | `fig:` | figures |
-| `tab:` | tables |
-| Sub-groups | `-` within the group field: `eqn:mhd-linear:momentum`, `sec:mhd-waves:linearise` |
+| `table:` | tables |
+| Multi-word levels | `-` within a level: `eqn:<group-name>:<item-name>` |
+| Deeper hierarchy | one colon per level: `eqn:<group>:<subgroup>:<item-name>` |
 
 ---
 
@@ -49,8 +50,7 @@ Three-part hierarchy: `type:group:name`. The group is the context; the name is t
 | Symbol case | lower-case for scalar and vector fields (including placeholder/dummy variables); upper-case for rank-2+ tensor fields, e.g. the vector field $\mVector{F}$ should be written $\mVector{f}$ |
 | Equation layout (single equation) | LHS on its own line; `&= RHS` indented below; long RHS terms broken across lines, indented to show structure; `, \label{}` on its own final line |
 | Equation layout (multi-equation, with `\\`) | `, \label{}` must appear on the same source line as `\\`, not on a separate line; for short RHS append inline (`&= 0 , \label{...} \\`); for long RHS put on the last continuation line before `\\` |
-| Tensor dot-product conventions | when defining a rank-2+ tensor via component notation, state at first use which index is contracted from which side of a dot product, e.g. `dotting from the left contracts <j>, leaves <i> free`; pick one convention per document and apply it consistently everywhere the tensor is dotted with a vector |
-| Bracket hierarchy | square brackets mark a differential operator (`nabla`, `D_t`, `partial_<i>`, a directional-derivative operator like `(<a> . nabla)`) acting on the whole enclosed multi-term group; round brackets are plain algebraic/coefficient grouping |
+| Bracket hierarchy | square brackets mark a differential operator (`nabla`, `D_t`, `partial_<i>`, a directional-derivative operator like `(<vector> . nabla)`) acting on the whole enclosed multi-term group; round brackets are plain algebraic/coefficient grouping |
 
 Single-equation example:
 ```latex
