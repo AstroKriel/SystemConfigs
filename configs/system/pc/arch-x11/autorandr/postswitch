@@ -18,6 +18,5 @@ if [ -n "$fb" ] && [ "$fb" != "0x0" ]; then
 fi
 
 # Restart conky so it repositions itself for the new display layout
-pkill -9 conky
 sleep 3
-conky --config="$HOME/.config/conky/conky.conf" &
+systemctl --user restart conky.service

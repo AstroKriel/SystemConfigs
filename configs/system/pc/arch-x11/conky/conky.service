@@ -1,0 +1,8 @@
+[Unit]
+Description=Conky system monitor
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/conky
+Restart=on-failure
+RestartSec=3

@@ -2,7 +2,7 @@
 Type=Application
 Name=Conky System Monitor
 Comment=Lightweight system monitor with btop-inspired display
-Exec=conky --config="$HOME/.config/conky/conky.conf"
+Exec=systemctl --user restart conky.service
 Icon=utilities-system-monitor
 Terminal=false
 Hidden=false

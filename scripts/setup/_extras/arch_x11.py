@@ -46,6 +46,13 @@ EXTRAS: dict[str, ExtraConfig] = {
         target_path=Path.home() / ".config" / "autostart" / "conky.desktop",
         required_platforms=("linux", "x11"),
     ),
+    "pc/arch-x11/conky/conky.service":
+    ExtraConfig(
+        name="conky user service",
+        source_path=SYSTEM_DIR / "pc" / "arch-x11" / "conky" / "conky.service",
+        target_path=Path.home() / ".config" / "systemd" / "user" / "conky.service",
+        required_platforms=("linux", "x11"),
+    ),
     "pc/arch-x11/conky/conky-battery":
     ExtraConfig(
         name="conky battery script",
@@ -93,6 +100,13 @@ EXTRAS: dict[str, ExtraConfig] = {
         name="autorandr postswitch hook",
         source_path=SYSTEM_DIR / "pc" / "arch-x11" / "autorandr" / "postswitch",
         target_path=Path.home() / ".config" / "autorandr" / "postswitch",
+        required_platforms=("linux", "x11"),
+    ),
+    "pc/arch-x11/autorandr/settings.ini":
+    ExtraConfig(
+        name="autorandr settings",
+        source_path=SYSTEM_DIR / "pc" / "arch-x11" / "autorandr" / "settings.ini",
+        target_path=Path.home() / ".config" / "autorandr" / "settings.ini",
         required_platforms=("linux", "x11"),
     ),
     "pc/arch-x11/zathura/zathurarc":

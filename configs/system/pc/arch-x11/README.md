@@ -12,13 +12,16 @@ Optional user-level X11/XFCE configs for the Arch Framework 13 setup.
 | `arch-x11/xfce-theme-toggle` | `~/.local/bin/xfce-theme-toggle` | Toggles XFCE/GTK between light and dark mode | `xfconf-query`, `gsettings` |
 | `arch-x11/xfce-window-behavior.sh` | manual one-time run | Makes activated apps switch to their existing workspace instead of moving to the current one | `xfconf-query`, `xfwm4` |
 | `arch-x11/conky/conky.conf` | `~/.config/conky/conky.conf` | Conky system monitor config | `conky` |
-| `arch-x11/conky/conky.desktop` | `~/.config/autostart/conky.desktop` | Autostart entry for Conky | `conky` |
+| `arch-x11/conky/conky.desktop` | `~/.config/autostart/conky.desktop` | Autostart entry that starts the Conky user service at login | `conky` |
+| `arch-x11/conky/conky.service` | `~/.config/systemd/user/conky.service` | User service that runs a single Conky instance | `conky` |
 | `arch-x11/conky/conky-battery` | `~/.local/bin/conky-battery` | Battery percentage helper for Conky | `conky` |
 | `arch-x11/conky/conky-gpu` | `~/.local/bin/conky-gpu` | GPU usage helper for Conky | `conky` |
 | `arch-x11/conky/conky-cpu-temp` | `~/.local/bin/conky-cpu-temp` | CPU temperature helper for Conky | `conky` |
 | `arch-x11/conky/conky-gpu-temp` | `~/.local/bin/conky-gpu-temp` | GPU temperature helper for Conky | `conky` |
 | `arch-x11/window-management/center-window` | `~/.local/bin/center-window` | Centers active window at 70% of monitor | `xdotool` |
 | `arch-x11/window-management/tile-window` | `~/.local/bin/tile-window` | Tiles active window left or right at 75% width | `xdotool` |
+| `arch-x11/autorandr/postswitch` | `~/.config/autorandr/postswitch` | Resizes the framebuffer and restarts Conky after a profile switch | `autorandr`, `xrandr` |
+| `arch-x11/autorandr/settings.ini` | `~/.config/autorandr/settings.ini` | Matches monitors by EDID instead of output name | `autorandr` |
 | `arch-x11/zathura/zathurarc` | `~/.config/zathura/zathurarc` | Zathura PDF viewer config with SyncTeX editor | `zathura`, `zathura-pdf-mupdf` |
 
 ## One-Time Setup
