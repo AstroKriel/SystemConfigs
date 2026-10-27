@@ -48,8 +48,8 @@ Always use strong, specific verb prefixes. Avoid weak or generic leading words t
 | `load_*` | I/O that returns data |
 | `save_*` | I/O that writes data |
 | `create_*` / `make_*` | object construction |
-| `get_*` | query or lookup |
-| `resolve_*` | disambiguation between options |
+| `get_*` | query or lookup; may branch, validate, or fall back to a default internally |
+| `resolve_*` | turn a name or other indirect reference into the concrete object it denotes |
 | `extract_*` | pull data from a larger structure |
 
 ### Validation trio
@@ -86,10 +86,13 @@ Always use strong, specific verb prefixes. Avoid weak or generic leading words t
 | Casing | `snake_case` exclusively, never camelCase |
 | Abbreviations | domain acronyms only: `mhd`, `cfl`, `eos`; never shortened English words (`decompose` not `decomp`, `index` not `idx`) |
 | Count prefix | `num_` is the exception to the abbreviations rule: `num_<noun>`, not `number_<noun>` |
+| Function suffix | `_fn` is also an exception: a name that holds a function is `<noun>_fn`, not `<noun>_function` |
+| Command shorthand | `cmd` is also an exception: snake_case names use `cmd` for command, e.g. `<noun>_cmd` and `<verb>_cmd_and_<noun>`, not `<noun>_command`; type names keep the full word (`<Noun>Command`), and so does prose |
+| External names | a name dictated by an external API keeps that spelling: `argv`, `stdout`, `**kwargs`, the `cwd=` keyword of `subprocess.run`; a name you choose still follows these rules |
 | Descriptive names | use qualified names that read as subscript notation: `<qualifier>_<noun>` |
 | Single-letter names | never, except the physics shorthand in Mathematical Variables |
 | Directories | `directory` when only one in scope; `_dir` suffix when multiple: `source_dir`, `target_dir` |
-| Comprehension variables | prepend `_` if the name would conflict with an existing name in scope |
+| Lambda / comprehension variables | prepend `_` by default, even with no current name collision in the enclosing scope: `lambda _item: _item.value` |
 | State predicates | `is_*` or `has_*` prefix: `is_loading`, `has_errors` |
 | Action flags | verb or adjective phrase, no `is_*`: `verbose`, `dry_run`, `overwrite` |
 | Receiver variables | name after the noun in the called function: `<noun> = <verb>_<noun>(...)`, not `result` |
