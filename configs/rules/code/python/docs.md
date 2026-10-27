@@ -16,7 +16,7 @@ Prose style follows [`<rules>/writing/markdown.md`](../../writing/markdown.md): 
 ### Format
 
 - One-liners: opening and closing `"""` on the same line.
-- Multi-line: `"""` opens with text immediately on the first line; closing `"""` on its own line.
+- Multi-line: opening and closing `"""` each on their own line; the text starts on the line after the opening `"""`.
 
 ```python
 """<One-sentence description ending with a period>."""
