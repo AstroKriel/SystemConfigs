@@ -88,6 +88,7 @@ Always use strong, specific verb prefixes. Avoid weak or generic leading words t
 | Count prefix | `num_` is the exception to the abbreviations rule: `num_<noun>`, not `number_<noun>` |
 | Function suffix | `_fn` is also an exception: a name that holds a function is `<noun>_fn`, not `<noun>_function` |
 | Command shorthand | `cmd` is also an exception: snake_case names use `cmd` for command, e.g. `<noun>_cmd` and `<verb>_cmd_and_<noun>`, not `<noun>_command`; type names keep the full word (`<Noun>Command`), and so does prose |
+| Argument and parameter shorthand | `arg` and `param` are also exceptions, for the same reason as `cmd` and `fn`: they name a concrete thing, an arg typed on the command line or a param of a function, not the concept; e.g. `long_arg_name`, `param_name`; type names keep the full word (`<Noun>Argument`), and so does prose |
 | External names | a name dictated by an external API keeps that spelling: `argv`, `stdout`, `**kwargs`, the `cwd=` keyword of `subprocess.run`; a name you choose still follows these rules |
 | Descriptive names | use qualified names that read as subscript notation: `<qualifier>_<noun>` |
 | Single-letter names | never, except the physics shorthand in Mathematical Variables |
