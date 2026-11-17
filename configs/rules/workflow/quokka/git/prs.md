@@ -32,9 +32,11 @@ Add situational `### ` sections after `### Description`, as they apply. Each is 
 
 | Section | When to use |
 |---|---|
+| `### Changed files` | a large diff, or a branch that carries commits from a prerequisite PR: one line per file this PR changes, saying what changed; if a prerequisite PR accounts for other changes in the diff, end with one line naming it and those changes. State the merge order only in `### Before merging` |
 | `### Validation` | convergence results or analytic comparisons confirming correct behaviour |
 | `### Energy conservation` | tests confirming energy is transferred correctly between components |
-| `### Known issues` | `[Feedback]`/`[Testing]` PRs: items that must be resolved before the PR is ready for review |
+| `### Before merging` | actions outside this PR's code that must happen before it merges, e.g. a prerequisite PR merging or an org owner adding a secret; one bullet per action, naming who does it; delete each bullet once done, and merge when the list is empty. The only place the merge order is stated |
+| `### Known issues` | limitations that stay true after merging and do not block it, e.g. a toolchain that is not yet available for a future runner image |
 | `### Request for Feedback` | `[Feedback]` PRs: specific questions on the approach you want reviewers to weigh in on |
 
 ---
@@ -71,7 +73,7 @@ While the PR is a draft, prefix the title with a stage tag to communicate progre
 | `[Feedback]` | shareable draft; seeking feedback on the approach before continuing |
 | `[Testing]` | implementation is believed complete; running tests, tweaks may be called for based on tests |
 
-- Ready for review is the untagged state: when all known issues are resolved and CI is green, remove the stage tag entirely and flip the PR from draft to ready for review. A title with no tag is the signal that the code is ready to read.
+- Ready for review is the untagged state: when the implementation and its testing are done and CI is green, remove the stage tag entirely and flip the PR from draft to ready for review. Open items in `### Before merging` do not hold a PR in draft; reviewers can approve the code while those happen. A title with no tag is the signal that the code is ready to read.
 - Because the ready-for-review title already carries no tag, it doubles as the clean squashed commit message; no stage marker leaks into `git log`.
 
 ---
