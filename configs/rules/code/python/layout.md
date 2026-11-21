@@ -58,13 +58,13 @@ Subsection markers use a single line:
 
 | Rule | Detail |
 |---|---|
-| Per line | one import per line |
+| Per line | one import statement per line; a `from` import may name up to two names on one line, e.g. `from <package> import <module_a>, <module_b>` |
 | Within groups | `import ...` lines first, then `from ... import ...` lines |
 | Sort order | alphabetise within each block |
 | Spacing | one blank line between the two blocks when both appear in the same group |
 | Aliases | never `import <module> as <abbrev>`; use the full name or a descriptive alias |
 | Module imports | import the module, not individual functions: `from <package>.<module> import <module>` then `<module>.<function>(...)` |
-| Long imports | use parentheses with trailing commas when there are three or more names |
+| Long imports | with three or more names, use parentheses with one name per line and trailing commas |
 | Re-exports | use `from <module> import <name> as <name>` (self-alias) so pyright recognises the re-export |
 
 Exceptions to the module imports rule:
