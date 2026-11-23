@@ -102,9 +102,11 @@ The repo template checklist:
 
 The tests item applies when the PR adds a new physical process; not to infrastructure or harness changes.
 
+An item that does not apply is crossed out and left unticked, with the reason after it: `- [ ] ~~<item>~~ N/A: <reason>`. Never tick an item that does not apply.
+
 ### GPU test triggers
 
 Two tiers of GPU CI can be triggered as PR comments; the merge queue always runs the full suite automatically before merging regardless of what was triggered manually, and a failure there bounces the PR back to draft and requires re-approval after the fix, so triggering the right tier yourself ahead of time avoids that cycle.
 
-- **`/azp run quick` and `/azp run rocm-quick`** (default): build and run, on GPU, only the test problems whose source under `src/problems` changed in the PR. Finishes in under 10 minutes. If the PR touches no `src/problems` files, they have nothing to build; make a dummy problem-file change to trigger them, then revert it before merging if not otherwise needed.
+- **`/azp run quick` and `/azp run rocm-quick`** (default): build and run, on GPU, only the test problems whose source under `src/problems` changed in the PR. Finishes in under 10 minutes. If the PR touches no `src/problems` files, they have nothing to build, so use `/azp run` if the change needs GPU testing.
 - **`/azp run`** (~120 min): the full GPU suite across every problem. Reserve this for PRs that change a base/shared module outside `src/problems` (e.g. `QuokkaSimulation.hpp`, `mhd_system.hpp`, `physics_info.hpp`) that other problems depend on — `quick` can't see that blast radius, since it only rebuilds problems whose own files changed, not problems that merely depend on the shared code touched.
