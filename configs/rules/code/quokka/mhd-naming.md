@@ -71,10 +71,11 @@ The index encodes what varies parametrically. A quantity with multiple component
 Add an `// indexing:` comment at each container field declaration to describe what each entry represents:
 
 ```
-// indexing: <field>[<N>: <description>]
+// indexing: <variable-name>[<N>: <index-description>]
 ```
 
 where `<N>` is the number of entries.
 
-> **Note:** when a slot index equals the stored field component, state both roles explicitly: `<field>[<N>: <index-role> = <component-role>]`.
+> **Note:** when multiple variables share the same indexing structure and differ only in a suffix, use brace notation: `<prefix>{<elem0>/<elem1>/...}[<N>: <shared-index-description>]` to delineate the varying part.
 
+> **Note:** when a slot index equals the stored field component, state both roles explicitly: `<field>[<N>: <index-role> = <component-role>]`.
