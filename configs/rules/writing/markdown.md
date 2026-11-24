@@ -81,20 +81,22 @@ Content grows over time, so it lives in the lightest form that holds it now and 
 
 | Rung | Use when | Grow by |
 |---|---|---|
-| Bullet list | A few standalone concepts that share no columns | Adding bullets |
-| Table | Items share two or more real columns: a mapping, a comparison, or a label-to-definition lookup | Adding rows |
-| Subsection with a table or bullets | One concept grows rich enough to need its own heading and internal structure | Adding subsections |
-| Sub-file | A section outgrows the file or spans domains (see [`workflow/note-taking/project.md`](../workflow/note-taking/project.md)) | Adding files |
+| Prose | a concept that has not yet resolved into discrete items | Promoting to the next rung |
+| Bullet list | items become enumerable and lose their narrative connection | Adding bullets |
+| Table | items share two or more real columns: a mapping, a comparison, or a label-to-definition lookup | Adding rows |
+| Subsection with a table or bullets | one concept grows rich enough to need its own heading and internal structure | Adding subsections |
+| Sub-file | a section outgrows the file or spans domains (see [`<rules>/workflow/note-taking/project.md`](../workflow/note-taking/project.md)) | Adding files |
 
 Promote when the current rung strains:
 
+- Prose that gains enumerable items wants to be a bullet list.
 - A bullet that keeps gaining the same repeated field wants to be a table.
 - A table cell that turns dense wants to be a subsection.
 - A subsection that turns large wants to be its own file.
 
 A table earns its place only with two or more columns that each carry the same kind of value in every row. To test a would-be table, name the second column: if it has one consistent name and value-kind per row it is a table; if the only honest name is "Notes", the cells differ in kind and it is still a bullet list.
 
-Prose is the one form off the ladder: it cannot be extended or reorganised without rewriting. Reserve it for the **why** behind a rule or the **philosophy** of a concept (see [Capturing the Why](#capturing-the-why)), never for a set of rules.
+Prose may appear at any rung to introduce, frame, or link; the ladder governs the primary medium for the content, not whether story is present.
 
 ---
 
