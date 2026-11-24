@@ -54,7 +54,7 @@ AMReX exposes many parameters and often multiple ways to achieve the same thing.
 
 ## EMF scheme reference
 
-All three compute schemes are stable and comparable in accuracy; `Quokka2026` is the recommended default (fastest).
+All three compute schemes are stable and comparable in accuracy; `Quokka2026` with `Balsara2025` averaging is the recommended default.
 
 | Compute scheme | Notes |
 |---|---|
@@ -64,8 +64,8 @@ All three compute schemes are stable and comparable in accuracy; `Quokka2026` is
 
 | Averaging scheme | Notes |
 |---|---|
-| `LondrilloDelZanna2004` | Standard upwind averaging. |
-| `Balsara2025` | |
+| `Balsara2025` | Recommended default. |
+| `LondrilloDelZanna2004` | Alternative. |
 
 ---
 
