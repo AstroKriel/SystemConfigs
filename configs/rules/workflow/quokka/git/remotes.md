@@ -13,12 +13,11 @@ This matches the naming quokka's own `CONTRIBUTING.md` uses (`git fetch upstream
 
 ---
 
-## Branch purposes
+## `main`
 
-| Branch | Tracks | Purpose |
-|---|---|---|
-| `development` | `upstream/development` | Base for anything destined to become a PR against `quokka-astro/quokka`. Never diverges from upstream; only ever fast-forwarded. |
-| `main` | `origin/main` | Personal accumulation branch. Fork's default branch (renamed from `development` at fork time to avoid two same-named branches with different histories). Holds every established sim, merged in once each is no longer a work-in-progress. Never opened as a PR. |
+The only persistent local branch. Tracks `origin/main`, the fork's default branch (renamed from `development` at fork time to avoid two same-named branches with different histories). Holds every established sim, merged in once each is no longer a work-in-progress. Never opened as a PR.
+
+There is no persistent local `development` branch: `upstream/development` (the remote-tracking ref, refreshed by `git fetch upstream`) already is the up-to-date base for upstream-bound work, with no separate branch to keep in sync. See "Choosing a base branch" below.
 
 ---
 
@@ -26,8 +25,17 @@ This matches the naming quokka's own `CONTRIBUTING.md` uses (`git fetch upstream
 
 | Destined for | Branch off | Push to | End state |
 |---|---|---|---|
-| Upstream PR | `development` | `origin` | Opened as a PR against `quokka-astro/development`; branch deleted after merge. |
+| Upstream PR | `upstream/development` | `origin` | Opened as a PR against `quokka-astro/development`; branch deleted after merge. |
 | Personal sim | `main` | `origin` | Merged into `main` once the sim is established; topic branch deleted. Never a PR. |
+
+Starting new upstream-bound work:
+
+```
+git fetch upstream --no-recurse-submodules
+git worktree add ../quokka-worktrees/<verb>-<name> -b <verb>/<name> upstream/development
+```
+
+The `git fetch` immediately beforehand is the whole "keep it current" step; there's no separate branch to pull first.
 
 ---
 
@@ -60,11 +68,9 @@ Conflicts should be rare: sims live in their own `src/problems/<sim>` directorie
 git clone --recursive git@github.com:<username>/quokka.git
 cd quokka
 git remote add upstream git@github.com:quokka-astro/quokka.git
-git fetch upstream --no-recurse-submodules
-git worktree add ../quokka-worktrees/development -b development upstream/development
 ```
 
-The base clone stays on `main` (tracking `origin/main`, the fork's default branch) and is never switched away from, per [`workflow/git/worktrees.md`](../../git/worktrees.md). `development` is a second long-running tracking branch, not a feature branch, so it gets its own worktree rather than being checked out in the base clone.
+The clone already lands on `main` (tracking `origin/main`) since that's the fork's default branch; nothing else needs setting up. The base clone stays on `main` and is never switched away from, per [`workflow/git/worktrees.md`](../../git/worktrees.md).
 
 Clones used only to build and run sims (e.g. an HPC clone) don't need `upstream` configured at all. `git pull origin main` is enough to pick up the latest merged state.
 
@@ -72,4 +78,4 @@ Clones used only to build and run sims (e.g. an HPC clone) don't need `upstream`
 
 ## Worktrees
 
-Every subsequent branch, whether a PR-bound topic branch off `development` or a personal sim off `main`, gets its own worktree per [`workflow/git/worktrees.md`](../../git/worktrees.md). New worktrees start with empty submodule directories; run `git submodule update --init --recursive` inside before building.
+Every subsequent branch, whether a PR-bound topic branch off `upstream/development` or a personal sim off `main`, gets its own worktree per [`workflow/git/worktrees.md`](../../git/worktrees.md). New worktrees start with empty submodule directories; run `git submodule update --init --recursive` inside before building.
