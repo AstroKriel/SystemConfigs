@@ -108,5 +108,20 @@ An item that does not apply is crossed out and left unticked, with the reason af
 
 Two tiers of GPU CI can be triggered as PR comments; the merge queue always runs the full suite automatically before merging regardless of what was triggered manually, and a failure there bounces the PR back to draft and requires re-approval after the fix, so triggering the right tier yourself ahead of time avoids that cycle.
 
-- **`/azp run quick` and `/azp run rocm-quick`** (default): build and run, on GPU, only the test problems whose source under `src/problems` changed in the PR. Finishes in under 10 minutes. If the PR touches no `src/problems` files, they have nothing to build, so use `/azp run` if the change needs GPU testing.
+- **`/azp run quick` and `/azp run rocm-quick`** (default): build and run, on GPU, only the test problems whose source under `src/problems` changed in the PR. Finishes in under 10 minutes. If the PR touches no `src/problems` files, they have nothing to build, so use `/azp run` if the change needs GPU testing. The exception is a PR that changes the quick workflows themselves, which needs a temporary change to a test problem, reverted before merging.
 - **`/azp run`** (~120 min): the full GPU suite across every problem. Reserve this for PRs that change a base/shared module outside `src/problems` (e.g. `QuokkaSimulation.hpp`, `mhd_system.hpp`, `physics_info.hpp`) that other problems depend on — `quick` can't see that blast radius, since it only rebuilds problems whose own files changed, not problems that merely depend on the shared code touched.
+
+---
+
+## Stacked PRs
+
+Quokka has access to GitHub's native Stacked PRs feature, currently in private preview and gated per repository (`gh.io/stacksbeta`); it is not available on every GitHub repo.
+
+| Rule | Detail |
+|---|---|
+| Target branch | the bottom layer targets `development` (quokka's default branch), not `main`; every layer above targets the branch below it |
+| Workflow | `gh stack init`, commit, then `gh stack add <branch>` for each additional layer; `gh stack push` to send branches to the remote; `gh stack submit` to open or update the linked PRs; `gh stack view` to check stack status |
+| Restacking | after the bottom layer changes (e.g. addressing review feedback), run `gh stack rebase` to cascade the rebase through every layer above it before pushing again |
+| Merging | merge from the top-most PR in the stack; it lands every layer bottom-up in one operation. The merge queue is stack-aware: pulling the bottom PR out of the queue removes its dependents too |
+| Worktrees | each layer is still an ordinary feature branch, so the one-worktree-per-branch rule in [`workflow/git/worktrees.md`](../../git/worktrees.md) applies per layer; fork each new layer's worktree from the branch below it instead of from `development` |
+| Titles and checklist | each layer's PR still follows the [Title](#title), [Structure](#structure), and [Checklist](#checklist) rules above; a stack is several small PRs, not an exemption from them |
