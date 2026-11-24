@@ -42,6 +42,8 @@ Must return a non-zero count. If it returns 0, the mirrorlist is broken (e.g. re
 
 **Changelogs and forums:** For hardware-adjacent packages (`linux`, `wireplumber`, `pipewire`, `alsa-ucm-conf`, `alsa-firmware`, `sof-firmware`, `fwupd`), read the Arch package page and upstream release notes. Search the Arch forums and Framework community (`https://community.frame.work`) for the package versions being upgraded plus this hardware (`Framework 13`, `Ryzen AI 300`). Issues frequently appear in the forums before they are documented upstream.
 
+**Xorg driver ABI check:** If `xorg-server` is in the update, check whether any `xf86-video-*` or `xf86-input-*` package (e.g. `xf86-video-amdgpu`) is *also* in the same transaction (`checkupdates` output). A driver package that depends on the server's exact ABI but does not move together with a `xorg-server` bump is a specific crash risk, not just a routine update — it caused a `lightdm` crash-loop (`amdgpu_drv.so` segfault from an ABI mismatch) on 2026-10-09, see `pending-issues.md`. If the driver package is not moving with `xorg-server`, treat that combination as worth pausing on before proceeding.
+
 **Active workarounds:** Review `pending-issues.md`. For each open workaround, decide what to test after the upgrade before you start.
 
 ---
