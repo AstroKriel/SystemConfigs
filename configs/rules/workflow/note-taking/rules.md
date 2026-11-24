@@ -70,7 +70,7 @@ A finding in the notes system becomes a rule when it represents a stable convent
 
 To promote:
 
-1. Identify which `<rules>/` file the convention belongs in.
-2. Phrase it as a rule: prescriptive, not descriptive.
-3. In the notes source, note the promotion if the investigation entry is still live; the rule itself carries no back-reference.
+1. Draft the convention in `feedback/rules.md` of the `<topic>` or thread that raised it, as described in [`feedback.md`](feedback.md).
+2. Once it is agreed, identify which `<rules>/` file it belongs in, and phrase it there as a rule: prescriptive, not descriptive.
+3. Remove the draft from `feedback/rules.md`; the log of its `<topic>` or thread records where it went. The rule itself carries no back-reference.
 4. Commit following [`workflow/git/commits.md`](../git/commits.md).

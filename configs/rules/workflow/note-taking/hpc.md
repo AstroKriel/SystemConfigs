@@ -11,7 +11,7 @@ hpcs/<cluster>/
 ├── README.md  # cluster reference sheet
 ├── log.md     # dated entries: outages, queue changes, module updates, workarounds
 ├── tasks.md   # open setup and documentation tasks
-├── threads/   # focused investigations; same shape as project threads
+├── threads/   # threads; see thread.md
 └── <node>.md  # per-node deltas when nodes differ (hardware, node-local scratch, GPU)
 ```
 
@@ -74,12 +74,7 @@ Only open items; no ticked checkboxes, no reference material. When a task comple
 
 ## threads/
 
-Open a thread when an investigation takes more than a few commands to resolve. Each thread `README.md`:
-
-- Opens with the question being investigated.
-- Records steps and what each ruled in or out.
-- Closes with the resolution and where the finding was promoted.
-- Resolved threads move to `threads/archived/`.
+Open a thread when an investigation takes more than a few commands to resolve. Threads follow [`thread.md`](thread.md); a resolved thread records in its log where the finding was promoted.
 
 ---
 

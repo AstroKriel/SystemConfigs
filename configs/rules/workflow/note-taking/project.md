@@ -31,9 +31,10 @@ Start with just `README.md`. Add files only as the project grows. Two guiding pr
 ├── README.md      # overview; becomes index as project grows
 ├── log/           # session trail; one file per session named YYYY-MM-DD.md
 ├── tasks.md       # task list; splits into tasks/ when tasks span multiple domains
-├── threads/       # active explorations and open questions
+├── threads/       # threads; see thread.md
 │   └── archived/  # resolved threads
-└── notes/         # refs, background material, stable context
+├── feedback/      # findings headed into rules, tools, or other projects; see feedback.md
+└── notes/         # background material and stable context; refs/ holds papers
 ```
 
 ### README.md
@@ -46,13 +47,7 @@ The README is the entry point. It should orient anyone landing cold: what the pr
 
 ### threads/
 
-Each thread is a standalone investigation that can be shared on its own:
-
-- it is a subfolder with `README.md` and, if needed, `figures/`, `analysis/`, and a minimal `reproducer/` (config snippets or fixtures, never source or run results);
-- if it has analysis scripts, it carries a self-contained `uv`-managed environment (`pyproject.toml` + `uv.lock`, with `.venv/` gitignored) so they run via `uv run`; shared libraries (e.g. `jormi`) are pinned to a git commit, never a local path, so the environment reconstructs wherever the thread is shared;
-- it inherits no context from the rest of `<project-notes>`: it states any background the reader needs, and references other threads by folder name in backticks (e.g. `<thread-name>/`), not by relative path, so the reference survives archiving;
-- its `README.md` opens with `**Opened:**` and, once settled, `**Resolved:**` dates, followed by quick-reference metadata fields (`**Status:**`, `**Branch:**`, `**PR:**`, or similar); these fields are the only content updated in place as state changes; for a resolved thread, one sentence of plain prose after `**Resolved:**` states the conclusion (written once, not updated); the `## Summary` section is written once on opening and not required to be kept current; progress is logged by appending dated `### YYYY-MM-DD:` sections -- the thread grows by appending, never by rewriting, and the deduction story (the chain of observations and what each ruled in or out) emerges from these sections rather than from a separate narrative;
-- resolved threads move to `archived/`, with the index entry updated to the resolved status and date; a conclusion carried out of a thread must not be stated more broadly than the thread established.
+Threads follow [`thread.md`](thread.md).
 
 Figures not tied to a thread belong in the project repo, not `<project-notes>`.
 
@@ -111,7 +106,7 @@ A task list that is nothing but completed entries is a sign the notes file is mi
 | Current status and open questions | Line-by-line code documentation |
 | Key findings and decisions | Raw simulation output |
 | Task lists | Configuration files (those go in the project repo) |
-| Notes on sources and references | Working conventions (promote to `<rules>/`) |
+| Notes on sources and references | Working conventions (draft in `feedback/rules.md`; see [`feedback.md`](feedback.md)) |
 | Reproduction steps for a result | |
 
 ---
