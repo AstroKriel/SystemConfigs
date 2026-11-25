@@ -19,6 +19,7 @@ A thread is organised by type of product. The README connects the products; each
 ```text
 <thread>/
 ├── README.md         # index of the products, then the dated log
+├── tasks.md          # open action items; see Design and tasks
 ├── notes/            # markdown: what is known now, edited in place
 ├── feedback/         # markdown headed into your own rules, tools, or projects; see feedback.md
 ├── scripts/          # what you run yourself: scripts, configs, fixtures, and the uv environment
@@ -29,11 +30,11 @@ A thread is organised by type of product. The README connects the products; each
     └── archived/
 ```
 
-`notes/` and `feedback/` are open to every thread. The other folders depend on the kind of thread (see Kinds of thread). Every folder is created only when its first file arrives. A file that fits none of them goes into the closest one rather than into a new folder.
+`tasks.md`, `notes/`, and `feedback/` are open to every thread. The other folders depend on the kind of thread (see Kinds of thread). Every folder is created only when its first file arrives. A file that fits none of them goes into the closest one rather than into a new folder.
 
 - `minimal-example/` is self-contained: source files in any language, build files, inputs, and a `README.md` with the steps to build and run, and the expected and observed result. It is the smallest case that shows the behaviour. When a recipient asks for an archive, such as a tarball attached to a bug report, the archive is built from this folder with a command given in its `README.md`, and is not stored.
 - `scripts/` carries a self-contained `uv`-managed environment (`pyproject.toml` and `uv.lock`, with `.venv/` gitignored) so the scripts run with `uv run`. Shared libraries (e.g. `jormi`) are pinned to a git commit, never a local path, so the environment rebuilds wherever the thread is shared.
-- A file in `notes/` that grows too large, or comes to span several parts, splits into a folder of the same name, with a `README.md` that indexes the parts; e.g. `plan.md` becomes `plan/README.md` and `plan/<part>.md`. This is the structure ladder in [`writing/markdown.md`](../../writing/markdown.md).
+- A file in `notes/` that grows too large, or comes to span several parts, splits into a folder of the same name, with a `README.md` that indexes the parts; e.g. `design.md` becomes `design/README.md` and `design/<part>.md`. This is the structure ladder in [`writing/markdown.md`](../../writing/markdown.md).
 - Papers do not go in a thread. They go in `notes/refs/` of the `<topic>` that holds the thread, and the thread cites them.
 
 ---
@@ -51,12 +52,24 @@ The metadata fields are the only content updated in place. For a resolved thread
 
 Then:
 
-- `## Summary`: written once on opening, and not kept current. It ends with the index: a `| File | Covers |` table listing every file in `notes/` and `feedback/`, every sub-thread, and each other folder once.
+- `## Summary`: written once on opening, and not kept current. It ends with the index: a `| File | Covers |` table listing `tasks.md`, every file in `notes/` and `feedback/`, every sub-thread, and each other folder once.
 - Dated sections, `### YYYY-MM-DD: <title>`, appended as work happens. The thread grows by appending, never by rewriting. The chain of observations, and what each ruled in or out, comes from these sections rather than from a separate narrative.
 
-Content that is kept current, such as a design, a plan, or a list of open items, goes in a file in `notes/`, not in the README.
+Content that is kept current, such as a design or the open tasks, goes in `notes/` or `tasks.md`, not in the README.
 
 Other threads are referenced by folder name in backticks (e.g. `<thread-name>/`), not by relative path, so the reference survives archiving.
+
+---
+
+## Design and tasks
+
+A design is the conceptual level: what a thing is and why. It is edited in place, and each entry is decided, proposed, or open.
+
+Tasks are action items: work that can actually be done. They follow the tasks rules in [`project.md`](project.md): open items only, deleted when done, with the log recording what was done. When order matters, the tasks are numbered, and each says how it is known to be done.
+
+A decided design entry that is not built yet, or an open question, usually has a matching task.
+
+The design of a tool you own lives at `<topic>/notes/design/`. A thing with no `<topic>` of its own keeps its design in the thread, in `notes/design.md`.
 
 ---
 
@@ -74,26 +87,16 @@ The kind of a thread decides which products it usually has. These layouts are ex
 └── minimal-example/  # when the problem is reported to someone else
 ```
 
-### Planning and building code
+### Building code
 
-For a library, a tool, or a feature. The code, its tests, and its validation live in the repository of the code; the thread holds the plan and links to the branch and pull request.
-
-```text
-<thread>/
-├── README.md
-└── notes/
-    └── plan.md  # the plan while it is small
-```
-
-Once `plan.md` grows too large, it splits into a folder:
+For a library, a tool, or a feature. The code, its tests, and its validation live in the repository of the code. The thread holds the tasks and links to the branch and pull request; design decisions go to the design of the thing (see Design and tasks).
 
 ```text
 <thread>/
 ├── README.md
+├── tasks.md       # the steps, numbered when order matters
 └── notes/
-    └── plan/
-        ├── README.md  # indexes the parts
-        └── <part>.md  # one file per part of the plan
+    └── design.md  # only when the thing has no <topic> of its own
 ```
 
 ### Investigating a question with simulations or calculations
@@ -124,7 +127,7 @@ Once `plan.md` grows too large, it splits into a folder:
     └── <proposal>.md  # proposals and drafts for others, e.g. one file per referee
 ```
 
-A thread can change kind, e.g. from debugging a problem to planning the fix. It then gains the folders of the new kind, and the log records the change.
+A thread can change kind, e.g. from debugging a problem to building the fix. It then gains the folders of the new kind, and the log records the change.
 
 ---
 
