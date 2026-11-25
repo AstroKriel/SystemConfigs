@@ -78,12 +78,26 @@ Applies wherever a project has a task list and a `notes/` directory: research (l
 
 When a project grows a `tasks/` folder, the `notes/` folder grows a matching file for each topic. The two files for the same topic are complementary: `tasks/<topic>.md` holds only active and pending work; `notes/<topic>.md` holds the durable record of what exists or has been done.
 
-The lifecycle of a piece of work:
-1. It starts as a task in `tasks.md` (or `tasks/<topic>.md` once split).
-2. When it completes, its record moves to `notes/<topic>.md` (or the project's single `notes.md`-equivalent file before that splits); the entry is removed, not just marked done.
-3. The task list shrinks over time. `notes/` grows.
+Tasks are checkboxes. A task can hold subtasks, so that a group of steps sits under the campaign they carry out.
 
-A task list that is nothing but completed entries is a sign the notes file is missing or out of date.
+The lifecycle of a piece of work:
+
+1. It starts as a task in `tasks.md` (or `tasks/<topic>.md` once split).
+2. It grows as it needs to: one line, then a context paragraph under it, then a thread once it becomes an investigation, at which point the task points to the thread.
+3. When it is done, it is ticked with its date, at whatever level it sits: `- [x] <YYYY-MM-DD>: <task>`.
+4. When every subtask of a parent is ticked, the subtasks are removed and the parent is ticked with the date it finished. Its sentence names the campaign, so the campaign is what remains at its level.
+5. Ticked top-level tasks move into the next dated log entry. Any durable fact the work produced, such as what now exists and where, goes to `notes/<topic>.md` (or the single notes file of the project before it splits).
+
+The task list stays short; the log keeps what was done, and `notes/` keeps what exists.
+
+```markdown
+- [ ] <campaign>
+  - [x] <YYYY-MM-DD>: <step>
+  - [ ] <step>
+- [ ] <task>
+```
+
+A task list that is mostly ticked entries is a sign the log has not caught up.
 
 **What goes in `notes/<topic>.md`:**
 
@@ -94,7 +108,7 @@ A task list that is nothing but completed entries is a sign the notes file is mi
 
 **What stays in `tasks/<topic>.md`:**
 
-- Uncompleted items only. No reference material, no completed items, no storage layout docs.
+- Open tasks, and ticked tasks that have not yet moved to the log. No reference material, no storage layout documents.
 - A brief status line at the top noting current priority and what is blocked or in flight.
 
 ---

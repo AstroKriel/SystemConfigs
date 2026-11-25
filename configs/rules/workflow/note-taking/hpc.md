@@ -68,7 +68,7 @@ Record each part once:
 
 ## tasks.md
 
-Only open items; no ticked checkboxes, no reference material. When a task completes, move the fact to the relevant file and remove the task entry. Tasks pending an external party get a status note inline: contact, date sent, and what to verify once resolved.
+Tasks follow the task lifecycle in [`project.md`](project.md): checkboxes, ticked with a date when done, subtasks collapsing into their parent, and ticked tasks moving into `log.md`. No reference material; a fact a task produced goes to the relevant file. Tasks pending an external party get a status note inline: contact, date sent, and what to verify once resolved.
 
 ---
 

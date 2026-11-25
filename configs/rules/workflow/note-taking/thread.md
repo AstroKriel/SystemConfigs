@@ -65,7 +65,7 @@ Other threads are referenced by folder name in backticks (e.g. `<thread-name>/`)
 
 A design is the conceptual level: what a thing is and why. It is edited in place, and each entry is decided, proposed, or open.
 
-Tasks are action items: work that can actually be done. They follow the tasks rules in [`project.md`](project.md): open items only, deleted when done, with the log recording what was done. When order matters, the tasks are numbered, and each says how it is known to be done.
+Tasks are action items: work that can actually be done. They follow the task lifecycle in [`project.md`](project.md): checkboxes, ticked with a date when done, subtasks collapsing into their parent, and ticked tasks moving into the next dated section of the README log. When order matters, the subtasks of a campaign are listed in order, and each says how it is known to be done.
 
 A decided design entry that is not built yet, or an open question, usually has a matching task.
 
