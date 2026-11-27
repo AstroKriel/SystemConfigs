@@ -32,6 +32,7 @@ The reference sheet: everything needed to start a session from scratch.
 | `## Minimal Job Script` | One inline job script. Submission files for actual runs live in the run directory. |
 | `## Codes` | Table of name, checkout path (using `<repos>`), and role. No remote URLs. Stub the section if no codes are installed yet. |
 | `## Hardware` | Specs and filesystems for a single node; move to `<node>.md` when nodes diverge. |
+| `## Threads` | Links to `log.md`, `tasks.md`, and the thread index in `threads/README.md`, each as it is created. |
 
 ---
 

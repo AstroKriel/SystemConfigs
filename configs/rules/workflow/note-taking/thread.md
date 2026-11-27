@@ -31,7 +31,7 @@ A thread is organised by type of product. The README connects the products; each
     └── archived/
 ```
 
-`tasks.md`, `notes/`, and `feedback/` are open to every thread. The other folders depend on the kind of thread (see Kinds of thread). Every folder is created only when its first file arrives. A file that fits none of them goes into the closest one rather than into a new folder.
+Every thread has a `README.md` and a `log.md` from its first session. `tasks.md`, `notes/`, and `feedback/` are open to every thread. The other folders depend on the kind of thread (see Kinds of thread). Every folder is created only when its first file arrives. A file that fits none of them goes into the closest one rather than into a new folder.
 
 - `minimal-example/` is self-contained: source files in any language, build files, inputs, and a `README.md` with the steps to build and run, and the expected and observed result. It is the smallest case that shows the behaviour. When a recipient asks for an archive, such as a tarball attached to a bug report, the archive is built from this folder with a command given in its `README.md`, and is not stored.
 - `scripts/` carries a self-contained `uv`-managed environment (`pyproject.toml` and `uv.lock`, with `.venv/` gitignored) so the scripts run with `uv run`. Shared libraries (e.g. `jormi`) are pinned to a git commit, never a local path, so the environment rebuilds wherever the thread is shared.
@@ -55,7 +55,7 @@ Then comes `## Summary`: written once on opening, and not kept current. It ends 
 
 Content that is kept current, such as a design or the open tasks, goes in `notes/` or `tasks.md`, not in the README.
 
-Other threads are referenced by folder name in backticks (e.g. `<thread-name>/`), not by relative path, so the reference survives archiving.
+Other threads are referenced by folder name in backticks (e.g. `<thread-name>/`), not by relative path, so the reference survives archiving. A thread in another `<topic>` is referenced by folder name and topic: `<thread-name>/` in `<topic>`.
 
 ---
 
