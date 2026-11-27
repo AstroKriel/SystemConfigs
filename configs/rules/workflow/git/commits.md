@@ -112,7 +112,7 @@ bump-repo: <old_version> -> <new_version>.
 | Case | lowercase throughout |
 | Separator | use `;` to separate multiple related changes within one commit |
 | Ending | end with a period |
-| Length | total length under 120 characters |
+| Length | aim for under 120 characters; a little over is fine |
 | Characters | ASCII only; no special characters except the `->` arrow |
 
 ---
