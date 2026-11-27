@@ -29,7 +29,7 @@ Start with just `README.md`. Add files only as the project grows. Two guiding pr
 ```text
 <paper>/
 ├── README.md      # overview; becomes index as project grows
-├── log/           # session trail; one file per session named YYYY-MM-DD.md
+├── log.md         # session trail; splits into log/ when it strains
 ├── tasks.md       # task list; splits into tasks/ when tasks span multiple domains
 ├── threads/       # threads; see thread.md
 │   └── archived/  # resolved threads
@@ -51,9 +51,17 @@ Threads follow [`thread.md`](thread.md).
 
 Figures not tied to a thread belong in the project repo, not `<project-notes>`.
 
-### log/
+### log.md
 
-The log is an append-only session trail: each file (`YYYY-MM-DD.md`) is a snapshot of one session's understanding at that moment. Notes and threads evolve; the log does not.
+The log is an append-only session trail: each dated entry is a snapshot of one session's understanding at that moment. Notes and threads evolve; the log does not.
+
+Every kind of note keeps its log the same way, and lets its form emerge like any other file on the structure ladder in [`writing/markdown.md`](../../writing/markdown.md):
+
+- The log starts as `log.md` next to the `README.md`, never inside it. It opens with `# <Name>: Log`, and each entry is a `## YYYY-MM-DD: <title>` section, newest last.
+- When `log.md` strains, it splits into a `log/` folder. Each file holds what one sitting would read: one file per day (`YYYY-MM-DD.md`) when entries are whole sessions, one file per year (`YYYY.md`) when entries are a few lines each.
+- The `README.md` links to the log; it never holds log entries itself.
+
+What goes in the log:
 
 - Some duplication with notes is expected: if a finding first surfaces in a log entry, it belongs there even if it later appears in notes or threads.
 - Omit stable reference material (parameters, storage paths, naming conventions); that belongs in `notes/`.
@@ -66,7 +74,7 @@ The log is an append-only session trail: each file (`YYYY-MM-DD.md`) is a snapsh
 <student>/
 ├── README.md  # who, project summary, degree milestones, current status
 ├── tasks.md   # current tasks for student and supervisor
-├── log/       # dated meeting notes; one file per meeting named YYYY-MM-DD.md
+├── log.md     # dated meeting notes; splits into log/ as in Structure: Research Projects
 └── notes/     # reference material (project description, setup details, etc.)
 ```
 

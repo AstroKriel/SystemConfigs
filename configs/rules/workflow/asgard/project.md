@@ -88,7 +88,7 @@ When a paper is accepted:
 3. Tag the accepted-version commit: `git tag accepted`
 4. Pin `jormi` and any `ww-*-sims` dependencies to git commits -- see [`<rules>/code/asgard.md`](../../code/asgard.md)
 5. Make no further changes after renaming
-6. Add a final log entry to `<project-notes>/<project>/log/` with the journal and acceptance date
+6. Add a final entry to the log of `<project-notes>/<project>/` with the journal and acceptance date
 
 The local folder name and the GitHub repository name follow different conventions:
 

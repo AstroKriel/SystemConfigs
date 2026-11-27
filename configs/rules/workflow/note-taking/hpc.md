@@ -9,7 +9,7 @@ Notes on HPC clusters you use but do not own or administer; each lives under `<p
 ```text
 hpcs/<cluster>/
 ├── README.md  # cluster reference sheet
-├── log.md     # dated entries: outages, queue changes, module updates, workarounds
+├── log.md     # dated entries: outages, queue changes, module updates, workarounds; see project.md
 ├── tasks.md   # open setup and documentation tasks
 ├── threads/   # threads; see thread.md
 └── <node>.md  # per-node deltas when nodes differ (hardware, node-local scratch, GPU)

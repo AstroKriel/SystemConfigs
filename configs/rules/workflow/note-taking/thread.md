@@ -18,7 +18,8 @@ A thread is organised by type of product. The README connects the products; each
 
 ```text
 <thread>/
-├── README.md         # index of the products, then the dated log
+├── README.md         # index of the products
+├── log.md            # dated sections, appended as work happens
 ├── tasks.md          # open action items; see Design and tasks
 ├── notes/            # markdown: what is known now, edited in place
 ├── feedback/         # markdown headed into your own rules, tools, or projects; see feedback.md
@@ -41,7 +42,7 @@ A thread is organised by type of product. The README connects the products; each
 
 ## README.md
 
-The README is the one file to read first. It holds the index and the log together.
+The README is the one file to read first. It holds the index; the log sits next to it in `log.md`.
 
 It opens with metadata:
 
@@ -50,10 +51,7 @@ It opens with metadata:
 
 The metadata fields are the only content updated in place. For a resolved thread, one sentence of plain prose after `**Resolved:**` states the conclusion; it is written once.
 
-Then:
-
-- `## Summary`: written once on opening, and not kept current. It ends with the index: a `| File | Covers |` table listing `tasks.md`, every file in `notes/` and `feedback/`, every sub-thread, and each other folder once.
-- Dated sections, `### YYYY-MM-DD: <title>`, appended as work happens. The thread grows by appending, never by rewriting. The chain of observations, and what each ruled in or out, comes from these sections rather than from a separate narrative.
+Then comes `## Summary`: written once on opening, and not kept current. It ends with the index: a `| File | Covers |` table listing `log.md`, `tasks.md`, every file in `notes/` and `feedback/`, every sub-thread, and each other folder once.
 
 Content that is kept current, such as a design or the open tasks, goes in `notes/` or `tasks.md`, not in the README.
 
@@ -61,11 +59,17 @@ Other threads are referenced by folder name in backticks (e.g. `<thread-name>/`)
 
 ---
 
+## log.md
+
+Dated sections, `## YYYY-MM-DD: <title>`, appended as work happens. The thread grows by appending, never by rewriting. The chain of observations, and what each ruled in or out, comes from these sections rather than from a separate narrative. The log starts, grows, and splits as in [`project.md`](project.md).
+
+---
+
 ## Design and tasks
 
 A design is the conceptual level: what a thing is and why. It is edited in place, and each entry is decided, proposed, or open.
 
-Tasks are action items: work that can actually be done. They follow the task lifecycle in [`project.md`](project.md): checkboxes, ticked with a date when done, subtasks collapsing into their parent, and ticked tasks moving into the next dated section of the README log. When order matters, the subtasks of a campaign are listed in order, and each says how it is known to be done.
+Tasks are action items: work that can actually be done. They follow the task lifecycle in [`project.md`](project.md): checkboxes, ticked with a date when done, subtasks collapsing into their parent, and ticked tasks moving into the next dated section of `log.md`. When order matters, the subtasks of a campaign are listed in order, and each says how it is known to be done.
 
 A decided design entry that is not built yet, or an open question, usually has a matching task.
 
@@ -81,7 +85,8 @@ The kind of a thread decides which products it usually has. These layouts are ex
 
 ```text
 <thread>/
-├── README.md         # each attempt and what it ruled out; the last section names the file that shows the result
+├── README.md
+├── log.md            # each attempt and what it ruled out; the last section names the file that shows the result
 ├── scripts/          # failing configs and check scripts
 ├── figures/          # when the behaviour shows in output
 └── minimal-example/  # when the problem is reported to someone else
@@ -94,6 +99,7 @@ For a library, a tool, or a feature. The code, its tests, and its validation liv
 ```text
 <thread>/
 ├── README.md
+├── log.md
 ├── tasks.md       # the steps, numbered when order matters
 └── notes/
     └── design.md  # only when the thing has no <topic> of its own
@@ -104,6 +110,7 @@ For a library, a tool, or a feature. The code, its tests, and its validation liv
 ```text
 <thread>/
 ├── README.md
+├── log.md
 ├── notes/
 │   └── simulations.md  # one row per run: code and commit, machine, storage path, and why it was run
 ├── scripts/
@@ -115,7 +122,8 @@ For a library, a tool, or a feature. The code, its tests, and its validation liv
 
 ```text
 <thread>/
-└── README.md  # each use adds a dated section: what helped, what was missing, what was too much
+├── README.md
+└── log.md     # each use adds a dated section: what helped, what was missing, what was too much
 ```
 
 ### Coordinating with others
@@ -123,6 +131,7 @@ For a library, a tool, or a feature. The code, its tests, and its validation liv
 ```text
 <thread>/
 ├── README.md
+├── log.md
 └── notes/
     └── <proposal>.md  # proposals and drafts for others, e.g. one file per referee
 ```

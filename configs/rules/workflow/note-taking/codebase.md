@@ -21,7 +21,7 @@ This is distinct from project notes: a code note is about the tool itself, not a
 ```text
 codebases/<code>/
 ├── README.md  # what the code is, version in use, how to install and invoke
-├── log.md     # dated entries: discovered behaviours, workarounds, version changes
+├── log.md     # dated entries: discovered behaviours, workarounds, version changes; see project.md
 ├── recipes/   # reusable invocation patterns and configuration snippets
 ├── notes/
 │   └── refs/  # papers about the code
